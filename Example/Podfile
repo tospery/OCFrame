@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'OCFrame_Example' do
+  pod 'OCFrame', :path => '../'
+
+  target 'OCFrame_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

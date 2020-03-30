@@ -1,0 +1,33 @@
+PODS:
+  - OCFrame (1.0.0):
+    - QMUIKit/QMUIComponents/QMUIButton (= 4.0.4)
+    - QMUIKit/QMUIComponents/QMUILabel (= 4.0.4)
+    - QMUIKit/QMUICore (= 4.0.4)
+  - QMUIKit/QMUIComponents/QMUIButton (4.0.4):
+    - QMUIKit/QMUICore
+  - QMUIKit/QMUIComponents/QMUILabel (4.0.4):
+    - QMUIKit/QMUICore
+  - QMUIKit/QMUICore (4.0.4):
+    - QMUIKit/QMUILog
+    - QMUIKit/QMUIWeakObjectContainer
+  - QMUIKit/QMUILog (4.0.4)
+  - QMUIKit/QMUIWeakObjectContainer (4.0.4)
+
+DEPENDENCIES:
+  - OCFrame (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - QMUIKit
+
+EXTERNAL SOURCES:
+  OCFrame:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  OCFrame: e908f2c4c99bf6d9d307ff3697b03fe821f7d5e8
+  QMUIKit: 73899f707bdd51f44d16e10d11f224fb821fbe74
+
+PODFILE CHECKSUM: a5673eb9be47f525a8939d36167f9a8bbe4b26cf
+
+COCOAPODS: 1.9.1
