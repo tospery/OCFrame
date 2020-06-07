@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'OCFrame'
-  s.version          = '1.0.0'
+  s.version          = '1.0.1'
   s.summary          = 'iOS App Framework.'
 
 # This description is used to generate tags and improve search results.
@@ -41,4 +41,17 @@ Pod::Spec.new do |s|
   s.dependency 'QMUIKit/QMUICore', '4.0.4'
   s.dependency 'QMUIKit/QMUIComponents/QMUILabel', '4.0.4'
   s.dependency 'QMUIKit/QMUIComponents/QMUIButton', '4.0.4'
+  s.dependency 'RESTful', '1.0.0'
+  s.dependency 'CocoaLumberjack', '3.6.0'
+  s.dependency 'SDWebImage', '5.4.0'
+  s.dependency 'MJRefresh', '3.3.1'
+  s.dependency 'FCUUID', '1.3.1'
+  s.dependency 'WebViewJavascriptBridge', '6.0.3'
+  s.dependency 'PINCache', '3.0.1-beta.8'
+  s.dependency 'GVUserDefaults', '1.0.2'
+  s.dependency 'DZNEmptyDataSet', '1.8.1'
+  s.dependency 'JLRoutes', '2.1'
+  s.dependency 'TYAlertController', '1.2.0'
+  s.dependency 'Toast', '4.0.0'
+  s.dependency 'DKNightVersion', '2.4.3'
 end

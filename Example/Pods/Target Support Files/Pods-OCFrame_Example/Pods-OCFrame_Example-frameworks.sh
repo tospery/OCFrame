@@ -197,12 +197,48 @@ if [ -r "${ARTIFACT_LIST_FILE}" ]; then
 fi
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DKNightVersion/DKNightVersion.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FCUUID/FCUUID.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GVUserDefaults/GVUserDefaults.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/JLRoutes/JLRoutes.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/OCFrame/OCFrame.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/QMUIKit/QMUIKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RESTful/RESTful.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/TYAlertController/TYAlertController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Toast/Toast.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/WebViewJavascriptBridge/WebViewJavascriptBridge.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DKNightVersion/DKNightVersion.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FCUUID/FCUUID.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GVUserDefaults/GVUserDefaults.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/JLRoutes/JLRoutes.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/OCFrame/OCFrame.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/QMUIKit/QMUIKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RESTful/RESTful.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/TYAlertController/TYAlertController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Toast/Toast.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/WebViewJavascriptBridge/WebViewJavascriptBridge.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait
