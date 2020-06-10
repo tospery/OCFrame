@@ -48,6 +48,7 @@
 #import "OCFCellReactor.h"
 #import "OCFCollectionReactor.h"
 #import "OCFNormalCollectionReactor.h"
+#import "OCFTabBarReactor.h"
 //#import "OCFPageViewModel.h"
 //#import "OCFCellReactor.h"
 //#import "OCFTableItem.h"
@@ -70,6 +71,7 @@
 #import "OCFNavigationController.h"
 #import "OCFWebViewController.h"
 #import "OCFLoginViewController.h"
+#import "OCFTabBarController.h"
 //#import "OCFPageViewController.h"
 //#import "OCFWaterfallViewController.h"
 
