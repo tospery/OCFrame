@@ -1,13 +1,13 @@
+////
+////  OCFButton.h
+////  Pods
+////
+////  Created by 杨建祥 on 2020/2/25.
+////
 //
-//  OCFButton.h
-//  Pods
+//#import <QMUIKit/QMUIKit.h>
 //
-//  Created by 杨建祥 on 2020/2/25.
+//@interface OCFButton : QMUIButton
 //
-
-#import <QMUIKit/QMUIKit.h>
-
-@interface OCFButton : QMUIButton
-
-@end
-
+//@end
+//

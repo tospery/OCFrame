@@ -1,13 +1,13 @@
+////
+////  OCFLabel.h
+////  Pods
+////
+////  Created by 杨建祥 on 2020/2/25.
+////
 //
-//  OCFLabel.h
-//  Pods
+//#import <QMUIKit/QMUIKit.h>
 //
-//  Created by 杨建祥 on 2020/2/25.
+//@interface OCFLabel : QMUILabel
 //
-
-#import <QMUIKit/QMUIKit.h>
-
-@interface OCFLabel : QMUILabel
-
-@end
-
+//@end
+//

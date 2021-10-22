@@ -1,12 +1,12 @@
+////
+////  OCFLabel.m
+////  Pods
+////
+////  Created by 杨建祥 on 2020/2/25.
+////
 //
-//  OCFLabel.m
-//  Pods
+//#import "OCFLabel.h"
 //
-//  Created by 杨建祥 on 2020/2/25.
+//@implementation OCFLabel
 //
-
-#import "OCFLabel.h"
-
-@implementation OCFLabel
-
-@end
+//@end

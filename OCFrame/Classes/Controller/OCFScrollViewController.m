@@ -46,8 +46,8 @@
 #pragma mark - View
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (![self isKindOfClass:OCFCollectionViewController.class] &&
-        ![self isKindOfClass:OCFWebViewController.class]) {
+    if (![self isKindOfClass:OCFCollectionViewController.class] /*&&
+        ![self isKindOfClass:OCFWebViewController.class]*/) {
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.contentFrame];
         scrollView.ocf_contentView = [[UIView alloc] init];
         scrollView.ocf_contentView.frame = scrollView.bounds;
