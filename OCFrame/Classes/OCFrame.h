@@ -20,12 +20,10 @@
 #import "OCFNavigator.h"
 #import "OCFAppDependency.h"
 #import "OCFParameter.h"
-#import "OCFrameManager.h"
 #import "OCFUser.h"
 #import "OCFMisc.h"
 #import "OCFBaseResponse.h"
 #import "OCFBaseList.h"
-#import "OCFBaseSessionManager.h"
 #import "OCFPage.h"
 #import "OCFNormalCollectionModel.h"
 //#import "OCFObject.h"
@@ -36,44 +34,6 @@
 //#import "OCFBaseCommand.h"
 //#import "OCFBaseList.h"
 //#import "OCFNormalModel.h"
-
-#pragma mark - Reactor
-#import "OCFBaseReactor.h"
-#import "OCFViewReactor.h"
-#import "OCFScrollViewReactor.h"
-#import "OCFCollectionViewReactor.h"
-#import "OCFTabBarViewReactor.h"
-#import "OCFWebViewReactor.h"
-#import "OCFLoginViewReactor.h"
-#import "OCFCellReactor.h"
-#import "OCFCollectionReactor.h"
-#import "OCFNormalCollectionReactor.h"
-#import "OCFTabBarReactor.h"
-//#import "OCFPageViewModel.h"
-//#import "OCFCellReactor.h"
-//#import "OCFTableItem.h"
-//#import "OCFCollectionReactor.h"
-//#import "OCFPageMenuItem.h"
-//#import "OCFPageMenuIndicatorItem.h"
-//#import "OCFPageMenuTitleItem.h"
-//#import "OCFPage.h"
-//#import "OCFParameter.h"
-//#import "OCFBaseResponse.h"
-//#import "OCFBaseSessionManager.h"
-//#import "OCFWaterfallViewModel.h"
-//#import "OCFNormalCollectionItem.h"
-
-#pragma mark - Controller
-#import "OCFViewController.h"
-#import "OCFScrollViewController.h"
-#import "OCFCollectionViewController.h"
-#import "OCFTabBarViewController.h"
-#import "OCFNavigationController.h"
-//#import "OCFWebViewController.h"
-#import "OCFLoginViewController.h"
-#import "OCFTabBarController.h"
-//#import "OCFPageViewController.h"
-//#import "OCFWaterfallViewController.h"
 
 #pragma mark - View
 #import "OCFReactiveView.h"
@@ -102,6 +62,64 @@
 //#import "OCFButton.h"
 //#import "OCFNormalCollectionCell.h"
 //#import "OCFBorderLayer.h"
+
+#pragma mark - Controller
+#import "OCFViewController.h"
+#import "OCFScrollViewController.h"
+#import "OCFCollectionViewController.h"
+#import "OCFTabBarViewController.h"
+#import "OCFNavigationController.h"
+//#import "OCFWebViewController.h"
+#import "OCFLoginViewController.h"
+#import "OCFTabBarController.h"
+//#import "OCFPageViewController.h"
+//#import "OCFWaterfallViewController.h"
+
+#pragma mark - Reactor
+#import "OCFBaseReactor.h"
+#import "OCFViewReactor.h"
+#import "OCFScrollViewReactor.h"
+#import "OCFCollectionViewReactor.h"
+#import "OCFTabBarViewReactor.h"
+#import "OCFWebViewReactor.h"
+#import "OCFLoginViewReactor.h"
+#import "OCFCellReactor.h"
+#import "OCFCollectionReactor.h"
+#import "OCFNormalCollectionReactor.h"
+#import "OCFTabBarReactor.h"
+//#import "OCFPageViewModel.h"
+//#import "OCFCellReactor.h"
+//#import "OCFTableItem.h"
+//#import "OCFCollectionReactor.h"
+//#import "OCFPageMenuItem.h"
+//#import "OCFPageMenuIndicatorItem.h"
+//#import "OCFPageMenuTitleItem.h"
+//#import "OCFPage.h"
+//#import "OCFParameter.h"
+//#import "OCFBaseResponse.h"
+//#import "OCFBaseSessionManager.h"
+//#import "OCFWaterfallViewModel.h"
+//#import "OCFNormalCollectionItem.h"
+
+#pragma mark - Protocol
+#import "OCFReactive.h"
+#import "OCFNavigable.h"
+#import "OCFIdentifiable.h"
+#import "OCFSupplementary.h"
+//#import "OCFSupplementaryView.h"
+//#import "OCFNavigationProtocol.h"
+//#import "OCFProvisionProtocol.h"
+//#import "OCFPageMenuIndicator.h"
+//#import "OCFPageContainerProtocol.h"
+//#import "OCFPageContentProtocol.h"
+
+#pragma mark - Protocol
+#import "OCFAppearanceManager.h"
+#import "OCFBaseSessionManager.h"
+#import "OCFLibraryManager.h"
+#import "OCFrameManager.h"
+#import "OCFRouterManager.h"
+#import "OCFRuntimeManager.h"
 
 #pragma mark - Category
 #import "NSObject+OCFrame.h"
@@ -140,18 +158,6 @@
 //#import "UIViewController+OCFrame.h"
 //#import "UICollectionReusableView+OCFrame.h"
 
-#pragma mark - Protocol
-#import "OCFReactive.h"
-#import "OCFNavigable.h"
-#import "OCFIdentifiable.h"
-#import "OCFSupplementary.h"
-//#import "OCFSupplementaryView.h"
-//#import "OCFNavigationProtocol.h"
-//#import "OCFProvisionProtocol.h"
-//#import "OCFPageMenuIndicator.h"
-//#import "OCFPageContainerProtocol.h"
-//#import "OCFPageContentProtocol.h"
-
 #pragma mark - Vendor
 #import <ReactiveObjC/ReactiveObjC.h>
 #import <ReactiveObjC/NSObject+RACKVOWrapper.h>
@@ -170,4 +176,4 @@
 #import <Toast/UIView+Toast.h>
 #import <TYAlertController/TYAlertController.h>
 #import <DKNightVersion/DKNightVersion.h>
-#import <WebViewJavascriptBridge/WebViewJavascriptBridge.h>
+// #import <WebViewJavascriptBridge/WebViewJavascriptBridge.h>

@@ -27,8 +27,8 @@
 @implementation OCFScrollViewReactor
 
 #pragma mark - Init
-- (instancetype)initWithRouteParameters:(NSDictionary *)parameters {
-    if (self = [super initWithRouteParameters:parameters]) {
+- (instancetype)initWithParameters:(NSDictionary *)parameters {
+    if (self = [super initWithParameters:parameters]) {
         self.shouldPullToRefresh = OCFBoolMember(parameters, OCFParameter.pullRefresh, NO);
         self.shouldScrollToMore = OCFBoolMember(parameters, OCFParameter.scrollMore, NO);
         self.page = [[OCFPage alloc] init];

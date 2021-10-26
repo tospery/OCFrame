@@ -18,8 +18,8 @@
 @end
 
 @implementation OCFWebViewReactor
-- (instancetype)initWithRouteParameters:(NSDictionary *)parameters {
-    if (self = [super initWithRouteParameters:parameters]) {
+- (instancetype)initWithParameters:(NSDictionary *)parameters {
+    if (self = [super initWithParameters:parameters]) {
         self.shouldFetchLocalData = OCFBoolMember(parameters, OCFParameter.requestRemote, NO);
         self.shouldRequestRemoteData = OCFBoolMember(parameters, OCFParameter.requestRemote, YES);
         self.ocHandlers = OCFArrMember(parameters, OCFParameter.ocHandlers, nil);

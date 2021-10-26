@@ -17,8 +17,8 @@
 @implementation OCFTabBarViewReactor
 
 #pragma mark - Init
-- (instancetype)initWithRouteParameters:(NSDictionary *)parameters {
-    if (self = [super initWithRouteParameters:parameters]) {
+- (instancetype)initWithParameters:(NSDictionary *)parameters {
+    if (self = [super initWithParameters:parameters]) {
         self.hidesNavigationBar = OCFBoolMember(parameters, OCFParameter.hideNavBar, YES);
     }
     return self;

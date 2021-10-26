@@ -57,5 +57,7 @@ typedef NS_ENUM(NSInteger, OCFRequestMode) {
 - (NSArray *)data2Source:(id)data;
 - (void)reload;
 
+- (instancetype)initWithParameters:(NSDictionary *)parameters;
+
 @end
 

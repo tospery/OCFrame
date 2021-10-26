@@ -9,6 +9,9 @@
 #import "OCFTabBarReactor.h"
 
 @interface OCFTabBarController : UITabBarController
+@property (nonatomic, strong, readonly) OCFTabBarReactor *reactor;
+
+- (instancetype)initWithReactor:(OCFTabBarReactor *)reactor;
 
 @end
 

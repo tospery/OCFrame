@@ -9,6 +9,7 @@
 #import <JLRoutes/JLRoutes.h>
 #import "OCFViewReactor.h"
 #import "OCFViewController.h"
+#import "OCFTabBarController.h"
 #import "OCFTabBarViewController.h"
 #import "OCFNavigationController.h"
 
@@ -69,7 +70,7 @@
     NSParameterAssert([name hasSuffix:kReactorName]);
     name = [name stringByReplacingCharactersInRange:NSMakeRange(name.length - kReactorName.length, kReactorName.length) withString:kControllerName];
     Class cls = NSClassFromString(name);
-    NSParameterAssert([cls isSubclassOfClass:OCFViewController.class]);
+    NSParameterAssert([cls isSubclassOfClass:OCFViewController.class] || [cls isSubclassOfClass:OCFTabBarController.class]);
     NSParameterAssert([cls instancesRespondToSelector:@selector(initWithReactor:)]);
     return [[cls alloc] initWithReactor:reactor];
 }

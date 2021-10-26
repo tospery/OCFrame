@@ -14,8 +14,8 @@
 
 @implementation OCFLoginViewReactor
 
-- (instancetype)initWithRouteParameters:(NSDictionary *)parameters {
-    if (self = [super initWithRouteParameters:parameters]) {
+- (instancetype)initWithParameters:(NSDictionary *)parameters {
+    if (self = [super initWithParameters:parameters]) {
     }
     return self;
 }

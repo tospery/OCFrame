@@ -41,7 +41,7 @@
 @implementation OCFViewReactor
 
 #pragma mark - Init
-- (instancetype)initWithRouteParameters:(NSDictionary *)parameters {
+- (instancetype)initWithParameters:(NSDictionary *)parameters {
     if (self = [super init]) {
         self.parameters = parameters;
         self.shouldFetchLocalData = OCFBoolMember(parameters, OCFParameter.fetchLocalData, YES);
@@ -79,6 +79,12 @@
                 self.user = [OCFUser current];
             }
         }
+    }
+    return self;
+}
+
+- (instancetype)initWithRouteParameters:(NSDictionary<NSString *,id> *)parameters {
+    if (self = [self initWithParameters:parameters]) {
     }
     return self;
 }
@@ -225,7 +231,7 @@
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
     OCFViewReactor *reactor = [super allocWithZone:zone];
     @weakify(reactor)
-    [[reactor rac_signalForSelector:@selector(initWithRouteParameters:)] subscribeNext:^(id x) {
+    [[reactor rac_signalForSelector:@selector(initWithParameters:)] subscribeNext:^(id x) {
         @strongify(reactor)
         [reactor didInitialize];
     }];

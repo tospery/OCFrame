@@ -33,10 +33,10 @@
 
 #pragma mark - Pattern
 #define kOCFPatternWeb                              (@"*")
+#define kOCFPatternToast                            (@"toast")
 #define kOCFPatternAlert                            (@"alert")
 #define kOCFPatternSheet                            (@"sheet")
 #define kOCFPatternPopup                            (@"popup")
-#define kOCFPatternToast                            (@"toast")
 
 #pragma mark - Animation
 #define kOCFAnimationFade                           (@"fade")
