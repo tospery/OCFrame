@@ -7,7 +7,7 @@
 
 #import "OCFViewController.h"
 #import <QMUIKit/QMUIKit.h>
-#import <DKNightVersion/DKNightVersion.h>
+//#import <DKNightVersion/DKNightVersion.h>
 #import <Toast/UIView+Toast.h>
 #import "OCFType.h"
 #import "OCFConstant.h"
@@ -63,7 +63,8 @@
     self.extendedLayoutIncludesOpaqueBars = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    self.view.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
+    // self.view.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
+    self.view.backgroundColor = UIColor.whiteColor;
     
     self.navigationController.navigationBar.hidden = YES;
     if (!self.reactor.hidesNavigationBar) {

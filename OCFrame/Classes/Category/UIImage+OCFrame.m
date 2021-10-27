@@ -18,37 +18,37 @@
 #import "NSBundle+OCFrame.h"
 
 @interface UIImage ()
-@property (nonatomic, strong) NSMutableDictionary<NSString *, DKColorPicker> *pickers;
+// @property (nonatomic, strong) NSMutableDictionary<NSString *, DKColorPicker> *pickers;
 
 @end
 
 @implementation UIImage (OCFrame)
 
-- (DKColorPicker)dk_tintColorPicker {
-    return objc_getAssociatedObject(self, @selector(dk_tintColorPicker));
-}
-
-- (void)dk_setTintColorPicker:(DKColorPicker)picker {
-    objc_setAssociatedObject(self, @selector(dk_tintColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    [self qmui_imageWithTintColor:picker(self.dk_manager.themeVersion)];
-    [self.pickers setValue:[picker copy] forKey:@"setTintColor"];
-}
+//- (DKColorPicker)dk_tintColorPicker {
+//    return objc_getAssociatedObject(self, @selector(dk_tintColorPicker));
+//}
+//
+//- (void)dk_setTintColorPicker:(DKColorPicker)picker {
+//    objc_setAssociatedObject(self, @selector(dk_tintColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
+//    [self qmui_imageWithTintColor:picker(self.dk_manager.themeVersion)];
+//    [self.pickers setValue:[picker copy] forKey:@"setTintColor"];
+//}
 
 + (UIImage *)ocf_back {
     UIImage *image = [UIImage qmui_imageWithShape:QMUIImageShapeNavBack size:CGSizeMake(10, 18) lineWidth:1.5 tintColor:nil];
-    image.dk_tintColorPicker = DKColorPickerWithKey(BAR);
+    // image.dk_tintColorPicker = DKColorPickerWithKey(BAR);
     return image;
 }
 
 + (UIImage *)ocf_close {
     UIImage *image = [UIImage qmui_imageWithShape:QMUIImageShapeNavClose size:CGSizeMake(16, 16) lineWidth:1.5 tintColor:nil];
-    image.dk_tintColorPicker = DKColorPickerWithKey(BAR);
+    // image.dk_tintColorPicker = DKColorPickerWithKey(BAR);
     return image;
 }
 
 + (UIImage *)ocf_indicator {
     UIImage *image = [UIImage qmui_imageWithShape:QMUIImageShapeDisclosureIndicator size:CGSizeMake(8, 14) lineWidth:1 tintColor:nil];
-    image.dk_tintColorPicker = DKColorPickerWithKey(IND);
+    // image.dk_tintColorPicker = DKColorPickerWithKey(IND);
     return image;
 }
 

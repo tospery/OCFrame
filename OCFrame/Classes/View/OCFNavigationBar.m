@@ -6,7 +6,7 @@
 //
 
 #import "OCFNavigationBar.h"
-#import <DKNightVersion/DKNightVersion.h>
+//#import <DKNightVersion/DKNightVersion.h>
 #import "OCFFunction.h"
 #import "UIFont+OCFrame.h"
 #import "UIImage+OCFrame.h"
@@ -27,12 +27,13 @@
 #pragma mark - Init
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
+        // self.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
+        self.backgroundColor = UIColor.whiteColor;
         
         self.borderPosition = QMUIViewBorderPositionBottom;
         self.qmui_borderPosition = self.borderPosition;
         self.qmui_borderWidth = PixelOne;
-        self.dk_borderColorPicker = DKColorPickerWithKey(SEP);
+        // self.dk_borderColorPicker = DKColorPickerWithKey(SEP);
         [self addSubview:self.bgImageView];
         [self addSubview:self.titleLabel];
     }
@@ -47,7 +48,7 @@
         label.font = OCFFont(17);
         label.backgroundColor = UIColorClear;
         label.textAlignment = NSTextAlignmentCenter;
-        label.dk_textColorPicker = DKColorPickerWithKey(TEXT);
+        //label.dk_textColorPicker = DKColorPickerWithKey(TEXT);
         [label sizeToFit];
         _titleLabel = label;
     }
@@ -116,7 +117,7 @@
 - (UIButton *)addButtonToLeftWithImage:(UIImage *)image {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.backgroundColor = UIColorClear;
-    button.dk_tintColorPicker = DKColorPickerWithKey(BAR);
+    // button.dk_tintColorPicker = DKColorPickerWithKey(BAR);
     [button setImage:[image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
     [button sizeToFit];
     [self addSubview:button];
@@ -134,7 +135,7 @@
 - (UIButton *)addButtonToRightWithImage:(UIImage *)image {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.backgroundColor = UIColorClear;
-    button.dk_tintColorPicker = DKColorPickerWithKey(BAR);
+    //button.dk_tintColorPicker = DKColorPickerWithKey(BAR);
     [button setImage:[image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
     [button sizeToFit];
     [self addSubview:button];
@@ -173,7 +174,7 @@
 }
 
 - (void)reset {
-    self.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
+    //self.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
     self.qmui_borderPosition = self.borderPosition;
 }
 

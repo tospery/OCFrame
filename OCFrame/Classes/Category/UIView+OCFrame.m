@@ -13,21 +13,21 @@
 #import "NSDictionary+OCFrame.h"
 
 @interface UIView ()
-@property (nonatomic, strong) NSMutableDictionary<NSString *, DKColorPicker> *pickers;
+//@property (nonatomic, strong) NSMutableDictionary<NSString *, DKColorPicker> *pickers;
 
 @end
 
 @implementation UIView (OCFrame)
 
-- (DKColorPicker)dk_borderColorPicker {
-    return objc_getAssociatedObject(self, @selector(dk_borderColorPicker));
-}
-
-- (void)dk_setBorderColorPicker:(DKColorPicker)picker {
-    objc_setAssociatedObject(self, @selector(dk_borderColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.qmui_borderColor = picker(self.dk_manager.themeVersion);
-    [self.pickers setValue:[picker copy] forKey:@"setBorderColor"];
-}
+//- (DKColorPicker)dk_borderColorPicker {
+//    return objc_getAssociatedObject(self, @selector(dk_borderColorPicker));
+//}
+//
+//- (void)dk_setBorderColorPicker:(DKColorPicker)picker {
+//    objc_setAssociatedObject(self, @selector(dk_borderColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
+//    self.qmui_borderColor = picker(self.dk_manager.themeVersion);
+//    [self.pickers setValue:[picker copy] forKey:@"setBorderColor"];
+//}
 
 - (CGFloat)ocf_borderWidth {
     return self.layer.borderWidth;

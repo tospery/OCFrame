@@ -7,7 +7,7 @@
 
 #import "OCFBorderLayer.h"
 #import <QMUIKit/QMUIKit.h>
-#import <DKNightVersion/DKNightVersion.h>
+//#import <DKNightVersion/DKNightVersion.h>
 #import "OCFFunction.h"
 #import "NSDictionary+OCFrame.h"
 
@@ -176,7 +176,7 @@
 - (UIColor *)colorForBorder:(OCFBorderPosition)position {
     UIColor *color = [self.borderColors ocf_objectForKey:@(position)];
     if (!color || ![color isKindOfClass:UIColor.class]) {
-        return OCFColorKey(SEP);
+        return UIColor.orangeColor; // OCFColorKey(SEP);
     }
     return color;
 }

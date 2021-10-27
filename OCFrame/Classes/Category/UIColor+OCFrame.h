@@ -7,12 +7,13 @@
 
 #import <UIKit/UIKit.h>
 #import <QMUIKit/QMUIKit.h>
-#import <DKNightVersion/DKNightVersion.h>
+//#import <DKNightVersion/DKNightVersion.h>
+#import <SwiftTheme/SwiftTheme-Swift.h>
 
 #define OCFColorRGB(r, g, b)                (UIColorMake((r), (g), (b)))
 #define OCFColorVal(value)                  ([UIColor ocf_colorWithHex:(value)])
 #define OCFColorStr(string)                 ([UIColor qmui_colorWithHexString:(string)])
-#define OCFColorKey(t)                      (DKColorPickerWithKey(t)(self.dk_manager.themeVersion))
+#define OCFColorKey(t)                      ([ThemeColorPicker pickerWithKeyPath:t]) // (DKColorPickerWithKey(t)(self.dk_manager.themeVersion))
 
 //#define OCFColorRGB(r, g, b)                 (UIColorMake((r), (g), (b)))
 //#define OCFColorKey(t)                       (DKColorPickerWithKey(t)(self.dk_manager.themeVersion))

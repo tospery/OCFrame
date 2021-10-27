@@ -6,7 +6,7 @@
 //
 
 #import "OCFCollectionViewController.h"
-#import <DKNightVersion/DKNightVersion.h>
+//#import <DKNightVersion/DKNightVersion.h>
 #import "OCFConstant.h"
 #import "OCFFunction.h"
 #import "OCFCollectionCell.h"
@@ -47,7 +47,8 @@
     collectionView.delegate = self;
     collectionView.emptyDataSetSource = self.reactor;
     collectionView.emptyDataSetDelegate = self;
-    collectionView.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
+    // collectionView.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
+    collectionView.backgroundColor = UIColor.whiteColor;
     if (@available(iOS 11.0, *)) {
         collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }

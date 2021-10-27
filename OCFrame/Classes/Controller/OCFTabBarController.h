@@ -6,9 +6,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OCFReactive.h"
 #import "OCFTabBarReactor.h"
 
-@interface OCFTabBarController : UITabBarController
+@interface OCFTabBarController : UITabBarController <OCFReactive>
 @property (nonatomic, strong, readonly) OCFTabBarReactor *reactor;
 
 - (instancetype)initWithReactor:(OCFTabBarReactor *)reactor;

@@ -7,6 +7,10 @@
 
 #import "OCFTabBarReactor.h"
 
+@interface OCFTabBarReactor ()
+
+@end
+
 @implementation OCFTabBarReactor
 
 @end

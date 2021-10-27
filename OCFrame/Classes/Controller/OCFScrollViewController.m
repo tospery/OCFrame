@@ -8,7 +8,7 @@
 #import "OCFScrollViewController.h"
 #import <Mantle/Mantle.h>
 #import <MJRefresh/MJRefresh.h>
-#import <DKNightVersion/DKNightVersion.h>
+//#import <DKNightVersion/DKNightVersion.h>
 #import "OCFFunction.h"
 #import "OCFrameManager.h"
 #import "OCFAppDependency.h"
@@ -51,9 +51,11 @@
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.contentFrame];
         scrollView.ocf_contentView = [[UIView alloc] init];
         scrollView.ocf_contentView.frame = scrollView.bounds;
-        scrollView.ocf_contentView.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
+            // YJX_TODO
+        // scrollView.ocf_contentView.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
+            scrollView.ocf_contentView.backgroundColor = UIColor.whiteColor;
         scrollView.contentSize = CGSizeMake(scrollView.qmui_width, scrollView.qmui_height + PixelOne);
-        scrollView.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
+        // scrollView.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
         scrollView.delegate = self;
         scrollView.emptyDataSetSource = self.reactor;
         scrollView.emptyDataSetDelegate = self;

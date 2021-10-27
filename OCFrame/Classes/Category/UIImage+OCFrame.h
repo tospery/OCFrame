@@ -7,13 +7,13 @@
 
 #import <UIKit/UIKit.h>
 #import <QMUIKit/QMUIKit.h>
-#import <DKNightVersion/DKNightVersion.h>
+//#import <DKNightVersion/DKNightVersion.h>
 
 #define OCFImageFrame(x)        ([UIImage ocf_imageInFrame:OCFStrWithFmt(@"OCFrame/%@", (x))])
 #define OCFImageColor(x)        ([UIImage qmui_imageWithColor:(x)])
 
 @interface UIImage (OCFrame)
-@property (nonatomic, copy, setter = dk_setTintColorPicker:) DKColorPicker dk_tintColorPicker;
+//@property (nonatomic, copy, setter = dk_setTintColorPicker:) DKColorPicker dk_tintColorPicker;
 @property (class, strong, readonly) UIImage *ocf_back;
 @property (class, strong, readonly) UIImage *ocf_close;
 @property (class, strong, readonly) UIImage *ocf_indicator;
