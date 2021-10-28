@@ -7,7 +7,6 @@
 
 #import "OCFNormalCollectionCell.h"
 #import <SDWebImage/SDWebImage.h>
-//#import <DKNightVersion/DKNightVersion.h>
 #import "OCFFunction.h"
 #import "OCFBorderLayer.h"
 #import "UIFont+OCFrame.h"
@@ -15,6 +14,7 @@
 #import "NSURL+OCFrame.h"
 #import "UIView+OCFrame.h"
 #import "OCFNormalCollectionReactor.h"
+#import "ThemeColorPicker+OCFrame.h"
 
 @interface OCFNormalCollectionCell ()
 @property (nonatomic, strong, readwrite) UILabel *titleLabel;
@@ -47,7 +47,7 @@
     if (!_titleLabel) {
         UILabel *label = [[UILabel alloc] init];
         label.font = OCFFont(15);
-        // label.dk_textColorPicker = DKColorPickerWithKey(TEXT);
+        label.theme_textColor = ThemeColorPicker.title;
         _titleLabel = label;
     }
     return _titleLabel;
@@ -57,7 +57,7 @@
     if (!_detailLabel) {
         UILabel *label = [[UILabel alloc] init];
         label.font = OCFFont(13);
-        // label.dk_textColorPicker = DKColorPickerWithKey(BODY);
+        label.theme_textColor = ThemeColorPicker.body;
         _detailLabel = label;
     }
     return _detailLabel;
@@ -77,6 +77,7 @@
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.image = [UIImage.ocf_indicator imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         // imageView.dk_tintColorPicker = DKColorPickerWithKey(IND);
+        imageView.theme_tintColor = ThemeColorPicker.separator;
         [imageView sizeToFit];
         _arrowImageView = imageView;
     }

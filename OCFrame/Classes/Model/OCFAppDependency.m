@@ -15,6 +15,7 @@
 #import "OCFUser.h"
 #import "OCFMisc.h"
 #import "OCFParameter.h"
+#import "OCFAppearanceManager.h"
 #import "NSDictionary+OCFrame.h"
 #import "UIView+OCFrame.h"
 
@@ -79,7 +80,7 @@
 
 #pragma mark finish
 - (void)entryDidFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+    [OCFAppearanceManager.sharedInstance setup];
 }
 
 - (void)leaveDidFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

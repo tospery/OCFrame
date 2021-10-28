@@ -6,7 +6,6 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import <DKNightVersion/DKNightVersion.h>
 #import "OCFBorderLayer.h"
 
 @interface UIView (OCFrame)

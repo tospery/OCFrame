@@ -6,13 +6,13 @@
 //
 
 #import "OCFCollectionViewController.h"
-//#import <DKNightVersion/DKNightVersion.h>
 #import "OCFConstant.h"
 #import "OCFFunction.h"
 #import "OCFCollectionCell.h"
 #import "OCFSupplementaryView.h"
 #import "OCFCollectionViewReactor.h"
 #import "UICollectionReusableView+OCFrame.h"
+#import "ThemeColorPicker+OCFrame.h"
 
 @interface OCFCollectionViewController ()
 @property (nonatomic, strong, readwrite) UICollectionView *collectionView;
@@ -47,7 +47,7 @@
     collectionView.delegate = self;
     collectionView.emptyDataSetSource = self.reactor;
     collectionView.emptyDataSetDelegate = self;
-    // collectionView.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
+    collectionView.theme_backgroundColor = ThemeColorPicker.background;
     collectionView.backgroundColor = UIColor.whiteColor;
     if (@available(iOS 11.0, *)) {
         collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;

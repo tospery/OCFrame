@@ -7,7 +7,6 @@
 
 #import "OCFViewController.h"
 #import <QMUIKit/QMUIKit.h>
-//#import <DKNightVersion/DKNightVersion.h>
 #import <Toast/UIView+Toast.h>
 #import "OCFType.h"
 #import "OCFConstant.h"
@@ -19,6 +18,7 @@
 #import "NSDictionary+OCFrame.h"
 #import "UIViewController+OCFrame.h"
 #import "NSError+OCFrame.h"
+#import "ThemeColorPicker+OCFrame.h"
 
 @interface OCFViewController ()
 //@property (nonatomic, strong) UIButton *backButton;
@@ -62,9 +62,8 @@
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.extendedLayoutIncludesOpaqueBars = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    // self.view.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
-    self.view.backgroundColor = UIColor.whiteColor;
+
+    self.view.theme_backgroundColor = ThemeColorPicker.background;
     
     self.navigationController.navigationBar.hidden = YES;
     if (!self.reactor.hidesNavigationBar) {

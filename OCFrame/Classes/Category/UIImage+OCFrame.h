@@ -7,7 +7,6 @@
 
 #import <UIKit/UIKit.h>
 #import <QMUIKit/QMUIKit.h>
-//#import <DKNightVersion/DKNightVersion.h>
 
 #define OCFImageFrame(x)        ([UIImage ocf_imageInFrame:OCFStrWithFmt(@"OCFrame/%@", (x))])
 #define OCFImageColor(x)        ([UIImage qmui_imageWithColor:(x)])

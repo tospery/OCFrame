@@ -6,8 +6,8 @@
 //
 
 #import "OCFCollectionCell.h"
-//#import <DKNightVersion/DKNightVersion.h>
 #import "OCFFunction.h"
+#import "ThemeColorPicker+OCFrame.h"
 
 @interface OCFCollectionCell ()
 @property (nonatomic, strong, readwrite) OCFCollectionReactor *reactor;
@@ -17,8 +17,7 @@
 @implementation OCFCollectionCell
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        // self.dk_backgroundColorPicker = DKColorPickerWithKey(BG);
-        self.backgroundColor = UIColor.whiteColor;
+        self.theme_backgroundColor = ThemeColorPicker.background;
     }
     return self;
 }

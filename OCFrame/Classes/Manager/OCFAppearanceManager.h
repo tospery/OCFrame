@@ -9,6 +9,8 @@
 
 @interface OCFAppearanceManager : NSObject
 
+- (void)setup;
+
 + (instancetype)sharedInstance;
 
 @end
