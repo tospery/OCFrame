@@ -22,6 +22,7 @@
 @property(class, nonatomic, readonly) ThemeColorPicker *footer;
 @property(class, nonatomic, readonly) ThemeColorPicker *border;
 @property(class, nonatomic, readonly) ThemeColorPicker *separator;
+@property(class, nonatomic, readonly) ThemeColorPicker *indicator;
 @property(class, nonatomic, readonly) ThemeColorPicker *barTint;
 @property(class, nonatomic, readonly) ThemeColorPicker *barText;
 

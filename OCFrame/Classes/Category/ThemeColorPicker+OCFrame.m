@@ -21,6 +21,7 @@
 + (ThemeColorPicker *)footer { return OCFColorPicker(@"footerColor"); }
 + (ThemeColorPicker *)border { return OCFColorPicker(@"borderColor"); }
 + (ThemeColorPicker *)separator { return OCFColorPicker(@"separatorColor"); }
++ (ThemeColorPicker *)indicator { return OCFColorPicker(@"indicatorColor"); }
 + (ThemeColorPicker *)barTint { return OCFColorPicker(@"barTintColor"); }
 + (ThemeColorPicker *)barText { return OCFColorPicker(@"barTextColor"); }
 

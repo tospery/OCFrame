@@ -9,6 +9,7 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 #import <JLRoutes/JLRoutes.h>
 #import <Toast/UIView+Toast.h>
+#import <QMUIKit/QMUIKit.h>
 #import "OCFType.h"
 #import "OCFConstant.h"
 #import "OCFFunction.h"
@@ -80,6 +81,12 @@
 
 #pragma mark finish
 - (void)entryDidFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    OCFLogDebug(@"运行环境: %@", @(IS_DEBUG));
+    OCFLogDebug(@"设备型号: %@", QMUIHelper.deviceName);
+    OCFLogDebug(@"系统版本: %@", UIDevice.currentDevice.systemVersion);
+    OCFLogDebug(@"屏幕尺寸: %@", NSStringFromCGSize(UIScreen.mainScreen.bounds.size));
+    OCFLogDebug(@"刘海尺寸: %@", NSStringFromUIEdgeInsets(SafeAreaInsetsConstantForDeviceWithNotch));
+    OCFLogDebug(@"状态栏%d, 导航栏%d, 标签栏%d", (int)StatusBarHeightConstant, NavigationBarHeight, (int)TabBarHeight);
     [OCFAppearanceManager.sharedInstance setup];
 }
 

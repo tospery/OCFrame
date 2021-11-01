@@ -14,28 +14,28 @@
 @implementation OCFAppearanceManager
 
 - (void)setup {
-    // NavBar
-    if (@available(iOS 13.0, *)) {
-        UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
-        [appearance configureWithOpaqueBackground];
-        appearance.backgroundColor = UIColor.greenColor;
-        appearance.shadowImage = [[UIImage alloc] init];
-        appearance.shadowColor = nil;
-        appearance.titleTextAttributes = @{
-            NSForegroundColorAttributeName: UIColor.orangeColor,
-            NSFontAttributeName: [UIFont boldSystemFontOfSize:17]
-        };
-        UINavigationBar.appearance.translucent = NO;
-        UINavigationBar.appearance.standardAppearance = appearance;
-        UINavigationBar.appearance.scrollEdgeAppearance = appearance;
-    } else {
-        UINavigationBar.appearance.translucent = NO;
-        UINavigationBar.appearance.barTintColor = UIColor.greenColor;
-        UINavigationBar.appearance.titleTextAttributes = @{
-            NSForegroundColorAttributeName: UIColor.orangeColor,
-            NSFontAttributeName: [UIFont boldSystemFontOfSize:17]
-        };
-    }
+//    // NavBar
+//    if (@available(iOS 13.0, *)) {
+//        UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
+//        [appearance configureWithOpaqueBackground];
+//        appearance.backgroundColor = UIColor.greenColor;
+//        appearance.shadowImage = [[UIImage alloc] init];
+//        appearance.shadowColor = nil;
+//        appearance.titleTextAttributes = @{
+//            NSForegroundColorAttributeName: UIColor.orangeColor,
+//            NSFontAttributeName: [UIFont boldSystemFontOfSize:17]
+//        };
+//        UINavigationBar.appearance.translucent = NO;
+//        UINavigationBar.appearance.standardAppearance = appearance;
+//        UINavigationBar.appearance.scrollEdgeAppearance = appearance;
+//    } else {
+//        UINavigationBar.appearance.translucent = NO;
+//        UINavigationBar.appearance.barTintColor = UIColor.greenColor;
+//        UINavigationBar.appearance.titleTextAttributes = @{
+//            NSForegroundColorAttributeName: UIColor.orangeColor,
+//            NSFontAttributeName: [UIFont boldSystemFontOfSize:17]
+//        };
+//    }
     
 //    // TabBar
 //    if (@available(iOS 13.0, *)) {

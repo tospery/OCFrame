@@ -117,6 +117,8 @@
             }
         }
     }
+    
+    OCFLogDebug(@"self.collectionView.frame = %@", NSStringFromCGRect(self.collectionView.frame));
 }
 
 #pragma mark - Property
