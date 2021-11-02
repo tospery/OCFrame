@@ -65,13 +65,17 @@
 
     self.view.theme_backgroundColor = ThemeColorPicker.background;
     
+//    self.navigationController.navigationBar.hidden = YES;
+//    if (!self.reactor.hidesNavigationBar) {
+//        [self addNavigationBar];
+//        if (self.reactor.hidesNavBottomLine) {
+//            self.navigationBar.qmui_borderLayer.hidden = YES;
+//        }
+//    }
     self.navigationController.navigationBar.hidden = YES;
-    if (!self.reactor.hidesNavigationBar) {
-        [self addNavigationBar];
-        if (self.reactor.hidesNavBottomLine) {
-            self.navigationBar.qmui_borderLayer.hidden = YES;
-        }
-    }
+    [self.view addSubview:self.navigationBar];
+    self.navigationBar.hidden = self.reactor.hidesNavigationBar;
+    self.navigationBar.qmui_borderLayer.hidden = self.reactor.hidesNavBottomLine;
     
     if (self.navigationController.viewControllers.count > 1) {
         UIButton *backButton = [self.navigationBar addBackButtonToLeft];
@@ -128,21 +132,12 @@
 }
 
 - (CGFloat)contentTop {
-    CGFloat value = 0;
-    UINavigationBar *navBar = self.navigationController.navigationBar;
-    if ((navBar && !navBar.hidden) || !self.reactor.hidesNavigationBar) {
-        value += OCFNavContentTopConstant;
-    }
-//    OCFPageMenuView *menuView = self.ocf_pageViewController.menuView;
-//    if (menuView && !menuView.hidden) {
-//        value += menuView.qmui_height;
-//    }
-    return value;
+    return self.reactor.hidesNavigationBar ? 0 : OCFNavContentTopConstant;
 }
 
 - (CGFloat)contentBottom {
     CGFloat value = OCFSafeBottom;
-    UITabBar *tabBar = self.tabBarController.tabBar; // self.ocf_tabBarViewController.innerTabBarController.tabBar;
+    UITabBar *tabBar = self.tabBarController.tabBar;
     if (tabBar && !tabBar.hidden && !self.hidesBottomBarWhenPushed) {
         value += tabBar.qmui_height;
     }
@@ -169,14 +164,14 @@
         @strongify(self)
         [self handleError];
     }];
-    [[RACObserve(self.reactor, hidesNavigationBar) skip:1].distinctUntilChanged.deliverOnMainThread subscribeNext:^(NSNumber *hide) {
-        @strongify(self)
-        hide.boolValue ? [self removeNavigationBar] : [self addNavigationBar];
-    }];
-    [[RACObserve(self.reactor, hidesNavBottomLine) skip:1].distinctUntilChanged.deliverOnMainThread subscribeNext:^(NSNumber *hide) {
-        @strongify(self)
-        self.navigationBar.qmui_borderLayer.hidden = hide.boolValue;
-    }];
+//    [[RACObserve(self.reactor, hidesNavigationBar) skip:1].distinctUntilChanged.deliverOnMainThread subscribeNext:^(NSNumber *hide) {
+//        @strongify(self)
+//        hide.boolValue ? [self removeNavigationBar] : [self addNavigationBar];
+//    }];
+//    [[RACObserve(self.reactor, hidesNavBottomLine) skip:1].distinctUntilChanged.deliverOnMainThread subscribeNext:^(NSNumber *hide) {
+//        @strongify(self)
+//        self.navigationBar.qmui_borderLayer.hidden = hide.boolValue;
+//    }];
     [[self.reactor.executing skip:1] subscribeNext:^(NSNumber *executing) {
         @strongify(self)
         if (executing.boolValue) {
@@ -299,17 +294,17 @@
 }
 
 #pragma mark - Navigation
-- (void)addNavigationBar {
-    if (!self.navigationBar.superview) {
-        [self.view addSubview:self.navigationBar];
-    }
-}
-
-- (void)removeNavigationBar {
-    if (self.navigationBar.superview) {
-        [self.navigationBar removeFromSuperview];
-    }
-}
+//- (void)addNavigationBar {
+//    if (!self.navigationBar.superview) {
+//        [self.view addSubview:self.navigationBar];
+//    }
+//}
+//
+//- (void)removeNavigationBar {
+//    if (self.navigationBar.superview) {
+//        [self.navigationBar removeFromSuperview];
+//    }
+//}
 
 #pragma mark - Delegate
 #pragma mark UINavigationControllerBackButtonHandlerProtocol

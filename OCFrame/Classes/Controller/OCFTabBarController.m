@@ -18,13 +18,12 @@
 - (instancetype)initWithReactor:(OCFTabBarReactor *)reactor {
     if (self = [super init]) {
         self.reactor = reactor;
+        [self setupChildren];
     }
     return self;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+- (void)setupChildren {
 }
 
 - (void)bind:(OCFTabBarReactor *)reactor {

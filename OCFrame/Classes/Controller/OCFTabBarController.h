@@ -14,5 +14,7 @@
 
 - (instancetype)initWithReactor:(OCFTabBarReactor *)reactor;
 
+- (void)setupChildren;
+
 @end
 

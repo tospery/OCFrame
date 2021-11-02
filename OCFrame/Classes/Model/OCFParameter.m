@@ -32,12 +32,12 @@
     return @"requestRemote";
 }
 
-+ (NSString *)hideNavBar {
-    return @"hideNavBar";
++ (NSString *)hidesNavigationBar {
+    return @"hidesNavigationBar";
 }
 
-+ (NSString *)hideNavLine {
-    return @"hideNavLine";
++ (NSString *)hidesNavBottomLine {
+    return @"hidesNavBottomLine";
 }
 
 + (NSString *)page {

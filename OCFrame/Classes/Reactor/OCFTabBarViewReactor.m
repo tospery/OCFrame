@@ -19,7 +19,7 @@
 #pragma mark - Init
 - (instancetype)initWithParameters:(NSDictionary *)parameters {
     if (self = [super initWithParameters:parameters]) {
-        self.hidesNavigationBar = OCFBoolMember(parameters, OCFParameter.hideNavBar, YES);
+        self.hidesNavigationBar = OCFBoolMember(parameters, OCFParameter.hidesNavigationBar, YES);
     }
     return self;
 }

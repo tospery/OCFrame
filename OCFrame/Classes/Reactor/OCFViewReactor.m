@@ -46,8 +46,8 @@
         self.parameters = parameters;
         self.shouldFetchLocalData = OCFBoolMember(parameters, OCFParameter.fetchLocalData, YES);
         self.shouldRequestRemoteData = OCFBoolMember(parameters, OCFParameter.requestRemote, NO);
-        self.hidesNavigationBar = OCFBoolMember(parameters, OCFParameter.hideNavBar, NO);
-        self.hidesNavBottomLine = OCFBoolMember(parameters, OCFParameter.hideNavLine, NO);
+        self.hidesNavigationBar = OCFBoolMember(parameters, OCFParameter.hidesNavigationBar, YES);
+        self.hidesNavBottomLine = OCFBoolMember(parameters, OCFParameter.hidesNavBottomLine, NO);
         self.title = OCFStrMember(parameters, OCFParameter.title, nil);
         self.animation = OCFStrMember(parameters, OCFParameter.animation, nil);
         // Model
