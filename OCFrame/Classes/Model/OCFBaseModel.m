@@ -128,14 +128,14 @@ NSMutableDictionary *currents = nil;
 + (NSString *)objectArchiverKey:(NSString *)key {
     NSString *name = NSStringFromClass(self.class);
     if (key.length == 0) {
-        return OCFStrWithFmt(@"%@#object", name);
+        return OCFStrWithFmt(@"%@", name);
     }
     
-    return OCFStrWithFmt(@"%@#object#%@", name, key);
+    return OCFStrWithFmt(@"%@#%@", name, key);
 }
 
 + (NSString *)arrayArchiverKey {
-    return OCFStrWithFmt(@"%@#array", NSStringFromClass(self.class));
+    return OCFStrWithFmt(@"%@s", NSStringFromClass(self.class));
 }
 
 #pragma mark current

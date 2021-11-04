@@ -132,14 +132,14 @@
 }
 
 - (CGFloat)contentTop {
-    return self.reactor.hidesNavigationBar ? 0 : OCFNavContentTopConstant;
+    return self.reactor.hidesNavigationBar ? 0 : NavigationContentTopConstant;
 }
 
 - (CGFloat)contentBottom {
-    CGFloat value = OCFSafeBottom;
+    CGFloat value = SafeAreaInsetsConstantForDeviceWithNotch.bottom;
     UITabBar *tabBar = self.tabBarController.tabBar;
     if (tabBar && !tabBar.hidden && !self.hidesBottomBarWhenPushed) {
-        value += tabBar.qmui_height;
+        value = tabBar.qmui_height;
     }
     return value;
 }

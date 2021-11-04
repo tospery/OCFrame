@@ -46,23 +46,42 @@
 #pragma mark - View
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (![self isKindOfClass:OCFCollectionViewController.class] /*&&
-        ![self isKindOfClass:OCFWebViewController.class]*/) {
+    if ([self isKindOfClass:OCFCollectionViewController.class]) {
+        UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.contentFrame collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+        self.scrollView = collectionView;
+    } else {
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.contentFrame];
         scrollView.ocf_contentView = [[UIView alloc] init];
+        scrollView.ocf_contentView.backgroundColor = UIColor.clearColor;
         scrollView.ocf_contentView.frame = scrollView.bounds;
-        scrollView.ocf_contentView.theme_backgroundColor = ThemeColorPicker.background;
         scrollView.contentSize = CGSizeMake(scrollView.qmui_width, scrollView.qmui_height + PixelOne);
-        scrollView.theme_backgroundColor = ThemeColorPicker.background;
         scrollView.delegate = self;
-        scrollView.emptyDataSetSource = self.reactor;
-        scrollView.emptyDataSetDelegate = self;
-        if (@available(iOS 11.0, *)) {
-            scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }
-        [self.view addSubview:scrollView];
-        self.scrollView = scrollView;
     }
+    self.scrollView.theme_backgroundColor = ThemeColorPicker.background;
+    self.scrollView.emptyDataSetSource = self.reactor;
+    self.scrollView.emptyDataSetDelegate = self;
+    if (@available(iOS 11.0, *)) {
+        self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    [self.view addSubview:self.scrollView];
+    
+//    if (![self isKindOfClass:OCFCollectionViewController.class] /*&&
+//        ![self isKindOfClass:OCFWebViewController.class]*/) {
+//        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.contentFrame];
+//        scrollView.ocf_contentView = [[UIView alloc] init];
+//        scrollView.ocf_contentView.frame = scrollView.bounds;
+//        scrollView.ocf_contentView.theme_backgroundColor = ThemeColorPicker.background;
+//        scrollView.contentSize = CGSizeMake(scrollView.qmui_width, scrollView.qmui_height + PixelOne);
+//        scrollView.theme_backgroundColor = ThemeColorPicker.background;
+//        scrollView.delegate = self;
+//        scrollView.emptyDataSetSource = self.reactor;
+//        scrollView.emptyDataSetDelegate = self;
+//        if (@available(iOS 11.0, *)) {
+//            scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+//        }
+//        [self.view addSubview:scrollView];
+//        self.scrollView = scrollView;
+//    }
 }
 
 #pragma mark - Property

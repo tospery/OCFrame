@@ -33,7 +33,7 @@
     return self.layer.borderWidth;
 }
 
-- (void)setBzm_borderWidth:(CGFloat)borderWidth {
+- (void)setOcf_borderWidth:(CGFloat)borderWidth {
     self.layer.borderWidth = flat(borderWidth);
 }
 
@@ -41,7 +41,7 @@
     return self.layer.cornerRadius;
 }
 
-- (void)setBzm_cornerRadius:(CGFloat)cornerRadius {
+- (void)setOcf_cornerRadius:(CGFloat)cornerRadius {
     self.layer.masksToBounds = YES;
     self.layer.cornerRadius = flat(cornerRadius);
 }

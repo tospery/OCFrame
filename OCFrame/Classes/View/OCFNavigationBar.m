@@ -67,7 +67,7 @@
 
 #pragma mark - Method
 - (CGSize)sizeThatFits:(CGSize)size {
-    return CGSizeMake(OCFScreenWidth, OCFNavContentTopConstant);
+    return CGSizeMake(DEVICE_WIDTH, NavigationContentTopConstant);
 }
 
 - (void)layoutSubviews {
@@ -76,8 +76,8 @@
     self.bgImageView.frame = self.bounds;
     
     CGFloat left = 0;
-    CGFloat top = OCFStatusBarHeightConstant;
-    CGFloat width = OCFNavBarHeight;
+    CGFloat top = StatusBarHeightConstant;
+    CGFloat width = NavigationBarHeight;
     CGFloat height = width;
     for (NSInteger i = 0; i < self.leftButtons.count; ++i) {
         UIButton *button = self.leftButtons[i];
@@ -103,7 +103,7 @@
     CGFloat rightDistance = rightLastButton ? (self.qmui_width - rightLastButton.qmui_left) : 0;
     left = MAX(leftDistance, rightDistance);
     width = flat(self.qmui_width - left * 2);
-    self.titleLabel.frame = CGRectMake(left, OCFStatusBarHeightConstant, width, OCFNavBarHeight);
+    self.titleLabel.frame = CGRectMake(left, StatusBarHeightConstant, width, NavigationBarHeight);
 }
 
 - (UIButton *)addBackButtonToLeft {

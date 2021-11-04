@@ -47,7 +47,7 @@ static void * const keypath = (void*)&keypath;
     return objc_getAssociatedObject(self, kOCFPopupViewController);
 }
 
-- (void)setBzm_popupViewController:(UIViewController *)popupViewController {
+- (void)setOcf_popupViewController:(UIViewController *)popupViewController {
     objc_setAssociatedObject(self, kOCFPopupViewController, popupViewController, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
@@ -55,7 +55,7 @@ static void * const keypath = (void*)&keypath;
     return objc_getAssociatedObject(self, kOCFPopupBackgroundView);
 }
 
-- (void)setBzm_popupBackgroundView:(OCFPopupBackgroundView *)popupBackgroundView {
+- (void)setOcf_popupBackgroundView:(OCFPopupBackgroundView *)popupBackgroundView {
     objc_setAssociatedObject(self, kOCFPopupBackgroundView, popupBackgroundView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 

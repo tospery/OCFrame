@@ -17,21 +17,6 @@
 #define OCFT(local, display)                 (display)
 #endif
 
-#pragma mark - 标准尺寸
-#define OCFScreenWidth                       ScreenBoundsSize.width
-#define OCFScreenHeight                      ScreenBoundsSize.height
-#define OCFStatusBarHeight                   StatusBarHeight
-#define OCFStatusBarHeightConstant           StatusBarHeightConstant
-#define OCFNavBarHeight                      NavigationBarHeight
-#define OCFNavContentTop                     NavigationContentTop
-#define OCFNavContentTopConstant             NavigationContentTopConstant
-#define OCFTabBarHeight                      TabBarHeight
-#define OCFToolBarHeight                     ToolBarHeight
-
-#pragma mark - 安全区域
-#define OCFSafeArea                          SafeAreaInsetsConstantForDeviceWithNotch
-#define OCFSafeBottom                        OCFSafeArea.bottom
-
 #pragma mark - 便捷方法
 #define OCFRandomNumber(x, y)                ((NSInteger)((x) + (arc4random() % ((y) - (x) + 1))))
 
@@ -61,12 +46,12 @@ NSLog(@"Error(%s, %d): " fmt, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
 #pragma mark - 尺寸
 CG_INLINE CGFloat
 OCFMetric(CGFloat value) {
-    return flat(value / 375.f * OCFScreenWidth);
+    return flat(value / 375.f * DEVICE_WIDTH);
 }
 
 CG_INLINE CGFloat
 OCFScale(CGFloat value) {
-    return flat(value * OCFScreenWidth);
+    return flat(value * DEVICE_WIDTH);
 }
 
 #pragma mark - 通知

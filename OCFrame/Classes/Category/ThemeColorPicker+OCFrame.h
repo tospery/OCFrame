@@ -10,10 +10,12 @@
 #define OCFColorPicker(keypath)             ([ThemeColorPicker pickerWithKeyPath:(keypath)])
 
 @interface ThemeColorPicker (OCFrame)
+@property(class, nonatomic, readonly) ThemeColorPicker *white;
+@property(class, nonatomic, readonly) ThemeColorPicker *black;
 @property(class, nonatomic, readonly) ThemeColorPicker *background;
 @property(class, nonatomic, readonly) ThemeColorPicker *foreground;
-@property(class, nonatomic, readonly) ThemeColorPicker *light;
-@property(class, nonatomic, readonly) ThemeColorPicker *dark;
+@property(class, nonatomic, readonly) ThemeColorPicker *bright;
+@property(class, nonatomic, readonly) ThemeColorPicker *dim;
 @property(class, nonatomic, readonly) ThemeColorPicker *primary;
 @property(class, nonatomic, readonly) ThemeColorPicker *secondary;
 @property(class, nonatomic, readonly) ThemeColorPicker *title;

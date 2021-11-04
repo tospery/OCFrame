@@ -18,7 +18,7 @@
 
 - (instancetype)initWithModel:(OCFNormalCollectionModel *)model {
     if (self = [super initWithModel:model]) {
-        self.cellSize = CGSizeMake(OCFScreenWidth, OCFMetric(50));
+        self.cellSize = CGSizeMake(DEVICE_WIDTH, OCFMetric(50));
     }
     return self;
 }

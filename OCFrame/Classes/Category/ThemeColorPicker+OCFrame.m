@@ -9,10 +9,12 @@
 
 @implementation ThemeColorPicker (OCFrame)
 
++ (ThemeColorPicker *)white { return OCFColorPicker(@"whiteColor"); }
++ (ThemeColorPicker *)black { return OCFColorPicker(@"blackColor"); }
 + (ThemeColorPicker *)background { return OCFColorPicker(@"backgroundColor"); }
 + (ThemeColorPicker *)foreground { return OCFColorPicker(@"foregroundColor"); }
-+ (ThemeColorPicker *)light { return OCFColorPicker(@"lightColor"); }
-+ (ThemeColorPicker *)dark { return OCFColorPicker(@"darkColor"); }
++ (ThemeColorPicker *)bright { return OCFColorPicker(@"brightColor"); }
++ (ThemeColorPicker *)dim { return OCFColorPicker(@"dimColor"); }
 + (ThemeColorPicker *)primary { return OCFColorPicker(@"primaryColor"); }
 + (ThemeColorPicker *)secondary { return OCFColorPicker(@"secondaryColor"); }
 + (ThemeColorPicker *)title { return OCFColorPicker(@"titleColor"); }

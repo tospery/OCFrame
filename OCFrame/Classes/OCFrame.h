@@ -144,6 +144,7 @@
 #import "MTLModel+OCFrame.h"
 #import "MTLJSONAdapter+OCFrame.h"
 #import "ThemeColorPicker+OCFrame.h"
+#import "UICollectionView+OCFrame.h"
 //#import "NSString+OCFrame.h"
 //#import "NSNumber+OCFrame.h"
 //#import "NSArray+OCFrame.h"

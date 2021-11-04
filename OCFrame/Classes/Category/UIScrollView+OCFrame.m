@@ -23,7 +23,7 @@
 //}
 
 static char kAssociatedObjectKey_contentView;
-- (void)setBzm_contentView:(UIView *)ocf_contentView {
+- (void)setOcf_contentView:(UIView *)ocf_contentView {
     UIView *contentView = self.ocf_contentView;
     if (contentView) {
         [contentView removeFromSuperview];
