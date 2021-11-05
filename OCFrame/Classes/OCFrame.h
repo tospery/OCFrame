@@ -15,6 +15,7 @@
 #import "OCFString.h"
 
 #pragma mark - Model
+#import "OCFMetric.h"
 #import "OCFBaseModel.h"
 #import "OCFProvider.h"
 #import "OCFNavigator.h"
