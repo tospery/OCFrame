@@ -9,4 +9,9 @@
 
 @interface UICollectionView (OCFrame)
 
+- (CGFloat)ocf_widthForSection:(NSInteger)section;
+- (CGFloat)ocf_heightForSection:(NSInteger)section;
+- (UICollectionViewCell *)ocf_emptyCellForIndexPath:(NSIndexPath *)indexPath;
+- (UICollectionReusableView *)ocf_emptyViewForIndexPath:(NSIndexPath *)indexPath kind:(NSString *)kind;
+
 @end

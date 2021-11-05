@@ -7,15 +7,15 @@
 
 #import <UIKit/UIKit.h>
 
-#define OCFFont(x)                           ([UIFont ocf_fontWithNormal:(x)])
-#define OCFFontBold(x)                       ([UIFont ocf_fontWithBold:(x)])
-#define OCFFontLight(x)                      ([UIFont ocf_fontWithLight:(x)])
+#define OCFFont(x)                           ([UIFont systemFontOfSize:(x)])
+#define OCFFontBold(x)                       ([UIFont boldSystemFontOfSize:(x)])
+#define OCFFontLight(x)                      ([UIFont qmui_lightSystemFontOfSize:(x)])
 
 @interface UIFont (OCFrame)
 
-+ (UIFont *)ocf_fontWithNormal:(CGFloat)size;
-+ (UIFont *)ocf_fontWithBold:(CGFloat)size;
-+ (UIFont *)ocf_fontWithLight:(CGFloat)size;
+//+ (UIFont *)ocf_fontWithNormal:(CGFloat)size;
+//+ (UIFont *)ocf_fontWithBold:(CGFloat)size;
+//+ (UIFont *)ocf_fontWithLight:(CGFloat)size;
 
 @end
 

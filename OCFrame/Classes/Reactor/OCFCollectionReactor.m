@@ -15,7 +15,7 @@
 @implementation OCFCollectionReactor
 - (instancetype)initWithModel:(OCFBaseModel *)model {
     if (self = [super initWithModel:model]) {
-        self.cellSize = CGSizeMake(DEVICE_WIDTH, OCFMetric(44));
+        //self.cellSize = CGSizeMake(DEVICE_WIDTH, OCFMetric(44));
     }
     return self;
 }

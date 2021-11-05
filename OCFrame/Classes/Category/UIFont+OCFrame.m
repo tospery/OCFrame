@@ -11,16 +11,16 @@
 
 @implementation UIFont (OCFrame)
 
-+ (UIFont *)ocf_fontWithNormal:(CGFloat)size {
-    return [UIFont systemFontOfSize:(size + OCFrameManager.sharedInstance.fontScale)];
-}
-
-+ (UIFont *)ocf_fontWithBold:(CGFloat)size {
-    return [UIFont boldSystemFontOfSize:(size + OCFrameManager.sharedInstance.fontScale)];
-}
-
-+ (UIFont *)ocf_fontWithLight:(CGFloat)size {
-    return [UIFont qmui_lightSystemFontOfSize:(size + OCFrameManager.sharedInstance.fontScale)];
-}
+//+ (UIFont *)ocf_fontWithNormal:(CGFloat)size {
+//    return [UIFont systemFontOfSize:(size + OCFrameManager.sharedInstance.fontScale)];
+//}
+//
+//+ (UIFont *)ocf_fontWithBold:(CGFloat)size {
+//    return [UIFont boldSystemFontOfSize:(size + OCFrameManager.sharedInstance.fontScale)];
+//}
+//
+//+ (UIFont *)ocf_fontWithLight:(CGFloat)size {
+//    return [UIFont qmui_lightSystemFontOfSize:(size + OCFrameManager.sharedInstance.fontScale)];
+//}
 
 @end

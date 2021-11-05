@@ -10,8 +10,8 @@
 @interface OCFNormalCollectionCell : OCFCollectionCell
 @property (nonatomic, strong, readonly) UILabel *titleLabel;
 @property (nonatomic, strong, readonly) UILabel *detailLabel;
-@property (nonatomic, strong, readonly) UIImageView *avatarImageView;
-@property (nonatomic, strong, readonly) UIImageView *arrowImageView;
+@property (nonatomic, strong, readonly) UIImageView *iconImageView;
+@property (nonatomic, strong, readonly) UIImageView *indicatorImageView;
 
 @end
 

@@ -6,9 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OCFCollectionReactor.h"
 
 @interface UICollectionReusableView (OCFrame)
 @property (class, strong, readonly) NSString *ocf_reuseId;
+
++ (CGSize)ocf_sizeWithMaxWidth:(CGFloat)maxWidth reactor:(OCFCollectionReactor *)reactor;
 
 @end
 

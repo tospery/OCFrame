@@ -13,6 +13,8 @@
 #define OCFStrWithFmt(fmt, ...)              ([NSString stringWithFormat:(fmt), ##__VA_ARGS__])
 
 @interface NSString (OCFrame)
+@property (nonatomic, strong, readonly) NSString *ocf_image;
+@property (nonatomic, strong, readonly) NSString *ocf_url;
 @property (nonatomic, strong, readonly) NSString *ocf_underlineFromCamel;
 @property (nonatomic, strong, readonly) NSString *ocf_camelFromUnderline;
 

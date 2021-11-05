@@ -13,6 +13,7 @@
 #import "OCFCollectionViewReactor.h"
 #import "UICollectionReusableView+OCFrame.h"
 #import "ThemeColorPicker+OCFrame.h"
+#import "UICollectionView+OCFrame.h"
 
 @interface OCFCollectionViewController ()
 @property (nonatomic, strong, readwrite) UICollectionView *collectionView;
@@ -154,7 +155,14 @@
     }
     id<OCFCollectionViewReactorDataSource> dataSource = (id<OCFCollectionViewReactorDataSource>)collectionView.dataSource;
     OCFCollectionReactor *reactor = [dataSource collectionViewReactor:self.reactor reactorAtIndexPath:indexPath];
-    return reactor.cellSize;
+    Class cls = [dataSource collectionViewReactor:self.reactor classForReactor:reactor];
+    SEL sel = @selector(ocf_sizeWithMaxWidth:reactor:);
+    CGSize size = CGSizeZero;
+    if ([cls respondsToSelector:sel]) {
+        CGFloat maxWidth = [collectionView ocf_widthForSection:indexPath.section];
+        size = ((CGSize (*)(id, SEL, CGFloat, OCFCollectionReactor *))[cls methodForSelector:sel])(cls, sel, maxWidth, reactor);
+    }
+    return size;
 }
 
 /// 内边距

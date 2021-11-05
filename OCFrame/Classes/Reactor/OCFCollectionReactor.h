@@ -8,7 +8,7 @@
 #import "OCFCellReactor.h"
 
 @interface OCFCollectionReactor : OCFCellReactor
-@property (nonatomic, assign) CGSize cellSize;
+//@property (nonatomic, assign) CGSize cellSize;
 
 @end
 

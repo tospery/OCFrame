@@ -6,6 +6,7 @@
 //
 
 #import "NSString+OCFrame.h"
+#import <QMUIKit/QMUIKit.h>
 
 @implementation NSString (OCFrame)
 
@@ -41,6 +42,25 @@
         }
     }
     return string;
+}
+
+- (UIImage *)ocf_image {
+    return [UIImage imageNamed:self];
+}
+
+- (NSURL *)ocf_url {
+    NSURL *url = [NSURL URLWithString:self];
+    if (url == nil) {
+        NSString *raw = self.qmui_trim;
+        url = [NSURL URLWithString:raw];
+        if (url == nil) {
+            url = [NSURL URLWithString:raw.ocf_urlDecoded];
+        }
+        if (url == nil) {
+            url = [NSURL URLWithString:raw.ocf_urlDecoded];
+        }
+    }
+    return url;
 }
 
 // YJX_TODO 兼容性，变为属性

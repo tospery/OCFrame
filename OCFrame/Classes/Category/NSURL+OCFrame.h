@@ -7,12 +7,13 @@
 
 #import <UIKit/UIKit.h>
 
-#define OCFURLWithStr(x)                    ([NSURL URLWithString:(x)])
+#define OCFURLWithStr(x)                    ([NSURL ocf_urlWithString:(x)])
 #define OCFURLWithPath(x)                   ([NSURL ocf_urlWithPath:(x)])
 #define OCFURLWithPattern(x)                ([NSURL ocf_urlWithPattern:(x)])
 
 @interface NSURL (OCFrame)
 
++ (NSURL *)ocf_urlWithString:(NSString *)string;
 + (NSURL *)ocf_urlWithPath:(NSString *)path;
 + (NSURL *)ocf_urlWithPattern:(NSString *)pattern;
 

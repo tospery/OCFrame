@@ -15,12 +15,13 @@
 #import "UIView+OCFrame.h"
 #import "OCFNormalCollectionReactor.h"
 #import "ThemeColorPicker+OCFrame.h"
+#import "UIImageView+OCFrame.h"
 
 @interface OCFNormalCollectionCell ()
 @property (nonatomic, strong, readwrite) UILabel *titleLabel;
 @property (nonatomic, strong, readwrite) UILabel *detailLabel;
-@property (nonatomic, strong, readwrite) UIImageView *avatarImageView;
-@property (nonatomic, strong, readwrite) UIImageView *arrowImageView;
+@property (nonatomic, strong, readwrite) UIImageView *iconImageView;
+@property (nonatomic, strong, readwrite) UIImageView *indicatorImageView;
 @property (nonatomic, strong, readwrite) OCFNormalCollectionReactor *reactor;
 
 @end
@@ -33,8 +34,8 @@
     if (self = [super initWithFrame:frame]) {
         [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.detailLabel];
-        [self.contentView addSubview:self.avatarImageView];
-        [self.contentView addSubview:self.arrowImageView];
+        [self.contentView addSubview:self.iconImageView];
+        [self.contentView addSubview:self.indicatorImageView];
         self.ocf_borderLayer.borderPosition = OCFBorderPositionBottom;
         self.ocf_borderLayer.borderInsets = @{@(OCFBorderPositionBottom): NSStringFromUIEdgeInsets(UIEdgeInsetsMake(0, 15, 0, 0))};
     }
@@ -63,25 +64,24 @@
     return _detailLabel;
 }
 
-- (UIImageView *)avatarImageView {
-    if (!_avatarImageView) {
+- (UIImageView *)iconImageView {
+    if (!_iconImageView) {
         UIImageView *imageView = [[UIImageView alloc] init];
         [imageView sizeToFit];
-        _avatarImageView = imageView;
+        _iconImageView = imageView;
     }
-    return _avatarImageView;
+    return _iconImageView;
 }
 
-- (UIImageView *)arrowImageView {
-    if (!_arrowImageView) {
+- (UIImageView *)indicatorImageView {
+    if (!_indicatorImageView) {
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.image = [UIImage.ocf_indicator imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        // imageView.dk_tintColorPicker = DKColorPickerWithKey(IND);
-        imageView.theme_tintColor = ThemeColorPicker.separator;
+        imageView.theme_tintColor = ThemeColorPicker.indicator;
         [imageView sizeToFit];
-        _arrowImageView = imageView;
+        _indicatorImageView = imageView;
     }
-    return _arrowImageView;
+    return _indicatorImageView;
 }
 
 #pragma mark - Method
@@ -92,23 +92,28 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.titleLabel.qmui_left = 15;
+    if (self.iconImageView.isHidden) {
+        self.iconImageView.frame = CGRectZero;
+        self.iconImageView.qmui_left = 15;
+        self.iconImageView.qmui_top = self.iconImageView.qmui_topWhenCenterInSuperview;
+        self.titleLabel.qmui_left = self.iconImageView.qmui_left;
+    } else {
+        self.iconImageView.qmui_height = flat(self.contentView.qmui_height * 0.42);
+        self.iconImageView.qmui_width = self.iconImageView.qmui_height;
+        self.iconImageView.qmui_left = 15;
+        self.iconImageView.qmui_top = self.iconImageView.qmui_topWhenCenterInSuperview;
+        self.titleLabel.qmui_left = self.iconImageView.qmui_right + 8;
+    }
     self.titleLabel.qmui_top = self.titleLabel.qmui_topWhenCenterInSuperview;
     
-    self.arrowImageView.qmui_right = self.contentView.qmui_width - 15;
-    self.arrowImageView.qmui_top = self.arrowImageView.qmui_topWhenCenterInSuperview;
+    self.indicatorImageView.qmui_right = self.contentView.qmui_width - 15;
+    self.indicatorImageView.qmui_top = self.indicatorImageView.qmui_topWhenCenterInSuperview;
     
-    self.detailLabel.qmui_right = self.arrowImageView.qmui_left - 6;
-    if (self.arrowImageView.hidden) {
-        self.detailLabel.qmui_right += self.arrowImageView.qmui_width;
+    self.detailLabel.qmui_right = self.indicatorImageView.qmui_left - 5;
+    if (self.indicatorImageView.hidden) {
+        self.detailLabel.qmui_right += self.indicatorImageView.qmui_width;
     }
     self.detailLabel.qmui_top = self.detailLabel.qmui_topWhenCenterInSuperview;
-    
-    self.avatarImageView.qmui_height = flat(self.contentView.qmui_height * 0.6);
-    self.avatarImageView.qmui_width = self.avatarImageView.qmui_height;
-    self.avatarImageView.qmui_right = self.detailLabel.qmui_left - 8;
-    self.avatarImageView.qmui_top = self.avatarImageView.qmui_topWhenCenterInSuperview;
-    self.avatarImageView.ocf_cornerRadius = flat(self.avatarImageView.qmui_height / 2.0f);
 }
 
 - (void)bind:(OCFNormalCollectionReactor *)reactor {
@@ -118,9 +123,7 @@
     self.detailLabel.hidden = (reactor.model.detail.length == 0);
     self.detailLabel.text = reactor.model.detail;
     [self.detailLabel sizeToFit];
-    self.avatarImageView.hidden = (reactor.model.avatar.length == 0);
-    [self.avatarImageView sd_setImageWithURL:OCFURLWithStr(reactor.model.avatar)];
-    [self.avatarImageView sizeToFit];
+    self.iconImageView.hidden = ![self.iconImageView ocf_setImageWithSource:reactor.model.icon];
     [super bind:reactor];
 }
 
@@ -128,6 +131,10 @@
 #pragma mark - Class
 + (Class)layerClass {
     return OCFBorderLayer.class;
+}
+
++ (CGSize)ocf_sizeWithMaxWidth:(CGFloat)maxWidth reactor:(OCFCollectionReactor *)reactor {
+    return CGSizeMake(maxWidth, OCFMetric(50));
 }
 
 @end

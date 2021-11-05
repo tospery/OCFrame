@@ -10,7 +10,7 @@
 @interface OCFNormalCollectionModel : OCFBaseModel
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *detail;
-@property (nonatomic, strong) NSString *avatar;
+@property (nonatomic, strong) NSString *icon;
 
 @end
 

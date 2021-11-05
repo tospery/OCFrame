@@ -36,21 +36,15 @@
 //}
 
 + (UIImage *)ocf_back {
-    UIImage *image = [UIImage qmui_imageWithShape:QMUIImageShapeNavBack size:CGSizeMake(10, 18) lineWidth:1.5 tintColor:nil];
-    // image.dk_tintColorPicker = DKColorPickerWithKey(BAR);
-    return image;
+    return OCFImageFrame(@"back");
 }
 
 + (UIImage *)ocf_close {
-    UIImage *image = [UIImage qmui_imageWithShape:QMUIImageShapeNavClose size:CGSizeMake(16, 16) lineWidth:1.5 tintColor:nil];
-    // image.dk_tintColorPicker = DKColorPickerWithKey(BAR);
-    return image;
+    return OCFImageFrame(@"close");
 }
 
 + (UIImage *)ocf_indicator {
-    UIImage *image = [UIImage qmui_imageWithShape:QMUIImageShapeDisclosureIndicator size:CGSizeMake(8, 14) lineWidth:1 tintColor:nil];
-    // image.dk_tintColorPicker = DKColorPickerWithKey(IND);
-    return image;
+    return OCFImageFrame(@"indicator");
 }
 
 + (UIImage *)ocf_loading {

@@ -10,7 +10,7 @@
 
 @implementation UICollectionView (OCFrame)
 
-- (CGFloat)widthForSection:(NSInteger)section {
+- (CGFloat)ocf_widthForSection:(NSInteger)section {
     NSInteger width = self.qmui_width;
     width -= self.contentInset.left;
     width -= self.contentInset.right;
@@ -27,7 +27,7 @@
     return width;
 }
 
-- (CGFloat)heightForSection:(NSInteger)section {
+- (CGFloat)ocf_heightForSection:(NSInteger)section {
     NSInteger height = self.qmui_height;
     height -= self.contentInset.top;
     height -= self.contentInset.bottom;
@@ -44,7 +44,7 @@
     return height;
 }
 
-- (UICollectionViewCell *)emptyCellForIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionViewCell *)ocf_emptyCellForIndexPath:(NSIndexPath *)indexPath {
     NSString *identifier = @"OCFrame.UICollectionView.emptyCell";
     [self registerClass:UICollectionViewCell.class forCellWithReuseIdentifier:identifier];
     UICollectionViewCell *cell = [self dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
@@ -52,7 +52,7 @@
     return cell;
 }
 
-- (UICollectionReusableView *)emptyViewForIndexPath:(NSIndexPath *)indexPath kind:(NSString *)kind {
+- (UICollectionReusableView *)ocf_emptyViewForIndexPath:(NSIndexPath *)indexPath kind:(NSString *)kind {
     NSString *identifier = @"OCFrame.UICollectionView.emptyView";
     [self registerClass:UICollectionReusableView.class forSupplementaryViewOfKind:kind withReuseIdentifier:identifier];
     UICollectionReusableView *view = [self dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
