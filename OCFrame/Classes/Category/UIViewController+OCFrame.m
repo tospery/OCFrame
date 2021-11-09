@@ -685,7 +685,7 @@ static void * const keypath = (void*)&keypath;
             break;
             
         default:
-            OCFLogDebug(@"不支持的动画类型！");
+            OCFLogDebug(kOCFLogTagNormal, @"不支持的动画类型！");
             break;
     }
     return endRect;

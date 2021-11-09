@@ -6,8 +6,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OCFProvider.h"
+#import "OCFNavigator.h"
 
 @interface OCFRouterManager : NSObject
+
+- (void)setupWithProvider:(OCFProvider *)provider navigator:(OCFNavigator *)navigator;
 
 + (instancetype)sharedInstance;
 

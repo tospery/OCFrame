@@ -8,10 +8,17 @@
 #import "OCFRouterManager.h"
 
 @interface OCFRouterManager ()
+@property (nonatomic, strong) OCFProvider *provider;
+@property (nonatomic, strong) OCFNavigator *navigator;
 
 @end
 
 @implementation OCFRouterManager
+
+- (void)setupWithProvider:(OCFProvider *)provider navigator:(OCFNavigator *)navigator {
+    self.provider = provider;
+    self.navigator = navigator;
+}
 
 + (instancetype)sharedInstance {
     static id instance;

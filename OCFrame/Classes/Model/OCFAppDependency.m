@@ -17,6 +17,8 @@
 #import "OCFMisc.h"
 #import "OCFParameter.h"
 #import "OCFAppearanceManager.h"
+#import "OCFLibraryManager.h"
+#import "OCFRouterManager.h"
 #import "NSDictionary+OCFrame.h"
 #import "UIView+OCFrame.h"
 
@@ -33,10 +35,10 @@
     if (self = [super init]) {
         self.provider = [[OCFProvider alloc] init];
         self.navigator = [[OCFNavigator alloc] init];
-        [self setupFrame];
-        [self setupVendor];
-        [self setupAppearance];
-        [self setupData];
+//        [self setupFrame];
+//        [self setupVendor];
+//        [self setupAppearance];
+//        [self setupData];
     }
     return self;
 }
@@ -50,44 +52,46 @@
 }
 
 #pragma mark setup
-- (void)setupFrame {
-    // Toast
-    [CSToastManager setQueueEnabled:YES];
-    [CSToastManager setDefaultPosition:CSToastPositionCenter];
-    // Route
-    @weakify(self)
-    [JLRoutes.globalRoutes addRoute:kOCFPatternToast handler:^BOOL(NSDictionary *parameters) {
-        OCFVoidBlock_id completion = OCFObjMember(parameters, OCFParameter.block, nil);
-        @strongify(self)
-        return [self.navigator.topView ocf_toastWithParameters:parameters completion:^(BOOL didTap) {
-            if (completion) {
-                completion(@(didTap));
-            }
-        }];
-    }];
-}
+//- (void)setupFrame {
+//    // Toast
+//    [CSToastManager setQueueEnabled:YES];
+//    [CSToastManager setDefaultPosition:CSToastPositionCenter];
+//    // Route
+//    @weakify(self)
+//    [JLRoutes.globalRoutes addRoute:kOCFPatternToast handler:^BOOL(NSDictionary *parameters) {
+//        OCFVoidBlock_id completion = OCFObjMember(parameters, OCFParameter.block, nil);
+//        @strongify(self)
+//        return [self.navigator.topView ocf_toastWithParameters:parameters completion:^(BOOL didTap) {
+//            if (completion) {
+//                completion(@(didTap));
+//            }
+//        }];
+//    }];
+//}
 
-- (void)setupVendor {
-    
-}
-
-- (void)setupAppearance {
-    
-}
-
-- (void)setupData {
-    
-}
+//- (void)setupVendor {
+//
+//}
+//
+//- (void)setupAppearance {
+//
+//}
+//
+//- (void)setupData {
+//
+//}
 
 #pragma mark finish
 - (void)entryDidFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    OCFLogDebug(@"运行环境: %@", @(IS_DEBUG));
-    OCFLogDebug(@"设备型号: %@", QMUIHelper.deviceName);
-    OCFLogDebug(@"系统版本: %@", UIDevice.currentDevice.systemVersion);
-    OCFLogDebug(@"屏幕尺寸: %@", NSStringFromCGSize(UIScreen.mainScreen.bounds.size));
-    OCFLogDebug(@"刘海尺寸: %@", NSStringFromUIEdgeInsets(SafeAreaInsetsConstantForDeviceWithNotch));
-    OCFLogDebug(@"状态栏%d, 导航栏%d, 标签栏%d", (int)StatusBarHeightConstant, NavigationBarHeight, (int)TabBarHeight);
+    OCFLogDebug(kOCFLogTagNormal, @"运行环境: %@", @(IS_DEBUG));
+    OCFLogDebug(kOCFLogTagNormal, @"设备型号: %@", QMUIHelper.deviceName);
+    OCFLogDebug(kOCFLogTagNormal, @"系统版本: %@", UIDevice.currentDevice.systemVersion);
+    OCFLogDebug(kOCFLogTagNormal, @"屏幕尺寸: %@", NSStringFromCGSize(UIScreen.mainScreen.bounds.size));
+    OCFLogDebug(kOCFLogTagNormal, @"刘海尺寸: %@", NSStringFromUIEdgeInsets(SafeAreaInsetsConstantForDeviceWithNotch));
+    OCFLogDebug(kOCFLogTagNormal, @"状态栏%d, 导航栏%d, 标签栏%d", (int)StatusBarHeightConstant, NavigationBarHeight, (int)TabBarHeight);
     [OCFAppearanceManager.sharedInstance setup];
+    [OCFLibraryManager.sharedInstance setup];
+    [OCFRouterManager.sharedInstance setupWithProvider:self.provider navigator:self.navigator];
 }
 
 - (void)leaveDidFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -108,7 +112,7 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    OCFLogDebug(@"disk = %@", NSHomeDirectory());
+    OCFLogDebug(kOCFLogTagNormal, @"disk = %@", NSHomeDirectory());
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

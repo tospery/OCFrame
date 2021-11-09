@@ -22,25 +22,25 @@
 
 #pragma mark - 日志
 #ifdef DEBUG
-#define OCFLogVerbose(fmt, ...)                                                                 \
-NSLog(@"Verbose(%s, %d): " fmt, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-#define OCFLogDebug(fmt, ...)                                                                   \
-NSLog(@"Debug(%s, %d): " fmt, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-#define OCFLogInfo(fmt, ...)                                                                    \
-NSLog(@"Info(%s, %d): " fmt, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-#define OCFLogWarn(fmt, ...)                                                                    \
-NSLog(@"Warn(%s, %d): " fmt, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-#define OCFLogError(fmt, ...)                                                                   \
-NSLog(@"Error(%s, %d): " fmt, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#define OCFLogVerbose(tag, fmt, ...)                                                                 \
+NSLog(@"Verbose【%@】: " fmt, tag, ##__VA_ARGS__);
+#define OCFLogDebug(tag, fmt, ...)                                                              \
+NSLog(@"Debug【%@】: " fmt, tag, ##__VA_ARGS__);
+#define OCFLogInfo(tag, fmt, ...)                                                                    \
+NSLog(@"Info【%@】: " fmt, tag, ##__VA_ARGS__);
+#define OCFLogWarn(tag, fmt, ...)                                                                    \
+NSLog(@"Warn【%@】: " fmt, tag, ##__VA_ARGS__);
+#define OCFLogError(tag, fmt, ...)                                                                   \
+NSLog(@"Error【%@】: " fmt, tag, ##__VA_ARGS__);
 #else
-#define OCFLogVerbose(fmt, ...)
-#define OCFLogDebug(fmt, ...)
-#define OCFLogInfo(fmt, ...)                                                                    \
-NSLog(@"Info(%s, %d): " fmt, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-#define OCFLogWarn(fmt, ...)                                                                    \
-NSLog(@"Warn(%s, %d): " fmt, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-#define OCFLogError(fmt, ...)                                                                   \
-NSLog(@"Error(%s, %d): " fmt, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#define OCFLogVerbose(tag, fmt, ...)
+#define OCFLogDebug(tag, fmt, ...) 
+#define OCFLogInfo(tag, fmt, ...)                                                                    \
+NSLog(@"Info【%@】: " fmt, tag, ##__VA_ARGS__);
+#define OCFLogWarn(tag, fmt, ...)                                                                    \
+NSLog(@"Warn【%@】: " fmt, tag, ##__VA_ARGS__);
+#define OCFLogError(tag, fmt, ...)                                                                   \
+NSLog(@"Error【%@】: " fmt, tag, ##__VA_ARGS__);
 #endif
 
 #pragma mark - 尺寸

@@ -10,6 +10,10 @@
 
 @implementation NSString (OCFrame)
 
++ (NSString *)ocf_logTagNormal {
+    return @"Normal";
+}
+
 #pragma mark - Instance
 - (NSString *)ocf_underlineFromCamel {
     if (self.length == 0) return self;

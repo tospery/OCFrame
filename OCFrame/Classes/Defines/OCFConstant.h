@@ -51,4 +51,9 @@
 //#define kOCFVMSuffix                                (@"ViewModel")
 #define kOCFBindObjectKey                           (@"kOCFBindObjectKey")
 
+#pragma mark - 日志
+#define kOCFLogTagNormal                            (@"Normal")
+#define kOCFLogTagLibrary                           (@"Library")
+
+
 #endif /* OCFConstant_h */

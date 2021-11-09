@@ -16,10 +16,10 @@
 
 - (void)initialScreen;
 
-- (void)setupFrame;
-- (void)setupVendor;
-- (void)setupAppearance;
-- (void)setupData;
+//- (void)setupFrame;
+//- (void)setupVendor;
+//- (void)setupAppearance;
+//- (void)setupData;
 
 - (void)entryDidFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
 - (void)leaveDidFinishLaunchingWithOptions:(NSDictionary *)launchOptions;

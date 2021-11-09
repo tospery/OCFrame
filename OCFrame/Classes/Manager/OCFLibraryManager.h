@@ -9,6 +9,8 @@
 
 @interface OCFLibraryManager : NSObject
 
+- (void)setup;
+
 + (instancetype)sharedInstance;
 
 @end
