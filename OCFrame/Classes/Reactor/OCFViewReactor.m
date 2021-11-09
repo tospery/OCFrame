@@ -19,9 +19,7 @@
 #import "NSError+OCFrame.h"
 
 @interface OCFViewReactor ()
-@property (nonatomic, strong, readwrite) NSDictionary *parameters;
 @property (nonatomic, strong, readwrite) OCFUser *user;
-@property (nonatomic, strong, readwrite) OCFBaseModel *model;
 @property (nonatomic, strong, readwrite) OCFProvider *provider;
 //@property (nonatomic, strong, readwrite) OCFNavigator *navigator;
 //@property (nonatomic, strong, readwrite) RACCommand *backCommand;
@@ -42,8 +40,7 @@
 
 #pragma mark - Init
 - (instancetype)initWithParameters:(NSDictionary *)parameters {
-    if (self = [super init]) {
-        self.parameters = parameters;
+    if (self = [super initWithParameters:parameters]) {
         self.shouldFetchLocalData = OCFBoolMember(parameters, OCFParameter.fetchLocalData, YES);
         self.shouldRequestRemoteData = OCFBoolMember(parameters, OCFParameter.requestRemote, NO);
         self.hidesNavigationBar = OCFBoolMember(parameters, OCFParameter.hidesNavigationBar, YES);
@@ -51,17 +48,17 @@
         self.title = OCFStrMember(parameters, OCFParameter.title, nil);
         self.animation = OCFStrMember(parameters, OCFParameter.animation, nil);
         // Model
-        id model = OCFObjMember(parameters, OCFParameter.model, nil);
-        if (model && [model isKindOfClass:NSString.class]) {
-            NSDictionary *json = [model ocf_JSONObject];
-            if (json && [json isKindOfClass:NSDictionary.class]) {
-                Class class = NSClassFromString([NSStringFromClass(self.class) stringByReplacingOccurrencesOfString:@"ViewReactor" withString:@""]);
-                if (class && [class conformsToProtocol:@protocol(MTLJSONSerializing)]) {
-                    model = [MTLJSONAdapter modelOfClass:class fromJSONDictionary:json error:nil];
-                }
-            }
-        }
-        self.model = model;
+//        id model = OCFObjMember(parameters, OCFParameter.model, nil);
+//        if (model && [model isKindOfClass:NSString.class]) {
+//            NSDictionary *json = [model ocf_JSONObject];
+//            if (json && [json isKindOfClass:NSDictionary.class]) {
+//                Class class = NSClassFromString([NSStringFromClass(self.class) stringByReplacingOccurrencesOfString:@"ViewReactor" withString:@""]);
+//                if (class && [class conformsToProtocol:@protocol(MTLJSONSerializing)]) {
+//                    model = [MTLJSONAdapter modelOfClass:class fromJSONDictionary:json error:nil];
+//                }
+//            }
+//        }
+//        self.model = model;
         // User
         NSDictionary *json = OCFStrMember(parameters, OCFParameter.user, nil).ocf_JSONObject;
         if (json && [json isKindOfClass:NSDictionary.class]) {

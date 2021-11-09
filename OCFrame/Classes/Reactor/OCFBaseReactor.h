@@ -6,8 +6,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OCFBaseModel.h"
 
 @interface OCFBaseReactor : NSObject
+@property (nonatomic, strong, readonly) OCFBaseModel *model;
+@property (nonatomic, strong, readonly) NSDictionary *parameters;
+
+- (instancetype)init NS_UNAVAILABLE;
+- (instancetype)initWithModel:(OCFBaseModel *)model;
+- (instancetype)initWithParameters:(NSDictionary *)parameters;
 
 - (void)didInitialize;
 

@@ -15,7 +15,7 @@
     return OCFStrWithFmt(@"%@Identifier", NSStringFromClass(self));
 }
 
-+ (CGSize)ocf_sizeWithMaxWidth:(CGFloat)maxWidth reactor:(OCFCollectionReactor *)reactor {
++ (CGSize)ocf_sizeWithMaxWidth:(CGFloat)maxWidth reactor:(OCFCollectionItem *)reactor {
     return CGSizeMake(flat(maxWidth), OCFMetric(44));
 }
 

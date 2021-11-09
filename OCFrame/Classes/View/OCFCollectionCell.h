@@ -7,10 +7,10 @@
 
 #import <UIKit/UIKit.h>
 #import "OCFReactive.h"
-#import "OCFCollectionReactor.h"
+#import "OCFCollectionItem.h"
 
 @interface OCFCollectionCell : UICollectionViewCell <OCFReactive>
-@property (nonatomic, strong, readonly) OCFCollectionReactor *reactor;
+@property (nonatomic, strong, readonly) OCFCollectionItem *reactor;
 
 @end
 

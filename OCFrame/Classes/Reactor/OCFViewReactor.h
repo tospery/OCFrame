@@ -34,9 +34,7 @@ typedef NS_ENUM(NSInteger, OCFRequestMode) {
 @property (nonatomic, assign) BOOL shouldRequestRemoteData;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *animation;
-@property (nonatomic, strong, readonly) NSDictionary *parameters;
 @property (nonatomic, strong, readonly) OCFUser *user;
-@property (nonatomic, strong, readonly) OCFBaseModel *model;
 @property (nonatomic, strong) NSArray *dataSource;
 @property (nonatomic, strong) NSError *error;
 @property (nonatomic, assign) OCFRequestMode requestMode;
@@ -57,7 +55,7 @@ typedef NS_ENUM(NSInteger, OCFRequestMode) {
 - (NSArray *)data2Source:(id)data;
 - (void)reload;
 
-- (instancetype)initWithParameters:(NSDictionary *)parameters;
+- (instancetype)initWithModel:(OCFBaseModel *)model NS_UNAVAILABLE;
 
 @end
 

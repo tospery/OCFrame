@@ -1,18 +1,18 @@
 //
-//  OCFCollectionReactor.m
+//  OCFCollectionItem.m
 //  Pods
 //
 //  Created by 杨建祥 on 2020/2/22.
 //
 
-#import "OCFCollectionReactor.h"
+#import "OCFCollectionItem.h"
 #import "OCFFunction.h"
 
-@interface OCFCollectionReactor ()
+@interface OCFCollectionItem ()
 
 @end
 
-@implementation OCFCollectionReactor
+@implementation OCFCollectionItem
 - (instancetype)initWithModel:(OCFBaseModel *)model {
     if (self = [super initWithModel:model]) {
         //self.cellSize = CGSizeMake(DEVICE_WIDTH, OCFMetric(44));

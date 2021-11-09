@@ -1,19 +1,19 @@
 //
-//  OCFNormalCollectionReactor.m
+//  OCFNormalCollectionItem.m
 //  Pods
 //
 //  Created by 杨建祥 on 2020/2/25.
 //
 
-#import "OCFNormalCollectionReactor.h"
+#import "OCFNormalCollectionItem.h"
 #import "OCFFunction.h"
 
-@interface OCFNormalCollectionReactor ()
+@interface OCFNormalCollectionItem ()
 @property (nonatomic, strong, readwrite) OCFNormalCollectionModel *model;
 
 @end
 
-@implementation OCFNormalCollectionReactor
+@implementation OCFNormalCollectionItem
 @dynamic model;
 
 - (instancetype)initWithModel:(OCFNormalCollectionModel *)model {

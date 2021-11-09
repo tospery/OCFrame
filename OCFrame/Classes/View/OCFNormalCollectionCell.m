@@ -13,7 +13,7 @@
 #import "UIImage+OCFrame.h"
 #import "NSURL+OCFrame.h"
 #import "UIView+OCFrame.h"
-#import "OCFNormalCollectionReactor.h"
+#import "OCFNormalCollectionItem.h"
 #import "ThemeColorPicker+OCFrame.h"
 #import "UIImageView+OCFrame.h"
 
@@ -22,7 +22,7 @@
 @property (nonatomic, strong, readwrite) UILabel *detailLabel;
 @property (nonatomic, strong, readwrite) UIImageView *iconImageView;
 @property (nonatomic, strong, readwrite) UIImageView *indicatorImageView;
-@property (nonatomic, strong, readwrite) OCFNormalCollectionReactor *reactor;
+@property (nonatomic, strong, readwrite) OCFNormalCollectionItem *reactor;
 
 @end
 
@@ -116,7 +116,7 @@
     self.detailLabel.qmui_top = self.detailLabel.qmui_topWhenCenterInSuperview;
 }
 
-- (void)bind:(OCFNormalCollectionReactor *)reactor {
+- (void)bind:(OCFNormalCollectionItem *)reactor {
     self.titleLabel.hidden = (reactor.model.title.length == 0);
     self.titleLabel.text = reactor.model.title;
     [self.titleLabel sizeToFit];
@@ -133,7 +133,7 @@
     return OCFBorderLayer.class;
 }
 
-+ (CGSize)ocf_sizeWithMaxWidth:(CGFloat)maxWidth reactor:(OCFCollectionReactor *)reactor {
++ (CGSize)ocf_sizeWithMaxWidth:(CGFloat)maxWidth reactor:(OCFCollectionItem *)reactor {
     return CGSizeMake(maxWidth, OCFMetric(50));
 }
 

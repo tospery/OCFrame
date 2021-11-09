@@ -1,34 +1,33 @@
 //
-//  OCFCellReactor.m
+//  OCFScrollItem.m
 //  Pods
 //
 //  Created by 杨建祥 on 2020/2/24.
 //
 
-#import "OCFCellReactor.h"
+#import "OCFScrollItem.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 
-@interface OCFCellReactor ()
-@property (nonatomic, strong, readwrite) NSString *mid;
-@property (nonatomic, strong, readwrite) OCFBaseModel *model;
+@interface OCFScrollItem ()
+//@property (nonatomic, strong, readwrite) NSString *mid;
 @property (nonatomic, strong, readwrite) RACCommand *clickCommand;
 
 @end
 
-@implementation OCFCellReactor
-- (instancetype)initWithModel:(OCFBaseModel *)model {
-    if (self = [self initWithMid:model.mid]) {
-        self.model = model;
-    }
-    return self;
-}
-
-- (instancetype)initWithMid:(NSString *)mid {
-    if (self = [super init]) {
-        self.mid = mid;
-    }
-    return self;
-}
+@implementation OCFScrollItem
+//- (instancetype)initWithModel:(OCFBaseModel *)model {
+//    if (self = [self initWithMid:model.mid]) {
+//        self.model = model;
+//    }
+//    return self;
+//}
+//
+//- (instancetype)initWithMid:(NSString *)mid {
+//    if (self = [super init]) {
+//        self.mid = mid;
+//    }
+//    return self;
+//}
 
 - (void)didInitialize {
     [super didInitialize];
@@ -38,7 +37,7 @@
 }
 
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
-    OCFCellReactor *item = [super allocWithZone:zone];
+    OCFScrollItem *item = [super allocWithZone:zone];
     @weakify(item)
     [[item rac_signalForSelector:@selector(initWithModel:)] subscribeNext:^(id x) {
         @strongify(item)

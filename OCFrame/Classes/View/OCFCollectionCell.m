@@ -10,7 +10,7 @@
 #import "ThemeColorPicker+OCFrame.h"
 
 @interface OCFCollectionCell ()
-@property (nonatomic, strong, readwrite) OCFCollectionReactor *reactor;
+@property (nonatomic, strong, readwrite) OCFCollectionItem *reactor;
 
 @end
 
@@ -29,7 +29,7 @@
     }
 }
 
-- (void)bind:(OCFCollectionReactor *)reactor {
+- (void)bind:(OCFCollectionItem *)reactor {
     self.reactor = reactor;
     [self setNeedsLayout];
     [self layoutIfNeeded];

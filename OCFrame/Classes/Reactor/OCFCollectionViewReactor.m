@@ -46,7 +46,7 @@
 }
 
 #pragma mark - Configure
-- (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withReactor:(OCFCollectionReactor *)reactor {
+- (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withReactor:(OCFCollectionItem *)reactor {
     
 }
 
@@ -60,11 +60,11 @@
 
 #pragma mark - Delegate
 #pragma mark OCFCollectionViewModelDataSource
-- (OCFCollectionReactor *)collectionViewReactor:(OCFCollectionViewReactor *)collectionViewReactor reactorAtIndexPath:(NSIndexPath *)indexPath {
+- (OCFCollectionItem *)collectionViewReactor:(OCFCollectionViewReactor *)collectionViewReactor reactorAtIndexPath:(NSIndexPath *)indexPath {
     return self.dataSource[indexPath.section][indexPath.row];
 }
 
-- (Class)collectionViewReactor:(OCFCollectionViewReactor *)collectionViewReactor classForReactor:(OCFCollectionReactor *)reactor {
+- (Class)collectionViewReactor:(OCFCollectionViewReactor *)collectionViewReactor classForReactor:(OCFCollectionItem *)reactor {
     return NSClassFromString([self.cellMapping objectForKey:NSStringFromClass(reactor.class)]);
 }
 
@@ -78,7 +78,7 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    OCFCollectionReactor *reactor = [self collectionViewReactor:self reactorAtIndexPath:indexPath];
+    OCFCollectionItem *reactor = [self collectionViewReactor:self reactorAtIndexPath:indexPath];
     Class cls = [self collectionViewReactor:self classForReactor:reactor];
     SEL sel = @selector(ocf_reuseId);
     NSString *reuseId = nil;
