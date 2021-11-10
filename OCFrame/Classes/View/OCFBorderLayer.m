@@ -9,6 +9,7 @@
 #import <QMUIKit/QMUIKit.h>
 #import "OCFFunction.h"
 #import "NSDictionary+OCFrame.h"
+#import "ThemeColorPicker+OCFrame.h"
 
 @interface OCFBorderLayer ()
 @property (nonatomic, strong) CALayer *topBorder;

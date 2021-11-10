@@ -9,25 +9,18 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 
 @interface OCFScrollItem ()
-//@property (nonatomic, strong, readwrite) NSString *mid;
+@property (nonatomic, strong, readwrite) OCFBaseModel *model;
 @property (nonatomic, strong, readwrite) RACCommand *clickCommand;
 
 @end
 
 @implementation OCFScrollItem
-//- (instancetype)initWithModel:(OCFBaseModel *)model {
-//    if (self = [self initWithMid:model.mid]) {
-//        self.model = model;
-//    }
-//    return self;
-//}
-//
-//- (instancetype)initWithMid:(NSString *)mid {
-//    if (self = [super init]) {
-//        self.mid = mid;
-//    }
-//    return self;
-//}
+- (instancetype)initWithModel:(OCFBaseModel *)model {
+    if (self = [super init]) {
+        self.model = model;
+    }
+    return self;
+}
 
 - (void)didInitialize {
     [super didInitialize];

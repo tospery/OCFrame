@@ -8,6 +8,7 @@
 #import "OCFScrollViewController.h"
 #import <Mantle/Mantle.h>
 #import <MJRefresh/MJRefresh.h>
+#import "OCFConstant.h"
 #import "OCFFunction.h"
 #import "OCFrameManager.h"
 #import "OCFAppDependency.h"
@@ -64,6 +65,8 @@
         self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
     [self.view addSubview:self.scrollView];
+    
+    OCFLogDebug(kOCFLogTagNormal, @"scrollView frame = %@", NSStringFromCGRect(self.scrollView.frame));
     
 //    if (![self isKindOfClass:OCFCollectionViewController.class] /*&&
 //        ![self isKindOfClass:OCFWebViewController.class]*/) {
