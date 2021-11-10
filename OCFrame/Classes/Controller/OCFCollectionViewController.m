@@ -25,8 +25,8 @@
 @dynamic reactor;
 
 #pragma mark - Init
-- (instancetype)initWithReactor:(OCFViewReactor *)reactor {
-    if (self = [super initWithReactor:reactor]) {
+- (instancetype)initWithReactor:(OCFViewReactor *)reactor navigator:(OCFNavigator *)navigator {
+    if (self = [super initWithReactor:reactor navigator:navigator]) {
     }
     return self;
 }

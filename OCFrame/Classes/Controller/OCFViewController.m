@@ -19,6 +19,7 @@
 #import "UIViewController+OCFrame.h"
 #import "NSError+OCFrame.h"
 #import "ThemeColorPicker+OCFrame.h"
+#import "NSObject+OCFrame.h"
 
 @interface OCFViewController ()
 //@property (nonatomic, strong) UIButton *backButton;
@@ -35,10 +36,11 @@
 @implementation OCFViewController
 
 #pragma mark - Init
-- (instancetype)initWithReactor:(OCFViewReactor *)reactor {
+- (instancetype)initWithReactor:(OCFViewReactor *)reactor navigator:(OCFNavigator *)navigator {
     if (self = [super init]) {
-        self.hidesBottomBarWhenPushed = YES;
         self.reactor = reactor;
+        self.navigator = navigator;
+        self.hidesBottomBarWhenPushed = YES;
         @weakify(self)
         [[self rac_signalForSelector:@selector(bind:)] subscribeNext:^(RACTuple *tuple) {
             @strongify(self)
@@ -56,12 +58,16 @@
     return self;
 }
 
+- (void)dealloc {
+    OCFLogDebug(kOCFLogTagNormal, @"%@已析构", self.ocf_className);
+}
+
 #pragma mark - View
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.extendedLayoutIncludesOpaqueBars = YES;
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    // self.automaticallyAdjustsScrollViewInsets = NO;
 
     self.view.theme_backgroundColor = ThemeColorPicker.background;
     
@@ -113,12 +119,12 @@
 }
 
 #pragma mark - Property
-- (OCFNavigator *)navigator {
-    if (!_navigator) {
-        _navigator = OCFAppDependency.sharedInstance.navigator;
-    }
-    return _navigator;
-}
+//- (OCFNavigator *)navigator {
+//    if (!_navigator) {
+//        _navigator = OCFAppDependency.sharedInstance.navigator;
+//    }
+//    return _navigator;
+//}
 
 
 - (OCFNavigationBar *)navigationBar {

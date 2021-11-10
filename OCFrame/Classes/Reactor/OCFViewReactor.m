@@ -17,6 +17,7 @@
 #import "NSDictionary+OCFrame.h"
 #import "UIViewController+OCFrame.h"
 #import "NSError+OCFrame.h"
+#import "NSObject+OCFrame.h"
 
 @interface OCFViewReactor ()
 @property (nonatomic, strong, readwrite) OCFUser *user;
@@ -109,6 +110,10 @@
             return [self data2Source:data];
         }];
     }
+}
+
+- (void)dealloc {
+    OCFLogDebug(kOCFLogTagNormal, @"%@已析构", self.ocf_className);
 }
 
 #pragma mark - View

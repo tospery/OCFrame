@@ -14,5 +14,7 @@
 @property (nonatomic, strong, readonly) NSString *ocf_teamID;
 @property (nonatomic, strong, readonly) NSString *ocf_bundleID;
 
+- (NSString *)ocf_urlSchemeWithName:(NSString *)name;
+
 @end
 

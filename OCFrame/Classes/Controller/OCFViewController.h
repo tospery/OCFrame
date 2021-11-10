@@ -30,7 +30,7 @@ typedef NS_ENUM(NSInteger, OCFViewControllerBackType){
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithCoder:(NSCoder *)coder NS_UNAVAILABLE;
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil NS_UNAVAILABLE;
-- (instancetype)initWithReactor:(OCFViewReactor *)reactor;
+- (instancetype)initWithReactor:(OCFViewReactor *)reactor navigator:(OCFNavigator *)navigator;
 
 - (void)beginLoad;
 - (void)triggerLoad;

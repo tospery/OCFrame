@@ -35,10 +35,6 @@
     if (self = [super init]) {
         self.provider = [[OCFProvider alloc] init];
         self.navigator = [[OCFNavigator alloc] init];
-//        [self setupFrame];
-//        [self setupVendor];
-//        [self setupAppearance];
-//        [self setupData];
     }
     return self;
 }
@@ -50,36 +46,6 @@
 #pragma mark screen
 - (void)initialScreen {
 }
-
-#pragma mark setup
-//- (void)setupFrame {
-//    // Toast
-//    [CSToastManager setQueueEnabled:YES];
-//    [CSToastManager setDefaultPosition:CSToastPositionCenter];
-//    // Route
-//    @weakify(self)
-//    [JLRoutes.globalRoutes addRoute:kOCFPatternToast handler:^BOOL(NSDictionary *parameters) {
-//        OCFVoidBlock_id completion = OCFObjMember(parameters, OCFParameter.block, nil);
-//        @strongify(self)
-//        return [self.navigator.topView ocf_toastWithParameters:parameters completion:^(BOOL didTap) {
-//            if (completion) {
-//                completion(@(didTap));
-//            }
-//        }];
-//    }];
-//}
-
-//- (void)setupVendor {
-//
-//}
-//
-//- (void)setupAppearance {
-//
-//}
-//
-//- (void)setupData {
-//
-//}
 
 #pragma mark finish
 - (void)entryDidFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

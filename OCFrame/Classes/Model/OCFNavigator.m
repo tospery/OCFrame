@@ -71,8 +71,8 @@
     name = [name stringByReplacingCharactersInRange:NSMakeRange(name.length - kReactorName.length, kReactorName.length) withString:kControllerName];
     Class cls = NSClassFromString(name);
     NSParameterAssert([cls isSubclassOfClass:OCFViewController.class] || [cls isSubclassOfClass:OCFTabBarController.class]);
-    NSParameterAssert([cls instancesRespondToSelector:@selector(initWithReactor:)]);
-    return [[cls alloc] initWithReactor:reactor];
+    NSParameterAssert([cls instancesRespondToSelector:@selector(initWithReactor:navigator:)]);
+    return [[cls alloc] initWithReactor:reactor navigator:self];
 }
 
 #pragma mark - Delegate

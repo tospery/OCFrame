@@ -117,7 +117,7 @@
 - (UIButton *)addButtonToLeftWithImage:(UIImage *)image {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.backgroundColor = UIColorClear;
-    button.theme_tintColor = ThemeColorPicker.barTint;
+    button.theme_tintColor = ThemeColorPicker.barText;
     [button setImage:[image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
     [button sizeToFit];
     [self addSubview:button];
@@ -135,7 +135,7 @@
 - (UIButton *)addButtonToRightWithImage:(UIImage *)image {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.backgroundColor = UIColorClear;
-    button.theme_tintColor = ThemeColorPicker.barTint;
+    button.theme_tintColor = ThemeColorPicker.barText;
     [button setImage:[image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
     [button sizeToFit];
     [self addSubview:button];

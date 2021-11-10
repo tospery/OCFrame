@@ -12,18 +12,12 @@
     return [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
 }
 
+static NSString *ocfURLScheme = nil;
 - (NSString *)ocf_urlScheme {
-    NSArray *urlTypes = [[NSBundle mainBundle].infoDictionary objectForKey:@"CFBundleURLTypes"];
-    NSString *scheme = nil;
-    for (NSDictionary *info in urlTypes) {
-        NSString *urlName = [info objectForKey:@"CFBundleURLName"];
-        if ([urlName isEqualToString:@"app"]) {
-            NSArray *urlSchemes = [info objectForKey:@"CFBundleURLSchemes"];
-            scheme = urlSchemes.firstObject;
-            break;
-        }
+    if (!ocfURLScheme) {
+        ocfURLScheme = [self ocf_urlSchemeWithName:@"app"];
     }
-    return scheme;
+    return ocfURLScheme;
 }
 
 - (NSString *)ocf_displayName {
@@ -56,6 +50,20 @@
 
 - (NSString *)ocf_bundleID {
     return [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleIdentifier"];
+}
+
+- (NSString *)ocf_urlSchemeWithName:(NSString *)name {
+    NSArray *urlTypes = [[NSBundle mainBundle].infoDictionary objectForKey:@"CFBundleURLTypes"];
+    NSString *scheme = nil;
+    for (NSDictionary *info in urlTypes) {
+        NSString *urlName = [info objectForKey:@"CFBundleURLName"];
+        if ([urlName isEqualToString:name]) {
+            NSArray *urlSchemes = [info objectForKey:@"CFBundleURLSchemes"];
+            scheme = urlSchemes.firstObject;
+            break;
+        }
+    }
+    return scheme;
 }
 
 @end

@@ -9,6 +9,7 @@
 #import <QMUIKit/QMUIKit.h>
 #import "OCFrameManager.h"
 #import "NSString+OCFrame.h"
+#import "UIApplication+OCFrame.h"
 
 @implementation NSURL (OCFrame)
 
@@ -50,7 +51,7 @@
     if ([pathString hasPrefix:@"/"]) {
         pathString = [pathString substringFromIndex:1];
     }
-    NSString *urlString = OCFStrWithFmt(@"%@://%@", OCFrameManager.sharedInstance.appScheme, pathString);
+    NSString *urlString = OCFStrWithFmt(@"%@://%@", UIApplication.sharedApplication.ocf_urlScheme, pathString);
     return [NSURL URLWithString:urlString];
 }
 

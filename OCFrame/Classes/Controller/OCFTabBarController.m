@@ -7,23 +7,33 @@
 
 #import "OCFTabBarController.h"
 #import "OCFTabBarReactor.h"
+#import "OCFAppDependency.h"
 
 @interface OCFTabBarController ()
 @property (nonatomic, strong, readwrite) OCFTabBarReactor *reactor;
+@property (nonatomic, strong, readwrite) OCFNavigator *navigator;
 
 @end
 
 @implementation OCFTabBarController
 
-- (instancetype)initWithReactor:(OCFTabBarReactor *)reactor {
+- (instancetype)initWithReactor:(OCFTabBarReactor *)reactor navigator:(OCFNavigator *)navigator {
     if (self = [super init]) {
         self.reactor = reactor;
+        self.navigator = navigator;
         [self setupChildren];
     }
     return self;
 }
 
 - (void)setupChildren {
+    self.delegate = self;
+    @weakify(self)
+    [[self rac_signalForSelector:@selector(tabBarController:didSelectViewController:) fromProtocol:@protocol(UITabBarControllerDelegate)] subscribeNext:^(RACTuple *tuple) {
+        @strongify(self)
+        [self.navigator popNavigationController];
+        [self.navigator pushNavigationController:tuple.second];
+    }];
 }
 
 - (void)bind:(OCFTabBarReactor *)reactor {
