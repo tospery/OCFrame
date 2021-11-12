@@ -138,13 +138,17 @@
 }
 
 - (CGFloat)contentTop {
-    return self.reactor.hidesNavigationBar ? 0 : NavigationContentTopConstant;
+    CGFloat value = 0;
+    if (!self.reactor.hidesNavigationBar && !self.reactor.transparetNavBar) {
+        value = NavigationContentTopConstant;
+    }
+    return value;
 }
 
 - (CGFloat)contentBottom {
-    CGFloat value = SafeAreaInsetsConstantForDeviceWithNotch.bottom;
+    CGFloat value = 0;
     UITabBar *tabBar = self.tabBarController.tabBar;
-    if (tabBar && !tabBar.hidden && !self.hidesBottomBarWhenPushed) {
+    if (tabBar && !tabBar.hidden && !tabBar.isTranslucent && !self.hidesBottomBarWhenPushed) {
         value = tabBar.qmui_height;
     }
     return value;

@@ -32,6 +32,10 @@
     return @"requestRemote";
 }
 
++ (NSString *)transparetNavBar {
+    return @"transparetNavBar";
+}
+
 + (NSString *)hidesNavigationBar {
     return @"hidesNavigationBar";
 }

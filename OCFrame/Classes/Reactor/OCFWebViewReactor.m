@@ -23,6 +23,9 @@
         self.shouldFetchLocalData = OCFBoolMember(parameters, OCFParameter.requestRemote, NO);
         self.shouldRequestRemoteData = OCFBoolMember(parameters, OCFParameter.requestRemote, YES);
         self.ocHandlers = OCFArrMember(parameters, OCFParameter.ocHandlers, nil);
+        NSMutableArray *handers = [NSMutableArray arrayWithArray:self.ocHandlers];
+        [handers addObject:@"appHandler"];
+        self.ocHandlers = handers;
         self.jsHandlers = OCFArrMember(parameters, OCFParameter.jsHandlers, nil);
         self.url = OCFObjWithDft(OCFURLMember(parameters, JLRouteURLKey, nil), OCFURLMember(parameters, OCFParameter.url, nil));
         // self.progressColor = OCFColorMember(parameters, OCFParameter.progressColor, OCFColorKey(TINT));

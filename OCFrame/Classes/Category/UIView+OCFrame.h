@@ -12,7 +12,7 @@
 @property (nonatomic, assign) CGFloat ocf_borderWidth;
 @property (nonatomic, assign) CGFloat ocf_cornerRadius;
 @property (nonatomic, strong, readonly) OCFBorderLayer *ocf_borderLayer;
-//@property (nonatomic, copy, setter = dk_setBorderColorPicker:) DKColorPicker dk_borderColorPicker;
+@property (nonatomic, strong) ThemeColorPicker *theme_borderColor;
 
 - (BOOL)ocf_toastWithParameters:(NSDictionary *)parameters completion:(void(^)(BOOL didTap))completion;
 

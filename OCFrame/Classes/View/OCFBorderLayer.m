@@ -26,6 +26,8 @@
     if (self = [super init]) {
         self.borderColor = nil;
         self.borderWidth = 0;
+        self.defaultColor = UIColor.lightGrayColor;
+        self.theme_defaultColor = ThemeColorPicker.border;
         
         [self addSublayer:self.topBorder];
         [self addSublayer:self.bottomBorder];
@@ -176,7 +178,7 @@
 - (UIColor *)colorForBorder:(OCFBorderPosition)position {
     UIColor *color = [self.borderColors ocf_objectForKey:@(position)];
     if (!color || ![color isKindOfClass:UIColor.class]) {
-        return UIColor.orangeColor; // OCFColorKey(SEP);
+        return self.defaultColor;
     }
     return color;
 }
@@ -199,3 +201,17 @@
 
 @end
 
+@implementation OCFBorderLayer (OCFrame)
+- (void)setTheme_defaultColor:(ThemeColorPicker *)theme_defaultColor {
+    [ThemePicker setThemePicker:self :@"setDefaultColor:" :theme_defaultColor];
+}
+
+- (ThemeColorPicker *)theme_defaultColor {
+    ThemePicker *picker = [ThemePicker getThemePicker:self :@"setDefaultColor:"];
+    if (![picker isKindOfClass:ThemeColorPicker.class]) {
+        return nil;
+    }
+    return (ThemeColorPicker *)picker;
+}
+
+@end

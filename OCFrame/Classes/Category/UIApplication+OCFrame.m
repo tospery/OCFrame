@@ -6,6 +6,7 @@
 //
 
 #import "UIApplication+OCFrame.h"
+#import "NSString+OCFrame.h"
 
 @implementation UIApplication (OCFrame)
 - (NSString *)ocf_version {
@@ -64,6 +65,14 @@ static NSString *ocfURLScheme = nil;
         }
     }
     return scheme;
+}
+
+- (NSString *)ocf_baseApiUrlString {
+    return OCFStrWithFmt(@"https://api.%@.com", self.ocf_urlScheme);
+}
+
+- (NSString *)ocf_baseWebUrlString {
+    return OCFStrWithFmt(@"https://m.%@.com", self.ocf_urlScheme);
 }
 
 @end

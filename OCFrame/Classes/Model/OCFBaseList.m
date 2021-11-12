@@ -17,7 +17,7 @@
 @implementation OCFBaseList
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     NSDictionary *mapping = [NSDictionary mtl_identityPropertyMapWithModel:self];
-    mapping = [mapping mtl_dictionaryByRemovingValuesForKeys:@[@"mid"]];
+    mapping = [mapping mtl_dictionaryByRemovingValuesForKeys:@[@"id"]];
     return mapping;
 }
 

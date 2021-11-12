@@ -13,6 +13,8 @@
 @property (nonatomic, strong, readonly) NSString *ocf_displayName;
 @property (nonatomic, strong, readonly) NSString *ocf_teamID;
 @property (nonatomic, strong, readonly) NSString *ocf_bundleID;
+@property (nonatomic, strong, readonly) NSString *ocf_baseApiUrlString;
+@property (nonatomic, strong, readonly) NSString *ocf_baseWebUrlString;
 
 - (NSString *)ocf_urlSchemeWithName:(NSString *)name;
 

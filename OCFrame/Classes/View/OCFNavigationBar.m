@@ -32,7 +32,8 @@
         self.borderPosition = QMUIViewBorderPositionBottom;
         self.qmui_borderPosition = self.borderPosition;
         self.qmui_borderWidth = PixelOne;
-        // self.dk_borderColorPicker = DKColorPickerWithKey(SEP);
+        self.theme_borderColor = ThemeColorPicker.separator;
+        
 
         [self addSubview:self.bgImageView];
         [self addSubview:self.titleLabel];

@@ -39,7 +39,7 @@
     if ([pathString hasPrefix:@"/"]) {
         pathString = [pathString substringFromIndex:1];
     }
-    NSString *urlString = OCFStrWithFmt(@"%@/%@", OCFrameManager.sharedInstance.baseURLString, pathString);
+    NSString *urlString = OCFStrWithFmt(@"%@/%@", UIApplication.sharedApplication.ocf_baseWebUrlString, pathString);
     return [NSURL URLWithString:urlString];
 }
 

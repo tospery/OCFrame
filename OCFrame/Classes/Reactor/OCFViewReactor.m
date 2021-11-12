@@ -20,6 +20,7 @@
 #import "NSObject+OCFrame.h"
 
 @interface OCFViewReactor ()
+@property (nonatomic, assign, readwrite) BOOL transparetNavBar;
 @property (nonatomic, strong, readwrite) OCFUser *user;
 @property (nonatomic, strong, readwrite) OCFProvider *provider;
 @property (nonatomic, strong, readwrite) NSDictionary *parameters;
@@ -47,6 +48,7 @@
         self.parameters = parameters;
         self.shouldFetchLocalData = OCFBoolMember(parameters, OCFParameter.fetchLocalData, YES);
         self.shouldRequestRemoteData = OCFBoolMember(parameters, OCFParameter.requestRemote, NO);
+        self.transparetNavBar = OCFBoolMember(parameters, OCFParameter.transparetNavBar, NO);
         self.hidesNavigationBar = OCFBoolMember(parameters, OCFParameter.hidesNavigationBar, NO);
         self.hidesNavBottomLine = OCFBoolMember(parameters, OCFParameter.hidesNavBottomLine, NO);
         self.title = OCFStrMember(parameters, OCFParameter.title, nil);

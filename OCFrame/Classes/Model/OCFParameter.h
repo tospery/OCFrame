@@ -14,6 +14,7 @@
 @property (class, strong, readonly) NSString *url;
 @property (class, strong, readonly) NSString *fetchLocalData;
 @property (class, strong, readonly) NSString *requestRemote;
+@property (class, strong, readonly) NSString *transparetNavBar;
 @property (class, strong, readonly) NSString *hidesNavigationBar;
 @property (class, strong, readonly) NSString *hidesNavBottomLine;
 @property (class, strong, readonly) NSString *page;

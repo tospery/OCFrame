@@ -5,9 +5,9 @@
 //  Created by 杨建祥 on 2020/2/25.
 //
 
-#import "OCFBaseModel.h"
+#import "OCFCollectionModel.h"
 
-@interface OCFNormalCollectionModel : OCFBaseModel
+@interface OCFNormalCollectionModel : OCFCollectionModel
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *detail;
 @property (nonatomic, strong) NSString *icon;

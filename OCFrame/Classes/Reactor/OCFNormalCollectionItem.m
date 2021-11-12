@@ -16,9 +16,15 @@
 @implementation OCFNormalCollectionItem
 @dynamic model;
 
-- (instancetype)initWithModel:(OCFNormalCollectionModel *)model {
+//- (instancetype)initWithModel:(OCFNormalCollectionModel *)model {
+//    if (self = [super initWithModel:model]) {
+//        //self.cellSize = CGSizeMake(DEVICE_WIDTH, OCFMetric(50));
+//    }
+//    return self;
+//}
+
+- (instancetype)initWithModel:(OCFBaseModel *)model {
     if (self = [super initWithModel:model]) {
-        //self.cellSize = CGSizeMake(DEVICE_WIDTH, OCFMetric(50));
     }
     return self;
 }

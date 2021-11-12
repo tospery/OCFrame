@@ -6,9 +6,10 @@
 //
 
 #import "OCFScrollItem.h"
+#import "OCFCollectionModel.h"
 
 @interface OCFCollectionItem : OCFScrollItem
-//@property (nonatomic, assign) CGSize cellSize;
+@property (nonatomic, strong, readonly) OCFCollectionModel *model;
 
 @end
 

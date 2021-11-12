@@ -15,24 +15,27 @@
 
 NSMutableDictionary *currents = nil;
 
-@interface OCFBaseModel ()
-@property (nonatomic, strong, readwrite) NSString *mid;
+@interface OCFBaseModel () {
+    NSString *_id;
+}
+@property (nonatomic, strong, readwrite) NSString *id;
 
 @end
 
 @implementation OCFBaseModel
+@synthesize id = _id;
 
 #pragma mark - Init
-- (instancetype)initWithMid:(NSString *)mid {
+- (instancetype)initWithID:(NSString *)id {
     if (self = [super init]) {
-        self.mid = mid;
+        self.id = id;
     }
     return self;
 }
 
 #pragma mark - Save
 - (void)save {
-    [self saveWithKey:self.mid];
+    [self saveWithKey:self.id];
 }
 
 - (void)saveWithKey:(NSString *)key {
@@ -43,21 +46,21 @@ NSMutableDictionary *currents = nil;
 #pragma mark json
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     NSDictionary *mapping = [NSDictionary mtl_identityPropertyMapWithModel:self];
-    mapping = [mapping mtl_dictionaryByAddingEntriesFromDictionary:@{
-        @"mid": @"id"
-    }];
+//    mapping = [mapping mtl_dictionaryByAddingEntriesFromDictionary:@{
+//        @"mid": @"id"
+//    }];
     return mapping;
 }
 
 + (NSValueTransformer *)JSONTransformerForKey:(NSString *)key {
     return @{
-        @"mid": [MTLJSONAdapter NSStringJSONTransformer]
+        @"id": [MTLJSONAdapter NSStringJSONTransformer]
     }[key];
 }
 
 #pragma mark store
 + (void)storeObject:(OCFBaseModel *)object {
-    [object saveWithKey:object.mid];
+    [object saveWithKey:object.id];
 }
 
 + (void)storeObject:(OCFBaseModel *)object withKey:(NSString *)key {
@@ -70,7 +73,7 @@ NSMutableDictionary *currents = nil;
 
 #pragma mark erase
 + (void)eraseObject:(OCFBaseModel *)object {
-    [self eraseObjectForKey:object.mid];
+    [self eraseObjectForKey:object.id];
 }
 
 + (void)eraseObjectForKey:(NSString *)key {

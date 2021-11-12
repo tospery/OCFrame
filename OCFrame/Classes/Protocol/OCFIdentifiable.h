@@ -8,9 +8,9 @@
 #import <UIKit/UIKit.h>
 
 @protocol OCFIdentifiable <NSObject>
-@property (nonatomic, strong, readonly) NSString *mid;
+@property (nonatomic, strong, readonly) NSString *id;
 
-- (instancetype)initWithMid:(NSString *)mid;
+- (instancetype)initWithID:(NSString *)id;
 
 @end
 
