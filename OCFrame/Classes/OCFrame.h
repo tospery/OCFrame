@@ -184,4 +184,5 @@
 #import <Toast/UIView+Toast.h>
 #import <TYAlertController/TYAlertController.h>
 #import <SwiftTheme/SwiftTheme-Swift.h>
+#import <Giotto/SDThemeManager.h>
 // #import <WebViewJavascriptBridge/WebViewJavascriptBridge.h>

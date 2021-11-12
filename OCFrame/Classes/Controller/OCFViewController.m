@@ -20,6 +20,7 @@
 #import "NSError+OCFrame.h"
 #import "ThemeColorPicker+OCFrame.h"
 #import "NSObject+OCFrame.h"
+#import <Giotto/SDThemeManager.h>
 
 @interface OCFViewController ()
 //@property (nonatomic, strong) UIButton *backButton;
@@ -69,7 +70,7 @@
     self.extendedLayoutIncludesOpaqueBars = YES;
     // self.automaticallyAdjustsScrollViewInsets = NO;
 
-    self.view.theme_backgroundColor = ThemeColorPicker.background;
+    // self.view.theme_backgroundColor = ThemeColorPicker.background;
     
 //    self.navigationController.navigationBar.hidden = YES;
 //    if (!self.reactor.hidesNavigationBar) {
@@ -100,6 +101,8 @@
             }];
         }
     }
+    
+    [SDThemeManager.sharedManager applyStyleWithName:self.ocf_className toObject:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
