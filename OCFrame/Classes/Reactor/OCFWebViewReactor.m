@@ -28,8 +28,7 @@
         self.ocHandlers = handers;
         self.jsHandlers = OCFArrMember(parameters, OCFParameter.jsHandlers, nil);
         self.url = OCFObjWithDft(OCFURLMember(parameters, JLRouteURLKey, nil), OCFURLMember(parameters, OCFParameter.url, nil));
-        // self.progressColor = OCFColorMember(parameters, OCFParameter.progressColor, OCFColorKey(TINT));
-        self.progressColor = OCFColorMember(parameters, OCFParameter.progressColor, UIColor.orangeColor);
+        self.progressColor = OCFColorMember(parameters, OCFParameter.progressColor, OCFColorKey(@"primaryColor"));
     }
     return self;
 }

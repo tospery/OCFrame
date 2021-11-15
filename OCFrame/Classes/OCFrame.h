@@ -29,6 +29,8 @@
 #import "OCFBaseList.h"
 #import "OCFPage.h"
 #import "OCFNormalCollectionModel.h"
+#import "OCFConfiguration.h"
+#import "OCFPreference.h"
 //#import "OCFObject.h"
 //#import "OCFFrameManager.h"
 //#import "OCFPageFactory.h"
@@ -184,5 +186,3 @@
 #import <Toast/UIView+Toast.h>
 #import <TYAlertController/TYAlertController.h>
 #import <SwiftTheme/SwiftTheme-Swift.h>
-#import <Giotto/SDThemeManager.h>
-// #import <WebViewJavascriptBridge/WebViewJavascriptBridge.h>

@@ -20,7 +20,6 @@
 #import "NSError+OCFrame.h"
 #import "ThemeColorPicker+OCFrame.h"
 #import "NSObject+OCFrame.h"
-#import <Giotto/SDThemeManager.h>
 
 @interface OCFViewController ()
 //@property (nonatomic, strong) UIButton *backButton;
@@ -101,8 +100,6 @@
             }];
         }
     }
-    
-    [SDThemeManager.sharedManager applyStyleWithName:self.ocf_className toObject:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

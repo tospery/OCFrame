@@ -71,14 +71,14 @@
     if (!self.error) {
         return nil;
     }
-    return [NSAttributedString ocf_attributedStringWithString:self.error.ocf_displayTitle color:/*OCFColorKey(TEXT)*/UIColor.orangeColor font:OCFFont(16.0f)];
+    return [NSAttributedString ocf_attributedStringWithString:self.error.ocf_displayTitle color:OCFColorKey(@"titleColor") font:OCFFont(16.0f)];
 }
 
 - (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
     if (!self.error) {
         return nil;
     }
-    return [NSAttributedString ocf_attributedStringWithString:self.error.ocf_displayMessage color:/*OCFColorKey(FOOT)*/UIColor.orangeColor font:OCFFont(14.0f)];
+    return [NSAttributedString ocf_attributedStringWithString:self.error.ocf_displayMessage color:OCFColorKey(@"bodyColor") font:OCFFont(14.0f)];
 }
 
 - (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
@@ -89,14 +89,14 @@
 }
 
 - (UIImage *)buttonBackgroundImageForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
-    UIImage *image = [UIImage qmui_imageWithColor:/*OCFColorKey(TINT)*/UIColor.orangeColor size:CGSizeMake(120, 30) cornerRadius:2.0f];
+    UIImage *image = [UIImage qmui_imageWithColor:OCFColorKey(@"primaryColor") size:CGSizeMake(120, 30) cornerRadius:2.0f];
     image = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(0, -120, 0, -120)];
     return (UIControlStateNormal == state ? image : nil);
 }
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
     if (!self.error) {
-        return [UIImage.ocf_loading qmui_imageWithTintColor:/*OCFColorKey(TINT)*/UIColor.orangeColor];
+        return [UIImage.ocf_loading qmui_imageWithTintColor:OCFColorKey(@"primaryColor")];
     }
     return self.error.ocf_displayImage;
 }
@@ -113,7 +113,7 @@
 }
 
 - (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
-    return UIColor.orangeColor; // OCFColorKey(BG);
+    return OCFColorKey(@"backgroundColor");
 }
 
 #pragma mark - Class

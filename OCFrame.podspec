@@ -42,7 +42,6 @@ Pod::Spec.new do |s|
   s.dependency 'CocoaLumberjack', '3.7.2'
   s.dependency 'RESTful', '1.0.0'
   s.dependency 'JLRoutes', '2.1'
-  s.dependency 'Giotto', '0.3.7'
   s.dependency 'SwiftTheme', '0.6.0'
   s.dependency 'FCUUID', '1.3.1'
   s.dependency 'PINCache', '3.0.3'
