@@ -45,11 +45,7 @@ NSMutableDictionary *currents = nil;
 #pragma mark - Class
 #pragma mark json
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    NSDictionary *mapping = [NSDictionary mtl_identityPropertyMapWithModel:self];
-//    mapping = [mapping mtl_dictionaryByAddingEntriesFromDictionary:@{
-//        @"mid": @"id"
-//    }];
-    return mapping;
+    return [NSDictionary mtl_identityPropertyMapWithModel:self];
 }
 
 + (NSValueTransformer *)JSONTransformerForKey:(NSString *)key {

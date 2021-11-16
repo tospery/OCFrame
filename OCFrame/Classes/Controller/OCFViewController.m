@@ -69,15 +69,8 @@
     self.extendedLayoutIncludesOpaqueBars = YES;
     // self.automaticallyAdjustsScrollViewInsets = NO;
 
-    // self.view.theme_backgroundColor = ThemeColorPicker.background;
+    self.view.theme_backgroundColor = ThemeColorPicker.background;
     
-//    self.navigationController.navigationBar.hidden = YES;
-//    if (!self.reactor.hidesNavigationBar) {
-//        [self addNavigationBar];
-//        if (self.reactor.hidesNavBottomLine) {
-//            self.navigationBar.qmui_borderLayer.hidden = YES;
-//        }
-//    }
     self.navigationController.navigationBar.hidden = YES;
     [self.view addSubview:self.navigationBar];
     self.navigationBar.hidden = self.reactor.hidesNavigationBar;
@@ -214,14 +207,10 @@
             RACTuple *tuple = (RACTuple *)input;
             id first = tuple.first;
             id second = tuple.second;
-            // 1. forward
-            if ([first isKindOfClass:NSURL.class] &&
-                (!second || [second isKindOfClass:NSDictionary.class])) {
-                [self.navigator routeURL:first withParameters:second];
-            }
-            // 2. back
-            else if ([first isKindOfClass:NSNumber.class]) {
+            if ([first isKindOfClass:NSNumber.class]) {
+                // back
                 OCFViewControllerBackType type = [(NSNumber *)first integerValue];
+                @weakify(self)
                 OCFVoidBlock completion = ^(void) {
                     @strongify(self)
                     [self.reactor.resultCommand execute:second];
@@ -235,6 +224,22 @@
                 } else if (OCFViewControllerBackTypeClose == type) {
                     [self.navigator closeReactorWithAnimationType:OCFViewControllerAnimationTypeFromString(self.reactor.animation) completion:completion];
                 }
+            } else {
+                // forward
+                NSURL *url = nil;
+                if ([first isKindOfClass:NSURL.class]) {
+                    url = (NSURL *)first;
+                } else if ([first isKindOfClass:NSString.class]) {
+                    url = OCFURLWithStr((NSString *)first);
+                }
+                if (!url) {
+                    return;
+                }
+                NSDictionary *parameters = nil;
+                if ([second isKindOfClass:NSDictionary.class]) {
+                    parameters = (NSDictionary *)second;
+                }
+                [self.navigator routeURL:url withParameters:parameters];
             }
         }
     }];

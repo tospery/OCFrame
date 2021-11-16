@@ -6,12 +6,21 @@
 //
 
 #import "OCFBaseResponse.h"
+#import "NSError+OCFrame.h"
 
 @interface OCFBaseResponse ()
 
 @end
 
 @implementation OCFBaseResponse
+- (instancetype)init {
+    if (self = [super init]) {
+        // 用于没有code/message/data层的数据
+        self.code = OCFErrorCodeSuccess;
+    }
+    return self;
+}
+
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
         @"code": @"code",
@@ -20,7 +29,10 @@
 }
 
 + (NSString *)resultKeyPathForJSONDictionary:(NSDictionary *)JSONDictionary {
-    return @"data";
+    if (JSONDictionary[@"data"]) {
+        return @"data";
+    }
+    return nil;
 }
 
 - (BOOL)validate:(NSError *__autoreleasing *)error {

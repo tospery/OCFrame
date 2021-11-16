@@ -6,6 +6,12 @@
 //
 
 #import "OCFRouterManager.h"
+#import "OCFConstant.h"
+#import "OCFLoginViewReactor.h"
+#import "OCFLoginViewController.h"
+#import <JLRoutes/JLRoutes.h>
+#import <JLRoutes/JLRRouteHandler.h>
+#import <JLRoutes/JLRRouteDefinition.h>
 
 @interface OCFRouterManager ()
 @property (nonatomic, strong) OCFProvider *provider;
@@ -18,6 +24,14 @@
 - (void)setupWithProvider:(OCFProvider *)provider navigator:(OCFNavigator *)navigator {
     self.provider = provider;
     self.navigator = navigator;
+    JLRoutes.globalRoutes[kOCFPatternLogin] = ^BOOL(NSDictionary *parameters) {
+        Class cls = NSClassFromString(@"LoginViewReactor");
+        if (![cls isSubclassOfClass:OCFLoginViewReactor.class]) {
+            return NO;
+        }
+        OCFLoginViewReactor *reactor = [[cls alloc] initWithParameters:parameters];
+        return [navigator presentReactor:reactor animated:YES completion:nil] != nil;
+    };
 }
 
 + (instancetype)sharedInstance {

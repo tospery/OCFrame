@@ -33,6 +33,7 @@ typedef NS_ENUM(NSInteger, OCFRequestMode) {
 @property (nonatomic, assign) BOOL hidesNavBottomLine;
 @property (nonatomic, assign) BOOL shouldFetchLocalData;
 @property (nonatomic, assign) BOOL shouldRequestRemoteData;
+@property (nonatomic, strong) id result;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *animation;
 @property (nonatomic, strong, readonly) OCFUser *user;

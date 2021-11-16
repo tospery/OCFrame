@@ -7,6 +7,10 @@
 
 #import "OCFConfiguration.h"
 
+@interface OCFConfiguration ()
+
+@end
+
 @implementation OCFConfiguration
 
 @end

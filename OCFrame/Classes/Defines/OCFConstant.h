@@ -32,7 +32,8 @@
 #define kOCFSchemeDocuments                         (@"documents")
 
 #pragma mark - Pattern
-#define kOCFPatternWeb                              (@"*")
+#define kOCFPatternAny                              (@"*")
+#define kOCFPatternLogin                            (@"login")
 #define kOCFPatternToast                            (@"toast")
 #define kOCFPatternAlert                            (@"alert")
 #define kOCFPatternSheet                            (@"sheet")

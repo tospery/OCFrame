@@ -8,6 +8,7 @@
 #import <OCFrame/OCFrame.h>
 
 @interface OCFConfiguration : OCFBaseModel
+@property (nonatomic, assign) BOOL hasUpdated;
 
 @end
 
