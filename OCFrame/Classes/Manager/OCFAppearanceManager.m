@@ -6,7 +6,7 @@
 //
 
 #import "OCFAppearanceManager.h"
-#import <SwiftTheme/SwiftTheme-Swift.h>
+//#import <SwiftTheme/SwiftTheme-Swift.h>
 #import "ThemeColorPicker+OCFrame.h"
 
 @interface OCFAppearanceManager ()
@@ -20,7 +20,7 @@
     if (@available(iOS 13.0, *)) {
         UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
         [appearance configureWithOpaqueBackground];
-        appearance.theme_backgroundColor = ThemeColorPicker.barTint;
+        // YJX_TODO appearance.theme_backgroundColor = ThemeColorPicker.barTint;
         appearance.shadowImage = [[UIImage alloc] init];
         appearance.shadowColor = nil;
         appearance.titleTextAttributes = @{
@@ -31,7 +31,7 @@
         UINavigationBar.appearance.scrollEdgeAppearance = appearance;
     } else {
         UINavigationBar.appearance.translucent = NO;
-        UINavigationBar.appearance.theme_barTintColor = ThemeColorPicker.barTint;
+        // YJX_TODO UINavigationBar.appearance.theme_barTintColor = ThemeColorPicker.barTint;
         UINavigationBar.appearance.titleTextAttributes = @{
             NSForegroundColorAttributeName: UIColor.orangeColor,
             NSFontAttributeName: [UIFont boldSystemFontOfSize:17]
@@ -42,7 +42,7 @@
     if (@available(iOS 13.0, *)) {
         UITabBarAppearance *appearance = [[UITabBarAppearance alloc] init];
         [appearance configureWithOpaqueBackground];
-        appearance.theme_backgroundColor = ThemeColorPicker.barTint;
+        // YJX_TODO appearance.theme_backgroundColor = ThemeColorPicker.barTint;
         appearance.shadowImage = [[UIImage alloc] init];
         appearance.shadowColor = nil;
         UITabBar.appearance.standardAppearance = appearance;
@@ -51,7 +51,7 @@
         }
     } else {
         UITabBar.appearance.translucent = NO;
-        UITabBar.appearance.theme_barTintColor = ThemeColorPicker.barTint;
+        // YJX_TODO UITabBar.appearance.theme_barTintColor = ThemeColorPicker.barTint;
     }
 }
 

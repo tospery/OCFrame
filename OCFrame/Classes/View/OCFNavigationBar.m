@@ -27,12 +27,12 @@
 #pragma mark - Init
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.theme_backgroundColor = ThemeColorPicker.background;
+        // YJX_TODO self.theme_backgroundColor = ThemeColorPicker.background;
         
         self.borderPosition = QMUIViewBorderPositionBottom;
         self.qmui_borderPosition = self.borderPosition;
         self.qmui_borderWidth = PixelOne;
-        self.theme_borderColor = ThemeColorPicker.separator;
+        // YJX_TODO self.theme_borderColor = ThemeColorPicker.separator;
         
 
         [self addSubview:self.bgImageView];
@@ -49,7 +49,7 @@
         label.font = OCFFont(17);
         label.backgroundColor = UIColorClear;
         label.textAlignment = NSTextAlignmentCenter;
-        label.theme_textColor = ThemeColorPicker.title;
+        // YJX_TODO label.theme_textColor = ThemeColorPicker.title;
         [label sizeToFit];
         _titleLabel = label;
     }
@@ -118,7 +118,7 @@
 - (UIButton *)addButtonToLeftWithImage:(UIImage *)image {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.backgroundColor = UIColorClear;
-    button.theme_tintColor = ThemeColorPicker.barText;
+    // YJX_TODO button.theme_tintColor = ThemeColorPicker.barText;
     [button setImage:[image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
     [button sizeToFit];
     [self addSubview:button];
@@ -136,7 +136,7 @@
 - (UIButton *)addButtonToRightWithImage:(UIImage *)image {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.backgroundColor = UIColorClear;
-    button.theme_tintColor = ThemeColorPicker.barText;
+    // YJX_TODO button.theme_tintColor = ThemeColorPicker.barText;
     [button setImage:[image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
     [button sizeToFit];
     [self addSubview:button];
@@ -175,7 +175,7 @@
 }
 
 - (void)reset {
-    self.theme_backgroundColor = ThemeColorPicker.background;
+    // YJX_TODO self.theme_backgroundColor = ThemeColorPicker.background;
     self.qmui_borderPosition = self.borderPosition;
 }
 

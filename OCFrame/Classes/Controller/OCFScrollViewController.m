@@ -58,7 +58,8 @@
         scrollView.contentSize = CGSizeMake(scrollView.qmui_width, scrollView.qmui_height + PixelOne);
         scrollView.delegate = self;
     }
-    self.scrollView.theme_backgroundColor = ThemeColorPicker.background;
+    // YJX_TODO
+    // self.scrollView.theme_backgroundColor = ThemeColorPicker.background;
     self.scrollView.emptyDataSetSource = self.reactor;
     self.scrollView.emptyDataSetDelegate = self;
     if (@available(iOS 11.0, *)) {

@@ -27,7 +27,7 @@
         self.borderColor = nil;
         self.borderWidth = 0;
         self.defaultColor = UIColor.lightGrayColor;
-        self.theme_defaultColor = ThemeColorPicker.border;
+        // self.theme_defaultColor = ThemeColorPicker.border; // YJX_TODO
         
         [self addSublayer:self.topBorder];
         [self addSublayer:self.bottomBorder];
@@ -201,17 +201,17 @@
 
 @end
 
-@implementation OCFBorderLayer (OCFrame)
-- (void)setTheme_defaultColor:(ThemeColorPicker *)theme_defaultColor {
-    [ThemePicker setThemePicker:self :@"setDefaultColor:" :theme_defaultColor];
-}
-
-- (ThemeColorPicker *)theme_defaultColor {
-    ThemePicker *picker = [ThemePicker getThemePicker:self :@"setDefaultColor:"];
-    if (![picker isKindOfClass:ThemeColorPicker.class]) {
-        return nil;
-    }
-    return (ThemeColorPicker *)picker;
-}
-
-@end
+//@implementation OCFBorderLayer (OCFrame)
+//- (void)setTheme_defaultColor:(ThemeColorPicker *)theme_defaultColor {
+//    [ThemePicker setThemePicker:self :@"setDefaultColor:" :theme_defaultColor];
+//}
+//
+//- (ThemeColorPicker *)theme_defaultColor {
+//    ThemePicker *picker = [ThemePicker getThemePicker:self :@"setDefaultColor:"];
+//    if (![picker isKindOfClass:ThemeColorPicker.class]) {
+//        return nil;
+//    }
+//    return (ThemeColorPicker *)picker;
+//}
+//
+//@end

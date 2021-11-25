@@ -17,7 +17,7 @@
 @implementation OCFCollectionCell
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.theme_backgroundColor = ThemeColorPicker.background;
+        // YJX_TODO self.theme_backgroundColor = ThemeColorPicker.background;
     }
     return self;
 }

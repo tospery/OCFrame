@@ -49,7 +49,7 @@
     [super viewDidLoad];
     
     self.webView = [self createWebView];
-    self.webView.theme_backgroundColor = ThemeColorPicker.background;
+    // // YJX_TODO self.webView.theme_backgroundColor = ThemeColorPicker.background;
     self.webView.navigationDelegate = self;
     self.webView.UIDelegate = self;
     

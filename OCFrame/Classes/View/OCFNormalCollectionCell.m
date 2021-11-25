@@ -48,7 +48,7 @@
     if (!_titleLabel) {
         UILabel *label = [[UILabel alloc] init];
         label.font = OCFFont(15);
-        label.theme_textColor = ThemeColorPicker.title;
+        // YJX_TODO label.theme_textColor = ThemeColorPicker.title;
         _titleLabel = label;
     }
     return _titleLabel;
@@ -58,7 +58,7 @@
     if (!_detailLabel) {
         UILabel *label = [[UILabel alloc] init];
         label.font = OCFFont(13);
-        label.theme_textColor = ThemeColorPicker.body;
+        // YJX_TODO label.theme_textColor = ThemeColorPicker.body;
         _detailLabel = label;
     }
     return _detailLabel;
@@ -77,7 +77,7 @@
     if (!_indicatorImageView) {
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.image = [UIImage.ocf_indicator imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        imageView.theme_tintColor = ThemeColorPicker.indicator;
+        // YJX_TODO imageView.theme_tintColor = ThemeColorPicker.indicator;
         [imageView sizeToFit];
         _indicatorImageView = imageView;
     }

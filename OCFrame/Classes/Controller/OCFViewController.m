@@ -69,7 +69,8 @@
     self.extendedLayoutIncludesOpaqueBars = YES;
     // self.automaticallyAdjustsScrollViewInsets = NO;
 
-    self.view.theme_backgroundColor = ThemeColorPicker.background;
+    // // YJX_TODO
+    // self.view.theme_backgroundColor = ThemeColorPicker.background;
     
     self.navigationController.navigationBar.hidden = YES;
     [self.view addSubview:self.navigationBar];
