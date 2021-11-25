@@ -8,6 +8,8 @@
 #import "UIViewController+OCFrame.h"
 #import <objc/runtime.h>
 #import <QuartzCore/QuartzCore.h>
+#import <QMUIKit/QMUIKit.h>
+#import "NSObject+OCFrame.h"
 #import "OCFConstant.h"
 #import "OCFFunction.h"
 #import "OCFPopupBackgroundView.h"
@@ -39,7 +41,40 @@ const OCFPopupLayout OCFPopupLayoutCenter = {OCFPopupLayoutHorizontalCenter, OCF
 @end
 
 @implementation UIViewController (OCFrame)
+QMUISynthesizeBOOLProperty(ocf_automaticallySetModalPresentationStyle, setOcf_automaticallySetModalPresentationStyle)
+
 static void * const keypath = (void*)&keypath;
+
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        ExchangeImplementations(self.class, @selector(presentViewController:animated:completion:), @selector(ocf_presentViewController:animated:completion:));
+    });
+}
+
+- (void)ocf_presentViewController:(UIViewController *)viewControllerToPresent animated: (BOOL)flag completion:(void (^ __nullable)(void))completion {
+    if (@available(iOS 13.0, *)) {
+        BOOL need = YES;
+        if (self.ocf_automaticallySetModalPresentationStyle) {
+            need = NO;
+        } else {
+            if ([self isKindOfClass:UIAlertController.class] ||
+                [self isKindOfClass:UIImagePickerController.class]) {
+                need = NO;
+            } else {
+                NSString *className = viewControllerToPresent.ocf_className;
+                if ([className isEqualToString:@"PopupDialog"] ||
+                    [className isEqualToString:@"SideMenuNavigationController"]) {
+                    need = NO;
+                }
+            }
+        }
+        if (need) {
+            viewControllerToPresent.modalPresentationStyle = UIModalPresentationFullScreen;
+        }
+    }
+    [self ocf_presentViewController:viewControllerToPresent animated:flag completion:completion];
+}
 
 #pragma mark - Popup
 #pragma mark property

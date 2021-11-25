@@ -45,6 +45,7 @@ extern OCFPopupLayout OCFPopupLayoutMake(OCFPopupLayoutHorizontal horizontal, OC
 extern const OCFPopupLayout OCFPopupLayoutCenter;
 
 @interface UIViewController (OCFrame)
+@property (nonatomic, assign) BOOL ocf_automaticallySetModalPresentationStyle;
 @property (nonatomic, retain) UIViewController *ocf_popupViewController;
 @property (nonatomic, retain) OCFPopupBackgroundView *ocf_popupBackgroundView;
 

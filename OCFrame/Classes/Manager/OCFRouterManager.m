@@ -8,7 +8,7 @@
 #import "OCFRouterManager.h"
 #import "OCFConstant.h"
 #import "OCFLoginViewReactor.h"
-#import "OCFLoginViewController.h"
+#import "OCFWebViewReactor.h"
 #import <JLRoutes/JLRoutes.h>
 #import <JLRoutes/JLRRouteHandler.h>
 #import <JLRoutes/JLRRouteDefinition.h>
@@ -31,6 +31,14 @@
         }
         OCFLoginViewReactor *reactor = [[cls alloc] initWithParameters:parameters];
         return [navigator presentReactor:reactor animated:YES completion:nil] != nil;
+    };
+    JLRoutes.globalRoutes[kOCFPatternAny] = ^BOOL(NSDictionary *parameters) {
+        Class cls = NSClassFromString(@"WebViewReactor");
+        if (![cls isSubclassOfClass:OCFWebViewReactor.class]) {
+            return NO;
+        }
+        OCFWebViewReactor *reactor = [[cls alloc] initWithParameters:parameters];
+        return [navigator pushReactor:reactor animated:YES] != nil;
     };
 }
 
