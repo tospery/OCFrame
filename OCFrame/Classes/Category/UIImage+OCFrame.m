@@ -16,7 +16,6 @@
 #import "OCFFunction.h"
 #import "NSString+OCFrame.h"
 #import "NSBundle+OCFrame.h"
-#import "ThemeColorPicker+OCFrame.h"
 
 @interface UIImage ()
 // @property (nonatomic, strong) NSMutableDictionary<NSString *, DKColorPicker> *pickers;

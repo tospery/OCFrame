@@ -16,7 +16,7 @@
 #import "OCFWebProgressView.h"
 #import "NSString+OCFrame.h"
 #import "NSURL+OCFrame.h"
-#import "ThemeColorPicker+OCFrame.h"
+#import "UIColor+OCFrame.h"
 
 #define kOCFWebEstimatedProgress         (@"estimatedProgress")
 
@@ -49,7 +49,7 @@
     [super viewDidLoad];
     
     self.webView = [self createWebView];
-    // // YJX_TODO self.webView.theme_backgroundColor = ThemeColorPicker.background;
+    self.webView.backgroundColor = UIColor.ocf_background;
     self.webView.navigationDelegate = self;
     self.webView.UIDelegate = self;
     

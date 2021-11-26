@@ -9,7 +9,7 @@
 #import <QMUIKit/QMUIKit.h>
 #import "OCFFunction.h"
 #import "NSDictionary+OCFrame.h"
-#import "ThemeColorPicker+OCFrame.h"
+#import "UIColor+OCFrame.h"
 
 @interface OCFBorderLayer ()
 @property (nonatomic, strong) CALayer *topBorder;
@@ -26,8 +26,6 @@
     if (self = [super init]) {
         self.borderColor = nil;
         self.borderWidth = 0;
-        self.defaultColor = UIColor.lightGrayColor;
-        // self.theme_defaultColor = ThemeColorPicker.border; // YJX_TODO
         
         [self addSublayer:self.topBorder];
         [self addSublayer:self.bottomBorder];
@@ -178,7 +176,7 @@
 - (UIColor *)colorForBorder:(OCFBorderPosition)position {
     UIColor *color = [self.borderColors ocf_objectForKey:@(position)];
     if (!color || ![color isKindOfClass:UIColor.class]) {
-        return self.defaultColor;
+        return UIColor.ocf_border;
     }
     return color;
 }
@@ -200,18 +198,3 @@
 }
 
 @end
-
-//@implementation OCFBorderLayer (OCFrame)
-//- (void)setTheme_defaultColor:(ThemeColorPicker *)theme_defaultColor {
-//    [ThemePicker setThemePicker:self :@"setDefaultColor:" :theme_defaultColor];
-//}
-//
-//- (ThemeColorPicker *)theme_defaultColor {
-//    ThemePicker *picker = [ThemePicker getThemePicker:self :@"setDefaultColor:"];
-//    if (![picker isKindOfClass:ThemeColorPicker.class]) {
-//        return nil;
-//    }
-//    return (ThemeColorPicker *)picker;
-//}
-//
-//@end

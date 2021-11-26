@@ -11,6 +11,7 @@
 #import "OCFFunction.h"
 #import "OCFParameter.h"
 #import "NSDictionary+OCFrame.h"
+#import "UIColor+OCFrame.h"
 
 @interface OCFWebViewReactor ()
 @property (nonatomic, strong, readwrite) NSURL *url;
@@ -28,8 +29,7 @@
         self.ocHandlers = handers;
         self.jsHandlers = OCFArrMember(parameters, OCFParameter.jsHandlers, nil);
         self.url = OCFObjWithDft(OCFURLMember(parameters, JLRouteURLKey, nil), OCFURLMember(parameters, OCFParameter.url, nil));
-        // YJX_TODO
-        // self.progressColor = OCFColorMember(parameters, OCFParameter.progressColor, OCFColorKey(@"primaryColor"));
+        self.progressColor = OCFColorMember(parameters, OCFParameter.progressColor, UIColor.ocf_primary);
     }
     return self;
 }

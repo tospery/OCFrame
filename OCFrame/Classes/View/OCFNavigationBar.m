@@ -10,7 +10,7 @@
 #import "UIFont+OCFrame.h"
 #import "UIImage+OCFrame.h"
 #import "UIView+OCFrame.h"
-#import "ThemeColorPicker+OCFrame.h"
+#import "UIColor+OCFrame.h"
 
 @interface OCFNavigationBar ()
 @property (nonatomic, strong, readwrite) UILabel *titleLabel;
@@ -27,13 +27,12 @@
 #pragma mark - Init
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        // YJX_TODO self.theme_backgroundColor = ThemeColorPicker.background;
+        self.backgroundColor = UIColor.ocf_background;
         
         self.borderPosition = QMUIViewBorderPositionBottom;
         self.qmui_borderPosition = self.borderPosition;
         self.qmui_borderWidth = PixelOne;
-        // YJX_TODO self.theme_borderColor = ThemeColorPicker.separator;
-        
+        self.qmui_borderColor = UIColor.ocf_border;
 
         [self addSubview:self.bgImageView];
         [self addSubview:self.titleLabel];
@@ -49,7 +48,7 @@
         label.font = OCFFont(17);
         label.backgroundColor = UIColorClear;
         label.textAlignment = NSTextAlignmentCenter;
-        // YJX_TODO label.theme_textColor = ThemeColorPicker.title;
+        label.textColor = UIColor.ocf_title;
         [label sizeToFit];
         _titleLabel = label;
     }
@@ -118,7 +117,7 @@
 - (UIButton *)addButtonToLeftWithImage:(UIImage *)image {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.backgroundColor = UIColorClear;
-    // YJX_TODO button.theme_tintColor = ThemeColorPicker.barText;
+    button.tintColor = UIColor.ocf_barText;
     [button setImage:[image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
     [button sizeToFit];
     [self addSubview:button];
@@ -136,7 +135,7 @@
 - (UIButton *)addButtonToRightWithImage:(UIImage *)image {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.backgroundColor = UIColorClear;
-    // YJX_TODO button.theme_tintColor = ThemeColorPicker.barText;
+    button.tintColor = UIColor.ocf_barText;
     [button setImage:[image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
     [button sizeToFit];
     [self addSubview:button];
@@ -175,7 +174,7 @@
 }
 
 - (void)reset {
-    // YJX_TODO self.theme_backgroundColor = ThemeColorPicker.background;
+    self.backgroundColor = UIColor.ocf_background;
     self.qmui_borderPosition = self.borderPosition;
 }
 

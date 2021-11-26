@@ -18,18 +18,6 @@
 
 @implementation UIView (OCFrame)
 
-//- (void)setTheme_borderColor:(ThemeColorPicker *)borderColor {
-//    [ThemePicker setThemePicker:self :@"setQmui_borderColor:" :borderColor];
-//}
-//
-//- (ThemeColorPicker *)theme_borderColor {
-//    ThemePicker *picker = [ThemePicker getThemePicker:self :@"setQmui_borderColor:"];
-//    if (![picker isKindOfClass:ThemeColorPicker.class]) {
-//        return nil;
-//    }
-//    return (ThemeColorPicker *)picker;
-//}
-
 - (CGFloat)ocf_borderWidth {
     return self.layer.borderWidth;
 }

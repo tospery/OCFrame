@@ -22,7 +22,6 @@ typedef NS_OPTIONS(NSUInteger, OCFBorderPosition) {
 @property(nonatomic, strong) NSDictionary *borderColors;
 @property(nonatomic, strong) NSDictionary *borderThicks;
 @property(nonatomic, strong) NSDictionary *borderInsets;
-@property(nonatomic, strong) UIColor *defaultColor;
 
 @end
 

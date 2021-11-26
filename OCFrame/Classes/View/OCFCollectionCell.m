@@ -7,7 +7,7 @@
 
 #import "OCFCollectionCell.h"
 #import "OCFFunction.h"
-#import "ThemeColorPicker+OCFrame.h"
+#import "UIColor+OCFrame.h"
 
 @interface OCFCollectionCell ()
 @property (nonatomic, strong, readwrite) OCFCollectionItem *reactor;
@@ -17,7 +17,7 @@
 @implementation OCFCollectionCell
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        // YJX_TODO self.theme_backgroundColor = ThemeColorPicker.background;
+        self.backgroundColor = UIColor.ocf_background;
     }
     return self;
 }

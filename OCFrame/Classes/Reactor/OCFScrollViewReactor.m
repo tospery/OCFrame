@@ -17,6 +17,7 @@
 #import "NSAttributedString+OCFrame.h"
 #import "UIFont+OCFrame.h"
 #import "UIImage+OCFrame.h"
+#import "UIColor+OCFrame.h"
 
 @interface OCFScrollViewReactor ()
 @property (nonatomic, strong, readwrite) OCFPage *page;
@@ -71,18 +72,14 @@
     if (!self.error) {
         return nil;
     }
-    // YJX_TODO
-//    return [NSAttributedString ocf_attributedStringWithString:self.error.ocf_displayTitle color:OCFColorKey(@"titleColor") font:OCFFont(16.0f)];
-    return nil;
+    return [NSAttributedString ocf_attributedStringWithString:self.error.ocf_displayTitle color:UIColor.ocf_title font:OCFFont(16.0f)];
 }
 
 - (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
     if (!self.error) {
         return nil;
     }
-    // YJX_TODO
-    // return [NSAttributedString ocf_attributedStringWithString:self.error.ocf_displayMessage color:OCFColorKey(@"bodyColor") font:OCFFont(14.0f)];
-    return nil;
+    return [NSAttributedString ocf_attributedStringWithString:self.error.ocf_displayMessage color:UIColor.ocf_body font:OCFFont(14.0f)];
 }
 
 - (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
@@ -93,18 +90,16 @@
 }
 
 - (UIImage *)buttonBackgroundImageForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
-//    UIImage *image = [UIImage qmui_imageWithColor:OCFColorKey(@"primaryColor") size:CGSizeMake(120, 30) cornerRadius:2.0f];
-//    image = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(0, -120, 0, -120)];
-//    return (UIControlStateNormal == state ? image : nil);
-    return nil;
+    UIImage *image = [UIImage qmui_imageWithColor:UIColor.ocf_primary size:CGSizeMake(120, 30) cornerRadius:2.0f];
+    image = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(0, -120, 0, -120)];
+    return (UIControlStateNormal == state ? image : nil);
 }
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
-//    if (!self.error) {
-//        return [UIImage.ocf_loading qmui_imageWithTintColor:OCFColorKey(@"primaryColor")];
-//    }
-//    return self.error.ocf_displayImage;
-    return nil;
+    if (!self.error) {
+        return [UIImage.ocf_loading qmui_imageWithTintColor:UIColor.ocf_primary];
+    }
+    return self.error.ocf_displayImage;
 }
 
 - (CAAnimation *)imageAnimationForEmptyDataSet:(UIScrollView *)scrollView {
@@ -119,8 +114,7 @@
 }
 
 - (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
-    // return OCFColorKey(@"backgroundColor");
-    return UIColor.whiteColor;
+    return UIColor.ocf_background;
 }
 
 #pragma mark - Class

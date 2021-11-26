@@ -18,7 +18,7 @@
 #import "NSError+OCFrame.h"
 #import "NSURL+OCFrame.h"
 #import "UIScrollView+OCFrame.h"
-#import "ThemeColorPicker+OCFrame.h"
+#import "UIColor+OCFrame.h"
 
 @interface OCFScrollViewController ()
 @property (nonatomic, assign, readwrite) CGFloat lastPosition;
@@ -58,8 +58,7 @@
         scrollView.contentSize = CGSizeMake(scrollView.qmui_width, scrollView.qmui_height + PixelOne);
         scrollView.delegate = self;
     }
-    // YJX_TODO
-    // self.scrollView.theme_backgroundColor = ThemeColorPicker.background;
+    self.scrollView.backgroundColor = UIColor.ocf_background;
     self.scrollView.emptyDataSetSource = self.reactor;
     self.scrollView.emptyDataSetDelegate = self;
     if (@available(iOS 11.0, *)) {

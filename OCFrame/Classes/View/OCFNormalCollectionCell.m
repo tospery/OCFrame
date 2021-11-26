@@ -14,8 +14,8 @@
 #import "NSURL+OCFrame.h"
 #import "UIView+OCFrame.h"
 #import "OCFNormalCollectionItem.h"
-#import "ThemeColorPicker+OCFrame.h"
 #import "UIImageView+OCFrame.h"
+#import "UIColor+OCFrame.h"
 
 @interface OCFNormalCollectionCell ()
 @property (nonatomic, strong, readwrite) UILabel *titleLabel;
@@ -48,7 +48,7 @@
     if (!_titleLabel) {
         UILabel *label = [[UILabel alloc] init];
         label.font = OCFFont(15);
-        // YJX_TODO label.theme_textColor = ThemeColorPicker.title;
+        label.textColor = UIColor.ocf_title;
         _titleLabel = label;
     }
     return _titleLabel;
@@ -58,7 +58,7 @@
     if (!_detailLabel) {
         UILabel *label = [[UILabel alloc] init];
         label.font = OCFFont(13);
-        // YJX_TODO label.theme_textColor = ThemeColorPicker.body;
+        label.textColor = UIColor.ocf_body;
         _detailLabel = label;
     }
     return _detailLabel;
@@ -77,7 +77,7 @@
     if (!_indicatorImageView) {
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.image = [UIImage.ocf_indicator imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        // YJX_TODO imageView.theme_tintColor = ThemeColorPicker.indicator;
+        imageView.tintColor = UIColor.ocf_indicator;
         [imageView sizeToFit];
         _indicatorImageView = imageView;
     }

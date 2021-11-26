@@ -12,7 +12,6 @@
 #import "OCFSupplementaryView.h"
 #import "OCFCollectionViewReactor.h"
 #import "UICollectionReusableView+OCFrame.h"
-#import "ThemeColorPicker+OCFrame.h"
 #import "UICollectionView+OCFrame.h"
 
 @interface OCFCollectionViewController ()

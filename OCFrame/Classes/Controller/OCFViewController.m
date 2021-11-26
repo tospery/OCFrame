@@ -18,8 +18,8 @@
 #import "NSDictionary+OCFrame.h"
 #import "UIViewController+OCFrame.h"
 #import "NSError+OCFrame.h"
-#import "ThemeColorPicker+OCFrame.h"
 #import "NSObject+OCFrame.h"
+#import "UIColor+OCFrame.h"
 
 @interface OCFViewController ()
 //@property (nonatomic, strong) UIButton *backButton;
@@ -68,9 +68,8 @@
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.extendedLayoutIncludesOpaqueBars = YES;
     // self.automaticallyAdjustsScrollViewInsets = NO;
-
-    // // YJX_TODO
-    // self.view.theme_backgroundColor = ThemeColorPicker.background;
+    
+    self.view.backgroundColor = UIColor.ocf_background;
     
     self.navigationController.navigationBar.hidden = YES;
     [self.view addSubview:self.navigationBar];
