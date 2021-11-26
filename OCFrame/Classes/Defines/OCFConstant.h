@@ -8,6 +8,12 @@
 #ifndef OCFConstant_h
 #define OCFConstant_h
 
+#import <Giotto/SDThemeManager.h>
+
+#pragma mark - 布局常量
+#define kOCFDimensionMargin         ([(NSNumber *)SDThemeManagerValueForConstant(@"DIMENSION_MARGIN") floatValue])
+#define kOCFDimensionPadding        ([(NSNumber *)SDThemeManagerValueForConstant(@"DIMENSION_PADDING") floatValue])
+
 #pragma mark - 通知标识
 #define kOCFUserWillLoginNotification               (@"kOCFUserWillLoginNotification")
 #define kOCFUserDidLoginNotification                (@"kOCFUserDidLoginNotification")
