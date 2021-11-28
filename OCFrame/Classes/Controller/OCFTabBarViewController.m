@@ -37,13 +37,13 @@
 #pragma mark - Bind
 - (void)bind:(OCFBaseReactor *)reactor {
     [super bind:reactor];
-    // Bind
-    @weakify(self)
-    [[self rac_signalForSelector:@selector(tabBarController:didSelectViewController:) fromProtocol:@protocol(UITabBarControllerDelegate)] subscribeNext:^(RACTuple *tuple) {
-        @strongify(self)
-        [self.navigator popNavigationController];
-        [self.navigator pushNavigationController:tuple.second];
-    }];
+//    // Bind
+//    @weakify(self)
+//    [[self rac_signalForSelector:@selector(tabBarController:didSelectViewController:) fromProtocol:@protocol(UITabBarControllerDelegate)] subscribeNext:^(RACTuple *tuple) {
+//        @strongify(self)
+//        [self.navigator popNavigationController];
+//        [self.navigator pushNavigationController:tuple.second];
+//    }];
 }
 
 #pragma mark - Orientation

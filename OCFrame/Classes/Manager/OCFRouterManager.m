@@ -31,7 +31,8 @@
             return NO;
         }
         OCFLoginViewReactor *reactor = [[cls alloc] initWithParameters:parameters];
-        return [navigator presentReactor:reactor animated:YES completion:nil] != nil;
+        //return [navigator presentReactor:reactor animated:YES completion:nil] != nil;
+        return [navigator forwardReactor:reactor];
     };
 //    @weakify(self)
 //    [JLRoutes.globalRoutes addRoute:kBZMPatternToast handler:^BOOL(NSDictionary *parameters) {
@@ -43,9 +44,9 @@
 //            }
 //        }];
 //    }];
-    JLRoutes.globalRoutes[kOCFPatternToast] = ^BOOL(NSDictionary *parameters) {
-        return YES;
-    };
+//    JLRoutes.globalRoutes[kOCFPatternToast] = ^BOOL(NSDictionary *parameters) {
+//        return YES;
+//    };
     JLRoutes.globalRoutes[kOCFPatternAny] = ^BOOL(NSDictionary *parameters) {
         NSString *scheme = OCFURLMember(parameters, JLRouteURLKey, nil).scheme;
         if (![scheme isEqualToString:@"http"] && ![scheme isEqualToString:@"https"]) {

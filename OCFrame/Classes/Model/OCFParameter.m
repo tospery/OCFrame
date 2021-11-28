@@ -28,6 +28,14 @@
     return @"active";
 }
 
++ (NSString *)animated {
+    return @"animated";
+}
+
++ (NSString *)forward {
+    return @"forward";
+}
+
 + (NSString *)fetchLocalData {
     return @"fetchLocalData";
 }

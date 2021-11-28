@@ -176,16 +176,11 @@
 //    }];
     [[self.reactor.executing skip:1] subscribeNext:^(NSNumber *executing) {
         @strongify(self)
-//        if (executing.boolValue) {
-//            self.view.userInteractionEnabled = NO;
-//            [self.view makeToastActivity:CSToastPositionCenter];
-//        } else {
-//            self.view.userInteractionEnabled = YES;
-//            [self.view hideToastActivity];
-//        }
-        [self.navigator routeURL:OCFURLWithPattern(kOCFPatternToast) withParameters:@{
-            OCFParameter.active: executing
-        }];
+        if (executing.boolValue) {
+            [self.navigator makeToastActivity:OCFToastPositionCenter];
+        } else {
+            [self.navigator hideToastActivity];
+        }
     }];
 //    [self.reactor.load subscribeNext:^(id x) {
 //        @strongify(self)
@@ -285,11 +280,7 @@
 #pragma mark - Update
 - (void)beginUpdate {
     self.reactor.requestMode = OCFRequestModeUpdate;
-    //self.view.userInteractionEnabled = NO;
-    //[self.view makeToastActivity:CSToastPositionCenter];
-    [self.navigator routeURL:OCFURLWithPattern(kOCFPatternToast) withParameters:@{
-        OCFParameter.active: @YES
-    }];
+    [self.navigator makeToastActivity:OCFToastPositionCenter];
 }
 
 - (void)triggerUpdate {
@@ -304,11 +295,7 @@
 
 - (void)endUpdate {
     self.reactor.requestMode = OCFRequestModeNone;
-    //self.view.userInteractionEnabled = YES;
-    //[self.view hideToastActivity];
-    [self.navigator routeURL:OCFURLWithPattern(kOCFPatternToast) withParameters:@{
-        OCFParameter.active: @NO
-    }];
+    [self.navigator hideToastActivity];
 }
 
 #pragma mark - Reload

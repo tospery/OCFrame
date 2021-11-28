@@ -20,6 +20,8 @@
 #import "NSObject+OCFrame.h"
 
 @interface OCFViewReactor ()
+@property (nonatomic, assign, readwrite) BOOL animated;
+@property (nonatomic, assign, readwrite) OCFForwardType forwardType;
 @property (nonatomic, assign, readwrite) BOOL transparetNavBar;
 @property (nonatomic, strong, readwrite) OCFUser *user;
 @property (nonatomic, strong, readwrite) OCFProvider *provider;
@@ -46,6 +48,8 @@
 - (instancetype)initWithParameters:(NSDictionary *)parameters {
     if (self = [super init]) {
         self.parameters = parameters;
+        self.animated = OCFBoolMember(parameters, OCFParameter.animated, YES);
+        self.forwardType = OCFForwardTypeWithDft(OCFIntMember(parameters, OCFParameter.forward, 0), 0);
         self.shouldFetchLocalData = OCFBoolMember(parameters, OCFParameter.fetchLocalData, YES);
         self.shouldRequestRemoteData = OCFBoolMember(parameters, OCFParameter.requestRemote, NO);
         self.transparetNavBar = OCFBoolMember(parameters, OCFParameter.transparetNavBar, NO);

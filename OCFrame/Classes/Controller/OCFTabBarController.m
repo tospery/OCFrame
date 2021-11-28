@@ -28,12 +28,12 @@
 
 - (void)setupChildren {
     self.delegate = self;
-    @weakify(self)
-    [[self rac_signalForSelector:@selector(tabBarController:didSelectViewController:) fromProtocol:@protocol(UITabBarControllerDelegate)] subscribeNext:^(RACTuple *tuple) {
-        @strongify(self)
-        [self.navigator popNavigationController];
-        [self.navigator pushNavigationController:tuple.second];
-    }];
+//    @weakify(self)
+//    [[self rac_signalForSelector:@selector(tabBarController:didSelectViewController:) fromProtocol:@protocol(UITabBarControllerDelegate)] subscribeNext:^(RACTuple *tuple) {
+//        @strongify(self)
+//        [self.navigator popNavigationController];
+//        [self.navigator pushNavigationController:tuple.second];
+//    }];
 }
 
 - (void)bind:(OCFTabBarReactor *)reactor {

@@ -8,6 +8,7 @@
 #import "OCFBaseReactor.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 #import <JLRoutes/JLRRouteHandler.h>
+#import "OCFType.h"
 #import "OCFUser.h"
 #import "OCFProvider.h"
 
@@ -28,6 +29,8 @@ typedef NS_ENUM(NSInteger, OCFRequestMode) {
 
 /// 业务逻辑（网络请求/数据处理）
 @interface OCFViewReactor : OCFBaseReactor <OCFViewReactorDataSource>
+@property (nonatomic, assign, readonly) BOOL animated;
+@property (nonatomic, assign, readonly) OCFForwardType forwardType;
 @property (nonatomic, assign, readonly) BOOL transparetNavBar;
 @property (nonatomic, assign) BOOL hidesNavigationBar;
 @property (nonatomic, assign) BOOL hidesNavBottomLine;

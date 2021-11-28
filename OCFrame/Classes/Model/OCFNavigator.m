@@ -6,58 +6,62 @@
 //
 
 #import "OCFNavigator.h"
+#import <QMUIKit/QMUIKit.h>
 #import <JLRoutes/JLRoutes.h>
+#import "OCFConstant.h"
+#import "OCFParameter.h"
 #import "OCFViewReactor.h"
 #import "OCFViewController.h"
 #import "OCFTabBarController.h"
 #import "OCFTabBarViewController.h"
 #import "OCFNavigationController.h"
+#import "NSURL+OCFrame.h"
 
 #define kControllerName                             (@"Controller")
 #define kReactorName                                (@"Reactor")
 
 @interface OCFNavigator () <UINavigationControllerDelegate>
 //@property (nonatomic, strong, readwrite) UINavigationController *topNavigationController;
-@property (nonatomic, strong) NSMutableArray *navigationControllers;
+//@property (nonatomic, strong) NSMutableArray *navigationControllers;
 
 @end
 
 @implementation OCFNavigator
 
 #pragma mark - Property
-- (UIView *)topView {
-    return self.topViewController.view;
-}
+//- (UIView *)topView {
+//    return self.topViewController.view;
+//}
+//
+//- (UIViewController *)topViewController {
+//    return self.topNavigationController.topViewController;
+//}
+//
+//- (UINavigationController *)topNavigationController {
+//    return self.navigationControllers.lastObject;
+//}
 
-- (UIViewController *)topViewController {
-    return self.topNavigationController.topViewController;
-}
-
-- (UINavigationController *)topNavigationController {
-    return self.navigationControllers.lastObject;
-}
-
-- (NSMutableArray *)navigationControllers {
-    if (!_navigationControllers) {
-        _navigationControllers = [NSMutableArray array];
-    }
-    return _navigationControllers;
-}
+//- (NSMutableArray *)navigationControllers {
+//    if (!_navigationControllers) {
+//        _navigationControllers = [NSMutableArray array];
+//    }
+//    return _navigationControllers;
+//}
 
 #pragma mark - Navigation
-- (void)pushNavigationController:(UINavigationController *)navigationController {
-    if ([self.navigationControllers containsObject:navigationController]) {
-        return;
-    }
-    navigationController.delegate = self;
-    [self.navigationControllers addObject:navigationController];
-}
-
-- (UINavigationController *)popNavigationController {
-    UINavigationController *navigationController = self.topNavigationController;
-    [self.navigationControllers removeLastObject];
-    return navigationController;
-}
+//- (void)pushNavigationController:(UINavigationController *)navigationController {
+//    if ([self.navigationControllers containsObject:navigationController]) {
+//        return;
+//    }
+//    navigationController.delegate = self;
+//    [self.navigationControllers addObject:navigationController];
+//}
+//
+//- (UINavigationController *)popNavigationController {
+//    UINavigationController *navigationController = self.topNavigationController;
+//    [self.navigationControllers removeLastObject];
+//    return navigationController;
+//}
 
 #pragma mark - Route
 - (BOOL)routeURL:(NSURL *)url withParameters:(NSDictionary *)parameters {
@@ -78,13 +82,13 @@
 #pragma mark - Delegate
 #pragma mark OCFNavigable
 - (void)resetRootReactor:(OCFViewReactor *)reactor {
-    [self.navigationControllers removeAllObjects];
+    //[self.navigationControllers removeAllObjects];
     UIViewController *viewController = (UIViewController *)[self viewController:reactor];
     if (![viewController isKindOfClass:[UINavigationController class]] &&
         ![viewController isKindOfClass:[UITabBarController class]] &&
         ![viewController isKindOfClass:[OCFTabBarViewController class]]) {
         viewController = [[OCFNavigationController alloc] initWithRootViewController:viewController];
-        [self pushNavigationController:(UINavigationController *)viewController];
+        //[self pushNavigationController:(UINavigationController *)viewController];
     }
     UIWindow *window = [UIApplication sharedApplication].delegate.window;
     window.rootViewController = viewController;
@@ -93,49 +97,91 @@
 
 - (UIViewController *)pushReactor:(OCFViewReactor *)reactor animated:(BOOL)animated {
     UIViewController *viewController = (UIViewController *)[self viewController:reactor];
-    [self.topNavigationController pushViewController:viewController animated:animated];
+    [UIViewController.ocf_currentNavigationController pushViewController:viewController animated:animated];
     return viewController;
 }
 
 - (UIViewController *)presentReactor:(OCFViewReactor *)reactor animated:(BOOL)animated completion:(OCFVoidBlock)completion {
     UIViewController *viewController = (UIViewController *)[self viewController:reactor];
-    UINavigationController *presentingViewController = self.topNavigationController;
+    UINavigationController *presentingViewController = UIViewController.ocf_currentNavigationController;
     if (![viewController isKindOfClass:UINavigationController.class]) {
         viewController = [[OCFNavigationController alloc] initWithRootViewController:viewController];
     }
-    [self pushNavigationController:(OCFNavigationController *)viewController];
+    //[self pushNavigationController:(OCFNavigationController *)viewController];
     [presentingViewController presentViewController:viewController animated:animated completion:completion];
     return viewController;
 }
 
 - (UIViewController *)popupReactor:(OCFViewReactor *)reactor animationType:(OCFViewControllerAnimationType)animationType completion:(OCFVoidBlock)completion {
     UIViewController *viewController = (UIViewController *)[self viewController:reactor];
-    [self.topNavigationController ocf_popupViewController:viewController animationType:animationType layout:OCFPopupLayoutCenter bgTouch:NO dismissed:completion];
+    [UIViewController.ocf_currentNavigationController ocf_popupViewController:viewController animationType:animationType layout:OCFPopupLayoutCenter bgTouch:NO dismissed:completion];
     return viewController;
 }
 
 - (void)popReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion {
     [CATransaction begin];
     [CATransaction setCompletionBlock:completion];
-    [self.topNavigationController popViewControllerAnimated:animated];
+    [UIViewController.ocf_currentNavigationController popViewControllerAnimated:animated];
     [CATransaction commit];
 }
 
 - (void)popToRootReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion {
     [CATransaction begin];
     [CATransaction setCompletionBlock:completion];
-    [self.topNavigationController popToRootViewControllerAnimated:animated];
+    [UIViewController.ocf_currentNavigationController popToRootViewControllerAnimated:animated];
     [CATransaction commit];
 }
 
 - (void)dismissReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion {
-    UINavigationController *dismissingViewController = self.topNavigationController;
-    [self popNavigationController];
+    UINavigationController *dismissingViewController = UIViewController.ocf_currentNavigationController;
+    //[self popNavigationController];
     [dismissingViewController dismissViewControllerAnimated:animated completion:completion];
 }
 
 - (void)closeReactorWithAnimationType:(OCFViewControllerAnimationType)animationType completion:(OCFVoidBlock)completion {
-    [self.topNavigationController ocf_closeViewControllerWithAnimationType:animationType dismissed:completion];
+    [UIViewController.ocf_currentNavigationController ocf_closeViewControllerWithAnimationType:animationType dismissed:completion];
+}
+
+#pragma mark Forward
+- (id)forwardReactor:(OCFViewReactor *)reactor {
+    UIViewController *viewController = (UIViewController *)[self viewController:reactor];
+    UINavigationController *navigationController = UIViewController.ocf_currentNavigationController;
+    OCFForwardType forwardType = reactor.forwardType;
+    if (!navigationController && forwardType == OCFForwardTypePush) {
+        forwardType = OCFForwardTypePresent;
+    }
+    if (forwardType == OCFForwardTypePush) {
+        [navigationController pushViewController:viewController animated:reactor.animated];
+    } else if (forwardType == OCFForwardTypePresent) {
+        UIViewController *presentingViewController = navigationController;
+        if (!presentingViewController) {
+            presentingViewController = UIViewController.ocf_topMostViewController;
+        }
+        if (![viewController isKindOfClass:UINavigationController.class]) {
+            viewController = [[OCFNavigationController alloc] initWithRootViewController:viewController];
+        }
+        [presentingViewController presentViewController:viewController animated:reactor.animated completion:nil];
+    }
+    return viewController;
+}
+
+#pragma mark Toast
+- (void)makeToastActivity:(OCFToastPosition)position {
+    [self routeURL:OCFURLWithPattern(kOCFPatternToast) withParameters:@{
+        OCFParameter.active: @YES,
+        OCFParameter.position: @(position)
+    }];
+}
+
+- (void)hideToastActivity {
+    [self routeURL:OCFURLWithPattern(kOCFPatternToast) withParameters:@{
+        OCFParameter.active: @NO
+    }];
+}
+
+#pragma mark Login
+- (void)goLogin {
+    [self routeURL:OCFURLWithPattern(kOCFPatternLogin) withParameters:nil];
 }
 
 @end

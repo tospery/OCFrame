@@ -9,6 +9,7 @@
 #define OCFFunction_h
 
 #import <QMUIKit/QMUIKit.h>
+#import "OCFType.h"
 
 #pragma mark - 本地化
 #ifdef OCFEnableFuncLocalize
@@ -117,5 +118,12 @@ OCFArrWithDft(NSArray *value, NSArray *dft) {
     return value;
 }
 
+CG_INLINE OCFForwardType
+OCFForwardTypeWithDft(NSInteger value, OCFForwardType dft) {
+    if (value >= OCFForwardTypePush && value <= OCFForwardTypePopup) {
+        return value;
+    }
+    return dft;
+}
 
 #endif /* OCFFunction_h */

@@ -11,14 +11,16 @@
 @class OCFViewController;
 
 @interface OCFNavigator : NSObject <OCFNavigable>
-@property (nonatomic, strong, readonly) UIView *topView;
-@property (nonatomic, strong, readonly) UIViewController *topViewController;
-@property (nonatomic, strong, readonly) UINavigationController *topNavigationController;
+//@property (nonatomic, strong, readonly) UIView *topView;
+//@property (nonatomic, strong, readonly) UIViewController *topViewController;
+//@property (nonatomic, strong, readonly) UINavigationController *topNavigationController;
 
-- (void)pushNavigationController:(UINavigationController *)navigationController;
-- (UINavigationController *)popNavigationController;
+//- (void)pushNavigationController:(UINavigationController *)navigationController;
+//- (UINavigationController *)popNavigationController;
 
 - (BOOL)routeURL:(NSURL *)url withParameters:(NSDictionary *)parameters;
+
+- (void)goLogin;
 
 @end
 

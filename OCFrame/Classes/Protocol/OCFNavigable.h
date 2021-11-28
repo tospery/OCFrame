@@ -11,8 +11,15 @@
 
 @class OCFViewReactor;
 
+typedef NS_ENUM(NSInteger, OCFToastPosition){
+    OCFToastPositionTop,
+    OCFToastPositionCenter,
+    OCFToastPositionBottom
+};
+
 @protocol OCFNavigable <NSObject>
 
+@required
 - (void)resetRootReactor:(OCFViewReactor *)reactor;
 
 - (UIViewController *)pushReactor:(OCFViewReactor *)viewModel animated:(BOOL)animated;
@@ -23,6 +30,11 @@
 - (void)popToRootReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion;
 - (void)dismissReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion;
 - (void)closeReactorWithAnimationType:(OCFViewControllerAnimationType)animationType completion:(OCFVoidBlock)completion;
+
+- (id)forwardReactor:(OCFViewReactor *)reactor;
+
+- (void)makeToastActivity:(OCFToastPosition)position;
+- (void)hideToastActivity;
 
 @end
 
