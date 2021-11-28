@@ -8,7 +8,6 @@
 #import "OCFLibraryManager.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 #import <JLRoutes/JLRoutes.h>
-#import <Toast/UIView+Toast.h>
 #import "OCFConstant.h"
 
 @interface OCFLibraryManager ()
@@ -19,7 +18,7 @@
 
 - (void)setup {
     //[self setupJLRoutes];
-    [self setupToast];
+    //[self setupToast];
 }
 
 //- (void)setupJLRoutes {
@@ -35,10 +34,10 @@
 //    }];
 //}
 
-- (void)setupToast {
-    [CSToastManager setQueueEnabled:YES];
-    [CSToastManager setDefaultPosition:CSToastPositionCenter];
-}
+//- (void)setupToast {
+//    [CSToastManager setQueueEnabled:YES];
+//    [CSToastManager setDefaultPosition:CSToastPositionCenter];
+//}
 
 + (instancetype)sharedInstance {
     static id instance;

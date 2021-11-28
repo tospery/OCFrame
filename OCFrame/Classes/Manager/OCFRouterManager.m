@@ -9,6 +9,7 @@
 #import "OCFConstant.h"
 #import "OCFLoginViewReactor.h"
 #import "OCFWebViewReactor.h"
+#import "NSDictionary+OCFrame.h"
 #import <JLRoutes/JLRoutes.h>
 #import <JLRoutes/JLRRouteHandler.h>
 #import <JLRoutes/JLRRouteDefinition.h>
@@ -32,7 +33,24 @@
         OCFLoginViewReactor *reactor = [[cls alloc] initWithParameters:parameters];
         return [navigator presentReactor:reactor animated:YES completion:nil] != nil;
     };
+//    @weakify(self)
+//    [JLRoutes.globalRoutes addRoute:kBZMPatternToast handler:^BOOL(NSDictionary *parameters) {
+//        BZMVoidBlock_id completion = BZMObjMember(parameters, BZMParameter.block, nil);
+//        @strongify(self)
+//        return [self.navigator.topView bzm_toastWithParameters:parameters completion:^(BOOL didTap) {
+//            if (completion) {
+//                completion(@(didTap));
+//            }
+//        }];
+//    }];
+    JLRoutes.globalRoutes[kOCFPatternToast] = ^BOOL(NSDictionary *parameters) {
+        return YES;
+    };
     JLRoutes.globalRoutes[kOCFPatternAny] = ^BOOL(NSDictionary *parameters) {
+        NSString *scheme = OCFURLMember(parameters, JLRouteURLKey, nil).scheme;
+        if (![scheme isEqualToString:@"http"] && ![scheme isEqualToString:@"https"]) {
+            return NO;
+        }
         Class cls = NSClassFromString(@"WebViewReactor");
         if (![cls isSubclassOfClass:OCFWebViewReactor.class]) {
             return NO;

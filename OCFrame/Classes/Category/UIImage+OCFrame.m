@@ -35,31 +35,38 @@
 //}
 
 + (UIImage *)ocf_back {
-    return OCFImageFrame(@"back");
+    UIImage *image = OCFImageAsset(@"ic_back");
+    return image ? image : OCFImageFrame(@"ic_back");
 }
 
 + (UIImage *)ocf_close {
-    return OCFImageFrame(@"close");
+    UIImage *image = OCFImageAsset(@"ic_close");
+    return image ? image : OCFImageFrame(@"ic_close");
 }
 
 + (UIImage *)ocf_indicator {
-    return OCFImageFrame(@"indicator");
+    UIImage *image = OCFImageAsset(@"ic_indicator");
+    return image ? image : OCFImageFrame(@"ic_indicator");
 }
 
 + (UIImage *)ocf_loading {
-    return OCFImageFrame(@"loading");
+    UIImage *image = OCFImageAsset(@"ic_loading");
+    return image ? image : OCFImageFrame(@"ic_loading");
 }
 
 + (UIImage *)ocf_waiting {
-    return OCFImageFrame(@"waiting");
+    UIImage *image = OCFImageAsset(@"ic_waiting");
+    return image ? image : OCFImageFrame(@"ic_waiting");
 }
 
 + (UIImage *)ocf_network {
-    return OCFImageFrame(@"errorNetwork");
+    UIImage *image = OCFImageAsset(@"ic_errorNetwork");
+    return image ? image : OCFImageFrame(@"ic_errorNetwork");
 }
 
 + (UIImage *)ocf_server {
-    return OCFImageFrame(@"errorServer");
+    UIImage *image = OCFImageAsset(@"ic_errorServer");
+    return image ? image : OCFImageFrame(@"ic_errorServer");
 }
 
 + (UIImage *)ocf_imageWithURL:(NSString *)urlString {

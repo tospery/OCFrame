@@ -7,7 +7,6 @@
 
 #import "OCFViewController.h"
 #import <QMUIKit/QMUIKit.h>
-#import <Toast/UIView+Toast.h>
 #import "OCFType.h"
 #import "OCFConstant.h"
 #import "OCFFunction.h"
@@ -177,13 +176,16 @@
 //    }];
     [[self.reactor.executing skip:1] subscribeNext:^(NSNumber *executing) {
         @strongify(self)
-        if (executing.boolValue) {
-            self.view.userInteractionEnabled = NO;
-            [self.view makeToastActivity:CSToastPositionCenter];
-        } else {
-            self.view.userInteractionEnabled = YES;
-            [self.view hideToastActivity];
-        }
+//        if (executing.boolValue) {
+//            self.view.userInteractionEnabled = NO;
+//            [self.view makeToastActivity:CSToastPositionCenter];
+//        } else {
+//            self.view.userInteractionEnabled = YES;
+//            [self.view hideToastActivity];
+//        }
+        [self.navigator routeURL:OCFURLWithPattern(kOCFPatternToast) withParameters:@{
+            OCFParameter.active: executing
+        }];
     }];
 //    [self.reactor.load subscribeNext:^(id x) {
 //        @strongify(self)
@@ -283,8 +285,11 @@
 #pragma mark - Update
 - (void)beginUpdate {
     self.reactor.requestMode = OCFRequestModeUpdate;
-    self.view.userInteractionEnabled = NO;
-    [self.view makeToastActivity:CSToastPositionCenter];
+    //self.view.userInteractionEnabled = NO;
+    //[self.view makeToastActivity:CSToastPositionCenter];
+    [self.navigator routeURL:OCFURLWithPattern(kOCFPatternToast) withParameters:@{
+        OCFParameter.active: @YES
+    }];
 }
 
 - (void)triggerUpdate {
@@ -299,8 +304,11 @@
 
 - (void)endUpdate {
     self.reactor.requestMode = OCFRequestModeNone;
-    self.view.userInteractionEnabled = YES;
-    [self.view hideToastActivity];
+    //self.view.userInteractionEnabled = YES;
+    //[self.view hideToastActivity];
+    [self.navigator routeURL:OCFURLWithPattern(kOCFPatternToast) withParameters:@{
+        OCFParameter.active: @NO
+    }];
 }
 
 #pragma mark - Reload

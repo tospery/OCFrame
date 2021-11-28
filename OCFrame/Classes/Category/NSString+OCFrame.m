@@ -7,6 +7,7 @@
 
 #import "NSString+OCFrame.h"
 #import <QMUIKit/QMUIKit.h>
+#import "NSAttributedString+OCFrame.h"
 
 @implementation NSString (OCFrame)
 
@@ -96,6 +97,10 @@
 
 - (NSString *)ocf_urlComponentDecoded {
     return [self ocf_urlDecoded];
+}
+
+- (NSAttributedString *)ocf_attributedStringWithColor:(UIColor *)color font:(UIFont *)font {
+    return [NSAttributedString ocf_attributedStringWithString:self color:color font:font];
 }
 
 - (CGSize)ocf_sizeFits:(CGSize)size font:(UIFont *)font lines:(NSInteger)lines {

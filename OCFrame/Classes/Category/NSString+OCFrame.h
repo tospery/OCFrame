@@ -28,6 +28,8 @@
 - (CGFloat)ocf_widthFits:(CGFloat)height font:(UIFont *)font lines:(NSInteger)lines;
 - (CGFloat)ocf_heightFits:(CGFloat)width font:(UIFont *)font lines:(NSInteger)lines;
 
+- (NSAttributedString *)ocf_attributedStringWithColor:(UIColor *)color font:(UIFont *)font;
+
 + (NSString *)ocf_stringWithObject:(id)object;
 + (NSString *)ocf_filePathInDocuments:(NSString *)fileName;
 

@@ -12,6 +12,7 @@
 @property (class, strong, readonly) NSString *model;
 @property (class, strong, readonly) NSString *user;
 @property (class, strong, readonly) NSString *url;
+@property (class, strong, readonly) NSString *active;
 @property (class, strong, readonly) NSString *fetchLocalData;
 @property (class, strong, readonly) NSString *requestRemote;
 @property (class, strong, readonly) NSString *transparetNavBar;

@@ -8,7 +8,6 @@
 #import "OCFWebViewController.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 #import <ReactiveObjC/NSObject+RACKVOWrapper.h>
-#import <Toast/UIView+Toast.h>
 #import "OCFConstant.h"
 #import "OCFFunction.h"
 #import "OCFParameter.h"

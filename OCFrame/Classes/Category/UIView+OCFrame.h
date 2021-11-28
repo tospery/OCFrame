@@ -13,7 +13,7 @@
 @property (nonatomic, assign) CGFloat ocf_cornerRadius;
 @property (nonatomic, strong, readonly) OCFBorderLayer *ocf_borderLayer;
 
-- (BOOL)ocf_toastWithParameters:(NSDictionary *)parameters completion:(void(^)(BOOL didTap))completion;
+//- (BOOL)ocf_toastWithParameters:(NSDictionary *)parameters completion:(void(^)(BOOL didTap))completion;
 
 @end
 

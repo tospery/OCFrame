@@ -47,7 +47,6 @@ Pod::Spec.new do |s|
   s.dependency 'PINCache', '3.0.3'
   s.dependency 'GVUserDefaults', '1.0.2'
   s.dependency 'SDWebImage', '5.12.1'
-  s.dependency 'Toast', '4.0.0'
   s.dependency 'MJRefresh', '3.7.2'
   s.dependency 'TYAlertController', '1.2.0'
   s.dependency 'DZNEmptyDataSet', '1.8.1'

@@ -7,7 +7,6 @@
 
 #import "UIView+OCFrame.h"
 #import <QMUIKit/QMUIKit.h>
-#import <Toast/UIView+Toast.h>
 #import "OCFFunction.h"
 #import "OCFParameter.h"
 #import "NSDictionary+OCFrame.h"
@@ -42,23 +41,23 @@
     return nil;
 }
 
-- (BOOL)ocf_toastWithParameters:(NSDictionary *)parameters completion:(void(^)(BOOL didTap))completion {
-    NSString *title = OCFStrMember(parameters, OCFParameter.title, nil);
-    NSString *message = OCFStrMember(parameters, OCFParameter.message, nil);
-    if (title.length == 0 && message.length == 0) {
-        return NO;
-    }
-    CGFloat duration = OCFFltMember(parameters, OCFParameter.duration, 1.5f);
-    id position = OCFStrMember(parameters, OCFParameter.position, @"center");
-    if ([position isEqualToString:@"top"]) {
-        position = CSToastPositionTop;
-    } else if ([position isEqualToString:@"bottom"]) {
-        position = CSToastPositionBottom;
-    } else {
-        position = CSToastPositionCenter;
-    }
-    [self makeToast:message duration:duration position:position title:title image:nil style:nil completion:completion];
-    return YES;
-}
+//- (BOOL)ocf_toastWithParameters:(NSDictionary *)parameters completion:(void(^)(BOOL didTap))completion {
+//    NSString *title = OCFStrMember(parameters, OCFParameter.title, nil);
+//    NSString *message = OCFStrMember(parameters, OCFParameter.message, nil);
+//    if (title.length == 0 && message.length == 0) {
+//        return NO;
+//    }
+//    CGFloat duration = OCFFltMember(parameters, OCFParameter.duration, 1.5f);
+//    id position = OCFStrMember(parameters, OCFParameter.position, @"center");
+//    if ([position isEqualToString:@"top"]) {
+//        position = CSToastPositionTop;
+//    } else if ([position isEqualToString:@"bottom"]) {
+//        position = CSToastPositionBottom;
+//    } else {
+//        position = CSToastPositionCenter;
+//    }
+//    [self makeToast:message duration:duration position:position title:title image:nil style:nil completion:completion];
+//    return YES;
+//}
 
 @end

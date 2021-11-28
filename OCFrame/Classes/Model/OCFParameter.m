@@ -24,6 +24,10 @@
     return @"url";
 }
 
++ (NSString *)active {
+    return @"active";
+}
+
 + (NSString *)fetchLocalData {
     return @"fetchLocalData";
 }
