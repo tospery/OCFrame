@@ -12,9 +12,13 @@
 @property (class, strong, readonly) NSString *model;
 @property (class, strong, readonly) NSString *user;
 @property (class, strong, readonly) NSString *url;
+@property (class, strong, readonly) NSString *path;
+@property (class, strong, readonly) NSString *actions;
 @property (class, strong, readonly) NSString *active;
 @property (class, strong, readonly) NSString *animated;
 @property (class, strong, readonly) NSString *forward;
+@property (class, strong, readonly) NSString *subscriber;
+@property (class, strong, readonly) NSString *dismissManually;
 @property (class, strong, readonly) NSString *fetchLocalData;
 @property (class, strong, readonly) NSString *requestRemote;
 @property (class, strong, readonly) NSString *transparetNavBar;

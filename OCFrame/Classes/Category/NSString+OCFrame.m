@@ -136,4 +136,15 @@
     return [documentsPath stringByAppendingPathComponent:fileName];
 }
 
+- (NSString *)ocf_base64Encoded {
+    NSData *plainData = [self dataUsingEncoding:NSUTF8StringEncoding];
+    return [plainData base64EncodedStringWithOptions:0];
+}
+
+- (NSString *)ocf_base64Decoded {
+    NSData *base64Data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *plainData = [[NSData alloc] initWithBase64EncodedData:base64Data options:0];
+    return [[NSString alloc] initWithData:plainData encoding:NSUTF8StringEncoding];
+}
+
 @end

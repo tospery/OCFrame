@@ -18,6 +18,8 @@
 @property (nonatomic, strong, readonly) NSString *ocf_url;
 @property (nonatomic, strong, readonly) NSString *ocf_underlineFromCamel;
 @property (nonatomic, strong, readonly) NSString *ocf_camelFromUnderline;
+@property (nonatomic, strong, readonly) NSString *ocf_base64Encoded;
+@property (nonatomic, strong, readonly) NSString *ocf_base64Decoded;
 
 - (NSString *)ocf_urlEncoded;
 - (NSString *)ocf_urlDecoded;

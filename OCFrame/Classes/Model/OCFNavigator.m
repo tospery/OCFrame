@@ -16,6 +16,7 @@
 #import "OCFTabBarViewController.h"
 #import "OCFNavigationController.h"
 #import "NSURL+OCFrame.h"
+#import "UINavigationController+OCFrame.h"
 
 #define kControllerName                             (@"Controller")
 #define kReactorName                                (@"Reactor")
@@ -97,13 +98,13 @@
 
 - (UIViewController *)pushReactor:(OCFViewReactor *)reactor animated:(BOOL)animated {
     UIViewController *viewController = (UIViewController *)[self viewController:reactor];
-    [UIViewController.ocf_currentNavigationController pushViewController:viewController animated:animated];
+    [UINavigationController.ocf_currentNavigationController pushViewController:viewController animated:animated];
     return viewController;
 }
 
 - (UIViewController *)presentReactor:(OCFViewReactor *)reactor animated:(BOOL)animated completion:(OCFVoidBlock)completion {
     UIViewController *viewController = (UIViewController *)[self viewController:reactor];
-    UINavigationController *presentingViewController = UIViewController.ocf_currentNavigationController;
+    UINavigationController *presentingViewController = UINavigationController.ocf_currentNavigationController;
     if (![viewController isKindOfClass:UINavigationController.class]) {
         viewController = [[OCFNavigationController alloc] initWithRootViewController:viewController];
     }
@@ -114,38 +115,38 @@
 
 - (UIViewController *)popupReactor:(OCFViewReactor *)reactor animationType:(OCFViewControllerAnimationType)animationType completion:(OCFVoidBlock)completion {
     UIViewController *viewController = (UIViewController *)[self viewController:reactor];
-    [UIViewController.ocf_currentNavigationController ocf_popupViewController:viewController animationType:animationType layout:OCFPopupLayoutCenter bgTouch:NO dismissed:completion];
+    [UINavigationController.ocf_currentNavigationController ocf_popupViewController:viewController animationType:animationType layout:OCFPopupLayoutCenter bgTouch:NO dismissed:completion];
     return viewController;
 }
 
 - (void)popReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion {
     [CATransaction begin];
     [CATransaction setCompletionBlock:completion];
-    [UIViewController.ocf_currentNavigationController popViewControllerAnimated:animated];
+    [UINavigationController.ocf_currentNavigationController popViewControllerAnimated:animated];
     [CATransaction commit];
 }
 
 - (void)popToRootReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion {
     [CATransaction begin];
     [CATransaction setCompletionBlock:completion];
-    [UIViewController.ocf_currentNavigationController popToRootViewControllerAnimated:animated];
+    [UINavigationController.ocf_currentNavigationController popToRootViewControllerAnimated:animated];
     [CATransaction commit];
 }
 
 - (void)dismissReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion {
-    UINavigationController *dismissingViewController = UIViewController.ocf_currentNavigationController;
+    UINavigationController *dismissingViewController = UINavigationController.ocf_currentNavigationController;
     //[self popNavigationController];
     [dismissingViewController dismissViewControllerAnimated:animated completion:completion];
 }
 
 - (void)closeReactorWithAnimationType:(OCFViewControllerAnimationType)animationType completion:(OCFVoidBlock)completion {
-    [UIViewController.ocf_currentNavigationController ocf_closeViewControllerWithAnimationType:animationType dismissed:completion];
+    [UINavigationController.ocf_currentNavigationController ocf_closeViewControllerWithAnimationType:animationType dismissed:completion];
 }
 
 #pragma mark Forward
 - (id)forwardReactor:(OCFViewReactor *)reactor {
     UIViewController *viewController = (UIViewController *)[self viewController:reactor];
-    UINavigationController *navigationController = UIViewController.ocf_currentNavigationController;
+    UINavigationController *navigationController = UINavigationController.ocf_currentNavigationController;
     OCFForwardType forwardType = reactor.forwardType;
     if (!navigationController && forwardType == OCFForwardTypePush) {
         forwardType = OCFForwardTypePresent;
@@ -165,23 +166,35 @@
     return viewController;
 }
 
+- (RACSignal *)rac_routeURL:(NSURL *)url withParameters:(NSDictionary *)parameters {
+    @weakify(self)
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        @strongify(self)
+        NSMutableDictionary *myParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
+        [myParameters setObject:subscriber forKey:OCFParameter.subscriber];
+        [self routeURL:url withParameters:myParameters];
+        return [RACDisposable disposableWithBlock:^{
+        }];
+    }];
+}
+
 #pragma mark Toast
 - (void)makeToastActivity:(OCFToastPosition)position {
-    [self routeURL:OCFURLWithPattern(kOCFPatternToast) withParameters:@{
+    [self routeURL:OCFURLWithPattern(kOCFPatternHostToast) withParameters:@{
         OCFParameter.active: @YES,
         OCFParameter.position: @(position)
     }];
 }
 
 - (void)hideToastActivity {
-    [self routeURL:OCFURLWithPattern(kOCFPatternToast) withParameters:@{
+    [self routeURL:OCFURLWithPattern(kOCFPatternHostToast) withParameters:@{
         OCFParameter.active: @NO
     }];
 }
 
 #pragma mark Login
 - (void)goLogin {
-    [self routeURL:OCFURLWithPattern(kOCFPatternLogin) withParameters:nil];
+    [self routeURL:OCFURLWithPattern(kOCFPatternHostLogin) withParameters:nil];
 }
 
 @end

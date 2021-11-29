@@ -46,7 +46,6 @@ extern const OCFPopupLayout OCFPopupLayoutCenter;
 
 @interface UIViewController (OCFrame)
 @property (class, nonatomic, strong, readonly) UIViewController *ocf_topMostViewController;
-@property (class, nonatomic, strong, readonly) UINavigationController *ocf_currentNavigationController;
 @property (nonatomic, assign) BOOL ocf_automaticallySetModalPresentationStyle;
 @property (nonatomic, retain) UIViewController *ocf_popupViewController;
 @property (nonatomic, retain) OCFPopupBackgroundView *ocf_popupBackgroundView;

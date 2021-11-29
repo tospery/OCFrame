@@ -194,7 +194,7 @@
 //    }];
     [self.reactor.errors subscribeNext:^(NSError *error) {
         @strongify(self)
-        [self.navigator routeURL:OCFURLWithPattern(kOCFPatternToast) withParameters:@{
+        [self.navigator routeURL:OCFURLWithPattern(kOCFPatternHostToast) withParameters:@{
             OCFParameter.message: OCFStrWithDft(error.ocf_displayMessage, kStringErrorUnknown)
         }];
     }];

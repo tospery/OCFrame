@@ -56,11 +56,6 @@ static void * const keypath = (void*)&keypath;
     return QMUIHelper.visibleViewController;
 }
 
-+ (UINavigationController *)ocf_currentNavigationController {
-    UIViewController *topMost = self.ocf_topMostViewController;
-    return topMost.navigationController;
-}
-
 - (void)ocf_presentViewController:(UIViewController *)viewControllerToPresent animated: (BOOL)flag completion:(void (^ __nullable)(void))completion {
     if (@available(iOS 13.0, *)) {
         BOOL need = YES;
@@ -73,6 +68,7 @@ static void * const keypath = (void*)&keypath;
             } else {
                 NSString *className = viewControllerToPresent.ocf_className;
                 if ([className isEqualToString:@"PopupDialog"] ||
+                    [className isEqualToString:@"TYAlertController"] ||
                     [className isEqualToString:@"SideMenuNavigationController"]) {
                     need = NO;
                 }

@@ -7,6 +7,7 @@
 
 #import "NSObject+OCFrame.h"
 #import <Mantle/Mantle.h>
+#import <QMUIKit/QMUIKit.h>
 
 @implementation NSObject (OCFrame)
 
@@ -34,6 +35,17 @@
     }
     
     if ([self isKindOfClass:NSArray.class]) {
+        NSArray *array = (NSArray *)self;
+        BOOL isRaw = YES;
+        for (id obj in array) {
+            if (![obj isKindOfClass:NSString.class] && ![obj isKindOfClass:NSNumber.class]) {
+                isRaw = NO;
+                break;
+            }
+        }
+        if (isRaw) {
+            return array;
+        }
         id json = [MTLJSONAdapter JSONArrayFromModels:(NSArray *)self error:nil];
         if (!json) {
             json = self;

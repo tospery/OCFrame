@@ -68,7 +68,7 @@
                 ((id(*)(id, SEL, id, WVJBResponseCallback))[self.reactor methodForSelector:selector])(self.reactor, selector, data, responseCallback);
             }else {
                 OCFLogWarn(kOCFLogTagNormal, @"Web找不到oc handler: %@", method);
-                [self.navigator routeURL:OCFURLWithPattern(kOCFPatternToast) withParameters:@{
+                [self.navigator routeURL:OCFURLWithPattern(kOCFPatternHostToast) withParameters:@{
                     OCFParameter.message: OCFStrWithFmt(@"缺少%@方法", method)
                 }];
             }

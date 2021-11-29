@@ -11,6 +11,12 @@
 
 @class OCFViewReactor;
 
+//typedef NS_ENUM(NSInteger, OCFPopupStyle){
+//    OCFPopupStyleAlert,
+//    OCFPopupStyleSheet,
+//    OCFPopupStylePopup
+//};
+
 typedef NS_ENUM(NSInteger, OCFToastPosition){
     OCFToastPositionTop,
     OCFToastPositionCenter,
@@ -25,6 +31,7 @@ typedef NS_ENUM(NSInteger, OCFToastPosition){
 - (UIViewController *)pushReactor:(OCFViewReactor *)viewModel animated:(BOOL)animated;
 - (UIViewController *)presentReactor:(OCFViewReactor *)viewModel animated:(BOOL)animated completion:(OCFVoidBlock)completion;
 - (UIViewController *)popupReactor:(OCFViewReactor *)viewModel animationType:(OCFViewControllerAnimationType)animationType completion:(OCFVoidBlock)completion;
+// popup -> hide
 
 - (void)popReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion;
 - (void)popToRootReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion;
@@ -35,6 +42,9 @@ typedef NS_ENUM(NSInteger, OCFToastPosition){
 
 - (void)makeToastActivity:(OCFToastPosition)position;
 - (void)hideToastActivity;
+
+// 无reactor: Toast/Alert
+// 有reactor: push/present/popup<issheet=false>
 
 @end
 

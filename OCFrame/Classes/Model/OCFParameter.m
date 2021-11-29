@@ -24,6 +24,14 @@
     return @"url";
 }
 
++ (NSString *)path {
+    return @"path";
+}
+
++ (NSString *)actions {
+    return @"actions";
+}
+
 + (NSString *)active {
     return @"active";
 }
@@ -34,6 +42,14 @@
 
 + (NSString *)forward {
     return @"forward";
+}
+
++ (NSString *)subscriber {
+    return @"subscriber";
+}
+
++ (NSString *)dismissManually {
+    return @"dismissManually";
 }
 
 + (NSString *)fetchLocalData {

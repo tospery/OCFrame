@@ -55,4 +55,19 @@
     return [NSURL URLWithString:urlString];
 }
 
+- (NSURL *)ocf_appendingQueryParameters:(NSDictionary<NSString *, id> *)parameters {
+    NSURLComponents *urlComponents = [[NSURLComponents alloc] initWithURL:self resolvingAgainstBaseURL:YES];
+    NSMutableArray<NSURLQueryItem *> *items = [NSMutableArray<NSURLQueryItem *> arrayWithArray:urlComponents.queryItems];
+    for (NSString *key in parameters.allKeys) {
+        NSString *value = [NSString ocf_stringWithObject:parameters[key]];
+        if (!value) {
+            continue;
+        }
+        NSURLQueryItem *query = [[NSURLQueryItem alloc] initWithName:key value:value];
+        [items addObject:query];
+    }
+    urlComponents.queryItems = items;
+    return urlComponents.URL;
+}
+
 @end

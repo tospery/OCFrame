@@ -17,4 +17,6 @@
 + (NSURL *)ocf_urlWithPath:(NSString *)path;
 + (NSURL *)ocf_urlWithPattern:(NSString *)pattern;
 
+- (NSURL *)ocf_appendingQueryParameters:(NSDictionary<NSString *, id> *)parameters;
+
 @end

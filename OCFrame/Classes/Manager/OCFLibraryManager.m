@@ -23,7 +23,7 @@
 
 //- (void)setupJLRoutes {
 //    @weakify(self)
-//    [JLRoutes.globalRoutes addRoute:kOCFPatternToast handler:^BOOL(NSDictionary *parameters) {
+//    [JLRoutes.globalRoutes addRoute:kOCFPatternHostToast handler:^BOOL(NSDictionary *parameters) {
 //        OCFVoidBlock_id completion = OCFObjMember(parameters, OCFParameter.block, nil);
 //        @strongify(self)
 //        return [self.navigator.topView ocf_toastWithParameters:parameters completion:^(BOOL didTap) {

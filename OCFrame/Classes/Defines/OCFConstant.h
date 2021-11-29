@@ -38,12 +38,12 @@
 #define kOCFSchemeDocuments                         (@"documents")
 
 #pragma mark - Pattern
-#define kOCFPatternAny                              (@"*")
-#define kOCFPatternLogin                            (@"login")
-#define kOCFPatternToast                            (@"toast")
-#define kOCFPatternAlert                            (@"alert")
-#define kOCFPatternSheet                            (@"sheet")
-#define kOCFPatternPopup                            (@"popup")
+#define kOCFPatternHostAny                              (@"*")
+#define kOCFPatternHostLogin                            (@"login")
+#define kOCFPatternHostToast                            (@"toast")
+#define kOCFPatternHostAlert                            (@"alert")
+#define kOCFPatternHostSheet                            (@"sheet")
+#define kOCFPatternHostPopup                            (@"popup")
 
 #pragma mark - Animation
 #define kOCFAnimationFade                           (@"fade")
