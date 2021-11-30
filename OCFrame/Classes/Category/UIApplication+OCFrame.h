@@ -7,7 +7,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, OCFAppEnvironment){
+    OCFAppEnvironmentDebug,
+    OCFAppEnvironmentTestFlight,
+    OCFAppEnvironmentAppStore
+};
+
 @interface UIApplication (OCFrame)
+@property (nonatomic, assign, readonly) OCFAppEnvironment ocf_environment;
 @property (nonatomic, strong, readonly) NSString *ocf_version;
 @property (nonatomic, strong, readonly) NSString *ocf_urlScheme;
 @property (nonatomic, strong, readonly) NSString *ocf_displayName;

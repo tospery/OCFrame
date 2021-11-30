@@ -9,6 +9,38 @@
 #import "NSString+OCFrame.h"
 
 @implementation UIApplication (OCFrame)
+static NSInteger ocfEnvironment = -1;
+- (OCFAppEnvironment)ocf_environment {
+    if (ocfEnvironment != -1) {
+        return ocfEnvironment;
+    }
+#ifdef DEBUG
+    ocfEnvironment = OCFAppEnvironmentDebug;
+#elif defined(TARGET_OS_SIMULATOR)
+    ocfEnvironment = OCFAppEnvironmentDebug;
+#else
+    NSString *path = [NSBundle.mainBundle pathForResource:@"embedded" ofType:@"mobileprovision"];
+    if (path.length != 0) {
+        ocfEnvironment = OCFAppEnvironmentTestFlight;
+    } else {
+        NSURL *appStoreReceiptUrl = NSBundle.mainBundle.appStoreReceiptURL;
+        if (!appStoreReceiptUrl) {
+            ocfEnvironment = OCFAppEnvironmentDebug;
+        } else {
+            if ([appStoreReceiptUrl.lastPathComponent.lowercaseString isEqualToString:@"sandboxreceipt"]) {
+                ocfEnvironment = OCFAppEnvironmentTestFlight;
+            } else if ([appStoreReceiptUrl.path.lowercaseString containsString:@"simulator"]) {
+                ocfEnvironment = OCFAppEnvironmentDebug;
+            } else {
+                ocfEnvironment = OCFAppEnvironmentAppStore;
+            }
+        }
+    }
+#endif
+    return ocfEnvironment;
+}
+
+
 - (NSString *)ocf_version {
     return [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
 }

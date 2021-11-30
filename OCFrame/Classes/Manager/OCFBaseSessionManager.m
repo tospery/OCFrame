@@ -60,5 +60,12 @@ typedef RACSignal *(^MapBlock)(OCFBaseResponse *);
     return [[self rac_GET:URLString parameters:parameters progress:nil] flattenMap:self.mapBlock];
 }
 
+- (RACSignal *)post:(NSString *)URLString
+             parameters:(NSDictionary *)parameters
+constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
+               progress:(id<RACSubscriber>)progress {
+    return [[self rac_POST:URLString parameters:parameters constructingBodyWithBlock:block progress:progress] flattenMap:self.mapBlock];
+}
+
 @end
 

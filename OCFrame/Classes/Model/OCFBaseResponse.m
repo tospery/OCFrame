@@ -13,30 +13,37 @@
 @end
 
 @implementation OCFBaseResponse
-- (instancetype)init {
-    if (self = [super init]) {
-        // 用于没有code/message/data层的数据
-        self.code = OCFErrorCodeSuccess;
-    }
-    return self;
-}
+//- (instancetype)init {
+//    if (self = [super init]) {
+//        // 用于没有code/message/data层的数据
+//        // self.code = OCFErrorCodeSuccess;
+//    }
+//    return self;
+//}
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
         @"code": @"code",
         @"message": @"message"
     };
+//    NSDictionary *mapping = [NSDictionary mtl_identityPropertyMapWithModel:self];
+//    return mapping;
 }
 
 + (NSString *)resultKeyPathForJSONDictionary:(NSDictionary *)JSONDictionary {
-    if (JSONDictionary[@"data"]) {
-        return @"data";
-    }
-    return nil;
+    return @"data";
 }
 
-- (BOOL)validate:(NSError *__autoreleasing *)error {
-    return YES;
-}
+//- (BOOL)validate:(NSError *__autoreleasing *)error {
+//    return YES;
+//}
+
+//- (NSInteger)mappedCode {
+//    return self.code.integerValue;
+//}
+//
+//- (NSString *)mappedMessage {
+//    return self.message;
+//}
 
 @end

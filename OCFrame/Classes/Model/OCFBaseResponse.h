@@ -8,8 +8,11 @@
 #import <RESTful/RESTful.h>
 
 @interface OCFBaseResponse : RESTResponse
-@property (nonatomic, strong, readonly) NSString *message;
 @property (nonatomic, assign) NSInteger code;
+@property (nonatomic, strong, readonly) NSString *message;
+
+//- (NSInteger)mappedCode;
+//- (NSString *)mappedMessage;
 
 @end
 
