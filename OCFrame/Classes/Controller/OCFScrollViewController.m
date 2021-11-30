@@ -66,7 +66,7 @@
     }
     [self.view addSubview:self.scrollView];
     
-    OCFLogDebug(kOCFLogTagNormal, @"scrollView frame = %@", NSStringFromCGRect(self.scrollView.frame));
+    OCFLogDebug(@"scrollView frame = %@", NSStringFromCGRect(self.scrollView.frame));
     
 //    if (![self isKindOfClass:OCFCollectionViewController.class] /*&&
 //        ![self isKindOfClass:OCFWebViewController.class]*/) {

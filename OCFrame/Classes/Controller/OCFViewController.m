@@ -58,7 +58,7 @@
 }
 
 - (void)dealloc {
-    OCFLogDebug(kOCFLogTagNormal, @"%@已析构", self.ocf_className);
+    OCFLogDebug(@"%@已析构", self.ocf_className);
 }
 
 #pragma mark - View

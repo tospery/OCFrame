@@ -48,7 +48,6 @@ Pod::Spec.new do |s|
   s.dependency 'GVUserDefaults', '1.0.2'
   s.dependency 'SDWebImage', '5.12.1'
   s.dependency 'MJRefresh', '3.7.2'
-  s.dependency 'TYAlertController', '1.2.0'
   s.dependency 'DZNEmptyDataSet', '1.8.1'
   # s.dependency 'DKNightVersion', '2.4.3'
   # s.dependency 'WebViewJavascriptBridge', '6.0.3'

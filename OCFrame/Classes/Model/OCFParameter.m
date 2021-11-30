@@ -28,6 +28,10 @@
     return @"path";
 }
 
++ (NSString *)token {
+    return @"token";
+}
+
 + (NSString *)actions {
     return @"actions";
 }

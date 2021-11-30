@@ -62,6 +62,7 @@
 #define kOCFLogTagTest                              (@"Test")
 #define kOCFLogTagNormal                            (@"Normal")
 #define kOCFLogTagLibrary                           (@"Library")
+#define kOCFLogTagArgument                          (@"Argument")
 
 
 #endif /* OCFConstant_h */

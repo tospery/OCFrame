@@ -67,14 +67,14 @@
             if ([self.reactor respondsToSelector:selector]) {
                 ((id(*)(id, SEL, id, WVJBResponseCallback))[self.reactor methodForSelector:selector])(self.reactor, selector, data, responseCallback);
             }else {
-                OCFLogWarn(kOCFLogTagNormal, @"Web找不到oc handler: %@", method);
+                OCFLogWarn(@"Web找不到oc handler: %@", method);
                 [self.navigator routeURL:OCFURLWithPattern(kOCFPatternHostToast) withParameters:@{
                     OCFParameter.message: OCFStrWithFmt(@"缺少%@方法", method)
                 }];
             }
         }];
     }
-    OCFLogDebug(kOCFLogTagNormal, @"webView frame = %@", NSStringFromCGRect(self.webView.frame));
+    OCFLogDebug(@"webView frame = %@", NSStringFromCGRect(self.webView.frame));
 }
 
 - (void)viewDidLayoutSubviews {
@@ -142,7 +142,7 @@
 #pragma mark - Delegate
 #pragma mark WKNavigationDelegate
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    OCFLogDebug(kOCFLogTagNormal, @"decidePolicyForNavigationAction: %@", navigationAction.request.URL.absoluteString);
+    OCFLogDebug(@"decidePolicyForNavigationAction: %@", navigationAction.request.URL.absoluteString);
     decisionHandler(WKNavigationActionPolicyAllow);
 }
 
@@ -156,12 +156,12 @@
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     // [self didFinish:error];
-    OCFLogError(kOCFLogTagNormal, @"didFailNavigation: %@", error);
+    OCFLogError(@"didFailNavigation: %@", error);
 }
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     // [self didFinish:error];
-    OCFLogError(kOCFLogTagNormal, @"didFailProvisionalNavigation: %@", error);
+    OCFLogError(@"didFailProvisionalNavigation: %@", error);
 }
 
 #pragma mark WKUIDelegate

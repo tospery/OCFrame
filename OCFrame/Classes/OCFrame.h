@@ -184,6 +184,5 @@
 #import <UICKeyChainStore/UICKeyChainStore.h>
 #import <FCUUID/FCUUID.h>
 #import <SDWebImage/SDWebImage.h>
-#import <TYAlertController/TYAlertController.h>
 //#import <SwiftTheme/SwiftTheme-Swift.h>
 #import <Giotto/SDThemeManager.h>

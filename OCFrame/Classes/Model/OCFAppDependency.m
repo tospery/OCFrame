@@ -63,14 +63,14 @@
 
 #pragma mark finish
 - (void)entryDidFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    OCFLogDebug(kOCFLogTagNormal, @"运行环境: %@", @(IS_DEBUG));
-    OCFLogDebug(kOCFLogTagNormal, @"设备型号: %@", QMUIHelper.deviceName);
-    OCFLogDebug(kOCFLogTagNormal, @"系统版本: %@", UIDevice.currentDevice.systemVersion);
-    OCFLogDebug(kOCFLogTagNormal, @"屏幕尺寸: %@", NSStringFromCGSize(UIScreen.mainScreen.bounds.size));
-    OCFLogDebug(kOCFLogTagNormal, @"安全区域: %@", NSStringFromUIEdgeInsets(SafeAreaInsetsConstantForDeviceWithNotch));
-    OCFLogDebug(kOCFLogTagNormal, @"状态栏: %d", (int)StatusBarHeightConstant);
-    OCFLogDebug(kOCFLogTagNormal, @"导航栏: %d", (int)NavigationBarHeight);
-    OCFLogDebug(kOCFLogTagNormal, @"标签栏: %d", (int)TabBarHeight);
+    OCFLogDebug(@"运行环境: %@", @(IS_DEBUG));
+    OCFLogDebug(@"设备型号: %@", QMUIHelper.deviceName);
+    OCFLogDebug(@"系统版本: %@", UIDevice.currentDevice.systemVersion);
+    OCFLogDebug(@"屏幕尺寸: %@", NSStringFromCGSize(UIScreen.mainScreen.bounds.size));
+    OCFLogDebug(@"安全区域: %@", NSStringFromUIEdgeInsets(SafeAreaInsetsConstantForDeviceWithNotch));
+    OCFLogDebug(@"状态栏: %d", (int)StatusBarHeightConstant);
+    OCFLogDebug(@"导航栏: %d", (int)NavigationBarHeight);
+    OCFLogDebug(@"标签栏: %d", (int)TabBarHeight);
     [OCFAppearanceManager.sharedInstance setup];
     [OCFLibraryManager.sharedInstance setup];
     [OCFRouterManager.sharedInstance setupWithProvider:self.provider navigator:self.navigator];
@@ -99,7 +99,7 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    OCFLogDebug(kOCFLogTagNormal, @"disk = %@", NSHomeDirectory());
+    OCFLogDebug(@"disk = %@", NSHomeDirectory());
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

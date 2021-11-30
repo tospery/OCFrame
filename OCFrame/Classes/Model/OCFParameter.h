@@ -13,6 +13,7 @@
 @property (class, strong, readonly) NSString *user;
 @property (class, strong, readonly) NSString *url;
 @property (class, strong, readonly) NSString *path;
+@property (class, strong, readonly) NSString *token;
 @property (class, strong, readonly) NSString *actions;
 @property (class, strong, readonly) NSString *active;
 @property (class, strong, readonly) NSString *animated;

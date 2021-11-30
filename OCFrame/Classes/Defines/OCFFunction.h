@@ -23,26 +23,36 @@
 
 #pragma mark - 日志
 #ifdef DEBUG
-#define OCFLogVerbose(tag, fmt, ...)                                                                 \
-NSLog(@"Verbose【%@】: " fmt, tag, ##__VA_ARGS__);
-#define OCFLogDebug(tag, fmt, ...)                                                              \
-NSLog(@"Debug【%@】: " fmt, tag, ##__VA_ARGS__);
-#define OCFLogInfo(tag, fmt, ...)                                                                    \
-NSLog(@"Info【%@】: " fmt, tag, ##__VA_ARGS__);
-#define OCFLogWarn(tag, fmt, ...)                                                                    \
-NSLog(@"Warn【%@】: " fmt, tag, ##__VA_ARGS__);
-#define OCFLogError(tag, fmt, ...)                                                                   \
-NSLog(@"Error【%@】: " fmt, tag, ##__VA_ARGS__);
+#define OCFLogVerbose(fmt, ...)                                                                 \
+NSLog(@"Verbose: " fmt, ##__VA_ARGS__);
+#define OCFLogDebug(fmt, ...)                                                                   \
+NSLog(@"Debug: " fmt, ##__VA_ARGS__);
+#define OCFLogInfo(fmt, ...)                                                                    \
+NSLog(@"Info: " fmt, ##__VA_ARGS__);
+#define OCFLogWarn(fmt, ...)                                                                    \
+NSLog(@"Warn: " fmt, ##__VA_ARGS__);
+#define OCFLogError(fmt, ...)                                                                   \
+NSLog(@"Error: " fmt, ##__VA_ARGS__);
 #else
-#define OCFLogVerbose(tag, fmt, ...)
-#define OCFLogDebug(tag, fmt, ...) 
-#define OCFLogInfo(tag, fmt, ...)                                                                    \
-NSLog(@"Info【%@】: " fmt, tag, ##__VA_ARGS__);
-#define OCFLogWarn(tag, fmt, ...)                                                                    \
-NSLog(@"Warn【%@】: " fmt, tag, ##__VA_ARGS__);
-#define OCFLogError(tag, fmt, ...)                                                                   \
-NSLog(@"Error【%@】: " fmt, tag, ##__VA_ARGS__);
+#define OCFLogVerbose(fmt, ...)
+#define OCFLogDebug(fmt, ...)
+#define OCFLogInfo(fmt, ...)                                                                    \
+NSLog(@"Info: " fmt, ##__VA_ARGS__);
+#define OCFLogWarn(fmt, ...)                                                                    \
+NSLog(@"Warn: " fmt, ##__VA_ARGS__);
+#define OCFLogError(fmt, ...)                                                                   \
+NSLog(@"Error: " fmt, ##__VA_ARGS__);
 #endif
+
+#pragma mark - 尺寸
+#define OCFCheck(arg)                          \
+if (OCFDataIsNullOrEmpty(arg)) {                          \
+return;                                                 \
+}
+#define OCFCheckWithResult(arg, ret)                                                                          \
+if (OCFDataIsNullOrEmpty(arg)) {                                                                    \
+return ret;                                                                                         \
+}
 
 #pragma mark - 尺寸
 CG_INLINE CGFloat
@@ -124,6 +134,33 @@ OCFForwardTypeWithDft(NSInteger value, OCFForwardType dft) {
         return value;
     }
     return dft;
+}
+
+CG_INLINE BOOL
+OCFDataIsNullOrEmpty(id obj) {
+    if (!obj) {
+        return YES;
+    }
+    if ([obj isKindOfClass:[NSNull class]]) {
+        return YES;
+    }
+    if ([obj isKindOfClass:[NSString class]]) {
+        NSString *string = (NSString *)obj;
+        return string.length == 0 ? YES : NO;
+    }
+    if ([obj isKindOfClass:[NSNumber class]]) {
+        NSNumber *number = (NSNumber *)obj;
+        return number.integerValue == 0 ? YES : NO;
+    }
+    if ([obj isKindOfClass:[NSArray class]]) {
+        NSArray *array = (NSArray *)obj;
+        return array.count == 0 ? YES : NO;
+    }
+    if ([obj isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *dictionary = (NSDictionary *)obj;
+        return dictionary.count == 0 ? YES : NO;
+    }
+    return NO;
 }
 
 #endif /* OCFFunction_h */
