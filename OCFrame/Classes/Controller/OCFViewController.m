@@ -19,6 +19,7 @@
 #import "NSError+OCFrame.h"
 #import "NSObject+OCFrame.h"
 #import "UIColor+OCFrame.h"
+#import "OCFScrollModel.h"
 
 @interface OCFViewController ()
 //@property (nonatomic, strong) UIButton *backButton;
@@ -198,48 +199,93 @@
             OCFParameter.message: OCFStrWithDft(error.ocf_displayMessage, kStringErrorUnknown)
         }];
     }];
-    [self.reactor.navigate subscribeNext:^(id input) {
-        @strongify(self)
-        if ([input isKindOfClass:RACTuple.class] && [(RACTuple *)input count] == 2) {
-            RACTuple *tuple = (RACTuple *)input;
-            id first = tuple.first;
-            id second = tuple.second;
-            if ([first isKindOfClass:NSNumber.class]) {
-                // back
-                OCFViewControllerBackType type = [(NSNumber *)first integerValue];
-                @weakify(self)
-                OCFVoidBlock completion = ^(void) {
-                    @strongify(self)
-                    [self.reactor.resultCommand execute:second];
-                };
-                if (OCFViewControllerBackTypePopOne == type) {
-                    [self.navigator popReactorAnimated:YES completion:completion];
-                } else if (OCFViewControllerBackTypePopAll == type) {
-                    [self.navigator popToRootReactorAnimated:YES completion:completion];
-                } else if (OCFViewControllerBackTypeDismiss == type) {
-                    [self.navigator dismissReactorAnimated:YES completion:completion];
-                } else if (OCFViewControllerBackTypeClose == type) {
-                    [self.navigator closeReactorWithAnimationType:OCFViewControllerAnimationTypeFromString(self.reactor.animation) completion:completion];
-                }
-            } else {
-                // forward
-                NSURL *url = nil;
-                if ([first isKindOfClass:NSURL.class]) {
-                    url = (NSURL *)first;
-                } else if ([first isKindOfClass:NSString.class]) {
-                    url = OCFURLWithStr((NSString *)first);
-                }
-                if (!url) {
-                    return;
-                }
-                NSDictionary *parameters = nil;
-                if ([second isKindOfClass:NSDictionary.class]) {
-                    parameters = (NSDictionary *)second;
-                }
-                [self.navigator routeURL:url withParameters:parameters];
-            }
-        }
-    }];
+     [[self.reactor.navigate filter:^BOOL(id value) {
+         @strongify(self)
+         return [self filterNavigateNext:value];
+     }] subscribeNext:^(id input) {
+         @strongify(self)
+         if ([input isKindOfClass:RACTuple.class] && [(RACTuple *)input count] == 2) {
+             RACTuple *tuple = (RACTuple *)input;
+             id first = tuple.first;
+             id second = tuple.second;
+             if ([first isKindOfClass:NSNumber.class]) {
+                 // back
+                 OCFViewControllerBackType type = [(NSNumber *)first integerValue];
+                 @weakify(self)
+                 OCFVoidBlock completion = ^(void) {
+                     @strongify(self)
+                     [self.reactor.resultCommand execute:second];
+                 };
+                 if (OCFViewControllerBackTypePopOne == type) {
+                     [self.navigator popReactorAnimated:YES completion:completion];
+                 } else if (OCFViewControllerBackTypePopAll == type) {
+                     [self.navigator popToRootReactorAnimated:YES completion:completion];
+                 } else if (OCFViewControllerBackTypeDismiss == type) {
+                     [self.navigator dismissReactorAnimated:YES completion:completion];
+                 } else if (OCFViewControllerBackTypeClose == type) {
+                     [self.navigator closeReactorWithAnimationType:OCFViewControllerAnimationTypeFromString(self.reactor.animation) completion:completion];
+                 }
+             } else {
+                 // forward
+                 NSURL *url = nil;
+                 if ([first isKindOfClass:NSURL.class]) {
+                     url = (NSURL *)first;
+                 } else if ([first isKindOfClass:NSString.class]) {
+                     url = OCFURLWithStr((NSString *)first);
+                 }
+                 if (!url) {
+                     return;
+                 }
+                 NSDictionary *parameters = nil;
+                 if ([second isKindOfClass:NSDictionary.class]) {
+                     parameters = (NSDictionary *)second;
+                 }
+                 [self.navigator routeURL:url withParameters:parameters];
+             }
+         }
+     }];
+//    [self.reactor.navigate subscribeNext:^(id input) {
+//        @strongify(self)
+//        if ([input isKindOfClass:RACTuple.class] && [(RACTuple *)input count] == 2) {
+//            RACTuple *tuple = (RACTuple *)input;
+//            id first = tuple.first;
+//            id second = tuple.second;
+//            if ([first isKindOfClass:NSNumber.class]) {
+//                // back
+//                OCFViewControllerBackType type = [(NSNumber *)first integerValue];
+//                @weakify(self)
+//                OCFVoidBlock completion = ^(void) {
+//                    @strongify(self)
+//                    [self.reactor.resultCommand execute:second];
+//                };
+//                if (OCFViewControllerBackTypePopOne == type) {
+//                    [self.navigator popReactorAnimated:YES completion:completion];
+//                } else if (OCFViewControllerBackTypePopAll == type) {
+//                    [self.navigator popToRootReactorAnimated:YES completion:completion];
+//                } else if (OCFViewControllerBackTypeDismiss == type) {
+//                    [self.navigator dismissReactorAnimated:YES completion:completion];
+//                } else if (OCFViewControllerBackTypeClose == type) {
+//                    [self.navigator closeReactorWithAnimationType:OCFViewControllerAnimationTypeFromString(self.reactor.animation) completion:completion];
+//                }
+//            } else {
+//                // forward
+//                NSURL *url = nil;
+//                if ([first isKindOfClass:NSURL.class]) {
+//                    url = (NSURL *)first;
+//                } else if ([first isKindOfClass:NSString.class]) {
+//                    url = OCFURLWithStr((NSString *)first);
+//                }
+//                if (!url) {
+//                    return;
+//                }
+//                NSDictionary *parameters = nil;
+//                if ([second isKindOfClass:NSDictionary.class]) {
+//                    parameters = (NSDictionary *)second;
+//                }
+//                [self.navigator routeURL:url withParameters:parameters];
+//            }
+//        }
+//    }];
 }
 
 - (BOOL (^)(NSError *error))errorFilter {
@@ -254,6 +300,16 @@
 
 - (BOOL)handleError {
     return NO;
+}
+
+- (BOOL)filterNavigateNext:(id)next {
+    if ([next isKindOfClass:OCFScrollModel.class]) {
+        NSString *target = [(OCFScrollModel *)next target];
+        if (target.length == 0) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 #pragma mark - Load
