@@ -25,7 +25,7 @@
 - (void)setupWithProvider:(OCFProvider *)provider navigator:(OCFNavigator *)navigator {
     self.provider = provider;
     self.navigator = navigator;
-    JLRoutes.globalRoutes[kOCFPatternHostLogin] = ^BOOL(NSDictionary *parameters) {
+    JLRoutes.globalRoutes[kOCFHostLogin] = ^BOOL(NSDictionary *parameters) {
         Class cls = NSClassFromString(@"LoginViewReactor");
         if (![cls isSubclassOfClass:OCFLoginViewReactor.class]) {
             return NO;
@@ -44,10 +44,10 @@
 //            }
 //        }];
 //    }];
-//    JLRoutes.globalRoutes[kOCFPatternHostToast] = ^BOOL(NSDictionary *parameters) {
+//    JLRoutes.globalRoutes[kOCFHostToast] = ^BOOL(NSDictionary *parameters) {
 //        return YES;
 //    };
-    JLRoutes.globalRoutes[kOCFPatternHostAny] = ^BOOL(NSDictionary *parameters) {
+    JLRoutes.globalRoutes[kOCFHostAny] = ^BOOL(NSDictionary *parameters) {
         NSString *scheme = OCFURLMember(parameters, JLRouteURLKey, nil).scheme;
         if (![scheme isEqualToString:@"http"] && ![scheme isEqualToString:@"https"]) {
             return NO;

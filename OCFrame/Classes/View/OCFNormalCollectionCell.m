@@ -57,7 +57,7 @@
 - (UILabel *)detailLabel {
     if (!_detailLabel) {
         UILabel *label = [[UILabel alloc] init];
-        label.font = OCFFont(13);
+        label.font = OCFFont(14);
         label.textColor = UIColor.ocf_body;
         _detailLabel = label;
     }
@@ -124,6 +124,7 @@
     self.detailLabel.text = reactor.model.detail;
     [self.detailLabel sizeToFit];
     self.iconImageView.hidden = ![self.iconImageView ocf_setImageWithSource:reactor.model.icon];
+    self.indicatorImageView.hidden = !reactor.model.indicated;
     [super bind:reactor];
 }
 

@@ -8,7 +8,7 @@
 #import "OCFCollectionViewReactor.h"
 #import "OCFConstant.h"
 #import "OCFReactive.h"
-#import "OCFSupplementary.h"
+#import "OCFCollectionSupplementary.h"
 #import "NSError+OCFrame.h"
 #import "UICollectionReusableView+OCFrame.h"
 
@@ -104,8 +104,8 @@
     
     for (NSInteger i = 0; i < names.count; ++i) {
         Class cls = NSClassFromString(names[i]);
-        if ([cls conformsToProtocol:@protocol(OCFSupplementary)]) {
-            id<OCFSupplementary> supplementary = (id<OCFSupplementary>)cls;
+        if ([cls conformsToProtocol:@protocol(OCFCollectionSupplementary)]) {
+            id<OCFCollectionSupplementary> supplementary = (id<OCFCollectionSupplementary>)cls;
             if ([kind isEqualToString:[supplementary kind]]) {
                 SEL sel = @selector(ocf_reuseId);
                 if ([cls respondsToSelector:sel]) {

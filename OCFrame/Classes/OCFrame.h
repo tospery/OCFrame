@@ -43,7 +43,7 @@
 
 #pragma mark - View
 #import "OCFReactiveView.h"
-#import "OCFSupplementaryView.h"
+#import "OCFCollectionSupplementaryView.h"
 #import "OCFCollectionCell.h"
 #import "OCFNavigationBar.h"
 #import "OCFPopupBackgroundView.h"
@@ -111,8 +111,8 @@
 #import "OCFReactive.h"
 #import "OCFNavigable.h"
 #import "OCFIdentifiable.h"
-#import "OCFSupplementary.h"
-//#import "OCFSupplementaryView.h"
+#import "OCFCollectionSupplementary.h"
+//#import "OCFCollectionSupplementaryView.h"
 //#import "OCFNavigationProtocol.h"
 //#import "OCFProvisionProtocol.h"
 //#import "OCFPageMenuIndicator.h"

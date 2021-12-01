@@ -1,5 +1,5 @@
 //
-//  OCFSupplementary.h
+//  OCFCollectionSupplementary.h
 //  Pods
 //
 //  Created by 杨建祥 on 2020/2/24.
@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol OCFSupplementary <NSObject>
+@protocol OCFCollectionSupplementary <NSObject>
 
 + (NSString *)kind;
 

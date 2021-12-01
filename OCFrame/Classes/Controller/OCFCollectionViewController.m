@@ -9,7 +9,7 @@
 #import "OCFConstant.h"
 #import "OCFFunction.h"
 #import "OCFCollectionCell.h"
-#import "OCFSupplementaryView.h"
+#import "OCFCollectionSupplementaryView.h"
 #import "OCFCollectionViewReactor.h"
 #import "UICollectionReusableView+OCFrame.h"
 #import "UICollectionView+OCFrame.h"
@@ -109,8 +109,8 @@
         [names addObjectsFromArray:self.reactor.footerNames];
         for (NSString *name in names) {
             Class cls = NSClassFromString(name);
-            if ([cls conformsToProtocol:@protocol(OCFSupplementary)] && [cls respondsToSelector:reuseSel]) {
-                id<OCFSupplementary> supplementary = (id<OCFSupplementary>)cls;
+            if ([cls conformsToProtocol:@protocol(OCFCollectionSupplementary)] && [cls respondsToSelector:reuseSel]) {
+                id<OCFCollectionSupplementary> supplementary = (id<OCFCollectionSupplementary>)cls;
                 NSString *kind = [supplementary kind];
                 NSString *reuse = ((id (*)(id, SEL))[cls methodForSelector:reuseSel])(cls, reuseSel);
                 if ((kind && [kind isKindOfClass:NSString.class] && kind.length != 0) &&

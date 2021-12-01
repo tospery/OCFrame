@@ -31,28 +31,39 @@
     return url;
 }
 
-+ (NSURL *)ocf_urlWithPath:(NSString *)path {
-    if (!path || ![path isKindOfClass:NSString.class] || !path.length || [path isEqualToString:@"/"]) {
+//+ (NSURL *)ocf_urlWithPath:(NSString *)path {
+//    if (!path || ![path isKindOfClass:NSString.class] || !path.length || [path isEqualToString:@"/"]) {
+//        return nil;
+//    }
+//    NSString *pathString = path;
+//    if ([pathString hasPrefix:@"/"]) {
+//        pathString = [pathString substringFromIndex:1];
+//    }
+//    NSString *urlString = OCFStrWithFmt(@"%@/%@", UIApplication.sharedApplication.ocf_baseWebUrlString, pathString);
+//    return [NSURL URLWithString:urlString];
+//}
+
++ (NSURL *)ocf_urlWithHostpath:(NSString *)hostpath {
+    if (!hostpath ||
+        ![hostpath isKindOfClass:NSString.class] ||
+        !hostpath.length ||
+        [hostpath isEqualToString:@"/"]) {
         return nil;
     }
-    NSString *pathString = path;
-    if ([pathString hasPrefix:@"/"]) {
-        pathString = [pathString substringFromIndex:1];
+    NSString *myHostpath = hostpath;
+    if ([myHostpath hasPrefix:@"/"]) {
+        myHostpath = [myHostpath substringFromIndex:1];
     }
-    NSString *urlString = OCFStrWithFmt(@"%@/%@", UIApplication.sharedApplication.ocf_baseWebUrlString, pathString);
+    NSString *urlString = OCFStrWithFmt(@"%@://%@", UIApplication.sharedApplication.ocf_urlScheme, myHostpath);
     return [NSURL URLWithString:urlString];
 }
 
-+ (NSURL *)ocf_urlWithPattern:(NSString *)pattern {
-    if (!pattern || ![pattern isKindOfClass:NSString.class] || !pattern.length || [pattern isEqualToString:@"/"]) {
-        return nil;
++ (NSURL *)ocf_urlWithUniversal:(NSString *)universal {
+    NSURL *url = [self ocf_urlWithString:universal];
+    if (!url && url.scheme.length != 0 && url.host.length != 0) {
+        return url;
     }
-    NSString *pathString = pattern;
-    if ([pathString hasPrefix:@"/"]) {
-        pathString = [pathString substringFromIndex:1];
-    }
-    NSString *urlString = OCFStrWithFmt(@"%@://%@", UIApplication.sharedApplication.ocf_urlScheme, pathString);
-    return [NSURL URLWithString:urlString];
+    return [self ocf_urlWithHostpath:universal];
 }
 
 - (NSURL *)ocf_appendingQueryParameters:(NSDictionary<NSString *, id> *)parameters {

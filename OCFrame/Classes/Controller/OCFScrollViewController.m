@@ -180,7 +180,7 @@
         }
         if (OCFrameManager.sharedInstance.autoLogin &&
             ![UIViewController.ocf_topMostViewController isKindOfClass:OCFLoginViewController.class]) {
-            [self.navigator routeURL:OCFURLWithPattern(OCFrameManager.sharedInstance.loginPattern) withParameters:nil];
+            [self.navigator routeURL:OCFURLWithHostpath(OCFrameManager.sharedInstance.loginPattern) withParameters:nil];
         }
     }
     

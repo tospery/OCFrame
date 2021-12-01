@@ -37,13 +37,13 @@
 #define kOCFSchemeResource                          (@"resource")
 #define kOCFSchemeDocuments                         (@"documents")
 
-#pragma mark - Pattern
-#define kOCFPatternHostAny                              (@"*")
-#define kOCFPatternHostLogin                            (@"login")
-#define kOCFPatternHostToast                            (@"toast")
-#define kOCFPatternHostAlert                            (@"alert")
-#define kOCFPatternHostSheet                            (@"sheet")
-#define kOCFPatternHostPopup                            (@"popup")
+#pragma mark - Host
+#define kOCFHostAny                              (@"*")
+#define kOCFHostLogin                            (@"login")
+#define kOCFHostToast                            (@"toast")
+#define kOCFHostAlert                            (@"alert")
+#define kOCFHostSheet                            (@"sheet")
+#define kOCFHostPopup                            (@"popup")
 
 #pragma mark - Animation
 #define kOCFAnimationFade                           (@"fade")

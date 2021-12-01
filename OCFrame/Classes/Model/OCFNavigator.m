@@ -182,27 +182,27 @@
 #pragma mark Toast
 - (void)toast:(NSString *)message {
     OCFCheck(message);
-    [self routeURL:OCFURLWithPattern(kOCFPatternHostToast) withParameters:@{
+    [self routeURL:OCFURLWithHostpath(kOCFHostToast) withParameters:@{
         OCFParameter.message: message
     }];
 }
 
 - (void)makeToastActivity:(OCFToastPosition)position {
-    [self routeURL:OCFURLWithPattern(kOCFPatternHostToast) withParameters:@{
+    [self routeURL:OCFURLWithHostpath(kOCFHostToast) withParameters:@{
         OCFParameter.active: @YES,
         OCFParameter.position: @(position)
     }];
 }
 
 - (void)hideToastActivity {
-    [self routeURL:OCFURLWithPattern(kOCFPatternHostToast) withParameters:@{
+    [self routeURL:OCFURLWithHostpath(kOCFHostToast) withParameters:@{
         OCFParameter.active: @NO
     }];
 }
 
 #pragma mark Login
 - (void)goLogin {
-    [self routeURL:OCFURLWithPattern(kOCFPatternHostLogin) withParameters:nil];
+    [self routeURL:OCFURLWithHostpath(kOCFHostLogin) withParameters:nil];
 }
 
 @end
