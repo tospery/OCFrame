@@ -9,6 +9,10 @@
 #import "NSValueTransformer+OCFrame.h"
 
 @implementation MTLJSONAdapter (OCFrame)
++ (NSValueTransformer *)BOOLJSONTransformer {
+    return [NSValueTransformer valueTransformerForName:OCFBOOLValueTransformerName];
+}
+
 + (NSValueTransformer *)NSStringJSONTransformer {
     return [NSValueTransformer valueTransformerForName:OCFStringValueTransformerName];
 }

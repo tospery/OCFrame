@@ -163,4 +163,15 @@ OCFDataIsNullOrEmpty(id obj) {
     return NO;
 }
 
+CG_INLINE BOOL
+OCFConvertToBool(id obj) {
+    if ([obj isKindOfClass:NSNumber.class]) {
+        return [(NSNumber *)obj boolValue];
+    }
+    if ([obj isKindOfClass:NSString.class]) {
+        return [(NSString *)obj integerValue] != 0 ? YES : NO;
+    }
+    return NO;
+}
+
 #endif /* OCFFunction_h */

@@ -7,15 +7,22 @@
 
 #import "NSValueTransformer+OCFrame.h"
 #import <Mantle/Mantle.h>
+#import "OCFFunction.h"
 #import "NSString+OCFrame.h"
 #import "UIColor+OCFrame.h"
 
+NSString * const OCFBOOLValueTransformerName = @"OCFBOOLValueTransformerName";
 NSString * const OCFStringValueTransformerName = @"OCFStringValueTransformerName";
 NSString * const OCFColorValueTransformerName = @"OCFColorValueTransformerName";
 
 @implementation NSValueTransformer (OCFrame)
 + (void)load {
     @autoreleasepool {
+        MTLValueTransformer *boolValueTransformer = [MTLValueTransformer transformerUsingForwardBlock:^id(id obj, BOOL *success, NSError *__autoreleasing *error) {
+            return @(OCFConvertToBool(obj));
+        }];
+        [NSValueTransformer setValueTransformer:boolValueTransformer forName:OCFBOOLValueTransformerName];
+        
         MTLValueTransformer *stringValueTransformer = [MTLValueTransformer transformerUsingForwardBlock:^id(id obj, BOOL *success, NSError *__autoreleasing *error) {
             return [NSString ocf_stringWithObject:obj];
         }];
