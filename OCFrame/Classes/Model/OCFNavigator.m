@@ -9,6 +9,7 @@
 #import <QMUIKit/QMUIKit.h>
 #import <JLRoutes/JLRoutes.h>
 #import "OCFConstant.h"
+#import "OCFFunction.h"
 #import "OCFParameter.h"
 #import "OCFViewReactor.h"
 #import "OCFViewController.h"
@@ -179,6 +180,13 @@
 }
 
 #pragma mark Toast
+- (void)toast:(NSString *)message {
+    OCFCheck(message);
+    [self routeURL:OCFURLWithPattern(kOCFPatternHostToast) withParameters:@{
+        OCFParameter.message: message
+    }];
+}
+
 - (void)makeToastActivity:(OCFToastPosition)position {
     [self routeURL:OCFURLWithPattern(kOCFPatternHostToast) withParameters:@{
         OCFParameter.active: @YES,

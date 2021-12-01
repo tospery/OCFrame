@@ -40,6 +40,7 @@ typedef NS_ENUM(NSInteger, OCFToastPosition){
 
 - (id)forwardReactor:(OCFViewReactor *)reactor;
 
+- (void)toast:(NSString *)message;
 - (void)makeToastActivity:(OCFToastPosition)position;
 - (void)hideToastActivity;
 
