@@ -8,8 +8,33 @@
 #ifndef OCFString_h
 #define OCFString_h
 
+#define kStringErrorUnknown                                     \
+NSLocalizedString(@"Error.Unknown", @"未知错误")
+#define kStringErrorRequest                                     \
+NSLocalizedString(@"Error.Request", @"HTTP请求错误")
+#define kStringErrorRedirect                                    \
+NSLocalizedString(@"Error.Redirect", @"HTTP重定向错误")
+#define kStringErrorClient                                      \
+NSLocalizedString(@"Error.Client", @"HTTP客户端错误")
+#define kStringErrorServer                                      \
+NSLocalizedString(@"Error.Server", @"HTTP服务器错误")
+#define kStringErrorIgnore                                      \
+NSLocalizedString(@"Error.Ignore", @"可忽略错误")
+#define kStringErrorNetwork                                     \
+NSLocalizedString(@"Error.Network", @"网络错误")
+#define kStringErrorNavigation                                     \
+NSLocalizedString(@"Error.Navigation", @"导航错误")
+#define kStringErrorDataFormat                                     \
+NSLocalizedString(@"Error.DataFormat", @"数据异常")
+#define kStringErrorListIsEmpty                                     \
+NSLocalizedString(@"Error.ListIsEmpty", @"列表为空")
+#define kStringErrorNotLoginedIn                                     \
+NSLocalizedString(@"Error.NotLoginedIn", @"用户未登录")
+
+
 #import "OCFFunction.h"
 
+// 备份
 /********************************************************************************************************
  1个字
  ********************************************************************************************************/
@@ -225,20 +250,10 @@ OCFT(NSLocalizedString(@"kStringBackToSeeEffect", @"直接返回查看效果"), 
 /********************************************************************************************************
 错误
 ********************************************************************************************************/
-#define kStringErrorRequest                             \
-OCFT(NSLocalizedString(@"kStringErrorRequest", @"HTTP请求错误"), @"HTTP请求错误")
-#define kStringErrorRedirect                            \
-OCFT(NSLocalizedString(@"kStringErrorRedirect", @"HTTP重定向错误"), @"HTTP重定向错误")
-#define kStringErrorClient                              \
-OCFT(NSLocalizedString(@"kStringErrorClient", @"HTTP客户端错误"), @"HTTP客户端错误")
-#define kStringErrorServer                              \
-OCFT(NSLocalizedString(@"kStringErrorServer", @"HTTP服务器错误"), @"HTTP服务器错误")
 #define kStringErrorEmpty                               \
 OCFT(NSLocalizedString(@"kStringErrorEmpty", @"HTTP数据为空"), @"HTTP数据为空")
 #define kStringErrorData                                \
 OCFT(NSLocalizedString(@"kStringErrorData", @"HTTP数据异常"), @"HTTP数据异常")
-#define kStringErrorUnknown                             \
-OCFT(NSLocalizedString(@"kStringErrorUnknown", @"未知错误"), @"未知错误")
 #define kStringErrorExpired                             \
 OCFT(NSLocalizedString(@"kStringErrorExpired", @"登录过期"), @"登录过期")
 

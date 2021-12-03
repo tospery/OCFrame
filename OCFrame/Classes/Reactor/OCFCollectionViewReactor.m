@@ -39,7 +39,7 @@
     }
     NSArray *items = (NSArray *)data;
     if (items.count == 0) {
-        self.error = [NSError ocf_errorWithCode:OCFErrorCodeEmpty];
+        self.error = [NSError ocf_errorWithCode:OCFErrorCodeListIsEmpty];
         return nil;
     }
     return @[items];

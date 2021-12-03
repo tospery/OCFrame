@@ -8,73 +8,84 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, OCFErrorCode){
-    OCFErrorCodeSuccess = 200,
-    OCFErrorCodeOK = OCFErrorCodeSuccess, // 2xx的状态码表示请求成功
-    OCFErrorCodeCreated,
-    OCFErrorCodeAccepted,
-    OCFErrorCodeNonAuthInfo,
-    OCFErrorCodeNoContent,
-    OCFErrorCodeResetContent,
-    OCFErrorCodePartialContent,
-    OCFErrorCodeMultipleChoices = 300, // 3xxx重定向错误
-    OCFErrorCodeMovedPermanently,
-    OCFErrorCodeFound,
-    OCFErrorCodeSeeOther,
-    OCFErrorCodeNotModified,
-    OCFErrorCodeUseProxy,
-    OCFErrorCodeUnused,
-    OCFErrorCodeTemporaryRedirect,
-    OCFErrorCodeBadRequest = 400,  // 4xx客户端错误
-    OCFErrorCodeUnauthorized,
-    OCFErrorCodePaymentRequired,
-    OCFErrorCodeForbidden,
-    OCFErrorCodeNotFound,
-    OCFErrorCodeMethodNotAllowed,
-    OCFErrorCodeNotAcceptable,
-    OCFErrorCodeProxyAuthRequired,
-    OCFErrorCodeRequestTimeout,
-    OCFErrorCodeConflict,
-    OCFErrorCodeGone,
-    OCFErrorCodeLengthRequired,
-    OCFErrorCodePreconditionFailed,
-    OCFErrorCodeRequestEntityTooLarge,
-    OCFErrorCodeRequestURITooLong,
-    OCFErrorCodeUnsupportedMediaType,
-    OCFErrorCodeRequestedRangeNotSatisfiable,
-    OCFErrorCodeExpectationFailed,
-    OCFErrorCodeInternalServerError = 500, // 5xx服务器错误
-    OCFErrorCodeNotImplemented,
-    OCFErrorCodeBadGateway,
-    OCFErrorCodeServiceUnavailable,
-    OCFErrorCodeGatewayTimeout,
-    OCFErrorCodeHTTPVersionNotSupported,
+    OCFErrorCodeNone = 200,
+    OCFErrorCodeRequest = 201,
+    OCFErrorCodeRedirect = 300,
+    OCFErrorCodeClient = 400,
+    OCFErrorCodeNotLoginedIn = 401,
+    OCFErrorCodeServer = 500,
+    OCFErrorCodeIgnore = 10000,      // App自定义错误
+    OCFErrorCodeUnknown,
+    OCFErrorCodeNetwork,
+    OCFErrorCodeNavigation,
+    OCFErrorCodeDataFormat,
+    OCFErrorCodeListIsEmpty
     
-    OCFErrorCodePlaceholder = 10000,      // App自定义错误
+//    OCFErrorCodeSuccess = 200,
+//    OCFErrorCodeOK = OCFErrorCodeSuccess, // 2xx的状态码表示请求成功
+//    OCFErrorCodeCreated,
+//    OCFErrorCodeAccepted,
+//    OCFErrorCodeNonAuthInfo,
+//    OCFErrorCodeNoContent,
+//    OCFErrorCodeResetContent,
+//    OCFErrorCodePartialContent,
+//    OCFErrorCodeMultipleChoices = 300, // 3xxx重定向错误
+//    OCFErrorCodeMovedPermanently,
+//    OCFErrorCodeFound,
+//    OCFErrorCodeSeeOther,
+//    OCFErrorCodeNotModified,
+//    OCFErrorCodeUseProxy,
+//    OCFErrorCodeUnused,
+//    OCFErrorCodeTemporaryRedirect,
+//    OCFErrorCodeBadRequest = 400,  // 4xx客户端错误
+//    OCFErrorCodeUnauthorized,
+//    OCFErrorCodePaymentRequired,
+//    OCFErrorCodeForbidden,
+//    OCFErrorCodeNotFound,
+//    OCFErrorCodeMethodNotAllowed,
+//    OCFErrorCodeNotAcceptable,
+//    OCFErrorCodeProxyAuthRequired,
+//    OCFErrorCodeRequestTimeout,
+//    OCFErrorCodeConflict,
+//    OCFErrorCodeGone,
+//    OCFErrorCodeLengthRequired,
+//    OCFErrorCodePreconditionFailed,
+//    OCFErrorCodeRequestEntityTooLarge,
+//    OCFErrorCodeRequestURITooLong,
+//    OCFErrorCodeUnsupportedMediaType,
+//    OCFErrorCodeRequestedRangeNotSatisfiable,
+//    OCFErrorCodeExpectationFailed,
+//    OCFErrorCodeInternalServerError = 500, // 5xx服务器错误
+//    OCFErrorCodeNotImplemented,
+//    OCFErrorCodeBadGateway,
+//    OCFErrorCodeServiceUnavailable,
+//    OCFErrorCodeGatewayTimeout,
+//    OCFErrorCodeHTTPVersionNotSupported,
     //    OCFErrorCodeNetwork,
     //    OCFErrorCodeServer,
-    OCFErrorCodeEmpty,
-    OCFErrorCodeData,
-    OCFErrorCodeLoginUnfinished,
-    OCFErrorCodeLoginFailure,
-    OCFErrorCodeArgumentInvalid,
-    OCFErrorCodeLoginHasnotAccount,
-    OCFErrorCodeLoginWrongPassword,
-    OCFErrorCodeLoginNotPermission,
-    OCFErrorCodeSigninFailure,
-    OCFErrorCodeLocateClosed,
-    OCFErrorCodeLocateDenied,
-    OCFErrorCodeLocateFailure,
-    OCFErrorCodeDeviceNotSupport,
-    OCFErrorCodeFileNotPicture,
-    OCFErrorCodeCheckUpdateFailure,
-    OCFErrorCodeExecuteFailure,
-    OCFErrorCodeActionFailure,
-    OCFErrorCodeParseFailure,
-    
-    OCFErrorCodeTotal
+//    OCFErrorCodeEmpty,
+//    OCFErrorCodeData,
+//    OCFErrorCodeLoginUnfinished,
+//    OCFErrorCodeLoginFailure,
+//    OCFErrorCodeArgumentInvalid,
+//    OCFErrorCodeLoginHasnotAccount,
+//    OCFErrorCodeLoginWrongPassword,
+//    OCFErrorCodeLoginNotPermission,
+//    OCFErrorCodeSigninFailure,
+//    OCFErrorCodeLocateClosed,
+//    OCFErrorCodeLocateDenied,
+//    OCFErrorCodeLocateFailure,
+//    OCFErrorCodeDeviceNotSupport,
+//    OCFErrorCodeFileNotPicture,
+//    OCFErrorCodeCheckUpdateFailure,
+//    OCFErrorCodeExecuteFailure,
+//    OCFErrorCodeActionFailure,
+//    OCFErrorCodeParseFailure,
+//
+//    OCFErrorCodeTotal
 };
 
-NSString * OCFErrorCodeString(OCFErrorCode code);
+//NSString * OCFErrorCodeString(OCFErrorCode code);
 
 @interface NSError (OCFrame)
 @property (nonatomic, assign, readonly) BOOL ocf_isNetwork;
@@ -93,6 +104,8 @@ NSString * OCFErrorCodeString(OCFErrorCode code);
 
 + (NSError *)ocf_errorWithCode:(NSInteger)code;
 + (NSError *)ocf_errorWithCode:(NSInteger)code description:(NSString *)description;
+
++ (NSString *)ocf_descriptionWithCode:(NSInteger)code;
 
 @end
 

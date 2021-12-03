@@ -11,6 +11,7 @@
 #import "OCFType.h"
 #import "OCFUser.h"
 #import "OCFProvider.h"
+#import "OCFNavigable.h"
 
 typedef NS_ENUM(NSInteger, OCFRequestMode) {
     OCFRequestModeNone,

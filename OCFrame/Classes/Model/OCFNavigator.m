@@ -65,11 +65,6 @@
 //    return navigationController;
 //}
 
-#pragma mark - Route
-- (BOOL)routeURL:(NSURL *)url withParameters:(NSDictionary *)parameters {
-    return [JLRoutes routeURL:url withParameters:parameters];
-}
-
 #pragma mark - Private
 - (OCFViewController *)viewController:(OCFViewReactor *)reactor {
     NSString *name = NSStringFromClass(reactor.class);
@@ -140,11 +135,91 @@
     [dismissingViewController dismissViewControllerAnimated:animated completion:completion];
 }
 
-- (void)closeReactorWithAnimationType:(OCFViewControllerAnimationType)animationType completion:(OCFVoidBlock)completion {
+- (void)fadeawayReactorWithAnimationType:(OCFViewControllerAnimationType)animationType completion:(OCFVoidBlock)completion {
     [UINavigationController.ocf_currentNavigationController ocf_closeViewControllerWithAnimationType:animationType dismissed:completion];
 }
 
-#pragma mark Forward
+#pragma mark - URL
+- (BOOL)routeURL:(NSURL *)url withParameters:(NSDictionary *)parameters {
+    return [JLRoutes routeURL:url withParameters:parameters];
+}
+
+- (RACSignal *)rac_routeURL:(NSURL *)url withParameters:(NSDictionary *)parameters {
+    @weakify(self)
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        @strongify(self)
+        NSMutableDictionary *myParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
+        [myParameters setObject:subscriber forKey:OCFParameter.subscriber];
+        [self routeURL:url withParameters:myParameters];
+        return [RACDisposable disposableWithBlock:^{
+        }];
+    }];
+}
+
+#pragma mark Toast
+- (void)toastMessage:(NSString *)message {
+    OCFCheck(message);
+    [self routeURL:OCFURLWithHostpath(kOCFHostToast) withParameters:@{
+        OCFParameter.message: message
+    }];
+}
+
+- (void)showToastActivity:(OCFToastPosition)position {
+    [self routeURL:OCFURLWithHostpath(kOCFHostToast) withParameters:@{
+        OCFParameter.active: @YES,
+        OCFParameter.position: @(position)
+    }];
+}
+
+- (void)hideToastActivity {
+    [self routeURL:OCFURLWithHostpath(kOCFHostToast) withParameters:@{
+        OCFParameter.active: @NO
+    }];
+}
+
+#pragma mark Alert
+- (void)alertTitle:(NSString *)title message:(NSString *)message actions:(NSArray<NSNumber *> *)actions {
+    if (title.length == 0 && message.length == 0) {
+        return;
+    }
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:3];
+    if (title.length != 0) {
+        [parameters setObject:title forKey:OCFParameter.title];
+    }
+    if (message.length != 0) {
+        [parameters setObject:message forKey:OCFParameter.message];
+    }
+    if (actions.count != 0) {
+        [parameters setObject:actions forKey:OCFParameter.actions];
+    }
+    [self routeURL:OCFURLWithHostpath(kOCFHostAlert) withParameters:parameters];
+}
+
+- (RACSignal *)rac_alertTitle:(NSString *)title message:(NSString *)message actions:(NSArray<NSNumber *> *)actions {
+    if (title.length == 0 && message.length == 0) {
+        return RACSignal.empty;
+    }
+    @weakify(self)
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        @strongify(self)
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:3];
+        if (title.length != 0) {
+            [parameters setObject:title forKey:OCFParameter.title];
+        }
+        if (message.length != 0) {
+            [parameters setObject:message forKey:OCFParameter.message];
+        }
+        if (actions.count != 0) {
+            [parameters setObject:actions forKey:OCFParameter.actions];
+        }
+        [parameters setObject:subscriber forKey:OCFParameter.subscriber];
+        [self routeURL:OCFURLWithHostpath(kOCFHostAlert) withParameters:parameters];
+        return [RACDisposable disposableWithBlock:^{
+        }];
+    }];
+}
+
+#pragma mark Forward (push/present/popup)
 - (id)forwardReactor:(OCFViewReactor *)reactor {
     UIViewController *viewController = (UIViewController *)[self viewController:reactor];
     UINavigationController *navigationController = UINavigationController.ocf_currentNavigationController;
@@ -165,39 +240,6 @@
         [presentingViewController presentViewController:viewController animated:reactor.animated completion:nil];
     }
     return viewController;
-}
-
-- (RACSignal *)rac_routeURL:(NSURL *)url withParameters:(NSDictionary *)parameters {
-    @weakify(self)
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        @strongify(self)
-        NSMutableDictionary *myParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
-        [myParameters setObject:subscriber forKey:OCFParameter.subscriber];
-        [self routeURL:url withParameters:myParameters];
-        return [RACDisposable disposableWithBlock:^{
-        }];
-    }];
-}
-
-#pragma mark Toast
-- (void)toast:(NSString *)message {
-    OCFCheck(message);
-    [self routeURL:OCFURLWithHostpath(kOCFHostToast) withParameters:@{
-        OCFParameter.message: message
-    }];
-}
-
-- (void)makeToastActivity:(OCFToastPosition)position {
-    [self routeURL:OCFURLWithHostpath(kOCFHostToast) withParameters:@{
-        OCFParameter.active: @YES,
-        OCFParameter.position: @(position)
-    }];
-}
-
-- (void)hideToastActivity {
-    [self routeURL:OCFURLWithHostpath(kOCFHostToast) withParameters:@{
-        OCFParameter.active: @NO
-    }];
 }
 
 #pragma mark Login

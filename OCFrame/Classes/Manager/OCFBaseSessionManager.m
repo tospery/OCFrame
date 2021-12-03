@@ -30,12 +30,12 @@ typedef RACSignal *(^MapBlock)(OCFBaseResponse *);
         ]];
         self.responseSerializer.acceptableContentTypes = contentTypes;
         self.mapBlock = ^RACSignal *(OCFBaseResponse *response) {
-            if (response.code != OCFErrorCodeSuccess) {
+            if (response.code != OCFErrorCodeNone) {
                 return [RACSignal error:[NSError ocf_errorWithCode:response.code description:response.message]];
             }
             if ([response.result isKindOfClass:OCFBaseList.class] &&
                 [(OCFBaseList *)response.result items].count == 0) {
-                return [RACSignal error:[NSError ocf_errorWithCode:OCFErrorCodeEmpty]];
+                return [RACSignal error:[NSError ocf_errorWithCode:OCFErrorCodeListIsEmpty]];
             }
             return [RACSignal return:response.result];
         };

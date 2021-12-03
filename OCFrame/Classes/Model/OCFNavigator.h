@@ -6,8 +6,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <ReactiveObjC/ReactiveObjC.h>
-#import <ReactiveObjC/NSObject+RACKVOWrapper.h>
 #import "OCFNavigable.h"
 
 @class OCFViewController;
@@ -19,9 +17,6 @@
 
 //- (void)pushNavigationController:(UINavigationController *)navigationController;
 //- (UINavigationController *)popNavigationController;
-
-- (BOOL)routeURL:(NSURL *)url withParameters:(NSDictionary *)parameters;
-- (RACSignal *)rac_routeURL:(NSURL *)url withParameters:(NSDictionary *)parameters;
 
 - (void)goLogin;
 

@@ -6,6 +6,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ReactiveObjC/ReactiveObjC.h>
+#import <ReactiveObjC/NSObject+RACKVOWrapper.h>
 #import "OCFType.h"
 #import "UIViewController+OCFrame.h"
 
@@ -16,6 +18,15 @@
 //    OCFPopupStyleSheet,
 //    OCFPopupStylePopup
 //};
+
+typedef NS_ENUM(NSInteger, OCFForwardType){
+    OCFForwardTypePush,
+    OCFForwardTypePresent,
+    OCFForwardTypeToast,
+    OCFForwardTypeAlert,
+    OCFForwardTypeSheet,
+    OCFForwardTypePopup
+};
 
 typedef NS_ENUM(NSInteger, OCFToastPosition){
     OCFToastPositionTop,
@@ -36,16 +47,37 @@ typedef NS_ENUM(NSInteger, OCFToastPosition){
 - (void)popReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion;
 - (void)popToRootReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion;
 - (void)dismissReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion;
-- (void)closeReactorWithAnimationType:(OCFViewControllerAnimationType)animationType completion:(OCFVoidBlock)completion;
+- (void)fadeawayReactorWithAnimationType:(OCFViewControllerAnimationType)animationType completion:(OCFVoidBlock)completion;
 
 - (id)forwardReactor:(OCFViewReactor *)reactor;
 
-- (void)toast:(NSString *)message;
-- (void)makeToastActivity:(OCFToastPosition)position;
-- (void)hideToastActivity;
-
+//- (void)makeToastActivity:(OCFToastPosition)position;
 // 无reactor: Toast/Alert
 // 有reactor: push/present/popup<issheet=false>
 
+#pragma mark - URL
+- (BOOL)routeURL:(NSURL *)url withParameters:(NSDictionary *)parameters;
+- (RACSignal *)rac_routeURL:(NSURL *)url withParameters:(NSDictionary *)parameters;
+
+#pragma mark - Convenient
+#pragma mark toast
+- (void)toastMessage:(NSString *)message;
+- (void)showToastActivity:(OCFToastPosition)position;
+- (void)hideToastActivity;
+
+#pragma mark alert
+- (void)alertTitle:(NSString *)title message:(NSString *)message actions:(NSArray<NSNumber *> *)actions;
+- (RACSignal *)rac_alertTitle:(NSString *)title message:(NSString *)message actions:(NSArray<NSNumber *> *)actions;
+
+#pragma mark forward (push/present/popup)
+
 @end
 
+
+CG_INLINE OCFForwardType
+OCFForwardTypeWithDft(NSInteger value, OCFForwardType dft) {
+    if (value >= OCFForwardTypePush && value <= OCFForwardTypePopup) {
+        return value;
+    }
+    return dft;
+}

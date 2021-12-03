@@ -132,7 +132,7 @@
             if (self.reactor.user.isLogined) {
                 [self triggerLoad];
             } else {
-                if (OCFErrorCodeUnauthorized != self.reactor.error.code) {
+                if (OCFErrorCodeNotLoginedIn != self.reactor.error.code) {
                     [self triggerLoad];
                 }
             }
@@ -174,7 +174,7 @@
         }
     }
     
-    if (OCFErrorCodeUnauthorized == self.reactor.error.code) {
+    if (OCFErrorCodeNotLoginedIn == self.reactor.error.code) {
         if (self.reactor.user.isLogined) {
             [self.reactor.user logout];
         }

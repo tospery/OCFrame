@@ -128,14 +128,6 @@ OCFArrWithDft(NSArray *value, NSArray *dft) {
     return value;
 }
 
-CG_INLINE OCFForwardType
-OCFForwardTypeWithDft(NSInteger value, OCFForwardType dft) {
-    if (value >= OCFForwardTypePush && value <= OCFForwardTypePopup) {
-        return value;
-    }
-    return dft;
-}
-
 CG_INLINE BOOL
 OCFDataIsNullOrEmpty(id obj) {
     if (!obj) {

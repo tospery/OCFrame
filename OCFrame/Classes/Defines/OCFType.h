@@ -8,15 +8,6 @@
 #ifndef OCFType_h
 #define OCFType_h
 
-typedef NS_ENUM(NSInteger, OCFForwardType){
-    OCFForwardTypePush,
-    OCFForwardTypePresent,
-    OCFForwardTypeToast,
-    OCFForwardTypeAlert,
-    OCFForwardTypeSheet,
-    OCFForwardTypePopup
-};
-
 #pragma mark - Block类型
 typedef void        (^OCFVoidBlock)(void);
 typedef BOOL        (^OCFBoolBlock)(void);

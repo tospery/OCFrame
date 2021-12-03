@@ -178,7 +178,7 @@
     [[self.reactor.executing skip:1] subscribeNext:^(NSNumber *executing) {
         @strongify(self)
         if (executing.boolValue) {
-            [self.navigator makeToastActivity:OCFToastPositionCenter];
+            [self.navigator showToastActivity:OCFToastPositionCenter];
         } else {
             [self.navigator hideToastActivity];
         }
@@ -259,7 +259,7 @@
 //                } else if (OCFViewControllerBackTypeDismiss == type) {
 //                    [self.navigator dismissReactorAnimated:YES completion:completion];
 //                } else if (OCFViewControllerBackTypeClose == type) {
-//                    [self.navigator closeReactorWithAnimationType:OCFViewControllerAnimationTypeFromString(self.reactor.animation) completion:completion];
+//                    [self.navigator fadeawayReactorWithAnimationType:OCFViewControllerAnimationTypeFromString(self.reactor.animation) completion:completion];
 //                }
 //            } else {
 //                // forward
@@ -365,7 +365,7 @@
 #pragma mark - Update
 - (void)beginUpdate {
     self.reactor.requestMode = OCFRequestModeUpdate;
-    [self.navigator makeToastActivity:OCFToastPositionCenter];
+    [self.navigator showToastActivity:OCFToastPositionCenter];
 }
 
 - (void)triggerUpdate {

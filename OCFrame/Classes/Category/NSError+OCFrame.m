@@ -20,7 +20,7 @@
 
 - (BOOL)ocf_isServer {
     // return (self.code > OCFErrorCodeSuccess && self.code <= OCFErrorCodeHTTPVersionNotSupported);
-    return self.code == OCFErrorCodeInternalServerError;
+    return self.code == OCFErrorCodeServer;
 }
 
 - (NSString *)ocf_retryTitle {
@@ -72,118 +72,148 @@
 }
 
 + (NSError *)ocf_errorWithCode:(NSInteger)code {
-    return [NSError ocf_errorWithCode:code description:OCFErrorCodeString(code)];
+    return [NSError ocf_errorWithCode:code description:[self ocf_descriptionWithCode:code]];
 }
 
 + (NSError *)ocf_errorWithCode:(NSInteger)code description:(NSString *)description {
     return [NSError errorWithDomain:UIApplication.sharedApplication.ocf_bundleID code:code userInfo:@{NSLocalizedDescriptionKey: OCFStrWithDft(description, kStringErrorUnknown)}];
 }
 
++ (NSString *)ocf_descriptionWithCode:(NSInteger)code {
+    NSString *result = kStringErrorUnknown;
+    if (code > OCFErrorCodeNone && code < OCFErrorCodeRedirect) {
+        result = kStringErrorRequest;
+    } else if (code >= OCFErrorCodeRedirect && code < OCFErrorCodeClient) {
+        result = kStringErrorRedirect;
+    } else if (code >= OCFErrorCodeClient && code < OCFErrorCodeServer) {
+        result = kStringErrorClient;
+    } else if (code >= OCFErrorCodeServer && code < OCFErrorCodeIgnore) {
+        result = kStringErrorServer;
+    } else {
+        if (code == OCFErrorCodeIgnore) {
+            result = kStringErrorIgnore;
+        } else if (code == OCFErrorCodeUnknown) {
+            result = kStringErrorUnknown;
+        } else if (code == OCFErrorCodeNetwork) {
+            result = kStringErrorNetwork;
+        } else if (code == OCFErrorCodeNavigation) {
+            result = kStringErrorNavigation;
+        } else if (code == OCFErrorCodeDataFormat) {
+            result = kStringErrorDataFormat;
+        } else if (code == OCFErrorCodeListIsEmpty) {
+            result = kStringErrorListIsEmpty;
+        } else if (code == OCFErrorCodeNotLoginedIn) {
+            result = kStringErrorNotLoginedIn;
+        }
+    }
+    return result;
+}
+
 @end
 
 
-NSString * OCFErrorCodeString(OCFErrorCode code) {
-    NSString *result = kStringErrorUnknown;
-    if (code >= OCFErrorCodeCreated && code <= OCFErrorCodePartialContent) {
-        result = kStringErrorRequest;
-    }else if (code >= OCFErrorCodeMultipleChoices && code <= OCFErrorCodeTemporaryRedirect) {
-        result = kStringErrorRedirect;
-    }else if (code >= OCFErrorCodeBadRequest && code <= OCFErrorCodeExpectationFailed) {
-        result = kStringErrorClient;
-    }else if (code >= OCFErrorCodeInternalServerError && code <= OCFErrorCodeHTTPVersionNotSupported) {
-        result = kStringErrorServer;
-    }
-    
-    if (code == OCFErrorCodeUnauthorized) {
-        result = kStringErrorExpired;
-    } else if (code == OCFErrorCodeData) {
-        result = kStringErrorData;
-    } else if (code == OCFErrorCodeEmpty) {
-        result = kStringErrorEmpty;
-    }
-    
-//    else {
-//        switch (code) {
-//            case OCFErrorCodePlaceholder: {
-//                result = kStringErrorUnknown;
-//                break;
-//            }
-//            case OCFErrorCodeData: {
-//                result = kStringErrorData;
-//                break;
-//            }
-//            case OCFErrorCodeLoginUnfinished: {
-//                result = kStringLoginUnfinished;
-//                break;
-//            }
-//            case OCFErrorCodeLoginFailure: {
-//                result = kStringLoginFailure;
-//                break;
-//            }
-//            case OCFErrorCodeArgumentInvalid: {
-//                result = kStringArgumentError;
-//                break;
-//            }
-//            case OCFErrorCodeEmpty: {
-//                result = kStringDataEmpty;
-//                break;
-//            }
-//            case OCFErrorCodeLoginHasnotAccount: {
-//                result = kStringLoginHasnotAccount;
-//                break;
-//            }
-//            case OCFErrorCodeLoginWrongPassword: {
-//                result = kStringLoginWrongPassword;
-//                break;
-//            }
-//            case OCFErrorCodeLoginNotPermission: {
-//                result = kStringLoginNotPermission;
-//                break;
-//            }
-//            case OCFErrorCodeSigninFailure: {
-//                result = kStringSigninFailure;
-//                break;
-//            }
-//            case OCFErrorCodeLocateClosed: {
-//                result = kStringLocateClosed;
-//                break;
-//            }
-//            case OCFErrorCodeLocateDenied: {
-//                result = kStringLocateDenied;
-//                break;
-//            }
-//            case OCFErrorCodeLocateFailure: {
-//                result = kStringLocateFailure;
-//                break;
-//            }
-//            case OCFErrorCodeDeviceNotSupport: {
-//                result = kStringDeviceNotSupport;
-//                break;
-//            }
-//            case OCFErrorCodeFileNotPicture: {
-//                result = kStringFileNotPicture;
-//                break;
-//            }
-//            case OCFErrorCodeCheckUpdateFailure: {
-//                result = kStringCheckUpdateFailure;
-//                break;
-//            }
-//            case OCFErrorCodeExecuteFailure: {
-//                result = kStringExecuteFailure;
-//                break;
-//            }
-//            case OCFErrorCodeActionFailure: {
-//                result = kStringActionFailure;
-//                break;
-//            }
-//            case OCFErrorCodeParseFailure: {
-//                result = kStringParseFailure;
-//                break;
-//            }
-//            default:
-//                break;
-//        }
-//    }
-
-    return result;
-}
+//NSString * OCFErrorCodeString(OCFErrorCode code) {
+//    NSString *result = kStringErrorUnknown;
+////    if (code >= OCFErrorCodeCreated && code <= OCFErrorCodePartialContent) {
+////        result = kStringErrorRequest;
+////    }else if (code >= OCFErrorCodeMultipleChoices && code <= OCFErrorCodeTemporaryRedirect) {
+////        result = kStringErrorRedirect;
+////    }else if (code >= OCFErrorCodeBadRequest && code <= OCFErrorCodeExpectationFailed) {
+////        result = kStringErrorClient;
+////    }else if (code >= OCFErrorCodeInternalServerError && code <= OCFErrorCodeHTTPVersionNotSupported) {
+////        result = kStringErrorServer;
+////    }
+//
+////    if (code == OCFErrorCodeUnauthorized) {
+////        result = kStringErrorExpired;
+////    } else if (code == OCFErrorCodeData) {
+////        result = kStringErrorData;
+////    } else if (code == OCFErrorCodeEmpty) {
+////        result = kStringErrorEmpty;
+////    }
+//
+////    else {
+////        switch (code) {
+////            case OCFErrorCodePlaceholder: {
+////                result = kStringErrorUnknown;
+////                break;
+////            }
+////            case OCFErrorCodeData: {
+////                result = kStringErrorData;
+////                break;
+////            }
+////            case OCFErrorCodeLoginUnfinished: {
+////                result = kStringLoginUnfinished;
+////                break;
+////            }
+////            case OCFErrorCodeLoginFailure: {
+////                result = kStringLoginFailure;
+////                break;
+////            }
+////            case OCFErrorCodeArgumentInvalid: {
+////                result = kStringArgumentError;
+////                break;
+////            }
+////            case OCFErrorCodeEmpty: {
+////                result = kStringDataEmpty;
+////                break;
+////            }
+////            case OCFErrorCodeLoginHasnotAccount: {
+////                result = kStringLoginHasnotAccount;
+////                break;
+////            }
+////            case OCFErrorCodeLoginWrongPassword: {
+////                result = kStringLoginWrongPassword;
+////                break;
+////            }
+////            case OCFErrorCodeLoginNotPermission: {
+////                result = kStringLoginNotPermission;
+////                break;
+////            }
+////            case OCFErrorCodeSigninFailure: {
+////                result = kStringSigninFailure;
+////                break;
+////            }
+////            case OCFErrorCodeLocateClosed: {
+////                result = kStringLocateClosed;
+////                break;
+////            }
+////            case OCFErrorCodeLocateDenied: {
+////                result = kStringLocateDenied;
+////                break;
+////            }
+////            case OCFErrorCodeLocateFailure: {
+////                result = kStringLocateFailure;
+////                break;
+////            }
+////            case OCFErrorCodeDeviceNotSupport: {
+////                result = kStringDeviceNotSupport;
+////                break;
+////            }
+////            case OCFErrorCodeFileNotPicture: {
+////                result = kStringFileNotPicture;
+////                break;
+////            }
+////            case OCFErrorCodeCheckUpdateFailure: {
+////                result = kStringCheckUpdateFailure;
+////                break;
+////            }
+////            case OCFErrorCodeExecuteFailure: {
+////                result = kStringExecuteFailure;
+////                break;
+////            }
+////            case OCFErrorCodeActionFailure: {
+////                result = kStringActionFailure;
+////                break;
+////            }
+////            case OCFErrorCodeParseFailure: {
+////                result = kStringParseFailure;
+////                break;
+////            }
+////            default:
+////                break;
+////        }
+////    }
+//
+//    return result;
+//}
