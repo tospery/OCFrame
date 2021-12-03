@@ -92,6 +92,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    [self.titleLabel sizeToFit];
     if (self.iconImageView.isHidden) {
         self.iconImageView.frame = CGRectZero;
         self.iconImageView.qmui_left = 15;
@@ -109,6 +110,7 @@
     self.indicatorImageView.qmui_right = self.contentView.qmui_width - 15;
     self.indicatorImageView.qmui_top = self.indicatorImageView.qmui_topWhenCenterInSuperview;
     
+    [self.detailLabel sizeToFit];
     self.detailLabel.qmui_right = self.indicatorImageView.qmui_left - 5;
     if (self.indicatorImageView.hidden) {
         self.detailLabel.qmui_right += self.indicatorImageView.qmui_width;
@@ -117,14 +119,42 @@
 }
 
 - (void)bind:(OCFNormalCollectionItem *)reactor {
-    self.titleLabel.hidden = (reactor.model.title.length == 0);
-    self.titleLabel.text = reactor.model.title;
-    [self.titleLabel sizeToFit];
-    self.detailLabel.hidden = (reactor.model.detail.length == 0);
-    self.detailLabel.text = reactor.model.detail;
-    [self.detailLabel sizeToFit];
-    self.iconImageView.hidden = ![self.iconImageView ocf_setImageWithSource:reactor.model.icon];
-    self.indicatorImageView.hidden = !reactor.model.indicated;
+    RACSignal *titleSignal = RACObserve(reactor.model, title).distinctUntilChanged;
+    RAC(self.titleLabel, text) = [titleSignal takeUntil:self.rac_prepareForReuseSignal];
+    RAC(self.titleLabel, hidden) = [[titleSignal map:^NSNumber *(NSString *text) {
+        return @(text.length == 0);
+    }].distinctUntilChanged takeUntil:self.rac_prepareForReuseSignal];
+    
+    RACSignal *detailSignal = RACObserve(reactor.model, detail).distinctUntilChanged;
+    RAC(self.detailLabel, text) = [detailSignal takeUntil:self.rac_prepareForReuseSignal];
+    RAC(self.detailLabel, hidden) = [[detailSignal map:^NSNumber *(NSString *text) {
+        return @(text.length == 0);
+    }].distinctUntilChanged takeUntil:self.rac_prepareForReuseSignal];
+    
+    @weakify(self)
+    RAC(self.iconImageView, hidden) = [[RACObserve(reactor.model, icon).distinctUntilChanged map:^NSNumber *(NSString *string) {
+        @strongify(self)
+        return @(![self.iconImageView ocf_setImageWithSource:string]);
+    }].distinctUntilChanged takeUntil:self.rac_prepareForReuseSignal];
+    
+    RAC(self.indicatorImageView, hidden) = [[RACObserve(reactor.model, indicated).distinctUntilChanged map:^NSNumber *(NSNumber *show) {
+        return @(!show.boolValue);
+    }].distinctUntilChanged takeUntil:self.rac_prepareForReuseSignal];
+    
+    NSArray *layouts = @[
+        RACObserve(self.titleLabel, text).distinctUntilChanged,
+        RACObserve(self.titleLabel, hidden).distinctUntilChanged,
+        RACObserve(self.detailLabel, text).distinctUntilChanged,
+        RACObserve(self.detailLabel, hidden).distinctUntilChanged,
+        RACObserve(self.iconImageView, image).distinctUntilChanged,
+        RACObserve(self.iconImageView, hidden).distinctUntilChanged,
+        RACObserve(self.indicatorImageView, hidden).distinctUntilChanged
+    ];
+    [[[[RACSignal merge:layouts] takeUntil:self.rac_prepareForReuseSignal] skip:layouts.count] subscribeNext:^(id x) {
+        @strongify(self)
+        [self setNeedsLayout];
+        [self layoutIfNeeded];
+    }];
     [super bind:reactor];
 }
 
