@@ -201,47 +201,41 @@
     }];
      [[self.reactor.navigate filter:^BOOL(id value) {
          @strongify(self)
-         return [self filterNavigateNext:value];
+         return [self filterNavigate:value];
      }] subscribeNext:^(id input) {
          @strongify(self)
-         if ([input isKindOfClass:RACTuple.class] && [(RACTuple *)input count] == 2) {
-             RACTuple *tuple = (RACTuple *)input;
-             id first = tuple.first;
-             id second = tuple.second;
-             if ([first isKindOfClass:NSNumber.class]) {
-                 // back
-                 OCFViewControllerBackType type = [(NSNumber *)first integerValue];
-                 @weakify(self)
-                 OCFVoidBlock completion = ^(void) {
-                     @strongify(self)
-                     [self.reactor.resultCommand execute:second];
-                 };
-                 if (OCFViewControllerBackTypePopOne == type) {
-                     [self.navigator popReactorAnimated:YES completion:completion];
-                 } else if (OCFViewControllerBackTypePopAll == type) {
-                     [self.navigator popToRootReactorAnimated:YES completion:completion];
-                 } else if (OCFViewControllerBackTypeDismiss == type) {
-                     [self.navigator dismissReactorAnimated:YES completion:completion];
-                 } else if (OCFViewControllerBackTypeClose == type) {
-                     [self.navigator closeReactorWithAnimationType:OCFViewControllerAnimationTypeFromString(self.reactor.animation) completion:completion];
+         RACTuple *tuple = [self convertNavigate:input];
+         if (!tuple) {
+             return;
+         }
+         NSURL *url = (NSURL *)tuple.first;
+         NSDictionary *parameters = (NSDictionary *)tuple.second;
+         if ([url.host isEqualToString:kOCFHostBack]) {
+             // back
+             @weakify(self)
+             OCFVoidBlock completion = ^(void) {
+                 @strongify(self)
+                 // 应该用self.result，并且也该onComplition
+                 // [self.reactor.resultCommand execute:second];
+                 [self.reactor.resultCommand execute:nil];
+             };
+             NSString *path = url.path;
+             if ([path isEqualToString:kOCFPathPop]) {
+                 NSNumber *all = OCFNumMember(url.qmui_queryItems, OCFParameter.all, nil);
+                 if (!all) {
+                     all = OCFNumMember(parameters, OCFParameter.all, nil);
                  }
-             } else {
-                 // forward
-                 NSURL *url = nil;
-                 if ([first isKindOfClass:NSURL.class]) {
-                     url = (NSURL *)first;
-                 } else if ([first isKindOfClass:NSString.class]) {
-                     url = OCFURLWithStr((NSString *)first);
+                 if (all.boolValue) {
+                     [self.navigationController qmui_popToRootViewControllerAnimated:YES completion:completion];
+                 } else {
+                     [self.navigationController qmui_popViewControllerAnimated:YES completion:completion];
                  }
-                 if (!url) {
-                     return;
-                 }
-                 NSDictionary *parameters = nil;
-                 if ([second isKindOfClass:NSDictionary.class]) {
-                     parameters = (NSDictionary *)second;
-                 }
-                 [self.navigator routeURL:url withParameters:parameters];
+             } else if ([path isEqualToString:kOCFPathDismiss]) {
+                 [self dismissViewControllerAnimated:YES completion:completion];
              }
+         } else {
+             // forward
+             [self.navigator routeURL:url withParameters:parameters];
          }
      }];
 //    [self.reactor.navigate subscribeNext:^(id input) {
@@ -302,14 +296,49 @@
     return NO;
 }
 
-- (BOOL)filterNavigateNext:(id)next {
-    if ([next isKindOfClass:OCFScrollModel.class]) {
-        NSString *target = [(OCFScrollModel *)next target];
-        if (target.length == 0) {
-            return NO;
-        }
+- (BOOL)filterNavigate:(id)next {
+    RACTuple *tuple = [self convertNavigate:next];
+    if (!tuple) {
+        [self handleNavigate:next];
+        return NO;
     }
     return YES;
+}
+
+- (void)handleNavigate:(id)next {
+    
+}
+
+- (RACTuple *)convertNavigate:(id)next {
+    if (!next) {
+        return nil;
+    }
+    if ([next isKindOfClass:RACTuple.class]) {
+        RACTuple *tuple = (RACTuple *)next;
+        if (!(tuple.count == 2 &&
+            [tuple.first isKindOfClass:NSURL.class] &&
+            (!tuple.second || [tuple.second isKindOfClass:NSDictionary.class]))) {
+            return nil;
+        }
+        return tuple;
+    } else if ([next isKindOfClass:NSURL.class]) {
+        return RACTuplePack(next, nil);
+    } else if ([next isKindOfClass:NSString.class]) {
+        NSString *string = (NSString *)next;
+        NSURL *url = OCFURLWithUniversal(string);
+        if (!url) {
+            return nil;
+        }
+        return RACTuplePack(url, nil);
+    } else if ([next isKindOfClass:OCFScrollModel.class]) {
+        OCFScrollModel *model = (OCFScrollModel *)next;
+        NSURL *url = OCFURLWithUniversal(model.target);
+        if (!url) {
+            return nil;
+        }
+        return RACTuplePack(url, nil);
+    }
+    return nil;
 }
 
 #pragma mark - Load

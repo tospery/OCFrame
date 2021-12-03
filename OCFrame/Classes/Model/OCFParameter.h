@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 
 @interface OCFParameter : NSObject
+@property (class, strong, readonly) NSString *all;
 @property (class, strong, readonly) NSString *title;
 @property (class, strong, readonly) NSString *model;
 @property (class, strong, readonly) NSString *user;

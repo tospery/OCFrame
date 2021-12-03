@@ -7,10 +7,10 @@
 
 #import "OCFBaseReactor.h"
 #import <ReactiveObjC/ReactiveObjC.h>
-#import "OCFBaseModel.h"
+#import "OCFScrollModel.h"
 
 @interface OCFScrollItem : OCFBaseReactor
-@property (nonatomic, strong, readonly) OCFBaseModel *model;
+@property (nonatomic, strong, readonly) OCFScrollModel *model;
 @property (nonatomic, strong, readonly) RACCommand *clickCommand;
 
 - (instancetype)init NS_UNAVAILABLE;

@@ -8,6 +8,10 @@
 #import "OCFParameter.h"
 
 @implementation OCFParameter
++ (NSString *)all {
+    return @"all";
+}
+
 + (NSString *)title {
     return @"title";
 }

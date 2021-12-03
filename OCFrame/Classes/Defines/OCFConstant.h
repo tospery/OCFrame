@@ -38,12 +38,18 @@
 #define kOCFSchemeDocuments                         (@"documents")
 
 #pragma mark - Host
-#define kOCFHostAny                              (@"*")
-#define kOCFHostLogin                            (@"login")
-#define kOCFHostToast                            (@"toast")
-#define kOCFHostAlert                            (@"alert")
-#define kOCFHostSheet                            (@"sheet")
-#define kOCFHostPopup                            (@"popup")
+#define kOCFHostAny                                 (@"*")
+#define kOCFHostLogin                               (@"login")
+#define kOCFHostToast                               (@"toast")
+#define kOCFHostAlert                               (@"alert")
+#define kOCFHostSheet                               (@"sheet")
+#define kOCFHostPopup                               (@"popup")
+#define kOCFHostBack                                (@"back")
+
+#pragma mark - Path
+#define kOCFPathPop                                 (@"pop")
+#define kOCFPathDismiss                             (@"dismiss")
+#define kOCFPathFadeaway                            (@"fadeaway")
 
 #pragma mark - Animation
 #define kOCFAnimationFade                           (@"fade")

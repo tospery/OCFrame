@@ -18,6 +18,7 @@
 #import "UIFont+OCFrame.h"
 #import "UIImage+OCFrame.h"
 #import "UIColor+OCFrame.h"
+#import "OCFScrollItem.h"
 
 @interface OCFScrollViewReactor ()
 @property (nonatomic, strong, readwrite) OCFPage *page;
@@ -41,6 +42,14 @@
 
 - (void)didInitialize {
     [super didInitialize];
+    [[self.selectCommand.executionSignals.switchToLatest flattenMap:^RACSignal *(RACTuple *tuple) {
+       // return [RACSignal return:[(OCFScrollItem *)tuple.second model]];
+        if (![tuple.second isKindOfClass:OCFScrollItem.class]) {
+            return [RACSignal return:tuple];
+        }
+        OCFScrollItem *item = (OCFScrollItem *)tuple.second;
+        return [RACSignal return:item.model];
+    }] subscribe:self.navigate];
 }
 
 #pragma mark - View

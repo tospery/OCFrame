@@ -85,6 +85,20 @@ OCFObjMember(NSDictionary *dict, NSString *key, id dft) {
     return [dict ocf_objectForKey:key withDefault:dft];
 }
 
+CG_INLINE NSNumber *
+OCFNumMember(NSDictionary *dict, NSString *key, id dft) {
+    if (!dict || ![dict isKindOfClass:NSDictionary.class] || !dict.count) {
+        return dft;
+    }
+    id value = OCFObjMember(dict, key, dft);
+    if ([value isKindOfClass:NSNumber.class]) {
+        return value;
+    }else if ([value isKindOfClass:NSString.class]) {
+        return @([(NSString *)value integerValue]);
+    }
+    return dft;
+}
+
 CG_INLINE UIColor *
 OCFColorMember(NSDictionary *dict, NSString *key, UIColor *dft) {
     if (!dict || ![dict isKindOfClass:NSDictionary.class] || !dict.count) {

@@ -10,6 +10,7 @@
 #import "OCFViewReactor.h"
 #import "OCFNavigationBar.h"
 #import "OCFNavigator.h"
+#import "OCFScrollModel.h"
 
 typedef NS_ENUM(NSInteger, OCFViewControllerBackType){
     OCFViewControllerBackTypePopOne,
@@ -45,7 +46,8 @@ typedef NS_ENUM(NSInteger, OCFViewControllerBackType){
 - (BOOL (^)(NSError *error))errorFilter;
 - (BOOL)handleError;
 
-- (BOOL)filterNavigateNext:(id)next;
+- (BOOL)filterNavigate:(id)next;
+- (void)handleNavigate:(id)next;
 
 @end
 
