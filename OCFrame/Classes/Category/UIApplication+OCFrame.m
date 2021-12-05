@@ -57,6 +57,10 @@ static NSString *ocfURLScheme = nil;
     return [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleDisplayName"];
 }
 
+- (NSString *)ocf_buildNumber {
+    return [NSBundle.mainBundle.infoDictionary objectForKey:(__bridge NSString *)kCFBundleVersionKey];
+}
+
 - (NSString *)ocf_teamID {
     NSDictionary *query = @{(__bridge id)kSecClass : (__bridge id)kSecClassGenericPassword,
                             (__bridge id)kSecAttrAccount : @"bundleSeedID",

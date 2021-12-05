@@ -16,6 +16,7 @@ typedef NS_ENUM(NSInteger, OCFAppEnvironment){
 @interface UIApplication (OCFrame)
 @property (nonatomic, assign, readonly) OCFAppEnvironment ocf_environment;
 @property (nonatomic, strong, readonly) NSString *ocf_version;
+@property (nonatomic, strong, readonly) NSString *ocf_buildNumber;
 @property (nonatomic, strong, readonly) NSString *ocf_urlScheme;
 @property (nonatomic, strong, readonly) NSString *ocf_displayName;
 @property (nonatomic, strong, readonly) NSString *ocf_teamID;

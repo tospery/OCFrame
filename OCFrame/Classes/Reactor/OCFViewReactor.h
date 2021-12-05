@@ -30,6 +30,8 @@ typedef NS_ENUM(NSInteger, OCFRequestMode) {
 
 /// 业务逻辑（网络请求/数据处理）
 @interface OCFViewReactor : OCFBaseReactor <OCFViewReactorDataSource>
+@property (nonatomic, strong, readonly) NSString *host;
+@property (nonatomic, strong, readonly) NSString *path;
 @property (nonatomic, assign, readonly) BOOL animated;
 @property (nonatomic, assign, readonly) OCFForwardType forwardType;
 @property (nonatomic, assign, readonly) BOOL transparetNavBar;

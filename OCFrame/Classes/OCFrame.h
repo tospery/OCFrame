@@ -152,6 +152,7 @@
 #import "UICollectionView+OCFrame.h"
 #import "UIImageView+OCFrame.h"
 #import "UINavigationController+OCFrame.h"
+#import "UILabel+OCFrame.h"
 //#import "NSString+OCFrame.h"
 //#import "NSNumber+OCFrame.h"
 //#import "NSArray+OCFrame.h"

@@ -28,6 +28,10 @@
     return @"url";
 }
 
++ (NSString *)host {
+    return @"host";
+}
+
 + (NSString *)path {
     return @"path";
 }

@@ -6,6 +6,9 @@
 //
 
 #import "OCFViewReactor.h"
+#import <JLRoutes/JLRoutes.h>
+#import <JLRoutes/JLRRouteHandler.h>
+#import <JLRoutes/JLRRouteDefinition.h>
 #import "OCFType.h"
 #import "OCFConstant.h"
 #import "OCFFunction.h"
@@ -20,6 +23,8 @@
 #import "NSObject+OCFrame.h"
 
 @interface OCFViewReactor ()
+@property (nonatomic, strong, readwrite) NSString *host;
+@property (nonatomic, strong, readwrite) NSString *path;
 @property (nonatomic, assign, readwrite) BOOL animated;
 @property (nonatomic, assign, readwrite) OCFForwardType forwardType;
 @property (nonatomic, assign, readwrite) BOOL transparetNavBar;
@@ -57,6 +62,10 @@
         self.hidesNavBottomLine = OCFBoolMember(parameters, OCFParameter.hidesNavBottomLine, NO);
         self.title = OCFStrMember(parameters, OCFParameter.title, nil);
         self.animation = OCFStrMember(parameters, OCFParameter.animation, nil);
+        // Host/Path
+        NSURL *routeURL = OCFURLMember(parameters, JLRouteURLKey, nil);
+        self.host = routeURL.host;
+        self.path = routeURL.path;
         // Model
         id model = OCFObjMember(parameters, OCFParameter.model, nil);
         if (model && [model isKindOfClass:NSString.class]) {
