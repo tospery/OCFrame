@@ -60,7 +60,7 @@
 
 + (NSURL *)ocf_urlWithUniversal:(NSString *)universal {
     NSURL *url = [self ocf_urlWithString:universal];
-    if (!url && url.scheme.length != 0 && url.host.length != 0) {
+    if (!(!url || url.scheme.length == 0 || url.host.length == 0)) {
         return url;
     }
     return [self ocf_urlWithHostpath:universal];

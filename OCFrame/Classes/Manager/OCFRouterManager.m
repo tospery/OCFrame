@@ -57,7 +57,7 @@
             return NO;
         }
         OCFWebViewReactor *reactor = [[cls alloc] initWithParameters:parameters];
-        return [navigator pushReactor:reactor animated:YES] != nil;
+        return [navigator forwardReactor:reactor];
     };
 }
 
