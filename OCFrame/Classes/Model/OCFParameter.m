@@ -56,6 +56,10 @@
     return @"forward";
 }
 
++ (NSString *)userid {
+    return @"userid";
+}
+
 + (NSString *)subscriber {
     return @"subscriber";
 }

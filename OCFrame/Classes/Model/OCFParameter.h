@@ -20,6 +20,7 @@
 @property (class, strong, readonly) NSString *active;
 @property (class, strong, readonly) NSString *animated;
 @property (class, strong, readonly) NSString *forward;
+@property (class, strong, readonly) NSString *userid;
 @property (class, strong, readonly) NSString *subscriber;
 @property (class, strong, readonly) NSString *dismissManually;
 @property (class, strong, readonly) NSString *fetchLocalData;

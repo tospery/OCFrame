@@ -8,7 +8,11 @@
 #import "OCFLibraryManager.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 #import <JLRoutes/JLRoutes.h>
+#import <AFNetworking/AFNetworking.h>
 #import "OCFConstant.h"
+#import "OCFFunction.h"
+#import "OCFReachManager.h"
+#import "OCFrameManager.h"
 
 @interface OCFLibraryManager ()
 
@@ -17,27 +21,16 @@
 @implementation OCFLibraryManager
 
 - (void)setup {
-    //[self setupJLRoutes];
-    //[self setupToast];
+    [self setupAFNetworking];
 }
 
-//- (void)setupJLRoutes {
-//    @weakify(self)
-//    [JLRoutes.globalRoutes addRoute:kOCFHostToast handler:^BOOL(NSDictionary *parameters) {
-//        OCFVoidBlock_id completion = OCFObjMember(parameters, OCFParameter.block, nil);
-//        @strongify(self)
-//        return [self.navigator.topView ocf_toastWithParameters:parameters completion:^(BOOL didTap) {
-//            if (completion) {
-//                completion(@(didTap));
-//            }
-//        }];
-//    }];
-//}
-
-//- (void)setupToast {
-//    [CSToastManager setQueueEnabled:YES];
-//    [CSToastManager setDefaultPosition:CSToastPositionCenter];
-//}
+- (void)setupAFNetworking {
+    [AFNetworkReachabilityManager.sharedManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        OCFLogDebug(@"网络状态: %@", @(status));
+        [REACH_SUBJECT sendNext:@(status)];
+    }];
+    [AFNetworkReachabilityManager.sharedManager startMonitoring];
+}
 
 + (instancetype)sharedInstance {
     static id instance;

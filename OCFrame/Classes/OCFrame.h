@@ -32,6 +32,7 @@
 #import "OCFConfiguration.h"
 #import "OCFPreference.h"
 #import "OCFSimpleAlertAction.h"
+#import "OCFReachManager.h"
 //#import "OCFObject.h"
 //#import "OCFFrameManager.h"
 //#import "OCFPageFactory.h"
