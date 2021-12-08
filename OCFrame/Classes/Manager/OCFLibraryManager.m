@@ -9,6 +9,7 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 #import <JLRoutes/JLRoutes.h>
 #import <AFNetworking/AFNetworking.h>
+#import <AFNetworking/AFNetworkReachabilityManager.h>
 #import "OCFConstant.h"
 #import "OCFFunction.h"
 #import "OCFReachManager.h"

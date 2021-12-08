@@ -10,6 +10,7 @@
 @interface OCFBaseSessionManager : RESTHTTPSessionManager
 
 - (RACSignal *)get:(NSString *)URLString parameters:(NSDictionary *)parameters;
+- (RACSignal *)post:(NSString *)URLString parameters:(NSDictionary *)parameters progress:(id<RACSubscriber>)progress;
 - (RACSignal *)post:(NSString *)URLString parameters:(NSDictionary *)parameters constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block progress:(id<RACSubscriber>)progress;
 
 @end

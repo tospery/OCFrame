@@ -40,7 +40,7 @@ Pod::Spec.new do |s|
   s.frameworks = 'UIKit'
   s.dependency 'QMUIKit/QMUICore', '4.3.0'
   s.dependency 'CocoaLumberjack', '3.7.2'
-  s.dependency 'RESTful', '1.0.0'
+  s.dependency 'RESTful', '4.0.0-beta.2-v1'
   s.dependency 'JLRoutes', '2.1'
   s.dependency 'Giotto', '0.3.7'
   s.dependency 'FCUUID', '1.3.1'

@@ -70,5 +70,8 @@
 #define kOCFLogTagLibrary                           (@"Library")
 #define kOCFLogTagArgument                          (@"Argument")
 
+#pragma mark - 其他
+#define kOCFErrorResponse                           (@"kOCFErrorResponse")
+
 
 #endif /* OCFConstant_h */

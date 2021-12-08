@@ -8,10 +8,13 @@
 #import "OCFBaseSessionManager.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "OCFType.h"
+#import "OCFConstant.h"
 #import "OCFFunction.h"
+#import "OCFString.h"
 #import "OCFBaseResponse.h"
 #import "OCFBaseList.h"
 #import "NSError+OCFrame.h"
+#import "UIApplication+OCFrame.h"
 
 typedef RACSignal *(^MapBlock)(OCFBaseResponse *);
 
@@ -31,7 +34,10 @@ typedef RACSignal *(^MapBlock)(OCFBaseResponse *);
         self.responseSerializer.acceptableContentTypes = contentTypes;
         self.mapBlock = ^RACSignal *(OCFBaseResponse *response) {
             if (response.code != OCFErrorCodeNone) {
-                return [RACSignal error:[NSError ocf_errorWithCode:response.code description:response.message]];
+                return [RACSignal error:[NSError errorWithDomain:UIApplication.sharedApplication.ocf_bundleID code:response.code userInfo:@{
+                    NSLocalizedDescriptionKey: OCFStrWithDft(response.message, kStringErrorUnknown),
+                    kOCFErrorResponse: response.rawResult
+                }]];
             }
             if ([response.result isKindOfClass:OCFBaseList.class] &&
                 [(OCFBaseList *)response.result items].count == 0) {
@@ -44,20 +50,13 @@ typedef RACSignal *(^MapBlock)(OCFBaseResponse *);
 }
 
 - (RACSignal *)get:(NSString *)URLString parameters:(NSDictionary *)parameters {
-//    return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-//        [[[self rac_GET:URLString parameters:parameters] flattenMap:self.mapBlock] subscribeNext:^(id responseObject) {
-//            [subscriber sendNext:responseObject];
-//            [subscriber sendCompleted];
-//        } error:^(NSError * _Nullable error) {
-//            [[RACScheduler currentScheduler] afterDelay:0.5 schedule:^{
-//                [subscriber sendError:error];
-//            }];
-//        }];
-//        return [RACDisposable disposableWithBlock:^{
-//        }];
-//    }] retry:1];
-    
     return [[self rac_GET:URLString parameters:parameters progress:nil] flattenMap:self.mapBlock];
+}
+
+- (RACSignal *)post:(NSString *)URLString
+             parameters:(NSDictionary *)parameters
+               progress:(id<RACSubscriber>)progress {
+    return [[self rac_POST:URLString parameters:parameters progress:progress] flattenMap:self.mapBlock];
 }
 
 - (RACSignal *)post:(NSString *)URLString
