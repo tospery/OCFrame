@@ -6,6 +6,7 @@
 //
 
 #import "OCFAppearanceManager.h"
+#import "UIFont+OCFrame.h"
 #import "UIColor+OCFrame.h"
 
 @interface OCFAppearanceManager ()
@@ -23,8 +24,8 @@
         appearance.shadowImage = [[UIImage alloc] init];
         appearance.shadowColor = nil;
         appearance.titleTextAttributes = @{
-            NSForegroundColorAttributeName: UIColor.orangeColor,
-            NSFontAttributeName: [UIFont boldSystemFontOfSize:17]
+            NSForegroundColorAttributeName: UIColor.ocf_barText,
+            NSFontAttributeName: OCFFont(17)
         };
         UINavigationBar.appearance.standardAppearance = appearance;
         UINavigationBar.appearance.scrollEdgeAppearance = appearance;
@@ -32,8 +33,8 @@
         UINavigationBar.appearance.translucent = NO;
         UINavigationBar.appearance.barTintColor = UIColor.ocf_barTint;
         UINavigationBar.appearance.titleTextAttributes = @{
-            NSForegroundColorAttributeName: UIColor.orangeColor,
-            NSFontAttributeName: [UIFont boldSystemFontOfSize:17]
+            NSForegroundColorAttributeName: UIColor.ocf_barText,
+            NSFontAttributeName: OCFFont(17)
         };
     }
     

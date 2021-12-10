@@ -20,6 +20,7 @@
 #import "NSObject+OCFrame.h"
 #import "UIColor+OCFrame.h"
 #import "OCFScrollItem.h"
+#import "UIImage+OCFrame.h"
 
 @interface OCFViewController ()
 //@property (nonatomic, strong) UIButton *backButton;
@@ -70,6 +71,18 @@
     // self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.view.backgroundColor = UIColor.ocf_background;
+    
+    if (!self.navigationItem.backBarButtonItem) {
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:UIImage.ocf_back style:UIBarButtonItemStylePlain target:nil action:NULL];
+        item.tintColor = UIColor.ocf_barText;
+        @weakify(self)
+        item.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+            @strongify(self)
+            [self.navigationController popViewControllerAnimated:YES];
+            return [RACSignal return:input];
+        }];
+        self.navigationItem.leftBarButtonItem = item;
+    }
     
     self.navigationController.navigationBar.hidden = YES;
     [self.view addSubview:self.navigationBar];
@@ -159,6 +172,7 @@
     
     // State (Reactor -> View)
     RAC(self.navigationBar.titleLabel, text) = RACObserve(self.reactor, title);
+    RAC(self.navigationItem, title) = RACObserve(self.reactor, title);
     [RACObserve(self.reactor, dataSource).deliverOnMainThread subscribeNext:^(id x) {
         @strongify(self)
         [self reloadData];

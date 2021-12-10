@@ -28,11 +28,11 @@
 }
 
 - (void)setupAFNetworking {
-//    [AFNetworkReachabilityManager.sharedManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-//        OCFLogDebug(@"网络状态: %@", @(status));
-//        [REACH_SUBJECT sendNext:@(status)];
-//    }];
-//    [AFNetworkReachabilityManager.sharedManager startMonitoring];
+    [AFNetworkReachabilityManager.sharedManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        OCFLogDebug(@"网络状态: %@", @(status));
+        [REACH_SUBJECT sendNext:@(status)];
+    }];
+    [AFNetworkReachabilityManager.sharedManager startMonitoring];
 }
 
 - (void)setupAFNetworkActivityLogger {

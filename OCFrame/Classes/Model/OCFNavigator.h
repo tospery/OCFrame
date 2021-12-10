@@ -19,6 +19,7 @@
 //- (UINavigationController *)popNavigationController;
 
 - (void)goLogin;
+- (RACSignal *)rac_goLogin;
 
 @end
 

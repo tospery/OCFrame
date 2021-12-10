@@ -57,6 +57,7 @@
         scrollView.ocf_contentView.frame = scrollView.bounds;
         scrollView.contentSize = CGSizeMake(scrollView.qmui_width, scrollView.qmui_height + PixelOne);
         scrollView.delegate = self;
+        self.scrollView = scrollView;
     }
     self.scrollView.backgroundColor = UIColor.ocf_background;
     self.scrollView.emptyDataSetSource = self.reactor;

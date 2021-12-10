@@ -247,4 +247,8 @@
     [self routeURL:OCFURLWithHostpath(kOCFHostLogin) withParameters:nil];
 }
 
+- (RACSignal *)rac_goLogin {
+    return [self rac_routeURL:OCFURLWithHostpath(kOCFHostLogin) withParameters:nil];
+}
+
 @end

@@ -8,6 +8,8 @@
 #ifndef OCFString_h
 #define OCFString_h
 
+#define kStringLogin                                     \
+NSLocalizedString(@"Login", @"登录")
 #define kStringErrorUnknown                                     \
 NSLocalizedString(@"Error.Unknown", @"未知错误")
 #define kStringErrorRequest                                     \

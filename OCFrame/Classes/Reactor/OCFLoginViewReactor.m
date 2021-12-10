@@ -6,6 +6,9 @@
 //
 
 #import "OCFLoginViewReactor.h"
+#import "OCFString.h"
+#import "NSDictionary+OCFrame.h"
+#import "OCFParameter.h"
 
 @interface OCFLoginViewReactor ()
 @property (nonatomic, strong, readwrite) RACSignal *validateSignal;
@@ -16,6 +19,7 @@
 
 - (instancetype)initWithParameters:(NSDictionary *)parameters {
     if (self = [super initWithParameters:parameters]) {
+        self.title = OCFStrMember(parameters, OCFParameter.title, kStringLogin);
     }
     return self;
 }

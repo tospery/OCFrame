@@ -6,6 +6,7 @@
 //
 
 #import "OCFReactiveView.h"
+#import "UIColor+OCFrame.h"
 
 @interface OCFReactiveView ()
 @property (nonatomic, strong, readwrite) OCFBaseReactor *reactor;
@@ -13,6 +14,13 @@
 @end
 
 @implementation OCFReactiveView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = UIColor.ocf_background;
+    }
+    return self;
+}
 
 - (void)bind:(OCFBaseReactor *)reactor { 
     self.reactor = reactor;
