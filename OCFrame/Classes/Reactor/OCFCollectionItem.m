@@ -9,12 +9,10 @@
 #import "OCFFunction.h"
 
 @interface OCFCollectionItem ()
-@property (nonatomic, strong, readwrite) OCFCollectionModel *model;
 
 @end
 
 @implementation OCFCollectionItem
-@dynamic model;
 
 - (instancetype)initWithModel:(OCFBaseModel *)model {
     if (self = [super initWithModel:model]) {

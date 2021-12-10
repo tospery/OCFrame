@@ -31,6 +31,7 @@
 
 - (void)didInitialize {
     [super didInitialize];
+    self.target = self.model.target;
 }
 
 @end

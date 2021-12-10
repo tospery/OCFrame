@@ -17,8 +17,6 @@
 #pragma mark - Model
 #import "OCFMetric.h"
 #import "OCFBaseModel.h"
-#import "OCFScrollModel.h"
-#import "OCFCollectionModel.h"
 #import "OCFProvider.h"
 #import "OCFNavigator.h"
 #import "OCFAppDependency.h"

@@ -43,12 +43,14 @@
 - (void)didInitialize {
     [super didInitialize];
     [[self.selectCommand.executionSignals.switchToLatest flattenMap:^RACSignal *(RACTuple *tuple) {
-       // return [RACSignal return:[(OCFScrollItem *)tuple.second model]];
         if (![tuple.second isKindOfClass:OCFScrollItem.class]) {
             return [RACSignal return:tuple];
         }
         OCFScrollItem *item = (OCFScrollItem *)tuple.second;
-        return [RACSignal return:item.model];
+        if (OCFDataIsNullOrEmpty(item.target)) {
+            return [RACSignal return:tuple];
+        }
+        return [RACSignal return:item.target];
     }] subscribe:self.navigate];
 }
 

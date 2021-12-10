@@ -10,6 +10,7 @@
 #import <JLRoutes/JLRoutes.h>
 #import <AFNetworking/AFNetworking.h>
 #import <AFNetworking/AFNetworkReachabilityManager.h>
+#import <AFNetworkActivityLogger/AFNetworkActivityLogger.h>
 #import "OCFConstant.h"
 #import "OCFFunction.h"
 #import "OCFReachManager.h"
@@ -23,14 +24,22 @@
 
 - (void)setup {
     [self setupAFNetworking];
+    [self setupAFNetworkActivityLogger];
 }
 
 - (void)setupAFNetworking {
-    [AFNetworkReachabilityManager.sharedManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        OCFLogDebug(@"网络状态: %@", @(status));
-        [REACH_SUBJECT sendNext:@(status)];
-    }];
-    [AFNetworkReachabilityManager.sharedManager startMonitoring];
+//    [AFNetworkReachabilityManager.sharedManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+//        OCFLogDebug(@"网络状态: %@", @(status));
+//        [REACH_SUBJECT sendNext:@(status)];
+//    }];
+//    [AFNetworkReachabilityManager.sharedManager startMonitoring];
+}
+
+- (void)setupAFNetworkActivityLogger {
+#ifdef DEBUG
+    [AFNetworkActivityLogger.sharedLogger setLogLevel:AFLoggerLevelDebug];
+    [AFNetworkActivityLogger.sharedLogger startLogging];
+#endif
 }
 
 + (instancetype)sharedInstance {

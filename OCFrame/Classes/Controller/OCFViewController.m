@@ -19,7 +19,7 @@
 #import "NSError+OCFrame.h"
 #import "NSObject+OCFrame.h"
 #import "UIColor+OCFrame.h"
-#import "OCFScrollModel.h"
+#import "OCFScrollItem.h"
 
 @interface OCFViewController ()
 //@property (nonatomic, strong) UIButton *backButton;
@@ -326,13 +326,6 @@
     } else if ([next isKindOfClass:NSString.class]) {
         NSString *string = (NSString *)next;
         NSURL *url = OCFURLWithUniversal(string);
-        if (!url) {
-            return nil;
-        }
-        return RACTuplePack(url, nil);
-    } else if ([next isKindOfClass:OCFScrollModel.class]) {
-        OCFScrollModel *model = (OCFScrollModel *)next;
-        NSURL *url = OCFURLWithUniversal(model.target);
         if (!url) {
             return nil;
         }

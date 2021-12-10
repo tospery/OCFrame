@@ -6,10 +6,8 @@
 //
 
 #import "OCFScrollItem.h"
-#import "OCFCollectionModel.h"
 
 @interface OCFCollectionItem : OCFScrollItem
-@property (nonatomic, strong, readonly) OCFCollectionModel *model;
 
 @end
 
