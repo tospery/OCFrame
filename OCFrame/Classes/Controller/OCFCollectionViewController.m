@@ -42,17 +42,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.contentFrame collectionViewLayout:[self collectionViewLayout]];
-//    collectionView.dataSource = self.reactor;
-//    collectionView.delegate = self;
-//    collectionView.emptyDataSetSource = self.reactor;
-//    collectionView.emptyDataSetDelegate = self;
-//    collectionView.theme_backgroundColor = ThemeColorPicker.background;
-//    if (@available(iOS 11.0, *)) {
-//        collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-//    }
-//    [self.view addSubview:collectionView];
-//    self.collectionView = collectionView;
     self.collectionView = (UICollectionView *)self.scrollView;
     self.collectionView.collectionViewLayout = [self collectionViewLayout];
     self.collectionView.dataSource = self.reactor;

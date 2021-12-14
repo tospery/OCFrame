@@ -6,11 +6,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OCFReactive.h"
+#import "OCFTableHeaderFooter.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface OCFTableHeaderFooterView : UITableViewHeaderFooterView
+@interface OCFTableHeaderFooterView : UITableViewHeaderFooterView <OCFReactive, OCFTableHeaderFooter>
 
 @end
-
-NS_ASSUME_NONNULL_END

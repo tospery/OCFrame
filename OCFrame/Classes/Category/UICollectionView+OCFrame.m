@@ -11,7 +11,7 @@
 @implementation UICollectionView (OCFrame)
 
 - (CGFloat)ocf_widthForSection:(NSInteger)section {
-    NSInteger width = self.qmui_width;
+    CGFloat width = self.qmui_width;
     width -= self.contentInset.left;
     width -= self.contentInset.right;
     if ([self.delegate respondsToSelector:@selector(collectionView:layout:insetForSectionAtIndex:)]) {
@@ -28,7 +28,7 @@
 }
 
 - (CGFloat)ocf_heightForSection:(NSInteger)section {
-    NSInteger height = self.qmui_height;
+    CGFloat height = self.qmui_height;
     height -= self.contentInset.top;
     height -= self.contentInset.bottom;
     if ([self.delegate respondsToSelector:@selector(collectionView:layout:insetForSectionAtIndex:)]) {

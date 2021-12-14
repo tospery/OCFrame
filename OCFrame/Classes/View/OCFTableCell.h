@@ -6,11 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OCFReactive.h"
+#import "OCFTableItem.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface OCFTableCell : UITableViewCell
+@interface OCFTableCell : UITableViewCell <OCFReactive>
+@property (nonatomic, strong, readonly) OCFTableItem *reactor;
 
 @end
 
-NS_ASSUME_NONNULL_END

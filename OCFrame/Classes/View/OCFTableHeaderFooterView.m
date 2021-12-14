@@ -6,15 +6,28 @@
 //
 
 #import "OCFTableHeaderFooterView.h"
+#import "UIColor+OCFrame.h"
+
+@interface OCFTableHeaderFooterView ()
+@property (nonatomic, strong, readwrite) OCFBaseReactor *reactor;
+
+@end
 
 @implementation OCFTableHeaderFooterView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
+    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+        self.backgroundColor = UIColor.ocf_background;
+    }
+    return self;
 }
-*/
+
+- (void)bind:(OCFBaseReactor *)reactor {
+    
+}
+
++ (NSString *)kind {
+    return nil;
+}
 
 @end

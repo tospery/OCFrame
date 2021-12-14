@@ -6,18 +6,27 @@
 //
 
 #import "OCFTableCell.h"
+#import "OCFFunction.h"
+#import "UIColor+OCFrame.h"
+
+@interface OCFTableCell ()
+@property (nonatomic, strong, readwrite) OCFTableItem *reactor;
+
+@end
 
 @implementation OCFTableCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.backgroundColor = UIColor.ocf_background;
+    }
+    return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)bind:(OCFTableItem *)reactor {
+    self.reactor = reactor;
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
 }
 
 @end

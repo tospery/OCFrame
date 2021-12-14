@@ -22,12 +22,12 @@
     return self;
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    if (!self.reactor) {
-        return;
-    }
-}
+//- (void)layoutSubviews {
+//    [super layoutSubviews];
+//    if (!self.reactor) {
+//        return;
+//    }
+//}
 
 - (void)bind:(OCFCollectionItem *)reactor {
     self.reactor = reactor;

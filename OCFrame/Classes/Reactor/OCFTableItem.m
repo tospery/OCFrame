@@ -7,6 +7,20 @@
 
 #import "OCFTableItem.h"
 
+@interface OCFTableItem ()
+
+@end
+
 @implementation OCFTableItem
+
+- (instancetype)initWithModel:(OCFBaseModel *)model {
+    if (self = [super initWithModel:model]) {
+    }
+    return self;
+}
+
+- (void)didInitialize {
+    [super didInitialize];
+}
 
 @end

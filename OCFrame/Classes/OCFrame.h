@@ -45,6 +45,7 @@
 #import "OCFTableCell.h"
 #import "OCFNormalTableCell.h"
 #import "OCFTableHeaderFooterView.h"
+
 #pragma mark - Controller
 #import "OCFViewController.h"
 #import "OCFScrollViewController.h"
@@ -113,6 +114,9 @@
 #import "UIImageView+OCFrame.h"
 #import "UINavigationController+OCFrame.h"
 #import "UILabel+OCFrame.h"
+#import "UITableViewCell+OCFrame.h"
+#import "UITableViewHeaderFooterView+OCFrame.h"
+#import "UITableView+OCFrame.h"
 
 #pragma mark - Bridge
 #import "WKWebViewJavascriptBridge.h"
