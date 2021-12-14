@@ -24,6 +24,8 @@ NSLocalizedString(@"Error.Server", @"HTTP服务器错误")
 NSLocalizedString(@"Error.Ignore", @"可忽略错误")
 #define kStringErrorNetwork                                     \
 NSLocalizedString(@"Error.Network", @"网络错误")
+#define kStringErrorArgument                                     \
+NSLocalizedString(@"Error.Argument", @"参数错误")
 #define kStringErrorNavigation                                     \
 NSLocalizedString(@"Error.Navigation", @"导航错误")
 #define kStringErrorDataFormat                                     \

@@ -42,11 +42,9 @@ typedef NS_ENUM(NSInteger, OCFViewControllerBackType){
 
 - (void)reloadData;
 
-- (BOOL (^)(NSError *error))errorFilter;
+// - (BOOL)filterNavigate:(id)next;
+- (BOOL)handleNavigate:(id)next;
 - (BOOL)handleError;
-
-- (BOOL)filterNavigate:(id)next;
-- (void)handleNavigate:(id)next;
 
 @end
 

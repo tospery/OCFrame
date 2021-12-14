@@ -17,6 +17,7 @@ typedef NS_ENUM(NSInteger, OCFErrorCode){
     OCFErrorCodeIgnore = 10000,      // App自定义错误
     OCFErrorCodeUnknown,
     OCFErrorCodeNetwork,
+    OCFErrorCodeArgument,
     OCFErrorCodeNavigation,
     OCFErrorCodeDataFormat,
     OCFErrorCodeListIsEmpty

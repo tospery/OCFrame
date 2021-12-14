@@ -165,7 +165,7 @@ OCFDataIsNullOrEmpty(id obj) {
 }
 
 CG_INLINE BOOL
-OCFConvertToBool(id obj) {
+OCFBoolFromObject(id obj) {
     if ([obj isKindOfClass:NSNumber.class]) {
         return [(NSNumber *)obj boolValue];
     }
@@ -173,6 +173,17 @@ OCFConvertToBool(id obj) {
         return [(NSString *)obj integerValue] != 0 ? YES : NO;
     }
     return NO;
+}
+
+CG_INLINE NSInteger
+OCFIntFromObject(id obj) {
+    if ([obj isKindOfClass:NSNumber.class]) {
+        return [(NSNumber *)obj integerValue];
+    }
+    if ([obj isKindOfClass:NSString.class]) {
+        return [(NSString *)obj integerValue];
+    }
+    return 0;
 }
 
 #endif /* OCFFunction_h */

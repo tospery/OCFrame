@@ -8,6 +8,7 @@
 #import <Mantle/Mantle.h>
 
 @interface MTLJSONAdapter (OCFrame)
++ (NSValueTransformer *)IntJSONTransformer;
 + (NSValueTransformer *)BOOLJSONTransformer;
 + (NSValueTransformer *)NSStringJSONTransformer;
 + (NSValueTransformer *)UIColorJSONTransformer;

@@ -96,6 +96,8 @@
             result = kStringErrorUnknown;
         } else if (code == OCFErrorCodeNetwork) {
             result = kStringErrorNetwork;
+        } else if (code == OCFErrorCodeArgument) {
+            result = kStringErrorArgument;
         } else if (code == OCFErrorCodeNavigation) {
             result = kStringErrorNavigation;
         } else if (code == OCFErrorCodeDataFormat) {

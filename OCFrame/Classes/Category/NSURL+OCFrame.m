@@ -7,6 +7,7 @@
 
 #import "NSURL+OCFrame.h"
 #import <QMUIKit/QMUIKit.h>
+#import "OCFConstant.h"
 #import "OCFrameManager.h"
 #import "NSString+OCFrame.h"
 #import "UIApplication+OCFrame.h"
@@ -64,6 +65,13 @@
         return url;
     }
     return [self ocf_urlWithHostpath:universal];
+}
+
++ (NSURL *)ocf_urlWithBack:(NSString *)path {
+    if (path.length == 0) {
+        return OCFURLWithHostpath(kOCFHostBack);
+    }
+    return OCFURLWithHostpath(OCFStrWithFmt(@"%@/%@", kOCFHostBack, path));
 }
 
 - (NSURL *)ocf_appendingQueryParameters:(NSDictionary<NSString *, id> *)parameters {

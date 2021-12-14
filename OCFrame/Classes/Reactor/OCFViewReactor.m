@@ -204,7 +204,7 @@
             @strongify(self)
             return [[self requestRemoteSignalWithPage:page.integerValue] takeUntil:self.rac_willDeallocSignal];
         }];
-        // [[command.errors filter:self.errorFilter] subscribe:self.errors];
+        // [[command.errors filter:self.filterError] subscribe:self.errors];
         _requestRemoteCommand = command;
     }
     return _requestRemoteCommand;

@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString * const OCFIntValueTransformerName;
 extern NSString * const OCFBOOLValueTransformerName;
 extern NSString * const OCFStringValueTransformerName;
 extern NSString * const OCFColorValueTransformerName;

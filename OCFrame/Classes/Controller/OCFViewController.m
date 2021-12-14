@@ -168,11 +168,11 @@
 - (void)bind:(OCFViewReactor *)reactor {
     @weakify(self)
     // Action (View -> Reactor)
-    [[self.reactor.requestRemoteCommand.errors filter:self.errorFilter] subscribe:self.reactor.errors];
-    
-    // State (Reactor -> View)
     RAC(self.navigationBar.titleLabel, text) = RACObserve(self.reactor, title);
     RAC(self.navigationItem, title) = RACObserve(self.reactor, title);
+    [self.reactor.requestRemoteCommand.errors subscribe:self.reactor.errors];
+    
+    // State (Reactor -> View)
     [RACObserve(self.reactor, dataSource).deliverOnMainThread subscribeNext:^(id x) {
         @strongify(self)
         [self reloadData];
@@ -181,14 +181,7 @@
         @strongify(self)
         [self handleError];
     }];
-//    [[RACObserve(self.reactor, hidesNavigationBar) skip:1].distinctUntilChanged.deliverOnMainThread subscribeNext:^(NSNumber *hide) {
-//        @strongify(self)
-//        hide.boolValue ? [self removeNavigationBar] : [self addNavigationBar];
-//    }];
-//    [[RACObserve(self.reactor, hidesNavBottomLine) skip:1].distinctUntilChanged.deliverOnMainThread subscribeNext:^(NSNumber *hide) {
-//        @strongify(self)
-//        self.navigationBar.qmui_borderLayer.hidden = hide.boolValue;
-//    }];
+
     [[self.reactor.executing skip:1] subscribeNext:^(NSNumber *executing) {
         @strongify(self)
         if (executing.boolValue) {
@@ -197,25 +190,17 @@
             [self.navigator hideToastActivity];
         }
     }];
-//    [self.reactor.load subscribeNext:^(id x) {
-//        @strongify(self)
-//        if (self.reactor.shouldRequestRemoteData) {
-//            if (!self.reactor.dataSource) {
-//                [self triggerLoad];
-//            }else {
-//                [self triggerUpdate];
-//            }
-//        }
-//    }];
-    [self.reactor.errors subscribeNext:^(NSError *error) {
+    [[self.reactor.errors filter:^BOOL(NSError *error) {
         @strongify(self)
-        [self.navigator routeURL:OCFURLWithHostpath(kOCFHostToast) withParameters:@{
-            OCFParameter.message: OCFStrWithDft(error.ocf_displayMessage, kStringErrorUnknown)
-        }];
+        self.reactor.error = error;
+        return ![self handleError];
+    }] subscribeNext:^(NSError *error) {
+        @strongify(self)
+        [self.navigator toastMessage:OCFStrWithDft(error.ocf_displayMessage, kStringErrorUnknown)];
     }];
      [[self.reactor.navigate filter:^BOOL(id value) {
          @strongify(self)
-         return [self filterNavigate:value];
+         return ![self handleNavigate:value];
      }] subscribeNext:^(id input) {
          @strongify(self)
          RACTuple *tuple = [self convertNavigate:input];
@@ -234,6 +219,13 @@
                  [self.reactor.resultCommand execute:nil];
              };
              NSString *path = url.path;
+             if (path.length == 0) {
+                 if (self.qmui_isPresented) {
+                     path = kOCFPathDismiss;
+                 } else {
+                     path = kOCFPathPop;
+                 }
+             }
              if ([path isEqualToString:kOCFPathPop]) {
                  NSNumber *all = OCFNumMember(url.qmui_queryItems, OCFParameter.all, nil);
                  if (!all) {
@@ -246,81 +238,19 @@
                  }
              } else if ([path isEqualToString:kOCFPathDismiss]) {
                  [self dismissViewControllerAnimated:YES completion:completion];
+             } else if ([path isEqualToString:kOCFPathFadeaway]) {
+                 OCFLogDebug(@"YJX_TODO kOCFPathFadeaway");
              }
          } else {
              // forward
              [self.navigator routeURL:url withParameters:parameters];
          }
      }];
-//    [self.reactor.navigate subscribeNext:^(id input) {
-//        @strongify(self)
-//        if ([input isKindOfClass:RACTuple.class] && [(RACTuple *)input count] == 2) {
-//            RACTuple *tuple = (RACTuple *)input;
-//            id first = tuple.first;
-//            id second = tuple.second;
-//            if ([first isKindOfClass:NSNumber.class]) {
-//                // back
-//                OCFViewControllerBackType type = [(NSNumber *)first integerValue];
-//                @weakify(self)
-//                OCFVoidBlock completion = ^(void) {
-//                    @strongify(self)
-//                    [self.reactor.resultCommand execute:second];
-//                };
-//                if (OCFViewControllerBackTypePopOne == type) {
-//                    [self.navigator popReactorAnimated:YES completion:completion];
-//                } else if (OCFViewControllerBackTypePopAll == type) {
-//                    [self.navigator popToRootReactorAnimated:YES completion:completion];
-//                } else if (OCFViewControllerBackTypeDismiss == type) {
-//                    [self.navigator dismissReactorAnimated:YES completion:completion];
-//                } else if (OCFViewControllerBackTypeClose == type) {
-//                    [self.navigator fadeawayReactorWithAnimationType:OCFViewControllerAnimationTypeFromString(self.reactor.animation) completion:completion];
-//                }
-//            } else {
-//                // forward
-//                NSURL *url = nil;
-//                if ([first isKindOfClass:NSURL.class]) {
-//                    url = (NSURL *)first;
-//                } else if ([first isKindOfClass:NSString.class]) {
-//                    url = OCFURLWithStr((NSString *)first);
-//                }
-//                if (!url) {
-//                    return;
-//                }
-//                NSDictionary *parameters = nil;
-//                if ([second isKindOfClass:NSDictionary.class]) {
-//                    parameters = (NSDictionary *)second;
-//                }
-//                [self.navigator routeURL:url withParameters:parameters];
-//            }
-//        }
-//    }];
 }
 
-- (BOOL (^)(NSError *error))errorFilter {
-    @weakify(self)
-    return ^(NSError *error) {
-        @strongify(self)
-        self.reactor.error = error;
-        BOOL handled = ![self handleError];
-        return handled;
-    };
-}
-
-- (BOOL)handleError {
+#pragma mark navigate
+- (BOOL)handleNavigate:(id)next {
     return NO;
-}
-
-- (BOOL)filterNavigate:(id)next {
-    RACTuple *tuple = [self convertNavigate:next];
-    if (!tuple) {
-        [self handleNavigate:next];
-        return NO;
-    }
-    return YES;
-}
-
-- (void)handleNavigate:(id)next {
-    
 }
 
 - (RACTuple *)convertNavigate:(id)next {
@@ -346,6 +276,21 @@
         return RACTuplePack(url, nil);
     }
     return nil;
+}
+
+#pragma mark error
+//- (BOOL (^)(NSError *error))filterError {
+//    @weakify(self)
+//    return ^(NSError *error) {
+//        @strongify(self)
+//        self.reactor.error = error;
+//        BOOL handled = ![self handleError];
+//        return handled;
+//    };
+//}
+
+- (BOOL)handleError {
+    return NO;
 }
 
 #pragma mark - Load
