@@ -28,6 +28,7 @@
 @property (nonatomic, assign, readwrite) CGFloat contentTop;
 @property (nonatomic, assign, readwrite) CGFloat contentBottom;
 @property (nonatomic, assign, readwrite) CGRect contentFrame;
+@property (nonatomic, strong, readwrite) id<RACSubscriber> subscriber;
 @property (nonatomic, strong, readwrite) OCFNavigationBar *navigationBar;
 @property (nonatomic, strong, readwrite) OCFNavigator *navigator;
 @property (nonatomic, strong, readwrite) OCFViewReactor *reactor;
@@ -42,6 +43,10 @@
         self.reactor = reactor;
         self.navigator = navigator;
         self.hidesBottomBarWhenPushed = YES;
+        id subscriber = OCFObjMember(reactor.parameters, OCFParameter.subscriber, nil);
+        if (subscriber && [subscriber conformsToProtocol:@protocol(RACSubscriber)]) {
+            self.subscriber = (id<RACSubscriber>)subscriber;
+        }
         @weakify(self)
         [[self rac_signalForSelector:@selector(bind:)] subscribeNext:^(RACTuple *tuple) {
             @strongify(self)
@@ -61,6 +66,7 @@
 
 - (void)dealloc {
     OCFLogDebug(@"%@已析构", self.ocf_className);
+    [self.subscriber sendCompleted];
 }
 
 #pragma mark - View
@@ -201,56 +207,61 @@
      [[self.reactor.navigate filter:^BOOL(id value) {
          @strongify(self)
          return ![self handleNavigate:value];
-     }] subscribeNext:^(id input) {
+     }] subscribeNext:^(id next) {
          @strongify(self)
-         RACTuple *tuple = [self convertNavigate:input];
-         if (!tuple) {
-             return;
-         }
-         NSURL *url = (NSURL *)tuple.first;
-         NSDictionary *parameters = (NSDictionary *)tuple.second;
-         if ([url.host isEqualToString:kOCFHostBack]) {
-             // back
-             @weakify(self)
-             OCFVoidBlock completion = ^(void) {
-                 @strongify(self)
-                 // 应该用self.result，并且也该onComplition
-                 // [self.reactor.resultCommand execute:second];
-                 [self.reactor.resultCommand execute:nil];
-             };
-             NSString *path = url.path;
-             if (path.length == 0) {
-                 if (self.qmui_isPresented) {
-                     path = kOCFPathDismiss;
-                 } else {
-                     path = kOCFPathPop;
-                 }
-             }
-             if ([path isEqualToString:kOCFPathPop]) {
-                 NSNumber *all = OCFNumMember(url.qmui_queryItems, OCFParameter.all, nil);
-                 if (!all) {
-                     all = OCFNumMember(parameters, OCFParameter.all, nil);
-                 }
-                 if (all.boolValue) {
-                     [self.navigationController qmui_popToRootViewControllerAnimated:YES completion:completion];
-                 } else {
-                     [self.navigationController qmui_popViewControllerAnimated:YES completion:completion];
-                 }
-             } else if ([path isEqualToString:kOCFPathDismiss]) {
-                 [self dismissViewControllerAnimated:YES completion:completion];
-             } else if ([path isEqualToString:kOCFPathFadeaway]) {
-                 OCFLogDebug(@"YJX_TODO kOCFPathFadeaway");
-             }
-         } else {
-             // forward
-             [self.navigator routeURL:url withParameters:parameters];
-         }
+         [self executeNavigate:next];
      }];
 }
 
 #pragma mark navigate
 - (BOOL)handleNavigate:(id)next {
     return NO;
+}
+
+- (void)executeNavigate:(id)next {
+    RACTuple *tuple = [self convertNavigate:next];
+    if (!tuple) {
+        return;
+    }
+    NSURL *url = (NSURL *)tuple.first;
+    NSDictionary *parameters = (NSDictionary *)tuple.second;
+    if ([url.host isEqualToString:kOCFHostBack]) {
+        // back
+        @weakify(self)
+        OCFVoidBlock completion = ^(void) {
+            @strongify(self)
+            if (self.reactor.result) {
+                [self.subscriber sendNext:self.reactor.result];
+            }
+            [self.subscriber sendCompleted];
+        };
+        NSString *path = url.path;
+        if (path.length == 0) {
+            if (self.qmui_isPresented) {
+                path = kOCFPathDismiss;
+            } else {
+                path = kOCFPathPop;
+            }
+        }
+        if ([path isEqualToString:kOCFPathPop]) {
+            NSNumber *all = OCFNumMember(url.qmui_queryItems, OCFParameter.all, nil);
+            if (!all) {
+                all = OCFNumMember(parameters, OCFParameter.all, nil);
+            }
+            if (all.boolValue) {
+                [self.navigationController qmui_popToRootViewControllerAnimated:YES completion:completion];
+            } else {
+                [self.navigationController qmui_popViewControllerAnimated:YES completion:completion];
+            }
+        } else if ([path isEqualToString:kOCFPathDismiss]) {
+            [self dismissViewControllerAnimated:YES completion:completion];
+        } else if ([path isEqualToString:kOCFPathFadeaway]) {
+            OCFLogDebug(@"YJX_TODO kOCFPathFadeaway");
+        }
+    } else {
+        // forward
+        [self.navigator routeURL:url withParameters:parameters];
+    }
 }
 
 - (RACTuple *)convertNavigate:(id)next {

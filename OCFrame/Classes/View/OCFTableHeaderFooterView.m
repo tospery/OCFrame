@@ -26,8 +26,8 @@
     
 }
 
-+ (NSString *)kind {
-    return nil;
-}
+//+ (NSString *)kind {
+//    return nil;
+//}
 
 @end

@@ -9,6 +9,6 @@
 
 @protocol OCFTableHeaderFooter <NSObject>
 
-+ (NSString *)kind;
+//+ (NSString *)kind;
 
 @end

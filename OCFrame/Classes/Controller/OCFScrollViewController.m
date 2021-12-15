@@ -15,6 +15,7 @@
 #import "OCFWebViewController.h"
 #import "OCFLoginViewController.h"
 #import "OCFCollectionViewController.h"
+#import "OCFTableViewController.h"
 #import "NSError+OCFrame.h"
 #import "NSURL+OCFrame.h"
 #import "UIScrollView+OCFrame.h"
@@ -50,7 +51,10 @@
     if ([self isKindOfClass:OCFCollectionViewController.class]) {
         UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.contentFrame collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
         self.scrollView = collectionView;
-    } else {
+    } else if ([self isKindOfClass:OCFTableViewController.class]) {
+        UITableView *tableView = [[UITableView alloc] initWithFrame:self.contentFrame style:UITableViewStyleGrouped];
+        self.scrollView = tableView;
+    }  else {
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.contentFrame];
         scrollView.ocf_contentView = [[UIView alloc] init];
         scrollView.ocf_contentView.backgroundColor = UIColor.clearColor;

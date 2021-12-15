@@ -46,7 +46,7 @@
 }
 
 #pragma mark - Configure
-- (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withReactor:(OCFCollectionItem *)reactor {
+- (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withItem:(OCFCollectionItem *)reactor {
     
 }
 
@@ -60,11 +60,11 @@
 
 #pragma mark - Delegate
 #pragma mark OCFCollectionViewModelDataSource
-- (OCFCollectionItem *)collectionViewReactor:(OCFCollectionViewReactor *)collectionViewReactor reactorAtIndexPath:(NSIndexPath *)indexPath {
+- (OCFCollectionItem *)collectionViewReactor:(OCFCollectionViewReactor *)collectionViewReactor itemAtIndexPath:(NSIndexPath *)indexPath {
     return self.dataSource[indexPath.section][indexPath.row];
 }
 
-- (Class)collectionViewReactor:(OCFCollectionViewReactor *)collectionViewReactor classForReactor:(OCFCollectionItem *)reactor {
+- (Class)collectionViewReactor:(OCFCollectionViewReactor *)collectionViewReactor classForItem:(OCFCollectionItem *)reactor {
     return NSClassFromString([self.cellMapping objectForKey:NSStringFromClass(reactor.class)]);
 }
 
@@ -78,15 +78,15 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    OCFCollectionItem *reactor = [self collectionViewReactor:self reactorAtIndexPath:indexPath];
-    Class cls = [self collectionViewReactor:self classForReactor:reactor];
+    OCFCollectionItem *reactor = [self collectionViewReactor:self itemAtIndexPath:indexPath];
+    Class cls = [self collectionViewReactor:self classForItem:reactor];
     SEL sel = @selector(ocf_reuseId);
     NSString *reuseId = nil;
     if ([cls respondsToSelector:sel]) {
         reuseId = ((id (*)(id, SEL))[cls methodForSelector:sel])(cls, sel);
     }
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseId forIndexPath:indexPath];
-    [self configureCell:cell atIndexPath:indexPath withReactor:reactor];
+    [self configureCell:cell atIndexPath:indexPath withItem:reactor];
     if ([cell conformsToProtocol:@protocol(OCFReactive)]) {
         id<OCFReactive> reactive = (id<OCFReactive>)cell;
         [reactive bind:reactor];

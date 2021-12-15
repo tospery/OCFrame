@@ -140,8 +140,8 @@
         return CGSizeZero;
     }
     id<OCFCollectionViewReactorDataSource> dataSource = (id<OCFCollectionViewReactorDataSource>)collectionView.dataSource;
-    OCFCollectionItem *reactor = [dataSource collectionViewReactor:self.reactor reactorAtIndexPath:indexPath];
-    Class cls = [dataSource collectionViewReactor:self.reactor classForReactor:reactor];
+    OCFCollectionItem *reactor = [dataSource collectionViewReactor:self.reactor itemAtIndexPath:indexPath];
+    Class cls = [dataSource collectionViewReactor:self.reactor classForItem:reactor];
     SEL sel = @selector(ocf_sizeWithMaxWidth:reactor:);
     CGSize size = CGSizeZero;
     if ([cls respondsToSelector:sel]) {
@@ -180,7 +180,7 @@
         return;
     }
     id<OCFCollectionViewReactorDataSource> dataSource = (id<OCFCollectionViewReactorDataSource>)collectionView.dataSource;
-    OCFCollectionItem *reactor = [dataSource collectionViewReactor:self.reactor reactorAtIndexPath:indexPath];
+    OCFCollectionItem *reactor = [dataSource collectionViewReactor:self.reactor itemAtIndexPath:indexPath];
     [self.reactor.selectCommand execute:RACTuplePack(indexPath, reactor)];
 }
 

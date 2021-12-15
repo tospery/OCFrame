@@ -11,8 +11,8 @@
 @class OCFCollectionViewReactor;
 
 @protocol OCFCollectionViewReactorDataSource <OCFScrollViewReactorDataSource, UICollectionViewDataSource>
-- (OCFCollectionItem *)collectionViewReactor:(OCFCollectionViewReactor *)collectionViewReactor reactorAtIndexPath:(NSIndexPath *)indexPath;
-- (Class)collectionViewReactor:(OCFCollectionViewReactor *)collectionViewReactor classForReactor:(OCFCollectionItem *)reactor;
+- (OCFCollectionItem *)collectionViewReactor:(OCFCollectionViewReactor *)collectionViewReactor itemAtIndexPath:(NSIndexPath *)indexPath;
+- (Class)collectionViewReactor:(OCFCollectionViewReactor *)collectionViewReactor classForItem:(OCFCollectionItem *)reactor;
 
 @end
 
@@ -21,7 +21,7 @@
 @property (nonatomic, strong) NSArray *headerNames;
 @property (nonatomic, strong) NSArray *footerNames;
 
-- (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withReactor:(OCFCollectionItem *)reactor;
+- (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withItem:(OCFCollectionItem *)item;
 - (void)configureHeader:(UICollectionReusableView *)header atIndexPath:(NSIndexPath *)indexPath;
 - (void)configureFooter:(UICollectionReusableView *)footer atIndexPath:(NSIndexPath *)indexPath;
 
