@@ -6,8 +6,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QMUIKit/QMUIKit.h>
 
 @interface NSObject (OCFrame)
+@property(nonatomic, strong) id ocf_tag;
 @property (nonatomic, strong, readonly) NSString *ocf_className;
 @property (nonatomic, strong, readonly) id ocf_JSONObject;
 @property (nonatomic, strong, readonly) NSData *ocf_JSONData;

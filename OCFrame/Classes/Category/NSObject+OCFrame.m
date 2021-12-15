@@ -10,6 +10,7 @@
 #import <QMUIKit/QMUIKit.h>
 
 @implementation NSObject (OCFrame)
+QMUISynthesizeIdStrongProperty(ocf_tag, setOcf_tag)
 
 #pragma mark - Instance
 - (NSString *)ocf_className {
