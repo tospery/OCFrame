@@ -70,11 +70,11 @@
 }
 
 - (Class)tableViewReactor:(OCFTableViewReactor *)tableViewReactor headerClassForSection:(NSInteger)section {
-    return NSClassFromString([self.headerNames ocf_objectAtIndex:section]);
+    return NSClassFromString(self.headerNames.firstObject);
 }
 
 - (Class)tableViewReactor:(OCFTableViewReactor *)tableViewReactor footerClassForSection:(NSInteger)section {
-    return NSClassFromString([self.footerNames ocf_objectAtIndex:section]);
+    return NSClassFromString(self.footerNames.firstObject);
 }
 
 #pragma mark UITableViewDataSource
@@ -101,6 +101,19 @@
         [reactive bind:item];
     }
     return cell;
+}
+
+- (NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    return self.sectionIndexTitles;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+    return index;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section >= self.sectionIndexTitles.count) return nil;
+    return self.sectionIndexTitles[section];
 }
 
 #pragma mark - Class

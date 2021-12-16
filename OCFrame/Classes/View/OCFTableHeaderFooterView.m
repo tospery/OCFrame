@@ -17,7 +17,7 @@
 
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
-        self.backgroundColor = UIColor.ocf_background;
+        self.contentView.backgroundColor = UIColor.ocf_background;
     }
     return self;
 }

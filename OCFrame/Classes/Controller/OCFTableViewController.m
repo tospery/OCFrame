@@ -161,9 +161,9 @@
             view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:reuseId];
         }
     }
-//    if (view) {
-//        [self.reactor configureHeader:view atSection:section];
-//    }
+    if (view) {
+        [self.reactor configureHeader:view atSection:section];
+    }
     return view;
 }
 

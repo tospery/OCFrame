@@ -32,6 +32,7 @@
 #import "OCFSimpleAlertAction.h"
 #import "OCFReachManager.h"
 #import "OCFNormalTableModel.h"
+#import "OCFPlainModel.h"
 
 #pragma mark - View
 #import "OCFReactiveView.h"

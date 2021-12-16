@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSDictionary *cellMapping;
 @property (nonatomic, strong) NSArray *headerNames;
 @property (nonatomic, strong) NSArray *footerNames;
+@property (nonatomic, strong) NSArray *sectionIndexTitles;
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withItem:(OCFTableItem *)item;
 - (void)configureHeader:(UITableViewHeaderFooterView *)header atSection:(NSInteger)section;
