@@ -243,6 +243,9 @@
                 path = kOCFPathPop;
             }
         }
+        if ([path hasPrefix:@"/"]) {
+            path = [path qmui_stringByRemoveCharacterAtIndex:0];
+        }
         if ([path isEqualToString:kOCFPathPop]) {
             NSNumber *all = OCFNumMember(url.qmui_queryItems, OCFParameter.all, nil);
             if (!all) {
