@@ -15,7 +15,7 @@
 @interface NSString (OCFrame)
 @property (class, nonatomic, strong, readonly) NSString *ocf_logTagNormal;
 @property (nonatomic, strong, readonly) NSString *ocf_image;
-@property (nonatomic, strong, readonly) NSString *ocf_url;
+@property (nonatomic, strong, readonly) NSURL *ocf_url;
 @property (nonatomic, strong, readonly) NSString *ocf_underlineFromCamel;
 @property (nonatomic, strong, readonly) NSString *ocf_camelFromUnderline;
 @property (nonatomic, strong, readonly) NSString *ocf_base64Encoded;

@@ -8,10 +8,9 @@
 #import <UIKit/UIKit.h>
 
 #define OCFURLWithStr(x)                    ([NSURL ocf_urlWithString:(x)])
-//#define OCFURLWithPath(x)                   ([NSURL ocf_urlWithPath:(x)])
-#define OCFURLWithHostpath(x)                ([NSURL ocf_urlWithHostpath:(x)])
-#define OCFURLWithUniversal(x)              ([NSURL ocf_urlWithUniversal:(x)])
 #define OCFURLWithBack(x)                   ([NSURL ocf_urlWithBack:(x)])
+#define OCFURLWithHostpath(x)               ([NSURL ocf_urlWithHostpath:(x)])
+#define OCFURLWithUniversal(x)              ([NSURL ocf_urlWithUniversal:(x)])
 
 @interface NSURL (OCFrame)
 
