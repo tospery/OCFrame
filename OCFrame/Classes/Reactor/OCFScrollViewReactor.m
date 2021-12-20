@@ -47,14 +47,14 @@
             return [RACSignal return:tuple];
         }
         OCFScrollItem *item = (OCFScrollItem *)tuple.second;
-        if (OCFDataIsNullOrEmpty(item.target)) {
+        NSString *target = item.target;
+        if (target.length == 0) {
             return [RACSignal return:tuple];
         }
-        return [RACSignal return:item.target];
+        return [RACSignal return:target];
     }] subscribe:self.navigate];
 }
 
-#pragma mark - View
 #pragma mark - Property
 - (RACCommand *)selectCommand {
     if (!_selectCommand) {
@@ -74,8 +74,6 @@
 - (NSInteger)nextPageIndex {
     return self.page.index + 1;
 }
-
-#pragma mark - Error
 
 #pragma mark - Delegate
 #pragma mark DZNEmptyDataSetSource

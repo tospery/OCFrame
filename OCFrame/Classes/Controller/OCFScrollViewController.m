@@ -66,30 +66,14 @@
     self.scrollView.backgroundColor = UIColor.ocf_background;
     self.scrollView.emptyDataSetSource = self.reactor;
     self.scrollView.emptyDataSetDelegate = self;
-    if (@available(iOS 11.0, *)) {
-        self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    }
+    self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     [self.view addSubview:self.scrollView];
-    
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.scrollView.frame = self.contentFrame;
     OCFLogDebug(@"scrollView frame = %@", NSStringFromCGRect(self.scrollView.frame));
-    
-//    if (![self isKindOfClass:OCFCollectionViewController.class] /*&&
-//        ![self isKindOfClass:OCFWebViewController.class]*/) {
-//        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.contentFrame];
-//        scrollView.ocf_contentView = [[UIView alloc] init];
-//        scrollView.ocf_contentView.frame = scrollView.bounds;
-//        scrollView.ocf_contentView.theme_backgroundColor = ThemeColorPicker.background;
-//        scrollView.contentSize = CGSizeMake(scrollView.qmui_width, scrollView.qmui_height + PixelOne);
-//        scrollView.theme_backgroundColor = ThemeColorPicker.background;
-//        scrollView.delegate = self;
-//        scrollView.emptyDataSetSource = self.reactor;
-//        scrollView.emptyDataSetDelegate = self;
-//        if (@available(iOS 11.0, *)) {
-//            scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-//        }
-//        [self.view addSubview:scrollView];
-//        self.scrollView = scrollView;
-//    }
 }
 
 #pragma mark - Property
@@ -106,23 +90,14 @@
         @strongify(self)
         [self setupMore:should.boolValue];
     }];
-    
-////    [self.reactor.errors doNext:^(id x) {
-////        NSLog(@"");
-////    }];
-//    [self.reactor.errors subscribeNext:^(id  _Nullable x) {
-//        NSLog(@"");
-//    }];
 }
 
 - (void)reloadData {
     [super reloadData];
-    if ([self.scrollView isMemberOfClass:UIScrollView.class]) {
-        [self.scrollView reloadEmptyDataSet];
-    }
+    [self.scrollView reloadEmptyDataSet];
 }
 
-- (BOOL)handleError {
+- (BOOL)filterError {
     BOOL handled = NO;
     if (!self.reactor.error) {
         return handled;
@@ -200,15 +175,7 @@
 }
 
 - (void)triggerLoad {
-    [self beginLoad];
-    @weakify(self)
-    [[self.reactor.loadCommand execute:@(self.reactor.page.start)].deliverOnMainThread subscribeNext:^(id data) {
-        @strongify(self)
-        self.reactor.page.index = self.reactor.page.start;
-    } completed:^{
-        @strongify(self)
-        [self endLoad];
-    }];
+    [super triggerLoad];
 }
 
 - (void)endLoad {

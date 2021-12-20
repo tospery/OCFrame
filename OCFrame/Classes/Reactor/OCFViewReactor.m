@@ -26,23 +26,16 @@
 @property (nonatomic, strong, readwrite) NSString *host;
 @property (nonatomic, strong, readwrite) NSString *path;
 @property (nonatomic, assign, readwrite) BOOL animated;
-@property (nonatomic, assign, readwrite) OCFForwardType forwardType;
 @property (nonatomic, assign, readwrite) BOOL transparetNavBar;
+@property (nonatomic, assign, readwrite) OCFForwardType forwardType;
 @property (nonatomic, strong, readwrite) OCFUser *user;
 @property (nonatomic, strong, readwrite) OCFProvider *provider;
 @property (nonatomic, strong, readwrite) NSDictionary *parameters;
 @property (nonatomic, strong, readwrite) OCFBaseModel *model;
-//@property (nonatomic, strong, readwrite) OCFNavigator *navigator;
-//@property (nonatomic, strong, readwrite) RACCommand *backCommand;
-//@property (nonatomic, strong, readwrite) RACCommand *didBackCommand;
-// @property (nonatomic, strong, readwrite) RACSubject *load;
 @property (nonatomic, strong, readwrite) RACSubject *errors;
 @property (nonatomic, strong, readwrite) RACSubject *executing;
 @property (nonatomic, strong, readwrite) RACSubject *navigate;
-//@property (nonatomic, strong, readwrite) RACSignal *loadSignal;
-//@property (nonatomic, strong, readwrite) RACCommand *fetchLocalCommand;
 @property (nonatomic, strong, readwrite) RACCommand *loadCommand;
-//@property (nonatomic, strong, readwrite) RACCommand *loadCommand;
 @property (nonatomic, strong, readwrite) RACCommand *resultCommand;
 
 @end
@@ -55,8 +48,6 @@
         self.parameters = parameters;
         self.animated = OCFBoolMember(parameters, OCFParameter.animated, YES);
         self.forwardType = OCFForwardTypeWithDft(OCFIntMember(parameters, OCFParameter.forward, 0), 0);
-//        self.shouldFetchLocalData = OCFBoolMember(parameters, OCFParameter.fetchLocalData, YES);
-//        self.shouldRequestRemoteData = OCFBoolMember(parameters, OCFParameter.requestRemote, NO);
         self.transparetNavBar = OCFBoolMember(parameters, OCFParameter.transparetNavBar, NO);
         self.hidesNavigationBar = OCFBoolMember(parameters, OCFParameter.hidesNavigationBar, NO);
         self.hidesNavBottomLine = OCFBoolMember(parameters, OCFParameter.hidesNavBottomLine, NO);
@@ -112,29 +103,12 @@
         @strongify(self)
         return [self data2Source:data];
     }];
-//    if (self.shouldFetchLocalData && !self.shouldRequestRemoteData) {
-//        RAC(self, dataSource) = [[RACSignal return:[self fetchLocalData]] map:^id(id data) {
-//            @strongify(self)
-//            return [self data2Source:data];
-//        }];
-//    } else if (!self.shouldFetchLocalData && self.shouldRequestRemoteData) {
-//        RAC(self, dataSource) = [requestRemoteSignal map:^id(id data) {
-//            @strongify(self)
-//            return [self data2Source:data];
-//        }];
-//    } else if (self.shouldFetchLocalData && self.shouldRequestRemoteData) {
-//        RAC(self, dataSource) = [[requestRemoteSignal startWith:[self fetchLocalData]] map:^id(id data) {
-//            @strongify(self)
-//            return [self data2Source:data];
-//        }];
-//    }
 }
 
 - (void)dealloc {
     OCFLogDebug(@"%@已析构", self.ocf_className);
 }
 
-#pragma mark - View
 #pragma mark - Property
 - (OCFProvider *)provider {
     if (!_provider) {
@@ -142,13 +116,6 @@
     }
     return _provider;
 }
-
-//- (RACSubject *)load {
-//    if (!_load) {
-//        _load = [RACSubject subject];
-//    }
-//    return _load;
-//}
 
 - (RACSubject *)errors {
     if (!_errors) {
@@ -170,35 +137,6 @@
     }
     return _navigate;
 }
-
-//- (RACSignal *)loadSignal {
-//    if (!_loadSignal) {
-//        RACSignal *signal = nil;
-//        if (self.shouldFetchLocalData && !self.shouldRequestRemoteData) {
-//            signal = self.fetchLocalCommand.executionSignals.switchToLatest;
-//        } else if (!self.shouldFetchLocalData && self.shouldRequestRemoteData) {
-//            signal = self.requestRemoteCommand.executionSignals.switchToLatest;
-//        } else if (self.shouldFetchLocalData && self.shouldRequestRemoteData) {
-//            signal = [RACSignal merge:@[self.fetchLocalCommand.executionSignals.switchToLatest, self.requestRemoteCommand.executionSignals.switchToLatest]];
-//        } else {
-//            signal = RACSignal.empty;
-//        }
-//        _loadSignal = signal;
-//    }
-//    return _loadSignal;
-//}
-
-//- (RACCommand *)fetchLocalCommand {
-//    if (!_fetchLocalCommand) {
-//        @weakify(self)
-//        RACCommand *command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-//            @strongify(self)
-//            return [RACSignal return:[self fetchLocalData]];
-//        }];
-//        _fetchLocalCommand = command;
-//    }
-//    return _fetchLocalCommand;
-//}
 
 - (RACCommand *)loadCommand {
     if (!_loadCommand) {
@@ -222,31 +160,13 @@
     return _resultCommand;
 }
 
-//- (RACCommand *)loadCommand {
-//    if (!_loadCommand) {
-//        RACCommand *command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-//            return [RACSignal return:input];
-//        }];
-//        _loadCommand = command;
-//    }
-//    return _loadCommand;
-//}
-
-#pragma mark - Data
-//- (id)fetchLocalData {
-//    return nil;
-//}
-
+#pragma mark - Load
 - (RACSignal *)loadSignal {
     return RACSignal.empty;
 }
 
 - (NSArray *)data2Source:(id)data {
     return nil;
-}
-
-- (void)reload {
-    
 }
 
 #pragma mark - Class

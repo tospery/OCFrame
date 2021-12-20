@@ -30,6 +30,7 @@ typedef NS_ENUM(NSInteger, OCFRequestMode) {
 
 /// 业务逻辑（网络请求/数据处理）
 @interface OCFViewReactor : OCFBaseReactor <OCFViewReactorDataSource>
+@property (nonatomic, strong, readonly) NSDictionary *parameters;
 @property (nonatomic, strong, readonly) NSString *host;
 @property (nonatomic, strong, readonly) NSString *path;
 @property (nonatomic, assign, readonly) BOOL animated;
@@ -37,8 +38,6 @@ typedef NS_ENUM(NSInteger, OCFRequestMode) {
 @property (nonatomic, assign, readonly) BOOL transparetNavBar;
 @property (nonatomic, assign) BOOL hidesNavigationBar;
 @property (nonatomic, assign) BOOL hidesNavBottomLine;
-//@property (nonatomic, assign) BOOL shouldFetchLocalData;
-//@property (nonatomic, assign) BOOL shouldRequestRemoteData;
 @property (nonatomic, strong) id result;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *animation;
@@ -46,23 +45,16 @@ typedef NS_ENUM(NSInteger, OCFRequestMode) {
 @property (nonatomic, strong) NSArray *dataSource;
 @property (nonatomic, strong) NSError *error;
 @property (nonatomic, assign) OCFRequestMode requestMode;
-@property (nonatomic, strong, readonly) NSDictionary *parameters;
 @property (nonatomic, strong, readonly) OCFProvider *provider;
-// @property (nonatomic, strong, readonly) RACSubject *load;
 @property (nonatomic, strong, readonly) RACSubject *errors;
 @property (nonatomic, strong, readonly) RACSubject *executing;
 @property (nonatomic, strong, readonly) RACSubject *navigate;
-//@property (nonatomic, strong, readonly) RACSignal *loadSignal;
-//@property (nonatomic, strong, readonly) RACCommand *loadCommand;
 @property (nonatomic, strong, readonly) RACCommand *resultCommand;
-//@property (nonatomic, strong, readonly) RACCommand *fetchLocalCommand;
 @property (nonatomic, strong, readonly) RACCommand *loadCommand;
 
-//- (id)fetchLocalData;
 - (RACSignal *)loadSignal;
 
 - (NSArray *)data2Source:(id)data;
-- (void)reload;
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithParameters:(NSDictionary *)parameters;

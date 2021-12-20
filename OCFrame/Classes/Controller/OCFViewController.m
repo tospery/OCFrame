@@ -23,8 +23,6 @@
 #import "UIImage+OCFrame.h"
 
 @interface OCFViewController ()
-//@property (nonatomic, strong) UIButton *backButton;
-//@property (nonatomic, strong) UIButton *closeButton;
 @property (nonatomic, assign, readwrite) CGFloat contentTop;
 @property (nonatomic, assign, readwrite) CGFloat contentBottom;
 @property (nonatomic, assign, readwrite) CGRect contentFrame;
@@ -47,26 +45,12 @@
         if (subscriber && [subscriber conformsToProtocol:@protocol(RACSubscriber)]) {
             self.subscriber = (id<RACSubscriber>)subscriber;
         }
-//        @weakify(self)
-//        [[self rac_signalForSelector:@selector(bind:)] subscribeNext:^(RACTuple *tuple) {
-//            @strongify(self)
-//            if (self.reactor.shouldRequestRemoteData) {
-//                if (!self.reactor.dataSource) {
-//                    [self triggerLoad];
-//                }else {
-//                    [self triggerUpdate];
-//                }
-//            }
-//            // [self.reactor.loadCommand execute:nil];
-//            //[self.reactor.load sendNext:nil];
-//        }];
     }
     return self;
 }
 
 - (void)dealloc {
     OCFLogDebug(@"%@已析构", self.ocf_className);
-    [self.subscriber sendCompleted];
 }
 
 #pragma mark - View
@@ -74,7 +58,6 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.extendedLayoutIncludesOpaqueBars = YES;
-    // self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.view.backgroundColor = UIColor.ocf_background;
     
@@ -95,50 +78,37 @@
     self.navigationBar.hidden = self.reactor.hidesNavigationBar;
     self.navigationBar.qmui_borderLayer.hidden = self.reactor.hidesNavBottomLine;
     
-    if (self.navigationController.viewControllers.count > 1) {
+    if (self.qmui_isPresented && self.navigationController.qmui_isPresented) {
+        UIButton *closeButton = [self.navigationBar addCloseButtonToLeft];
+        @weakify(self)
+        [[closeButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIControl *button) {
+            @strongify(self)
+            [self handleNavigate:OCFURLWithBack(kOCFPathDismiss)];
+        }];
+    } else {
         UIButton *backButton = [self.navigationBar addBackButtonToLeft];
         @weakify(self)
         [[backButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIControl *button) {
             @strongify(self)
-            [self.navigator popReactorAnimated:YES completion:nil];
+            [self handleNavigate:OCFURLWithBack(kOCFPathPop)];
         }];
-    } else {
-        if (self.presentingViewController) {
-            UIButton *closeButton = [self.navigationBar addCloseButtonToLeft];
-            @weakify(self)
-            [[closeButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIControl *button) {
-                @strongify(self)
-                [self.navigator dismissReactorAnimated:YES completion:nil];
-            }];
-        }
     }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.view bringSubviewToFront:self.navigationBar];
+    [self.view bringSubviewToFront:self.navigationBar]; // YJX_TODO 优化
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    // [self.view bringSubviewToFront:self.navigationBar];
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    // [self.view bringSubviewToFront:self.navigationBar];
-    // [self layoutEmptyView];
 }
 
 #pragma mark - Property
-//- (OCFNavigator *)navigator {
-//    if (!_navigator) {
-//        _navigator = OCFAppDependency.sharedInstance.navigator;
-//    }
-//    return _navigator;
-//}
-
-
 - (OCFNavigationBar *)navigationBar {
     if (!_navigationBar) {
         OCFNavigationBar *navigationBar = [[OCFNavigationBar alloc] init];
@@ -172,22 +142,13 @@
 
 #pragma mark - Bind
 - (void)bind:(OCFViewReactor *)reactor {
-    @weakify(self)
     // Action (View -> Reactor)
-    RAC(self.navigationBar.titleLabel, text) = RACObserve(self.reactor, title);
-    RAC(self.navigationItem, title) = RACObserve(self.reactor, title);
     [self.reactor.loadCommand.errors subscribe:self.reactor.errors];
     
     // State (Reactor -> View)
-    [RACObserve(self.reactor, dataSource).deliverOnMainThread subscribeNext:^(id x) {
-        @strongify(self)
-        [self reloadData];
-    }];
-    [[[RACObserve(self.reactor.user, isLogined) skip:1] ignore:@(NO)].distinctUntilChanged.deliverOnMainThread subscribeNext:^(NSNumber *isLogined) {
-        @strongify(self)
-        [self handleError];
-    }];
-
+    RAC(self.navigationBar.titleLabel, text) = RACObserve(self.reactor, title);
+    RAC(self.navigationItem, title) = RACObserve(self.reactor, title);
+    @weakify(self)
     [[self.reactor.executing skip:1] subscribeNext:^(NSNumber *executing) {
         @strongify(self)
         if (executing.boolValue) {
@@ -199,26 +160,34 @@
     [[self.reactor.errors filter:^BOOL(NSError *error) {
         @strongify(self)
         self.reactor.error = error;
-        return ![self handleError];
+        return ![self filterError];
     }] subscribeNext:^(NSError *error) {
         @strongify(self)
-        [self.navigator toastMessage:OCFStrWithDft(error.ocf_displayMessage, kStringErrorUnknown)];
+        [self handleError];
     }];
-     [[self.reactor.navigate filter:^BOOL(id value) {
-         @strongify(self)
-         return ![self handleNavigate:value];
-     }] subscribeNext:^(id next) {
-         @strongify(self)
-         [self executeNavigate:next];
-     }];
+    [[self.reactor.navigate filter:^BOOL(id next) {
+        @strongify(self)
+        return ![self filterNavigate:next];
+    }] subscribeNext:^(id next) {
+        @strongify(self)
+        [self handleNavigate:next];
+    }];
+    [RACObserve(self.reactor, dataSource).distinctUntilChanged.deliverOnMainThread subscribeNext:^(id x) {
+        @strongify(self)
+        [self reloadData];
+    }];
+    [[[RACObserve(self.reactor.user, isLogined) skip:1] ignore:@(NO)].distinctUntilChanged.deliverOnMainThread subscribeNext:^(NSNumber *isLogined) {
+        @strongify(self)
+        [self handleError];
+    }];
 }
 
-#pragma mark navigate
-- (BOOL)handleNavigate:(id)next {
+#pragma mark - Navigate
+- (BOOL)filterNavigate:(id)next {
     return NO;
 }
 
-- (void)executeNavigate:(id)next {
+- (void)handleNavigate:(id)next {
     RACTuple *tuple = [self convertNavigate:next];
     if (!tuple) {
         return;
@@ -292,19 +261,13 @@
     return nil;
 }
 
-#pragma mark error
-//- (BOOL (^)(NSError *error))filterError {
-//    @weakify(self)
-//    return ^(NSError *error) {
-//        @strongify(self)
-//        self.reactor.error = error;
-//        BOOL handled = ![self handleError];
-//        return handled;
-//    };
-//}
-
-- (BOOL)handleError {
+#pragma mark - Error
+- (BOOL)filterError {
     return NO;
+}
+
+- (void)handleError {
+    [self.navigator toastMessage:OCFStrWithDft(self.reactor.error.ocf_displayMessage, kStringErrorUnknown)];
 }
 
 #pragma mark - Load
@@ -313,16 +276,17 @@
     if (self.reactor.error || self.reactor.dataSource) {
         self.reactor.error = nil;
         self.reactor.dataSource = nil;
-//        if (self.reactor.shouldFetchLocalData) {
-//            self.reactor.dataSource = [self.reactor data2Source:[self.reactor fetchLocalData]];
-//        } else {
-//            self.reactor.dataSource = nil;
-//        }
     }
 }
 
 - (void)triggerLoad {
-    
+    [self beginLoad];
+    @weakify(self)
+    [[self.reactor.loadCommand execute:nil] subscribeNext:^(id data) {
+    } completed:^{
+        @strongify(self)
+        [self endLoad];
+    }];
 }
 
 - (void)endLoad {
@@ -354,19 +318,6 @@
 - (void)reloadData {
     
 }
-
-#pragma mark - Navigation
-//- (void)addNavigationBar {
-//    if (!self.navigationBar.superview) {
-//        [self.view addSubview:self.navigationBar];
-//    }
-//}
-//
-//- (void)removeNavigationBar {
-//    if (self.navigationBar.superview) {
-//        [self.navigationBar removeFromSuperview];
-//    }
-//}
 
 #pragma mark - Delegate
 #pragma mark UINavigationControllerBackButtonHandlerProtocol
