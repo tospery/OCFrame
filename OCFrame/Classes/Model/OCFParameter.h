@@ -23,8 +23,8 @@
 @property (class, strong, readonly) NSString *userid;
 @property (class, strong, readonly) NSString *subscriber;
 @property (class, strong, readonly) NSString *dismissManually;
-@property (class, strong, readonly) NSString *fetchLocalData;
-@property (class, strong, readonly) NSString *requestRemote;
+//@property (class, strong, readonly) NSString *fetchLocalData;
+//@property (class, strong, readonly) NSString *requestRemote;
 @property (class, strong, readonly) NSString *transparetNavBar;
 @property (class, strong, readonly) NSString *hidesNavigationBar;
 @property (class, strong, readonly) NSString *hidesNavBottomLine;

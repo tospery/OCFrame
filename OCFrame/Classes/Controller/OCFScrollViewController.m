@@ -202,7 +202,7 @@
 - (void)triggerLoad {
     [self beginLoad];
     @weakify(self)
-    [[self.reactor.requestRemoteCommand execute:@(self.reactor.page.start)].deliverOnMainThread subscribeNext:^(id data) {
+    [[self.reactor.loadCommand execute:@(self.reactor.page.start)].deliverOnMainThread subscribeNext:^(id data) {
         @strongify(self)
         self.reactor.page.index = self.reactor.page.start;
     } completed:^{
@@ -244,7 +244,7 @@
 - (void)triggerRefresh {
     [self beginRefresh];
     @weakify(self)
-    [[self.reactor.requestRemoteCommand execute:@(self.reactor.page.start)].deliverOnMainThread subscribeNext:^(id data) {
+    [[self.reactor.loadCommand execute:@(self.reactor.page.start)].deliverOnMainThread subscribeNext:^(id data) {
         @strongify(self)
         self.reactor.page.index = self.reactor.page.start;
     } completed:^{
@@ -283,7 +283,7 @@
     [self beginMore];
     @weakify(self)
     NSInteger pageIndex = [self.reactor nextPageIndex];
-    [[self.reactor.requestRemoteCommand execute:@(pageIndex)].deliverOnMainThread subscribeNext:^(id data) {
+    [[self.reactor.loadCommand execute:@(pageIndex)].deliverOnMainThread subscribeNext:^(id data) {
         @strongify(self)
         self.reactor.page.index = pageIndex;
     } completed:^{
@@ -304,7 +304,8 @@
 #pragma mark - Delegate
 #pragma mark DZNEmptyDataSetDelegate
 - (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView {
-    return (self.reactor.shouldRequestRemoteData && !self.reactor.dataSource);
+    // return (self.reactor.shouldRequestRemoteData && !self.reactor.dataSource);
+    return !self.reactor.dataSource;
 }
 
 - (BOOL)emptyDataSetShouldAllowTouch:(UIScrollView *)scrollView {

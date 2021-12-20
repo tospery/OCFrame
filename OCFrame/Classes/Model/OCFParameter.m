@@ -68,13 +68,13 @@
     return @"dismissManually";
 }
 
-+ (NSString *)fetchLocalData {
-    return @"fetchLocalData";
-}
-
-+ (NSString *)requestRemote {
-    return @"requestRemote";
-}
+//+ (NSString *)fetchLocalData {
+//    return @"fetchLocalData";
+//}
+//
+//+ (NSString *)requestRemote {
+//    return @"requestRemote";
+//}
 
 + (NSString *)transparetNavBar {
     return @"transparetNavBar";

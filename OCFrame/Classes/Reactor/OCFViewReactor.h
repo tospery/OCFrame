@@ -37,8 +37,8 @@ typedef NS_ENUM(NSInteger, OCFRequestMode) {
 @property (nonatomic, assign, readonly) BOOL transparetNavBar;
 @property (nonatomic, assign) BOOL hidesNavigationBar;
 @property (nonatomic, assign) BOOL hidesNavBottomLine;
-@property (nonatomic, assign) BOOL shouldFetchLocalData;
-@property (nonatomic, assign) BOOL shouldRequestRemoteData;
+//@property (nonatomic, assign) BOOL shouldFetchLocalData;
+//@property (nonatomic, assign) BOOL shouldRequestRemoteData;
 @property (nonatomic, strong) id result;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *animation;
@@ -56,10 +56,10 @@ typedef NS_ENUM(NSInteger, OCFRequestMode) {
 //@property (nonatomic, strong, readonly) RACCommand *loadCommand;
 @property (nonatomic, strong, readonly) RACCommand *resultCommand;
 //@property (nonatomic, strong, readonly) RACCommand *fetchLocalCommand;
-@property (nonatomic, strong, readonly) RACCommand *requestRemoteCommand;
+@property (nonatomic, strong, readonly) RACCommand *loadCommand;
 
-- (id)fetchLocalData;
-- (RACSignal *)requestRemoteSignalWithPage:(NSInteger)page;
+//- (id)fetchLocalData;
+- (RACSignal *)loadSignal;
 
 - (NSArray *)data2Source:(id)data;
 - (void)reload;

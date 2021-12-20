@@ -41,7 +41,7 @@
 @property (nonatomic, strong, readwrite) RACSubject *navigate;
 //@property (nonatomic, strong, readwrite) RACSignal *loadSignal;
 //@property (nonatomic, strong, readwrite) RACCommand *fetchLocalCommand;
-@property (nonatomic, strong, readwrite) RACCommand *requestRemoteCommand;
+@property (nonatomic, strong, readwrite) RACCommand *loadCommand;
 //@property (nonatomic, strong, readwrite) RACCommand *loadCommand;
 @property (nonatomic, strong, readwrite) RACCommand *resultCommand;
 
@@ -55,8 +55,8 @@
         self.parameters = parameters;
         self.animated = OCFBoolMember(parameters, OCFParameter.animated, YES);
         self.forwardType = OCFForwardTypeWithDft(OCFIntMember(parameters, OCFParameter.forward, 0), 0);
-        self.shouldFetchLocalData = OCFBoolMember(parameters, OCFParameter.fetchLocalData, YES);
-        self.shouldRequestRemoteData = OCFBoolMember(parameters, OCFParameter.requestRemote, NO);
+//        self.shouldFetchLocalData = OCFBoolMember(parameters, OCFParameter.fetchLocalData, YES);
+//        self.shouldRequestRemoteData = OCFBoolMember(parameters, OCFParameter.requestRemote, NO);
         self.transparetNavBar = OCFBoolMember(parameters, OCFParameter.transparetNavBar, NO);
         self.hidesNavigationBar = OCFBoolMember(parameters, OCFParameter.hidesNavigationBar, NO);
         self.hidesNavBottomLine = OCFBoolMember(parameters, OCFParameter.hidesNavBottomLine, NO);
@@ -108,23 +108,26 @@
 - (void)didInitialize {
     [super didInitialize];
     @weakify(self)
-    RACSignal *requestRemoteSignal = self.requestRemoteCommand.executionSignals.switchToLatest;
-    if (self.shouldFetchLocalData && !self.shouldRequestRemoteData) {
-        RAC(self, dataSource) = [[RACSignal return:[self fetchLocalData]] map:^id(id data) {
-            @strongify(self)
-            return [self data2Source:data];
-        }];
-    } else if (!self.shouldFetchLocalData && self.shouldRequestRemoteData) {
-        RAC(self, dataSource) = [requestRemoteSignal map:^id(id data) {
-            @strongify(self)
-            return [self data2Source:data];
-        }];
-    } else if (self.shouldFetchLocalData && self.shouldRequestRemoteData) {
-        RAC(self, dataSource) = [[requestRemoteSignal startWith:[self fetchLocalData]] map:^id(id data) {
-            @strongify(self)
-            return [self data2Source:data];
-        }];
-    }
+    RAC(self, dataSource) = [self.loadCommand.executionSignals.switchToLatest map:^id(id data) {
+        @strongify(self)
+        return [self data2Source:data];
+    }];
+//    if (self.shouldFetchLocalData && !self.shouldRequestRemoteData) {
+//        RAC(self, dataSource) = [[RACSignal return:[self fetchLocalData]] map:^id(id data) {
+//            @strongify(self)
+//            return [self data2Source:data];
+//        }];
+//    } else if (!self.shouldFetchLocalData && self.shouldRequestRemoteData) {
+//        RAC(self, dataSource) = [requestRemoteSignal map:^id(id data) {
+//            @strongify(self)
+//            return [self data2Source:data];
+//        }];
+//    } else if (self.shouldFetchLocalData && self.shouldRequestRemoteData) {
+//        RAC(self, dataSource) = [[requestRemoteSignal startWith:[self fetchLocalData]] map:^id(id data) {
+//            @strongify(self)
+//            return [self data2Source:data];
+//        }];
+//    }
 }
 
 - (void)dealloc {
@@ -197,17 +200,16 @@
 //    return _fetchLocalCommand;
 //}
 
-- (RACCommand *)requestRemoteCommand {
-    if (!_requestRemoteCommand) {
+- (RACCommand *)loadCommand {
+    if (!_loadCommand) {
         @weakify(self)
         RACCommand *command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSNumber *page) {
             @strongify(self)
-            return [[self requestRemoteSignalWithPage:page.integerValue] takeUntil:self.rac_willDeallocSignal];
+            return [[self loadSignal] takeUntil:self.rac_willDeallocSignal];
         }];
-        // [[command.errors filter:self.filterError] subscribe:self.errors];
-        _requestRemoteCommand = command;
+        _loadCommand = command;
     }
-    return _requestRemoteCommand;
+    return _loadCommand;
 }
 
 - (RACCommand *)resultCommand {
@@ -231,11 +233,11 @@
 //}
 
 #pragma mark - Data
-- (id)fetchLocalData {
-    return nil;
-}
+//- (id)fetchLocalData {
+//    return nil;
+//}
 
-- (RACSignal *)requestRemoteSignalWithPage:(NSInteger)page {
+- (RACSignal *)loadSignal {
     return RACSignal.empty;
 }
 

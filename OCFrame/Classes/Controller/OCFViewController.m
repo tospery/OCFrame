@@ -47,19 +47,19 @@
         if (subscriber && [subscriber conformsToProtocol:@protocol(RACSubscriber)]) {
             self.subscriber = (id<RACSubscriber>)subscriber;
         }
-        @weakify(self)
-        [[self rac_signalForSelector:@selector(bind:)] subscribeNext:^(RACTuple *tuple) {
-            @strongify(self)
-            if (self.reactor.shouldRequestRemoteData) {
-                if (!self.reactor.dataSource) {
-                    [self triggerLoad];
-                }else {
-                    [self triggerUpdate];
-                }
-            }
-            // [self.reactor.loadCommand execute:nil];
-            //[self.reactor.load sendNext:nil];
-        }];
+//        @weakify(self)
+//        [[self rac_signalForSelector:@selector(bind:)] subscribeNext:^(RACTuple *tuple) {
+//            @strongify(self)
+//            if (self.reactor.shouldRequestRemoteData) {
+//                if (!self.reactor.dataSource) {
+//                    [self triggerLoad];
+//                }else {
+//                    [self triggerUpdate];
+//                }
+//            }
+//            // [self.reactor.loadCommand execute:nil];
+//            //[self.reactor.load sendNext:nil];
+//        }];
     }
     return self;
 }
@@ -176,7 +176,7 @@
     // Action (View -> Reactor)
     RAC(self.navigationBar.titleLabel, text) = RACObserve(self.reactor, title);
     RAC(self.navigationItem, title) = RACObserve(self.reactor, title);
-    [self.reactor.requestRemoteCommand.errors subscribe:self.reactor.errors];
+    [self.reactor.loadCommand.errors subscribe:self.reactor.errors];
     
     // State (Reactor -> View)
     [RACObserve(self.reactor, dataSource).deliverOnMainThread subscribeNext:^(id x) {
@@ -312,11 +312,12 @@
     self.reactor.requestMode = OCFRequestModeLoad;
     if (self.reactor.error || self.reactor.dataSource) {
         self.reactor.error = nil;
-        if (self.reactor.shouldFetchLocalData) {
-            self.reactor.dataSource = [self.reactor data2Source:[self.reactor fetchLocalData]];
-        } else {
-            self.reactor.dataSource = nil;
-        }
+        self.reactor.dataSource = nil;
+//        if (self.reactor.shouldFetchLocalData) {
+//            self.reactor.dataSource = [self.reactor data2Source:[self.reactor fetchLocalData]];
+//        } else {
+//            self.reactor.dataSource = nil;
+//        }
     }
 }
 
@@ -337,7 +338,7 @@
 - (void)triggerUpdate {
     [self beginUpdate];
     @weakify(self)
-    [[self.reactor.requestRemoteCommand execute:nil].deliverOnMainThread subscribeNext:^(id data) {
+    [[self.reactor.loadCommand execute:nil].deliverOnMainThread subscribeNext:^(id data) {
     } completed:^{
         @strongify(self)
         [self endUpdate];
@@ -380,6 +381,7 @@
     [[viewController rac_signalForSelector:@selector(viewDidLoad)] subscribeNext:^(id x) {
         @strongify(viewController)
         [viewController bind:viewController.reactor];
+        [viewController triggerLoad];
     }];
     return viewController;
 }
