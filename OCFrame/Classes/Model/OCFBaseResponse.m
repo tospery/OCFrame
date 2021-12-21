@@ -16,7 +16,7 @@
 //- (instancetype)init {
 //    if (self = [super init]) {
 //        // 用于没有code/message/data层的数据
-//        // self.code = OCFErrorCodeSuccess;
+//        self.code = OCFErrorCodeNone;
 //    }
 //    return self;
 //}
@@ -26,8 +26,6 @@
         @"code": @"code",
         @"message": @"message"
     };
-//    NSDictionary *mapping = [NSDictionary mtl_identityPropertyMapWithModel:self];
-//    return mapping;
 }
 
 + (NSString *)resultKeyPathForJSONDictionary:(NSDictionary *)JSONDictionary {

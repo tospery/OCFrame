@@ -10,6 +10,9 @@
 #import "OCFLoginViewReactor.h"
 #import "OCFWebViewReactor.h"
 #import "NSDictionary+OCFrame.h"
+#import "OCFParameter.h"
+#import "NSString+OCFrame.h"
+#import "NSObject+OCFrame.h"
 #import <JLRoutes/JLRoutes.h>
 #import <JLRoutes/JLRRouteHandler.h>
 #import <JLRoutes/JLRRouteDefinition.h>
@@ -32,6 +35,25 @@
         }
         OCFLoginViewReactor *reactor = [[cls alloc] initWithParameters:parameters];
         return [navigator forwardReactor:reactor];
+    };
+    JLRoutes.globalRoutes[kOCFHostThirdparty] = ^BOOL(NSDictionary *parameters) {
+        NSURL *url = [OCFStrMember(parameters, OCFParameter.url, nil) ocf_urlComponentDecoded].ocf_url;
+        if (url) {
+            [UIApplication.sharedApplication openURL:url options:@{} completionHandler:nil];
+            return YES;
+        }
+        NSString *string = [OCFStrMember(parameters, OCFParameter.urls, nil) ocf_base64Decoded];
+        id json = [string ocf_JSONObject];
+        if ([json isKindOfClass:NSArray.class]) {
+            NSArray *arr = (NSArray *)json;
+            for (NSString *item in arr) {
+                if ([UIApplication.sharedApplication canOpenURL:item.ocf_url]) {
+                    [UIApplication.sharedApplication openURL:item.ocf_url options:@{} completionHandler:nil];
+                    return YES;
+                }
+            }
+        }
+        return NO;
     };
     JLRoutes.globalRoutes[kOCFHostAny] = ^BOOL(NSDictionary *parameters) {
         NSString *scheme = OCFURLMember(parameters, JLRouteURLKey, nil).scheme;

@@ -39,11 +39,12 @@
 
 #pragma mark - Host
 #define kOCFHostAny                                 (@"*")
-#define kOCFHostLogin                               (@"login")
 #define kOCFHostToast                               (@"toast")
 #define kOCFHostAlert                               (@"alert")
 #define kOCFHostSheet                               (@"sheet")
 #define kOCFHostPopup                               (@"popup")
+#define kOCFHostLogin                               (@"login")
+#define kOCFHostThirdparty                          (@"thirdparty")
 #define kOCFHostBack                                (@"back")
 
 #pragma mark - Path
