@@ -33,7 +33,7 @@
 #pragma mark - Property
 
 #pragma mark - Data
-- (NSArray *)data2Source:(id)data {
+- (id)data2Source:(id)data {
     if (!data || ![data isKindOfClass:NSArray.class]) {
         return nil;
     }
@@ -70,7 +70,7 @@
 
 #pragma mark UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return self.dataSource.count;
+    return [(NSArray *)self.dataSource count];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

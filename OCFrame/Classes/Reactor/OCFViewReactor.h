@@ -42,7 +42,7 @@ typedef NS_ENUM(NSInteger, OCFRequestMode) {
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *animation;
 @property (nonatomic, strong, readonly) OCFUser *user;
-@property (nonatomic, strong) NSArray *dataSource;
+@property (nonatomic, strong) id dataSource;
 @property (nonatomic, strong) NSError *error;
 @property (nonatomic, assign) OCFRequestMode requestMode;
 @property (nonatomic, strong, readonly) OCFProvider *provider;
@@ -54,7 +54,7 @@ typedef NS_ENUM(NSInteger, OCFRequestMode) {
 
 - (RACSignal *)loadSignal;
 
-- (NSArray *)data2Source:(id)data;
+- (id)data2Source:(id)data;
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithParameters:(NSDictionary *)parameters;

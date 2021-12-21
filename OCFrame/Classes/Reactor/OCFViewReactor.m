@@ -141,7 +141,7 @@
 - (RACCommand *)loadCommand {
     if (!_loadCommand) {
         @weakify(self)
-        RACCommand *command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSNumber *page) {
+        RACCommand *command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             @strongify(self)
             return [[self loadSignal] takeUntil:self.rac_willDeallocSignal];
         }];
@@ -160,13 +160,19 @@
     return _resultCommand;
 }
 
+#pragma mark - Bind
+- (void)didBind {
+    [super didBind];
+    [self.loadCommand execute:nil];
+}
+
 #pragma mark - Load
 - (RACSignal *)loadSignal {
     return RACSignal.empty;
 }
 
-- (NSArray *)data2Source:(id)data {
-    return nil;
+- (id)data2Source:(id)data {
+    return data;
 }
 
 #pragma mark - Class

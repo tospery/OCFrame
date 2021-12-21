@@ -18,6 +18,18 @@
     
 }
 
+- (void)willBind {
+    
+}
+
+- (void)didBind {
+    
+}
+
+- (void)unbinded {
+    
+}
+
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
     OCFBaseReactor *reactor = [super allocWithZone:zone];
     @weakify(reactor)

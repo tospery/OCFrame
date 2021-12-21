@@ -51,6 +51,7 @@
 
 - (void)dealloc {
     OCFLogDebug(@"%@已析构", self.ocf_className);
+    [self.reactor unbinded];
 }
 
 #pragma mark - View
@@ -331,8 +332,9 @@
     @weakify(viewController)
     [[viewController rac_signalForSelector:@selector(viewDidLoad)] subscribeNext:^(id x) {
         @strongify(viewController)
+        [viewController.reactor willBind];
         [viewController bind:viewController.reactor];
-        [viewController triggerLoad];
+        [viewController.reactor didBind];
     }];
     return viewController;
 }

@@ -9,7 +9,12 @@
 
 @interface OCFBaseReactor : NSObject
 
-- (void)didInitialize;
+- (void)didInitialize; // YJX_TODO 修改名称为didInit
+
+- (void)willBind;
+- (void)didBind;
+
+- (void)unbinded;
 
 @end
 

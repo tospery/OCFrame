@@ -35,7 +35,7 @@
 #pragma mark - View
 #pragma mark - Property
 #pragma mark - Method
-- (NSArray *)data2Source:(id)data {
+- (id)data2Source:(id)data {
     if (!data || ![data isKindOfClass:NSArray.class]) {
         return nil;
     }
@@ -79,7 +79,7 @@
 
 #pragma mark UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.dataSource.count;
+    return [(NSArray *)self.dataSource count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
