@@ -119,9 +119,9 @@
     }];
 }
 
-- (void)reloadData {
-    [super reloadData];
-}
+//- (void)reloadData {
+//    [super reloadData];
+//}
 
 - (void)triggerLoad {
     NSURLRequest *request = [NSURLRequest requestWithURL:self.reactor.url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
