@@ -9,6 +9,7 @@
 #import <Mantle/Mantle.h>
 #import "OCFIdentifiable.h"
 
+// YJX_TODO 提取Storable，定义BaseModelType，从而可以从BaseResponse从继承满足BaseModel要求的模型
 @interface OCFBaseModel : MTLModel <MTLJSONSerializing, OCFIdentifiable>
 
 - (void)save;
