@@ -44,6 +44,10 @@
     return @"token";
 }
 
++ (NSString *)type {
+    return @"type";
+}
+
 + (NSString *)actions {
     return @"actions";
 }

@@ -17,6 +17,7 @@
 @property (class, strong, readonly) NSString *host;
 @property (class, strong, readonly) NSString *path;
 @property (class, strong, readonly) NSString *token;
+@property (class, strong, readonly) NSString *type;
 @property (class, strong, readonly) NSString *actions;
 @property (class, strong, readonly) NSString *active;
 @property (class, strong, readonly) NSString *animated;
