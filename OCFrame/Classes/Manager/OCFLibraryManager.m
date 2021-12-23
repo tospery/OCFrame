@@ -9,7 +9,7 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 #import <JLRoutes/JLRoutes.h>
 #import <AFNetworking/AFNetworking.h>
-#import <AFNetworking/AFNetworkReachabilityManager.h>
+// #import <AFNetworking/AFNetworkReachabilityManager.h>
 #import <AFNetworkActivityLogger/AFNetworkActivityLogger.h>
 #import "OCFConstant.h"
 #import "OCFFunction.h"
@@ -32,7 +32,7 @@
 //        OCFLogDebug(@"网络状态: %@", @(status));
 //        [REACH_SUBJECT sendNext:@(status)];
 //    }];
-//    [AFNetworkReachabilityManager.sharedManager startMonitoring];
+//    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
 }
 
 - (void)setupAFNetworkActivityLogger {

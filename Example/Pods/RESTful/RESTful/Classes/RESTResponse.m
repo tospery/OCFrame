@@ -18,7 +18,7 @@
 
 @implementation RESTResponse
 
-+ (NSString *)resultKeyPathForJSONDictionary:(NSDictionary *)JSONDictionary {
++ (NSString *)resultKeyPathForJSONDictionary:(NSDictionary *)JSONDictionary resultClass:(Class)resultClass {
     return nil;
 }
 
@@ -31,11 +31,9 @@
 
     if ([JSONObject isKindOfClass:[NSDictionary class]]) {
         response = [MTLJSONAdapter modelOfClass:self fromJSONDictionary:JSONObject error:error];
-        NSString *resultKeyPath = [[response class] resultKeyPathForJSONDictionary:JSONObject];
+        NSString *resultKeyPath = [[response class] resultKeyPathForJSONDictionary:JSONObject resultClass:resultClass];
         if (resultKeyPath) {
             result = [(NSDictionary *)JSONObject rest_objectForKeyPath:resultKeyPath];
-        } else {
-            response = [[self alloc] init];
         }
     } else {
         response = [[self alloc] init];

@@ -62,7 +62,9 @@
     
     self.view.backgroundColor = UIColor.ocf_background;
     
-    if (!self.navigationItem.backBarButtonItem) {
+    if (!self.navigationItem.backBarButtonItem &&
+        self.navigationController &&
+        self.navigationController.childViewControllers.count > 1) {
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:UIImage.ocf_back style:UIBarButtonItemStylePlain target:nil action:NULL];
         item.tintColor = UIColor.ocf_barText;
         @weakify(self)
@@ -87,12 +89,14 @@
             [self handleNavigate:OCFURLWithBack(kOCFPathDismiss)];
         }];
     } else {
-        UIButton *backButton = [self.navigationBar addBackButtonToLeft];
-        @weakify(self)
-        [[backButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIControl *button) {
-            @strongify(self)
-            [self handleNavigate:OCFURLWithBack(kOCFPathPop)];
-        }];
+        if (self.navigationController.childViewControllers.count > 1) {
+            UIButton *backButton = [self.navigationBar addBackButtonToLeft];
+            @weakify(self)
+            [[backButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIControl *button) {
+                @strongify(self)
+                [self handleNavigate:OCFURLWithBack(kOCFPathPop)];
+            }];
+        }
     }
 }
 
@@ -317,6 +321,8 @@
 
 #pragma mark - Reload
 - (void)reloadData {
+    [self.view setNeedsLayout];
+    [self.view layoutIfNeeded];
 }
 
 #pragma mark - Delegate

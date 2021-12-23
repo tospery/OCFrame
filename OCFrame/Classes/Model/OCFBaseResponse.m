@@ -28,7 +28,7 @@
     };
 }
 
-+ (NSString *)resultKeyPathForJSONDictionary:(NSDictionary *)JSONDictionary {
++ (NSString *)resultKeyPathForJSONDictionary:(NSDictionary *)JSONDictionary resultClass:(Class)resultClass {
     return @"data";
 }
 

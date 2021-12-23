@@ -93,7 +93,6 @@
 }
 
 - (void)reloadData {
-    [super reloadData];
     [self.scrollView reloadEmptyDataSet];
 }
 
