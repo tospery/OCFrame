@@ -10,31 +10,42 @@
 
 #define kStringLogin                                     \
 NSLocalizedString(@"Login", @"登录")
+#define kStringErrorCancel                                     \
+NSLocalizedString(@"Error.Cancel", @"用户取消，不需要处理的错误")
 #define kStringErrorUnknown                                     \
 NSLocalizedString(@"Error.Unknown", @"未知错误")
-#define kStringErrorRequest                                     \
-NSLocalizedString(@"Error.Request", @"HTTP请求错误")
-#define kStringErrorRedirect                                    \
-NSLocalizedString(@"Error.Redirect", @"HTTP重定向错误")
-#define kStringErrorClient                                      \
-NSLocalizedString(@"Error.Client", @"HTTP客户端错误")
-#define kStringErrorServer                                      \
-NSLocalizedString(@"Error.Server", @"HTTP服务器错误")
-#define kStringErrorIgnore                                      \
-NSLocalizedString(@"Error.Ignore", @"可忽略错误")
-#define kStringErrorNetwork                                     \
-NSLocalizedString(@"Error.Network", @"网络错误")
-#define kStringErrorArgument                                     \
-NSLocalizedString(@"Error.Argument", @"参数错误")
-#define kStringErrorNavigation                                     \
-NSLocalizedString(@"Error.Navigation", @"导航错误")
-#define kStringErrorDataFormat                                     \
-NSLocalizedString(@"Error.DataFormat", @"数据异常")
-#define kStringErrorListIsEmpty                                     \
-NSLocalizedString(@"Error.ListIsEmpty", @"列表为空")
-#define kStringErrorNotLoginedIn                                     \
-NSLocalizedString(@"Error.NotLoginedIn", @"用户未登录")
-
+#define kStringErrorTimeoutTitle                                    \
+NSLocalizedString(@"Error.Timeout.Title", @"超时错误")
+#define kStringErrorTimeoutMessage                                   \
+NSLocalizedString(@"Error.Timeout.Message", @"超时错误")
+#define kStringErrorNetworkTitle                                     \
+NSLocalizedString(@"Error.Network.Title", @"网络错误")
+#define kStringErrorNetworkMessage                                     \
+NSLocalizedString(@"Error.Network.Message", @"网络错误")
+#define kStringErrorServerTitle                                     \
+NSLocalizedString(@"Error.Server.Title", @"服务异常")
+#define kStringErrorServerMessage                                     \
+NSLocalizedString(@"Error.Server.Message", @"服务异常")
+#define kStringErrorArgumentTitle                                     \
+NSLocalizedString(@"Error.Argument.Title", @"参数错误")
+#define kStringErrorArgumentMessage                                     \
+NSLocalizedString(@"Error.Argument.Message", @"参数错误")
+#define kStringErrorNavigationTitle                                     \
+NSLocalizedString(@"Error.Navigation.Title", @"导航错误")
+#define kStringErrorNavigationMessage                                     \
+NSLocalizedString(@"Error.Navigation.Message", @"导航错误")
+#define kStringErrorDataFormatTitle                                     \
+NSLocalizedString(@"Error.DataFormat.Title", @"数据异常")
+#define kStringErrorDataFormatMessage                                     \
+NSLocalizedString(@"Error.DataFormat.Message", @"数据异常")
+#define kStringErrorListIsEmptyTitle                                     \
+NSLocalizedString(@"Error.ListIsEmpty.Title", @"列表为空")
+#define kStringErrorListIsEmptyMessage                                     \
+NSLocalizedString(@"Error.ListIsEmpty.Message", @"列表为空")
+#define kStringErrorNotLoginedInTitle                                     \
+NSLocalizedString(@"Error.NotLoginedIn.Title", @"用户未登录")
+#define kStringErrorNotLoginedInMessage                                     \
+NSLocalizedString(@"Error.NotLoginedIn.Message", @"用户未登录")
 
 #import "OCFFunction.h"
 

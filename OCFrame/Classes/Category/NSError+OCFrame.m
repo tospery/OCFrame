@@ -6,6 +6,7 @@
 //
 
 #import "NSError+OCFrame.h"
+#import <ReactiveObjC/ReactiveObjC.h>
 #import "OCFConstant.h"
 #import "OCFFunction.h"
 #import "OCFString.h"
@@ -72,150 +73,59 @@
 }
 
 + (NSError *)ocf_errorWithCode:(NSInteger)code {
-    return [NSError ocf_errorWithCode:code description:[self ocf_descriptionWithCode:code]];
+    return [NSError errorWithDomain:UIApplication.sharedApplication.ocf_bundleID
+                               code:code
+                           userInfo:[self ocf_userinfoWithCode:code]];
 }
 
-+ (NSError *)ocf_errorWithCode:(NSInteger)code description:(NSString *)description {
-    return [NSError errorWithDomain:UIApplication.sharedApplication.ocf_bundleID code:code userInfo:@{NSLocalizedDescriptionKey: OCFStrWithDft(description, kStringErrorUnknown)}];
++ (NSError *)ocf_errorWithCode:(NSInteger)code title:(NSString *)title message:(NSString *)message {
+    return [NSError errorWithDomain:UIApplication.sharedApplication.ocf_bundleID
+                               code:code
+                           userInfo:@{
+        NSLocalizedFailureReasonErrorKey: OCFStrWithDft(title, kStringErrorUnknown),
+        NSLocalizedDescriptionKey: OCFStrWithDft(message, kStringErrorUnknown)
+    }];
 }
 
-+ (NSString *)ocf_descriptionWithCode:(NSInteger)code {
-    NSString *result = kStringErrorUnknown;
-    if (code > OCFErrorCodeNone && code < OCFErrorCodeRedirect) {
-        result = kStringErrorRequest;
-    } else if (code >= OCFErrorCodeRedirect && code < OCFErrorCodeClient) {
-        result = kStringErrorRedirect;
-    } else if (code >= OCFErrorCodeClient && code < OCFErrorCodeServer) {
-        result = kStringErrorClient;
-    } else if (code >= OCFErrorCodeServer && code < OCFErrorCodeIgnore) {
-        result = kStringErrorServer;
-    } else {
-        if (code == OCFErrorCodeIgnore) {
-            result = kStringErrorIgnore;
-        } else if (code == OCFErrorCodeUnknown) {
-            result = kStringErrorUnknown;
-        } else if (code == OCFErrorCodeNetwork) {
-            result = kStringErrorNetwork;
-        } else if (code == OCFErrorCodeArgument) {
-            result = kStringErrorArgument;
-        } else if (code == OCFErrorCodeNavigation) {
-            result = kStringErrorNavigation;
-        } else if (code == OCFErrorCodeDataFormat) {
-            result = kStringErrorDataFormat;
-        } else if (code == OCFErrorCodeListIsEmpty) {
-            result = kStringErrorListIsEmpty;
-        } else if (code == OCFErrorCodeNotLoginedIn) {
-            result = kStringErrorNotLoginedIn;
-        }
++ (NSDictionary *)ocf_userinfoWithCode:(NSInteger)code {
+    NSString *title = nil;
+    NSString *message = nil;
+    if (code == OCFErrorCodeCancel) {
+        title = kStringErrorCancel;
+        message = kStringErrorCancel;
+    } else if (code == OCFErrorCodeUnknown) {
+        title = kStringErrorUnknown;
+        message = kStringErrorUnknown;
+    } else if (code == OCFErrorCodeTimeout) {
+        title = kStringErrorTimeoutTitle;
+        message = kStringErrorTimeoutMessage;
+    } else if (code == OCFErrorCodeNetwork) {
+        title = kStringErrorNetworkTitle;
+        message = kStringErrorNetworkMessage;
+    } else if (code == OCFErrorCodeServer) {
+        title = kStringErrorServerTitle;
+        message = kStringErrorServerMessage;
+    } else if (code == OCFErrorCodeArgument) {
+        title = kStringErrorArgumentTitle;
+        message = kStringErrorArgumentMessage;
+    } else if (code == OCFErrorCodeNavigation) {
+        title = kStringErrorNavigationTitle;
+        message = kStringErrorNavigationMessage;
+    } else if (code == OCFErrorCodeDataFormat) {
+        title = kStringErrorDataFormatTitle;
+        message = kStringErrorDataFormatMessage;
+    } else if (code == OCFErrorCodeListIsEmpty) {
+        title = kStringErrorListIsEmptyTitle;
+        message = kStringErrorListIsEmptyMessage;
+    } else if (code == OCFErrorCodeNotLoginedIn) {
+        title = kStringErrorNotLoginedInTitle;
+        message = kStringErrorNotLoginedInMessage;
     }
-    return result;
+    return @{
+        NSLocalizedFailureReasonErrorKey: OCFStrWithDft(title, kStringErrorUnknown),
+        NSLocalizedDescriptionKey: OCFStrWithDft(message, kStringErrorUnknown)
+    };
 }
 
 @end
 
-
-//NSString * OCFErrorCodeString(OCFErrorCode code) {
-//    NSString *result = kStringErrorUnknown;
-////    if (code >= OCFErrorCodeCreated && code <= OCFErrorCodePartialContent) {
-////        result = kStringErrorRequest;
-////    }else if (code >= OCFErrorCodeMultipleChoices && code <= OCFErrorCodeTemporaryRedirect) {
-////        result = kStringErrorRedirect;
-////    }else if (code >= OCFErrorCodeBadRequest && code <= OCFErrorCodeExpectationFailed) {
-////        result = kStringErrorClient;
-////    }else if (code >= OCFErrorCodeInternalServerError && code <= OCFErrorCodeHTTPVersionNotSupported) {
-////        result = kStringErrorServer;
-////    }
-//
-////    if (code == OCFErrorCodeUnauthorized) {
-////        result = kStringErrorExpired;
-////    } else if (code == OCFErrorCodeData) {
-////        result = kStringErrorData;
-////    } else if (code == OCFErrorCodeEmpty) {
-////        result = kStringErrorEmpty;
-////    }
-//
-////    else {
-////        switch (code) {
-////            case OCFErrorCodePlaceholder: {
-////                result = kStringErrorUnknown;
-////                break;
-////            }
-////            case OCFErrorCodeData: {
-////                result = kStringErrorData;
-////                break;
-////            }
-////            case OCFErrorCodeLoginUnfinished: {
-////                result = kStringLoginUnfinished;
-////                break;
-////            }
-////            case OCFErrorCodeLoginFailure: {
-////                result = kStringLoginFailure;
-////                break;
-////            }
-////            case OCFErrorCodeArgumentInvalid: {
-////                result = kStringArgumentError;
-////                break;
-////            }
-////            case OCFErrorCodeEmpty: {
-////                result = kStringDataEmpty;
-////                break;
-////            }
-////            case OCFErrorCodeLoginHasnotAccount: {
-////                result = kStringLoginHasnotAccount;
-////                break;
-////            }
-////            case OCFErrorCodeLoginWrongPassword: {
-////                result = kStringLoginWrongPassword;
-////                break;
-////            }
-////            case OCFErrorCodeLoginNotPermission: {
-////                result = kStringLoginNotPermission;
-////                break;
-////            }
-////            case OCFErrorCodeSigninFailure: {
-////                result = kStringSigninFailure;
-////                break;
-////            }
-////            case OCFErrorCodeLocateClosed: {
-////                result = kStringLocateClosed;
-////                break;
-////            }
-////            case OCFErrorCodeLocateDenied: {
-////                result = kStringLocateDenied;
-////                break;
-////            }
-////            case OCFErrorCodeLocateFailure: {
-////                result = kStringLocateFailure;
-////                break;
-////            }
-////            case OCFErrorCodeDeviceNotSupport: {
-////                result = kStringDeviceNotSupport;
-////                break;
-////            }
-////            case OCFErrorCodeFileNotPicture: {
-////                result = kStringFileNotPicture;
-////                break;
-////            }
-////            case OCFErrorCodeCheckUpdateFailure: {
-////                result = kStringCheckUpdateFailure;
-////                break;
-////            }
-////            case OCFErrorCodeExecuteFailure: {
-////                result = kStringExecuteFailure;
-////                break;
-////            }
-////            case OCFErrorCodeActionFailure: {
-////                result = kStringActionFailure;
-////                break;
-////            }
-////            case OCFErrorCodeParseFailure: {
-////                result = kStringParseFailure;
-////                break;
-////            }
-////            default:
-////                break;
-////        }
-////    }
-//
-//    return result;
-//}

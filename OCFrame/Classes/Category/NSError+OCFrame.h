@@ -9,18 +9,20 @@
 
 typedef NS_ENUM(NSInteger, OCFErrorCode){
     OCFErrorCodeNone = 200,
-    OCFErrorCodeRequest = 201,
-    OCFErrorCodeRedirect = 300,
-    OCFErrorCodeClient = 400,
-    OCFErrorCodeNotLoginedIn = 401,
-    OCFErrorCodeServer = 500,
-    OCFErrorCodeIgnore = 10000,      // App自定义错误
+//    OCFErrorCodeRequest = 201,
+//    OCFErrorCodeRedirect = 300,
+//    OCFErrorCodeClient = 400,
+//    OCFErrorCodeServer = 500,
+    OCFErrorCodeCancel = 10000,      // App自定义错误
     OCFErrorCodeUnknown,
+    OCFErrorCodeTimeout,
     OCFErrorCodeNetwork,
+    OCFErrorCodeServer,
     OCFErrorCodeArgument,
     OCFErrorCodeNavigation,
     OCFErrorCodeDataFormat,
-    OCFErrorCodeListIsEmpty
+    OCFErrorCodeListIsEmpty,
+    OCFErrorCodeNotLoginedIn
     
 //    OCFErrorCodeSuccess = 200,
 //    OCFErrorCodeOK = OCFErrorCodeSuccess, // 2xx的状态码表示请求成功
@@ -104,9 +106,9 @@ typedef NS_ENUM(NSInteger, OCFErrorCode){
 //+ (NSError *)ocf_errorWithCode:(OCFErrorCode)code;
 
 + (NSError *)ocf_errorWithCode:(NSInteger)code;
-+ (NSError *)ocf_errorWithCode:(NSInteger)code description:(NSString *)description;
++ (NSError *)ocf_errorWithCode:(NSInteger)code title:(NSString *)title message:(NSString *)message;
 
-+ (NSString *)ocf_descriptionWithCode:(NSInteger)code;
++ (NSDictionary *)ocf_userinfoWithCode:(NSInteger)code;
 
 @end
 
