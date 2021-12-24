@@ -286,7 +286,7 @@
 }
 
 - (void)handleError {
-    [self.navigator toastMessage:OCFStrWithDft(self.reactor.error.ocf_displayMessage, kStringErrorUnknown)];
+    [self.navigator toastMessage:OCFStrWithDft(self.reactor.error.localizedDescription, kStringErrorUnknown)];
 }
 
 #pragma mark - Load

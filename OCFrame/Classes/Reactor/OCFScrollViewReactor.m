@@ -81,21 +81,21 @@
     if (!self.error) {
         return nil;
     }
-    return [NSAttributedString ocf_attributedStringWithString:self.error.ocf_displayTitle color:UIColor.ocf_title font:OCFFont(16.0f)];
+    return [NSAttributedString ocf_attributedStringWithString:self.error.localizedFailureReason color:UIColor.ocf_title font:OCFFont(16.0f)];
 }
 
 - (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
     if (!self.error) {
         return nil;
     }
-    return [NSAttributedString ocf_attributedStringWithString:self.error.ocf_displayMessage color:UIColor.ocf_body font:OCFFont(14.0f)];
+    return [NSAttributedString ocf_attributedStringWithString:self.error.localizedDescription color:UIColor.ocf_body font:OCFFont(14.0f)];
 }
 
 - (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
     if (!self.error) {
         return nil;
     }
-    return [NSAttributedString ocf_attributedStringWithString:self.error.ocf_retryTitle color:(UIControlStateNormal == state ? UIColorWhite : [UIColorWhite colorWithAlphaComponent:0.8]) font:OCFFont(15.0f)];
+    return [NSAttributedString ocf_attributedStringWithString:self.error.localizedRecoverySuggestion color:(UIControlStateNormal == state ? UIColorWhite : [UIColorWhite colorWithAlphaComponent:0.8]) font:OCFFont(15.0f)];
 }
 
 - (UIImage *)buttonBackgroundImageForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {

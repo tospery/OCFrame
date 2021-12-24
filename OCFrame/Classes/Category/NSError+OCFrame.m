@@ -24,26 +24,6 @@
     return self.code == OCFErrorCodeServer;
 }
 
-- (NSString *)ocf_retryTitle {
-    return kStringReload;
-}
-
-- (NSString *)ocf_displayTitle {
-    return nil;
-}
-
-- (NSString *)ocf_displayMessage {
-    NSString *message = nil;
-    if (self.ocf_isNetwork) {
-        message = kStringNetworkException;
-    } else if (self.ocf_isServer) {
-        message = kStringServerException;
-    } else {
-        message = self.localizedDescription;
-    }
-    return message;
-}
-
 - (UIImage *)ocf_displayImage {
     UIImage *image = nil;
     if (self.ocf_isNetwork) {
@@ -54,40 +34,25 @@
     return image;
 }
 
-- (NSError *)ocf_adaptError {
-    NSError *error = self;
-    switch (self.code) {
-            case -1009:
-            //error = [NSError ocf_errorWithCode:OCFErrorCodeNetwork];
-            break;
-            case -1011:
-            case -1004:
-            case -1001:
-            case 3840:
-            //error = [NSError ocf_errorWithCode:OCFErrorCodeServer];
-            break;
-        default:
-            break;
-    }
-    return error;
-}
+//- (NSError *)ocf_adaptError {
+//    NSError *error = self;
+//    switch (self.code) {
+//            case -1009:
+//            //error = [NSError ocf_errorWithCode:OCFErrorCodeNetwork];
+//            break;
+//            case -1011:
+//            case -1004:
+//            case -1001:
+//            case 3840:
+//            //error = [NSError ocf_errorWithCode:OCFErrorCodeServer];
+//            break;
+//        default:
+//            break;
+//    }
+//    return error;
+//}
 
 + (NSError *)ocf_errorWithCode:(NSInteger)code {
-    return [NSError errorWithDomain:UIApplication.sharedApplication.ocf_bundleID
-                               code:code
-                           userInfo:[self ocf_userinfoWithCode:code]];
-}
-
-+ (NSError *)ocf_errorWithCode:(NSInteger)code title:(NSString *)title message:(NSString *)message {
-    return [NSError errorWithDomain:UIApplication.sharedApplication.ocf_bundleID
-                               code:code
-                           userInfo:@{
-        NSLocalizedFailureReasonErrorKey: OCFStrWithDft(title, kStringErrorUnknown),
-        NSLocalizedDescriptionKey: OCFStrWithDft(message, kStringErrorUnknown)
-    }];
-}
-
-+ (NSDictionary *)ocf_userinfoWithCode:(NSInteger)code {
     NSString *title = nil;
     NSString *message = nil;
     if (code == OCFErrorCodeCancel) {
@@ -121,10 +86,16 @@
         title = kStringErrorNotLoginedInTitle;
         message = kStringErrorNotLoginedInMessage;
     }
-    return @{
+    return [self ocf_errorWithCode:code title:title message:message];
+}
+
++ (NSError *)ocf_errorWithCode:(NSInteger)code title:(NSString *)title message:(NSString *)message {
+    return [NSError errorWithDomain:UIApplication.sharedApplication.ocf_bundleID
+                               code:code
+                           userInfo:@{
         NSLocalizedFailureReasonErrorKey: OCFStrWithDft(title, kStringErrorUnknown),
         NSLocalizedDescriptionKey: OCFStrWithDft(message, kStringErrorUnknown)
-    };
+    }];
 }
 
 @end
