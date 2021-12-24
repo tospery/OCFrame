@@ -42,17 +42,6 @@
 
 - (void)didInitialize {
     [super didInitialize];
-    [[self.selectCommand.executionSignals.switchToLatest flattenMap:^RACSignal *(RACTuple *tuple) {
-        if (![tuple.second isKindOfClass:OCFScrollItem.class]) {
-            return [RACSignal return:tuple];
-        }
-        OCFScrollItem *item = (OCFScrollItem *)tuple.second;
-        NSString *target = item.target;
-        if (target.length == 0) {
-            return [RACSignal return:tuple];
-        }
-        return [RACSignal return:target];
-    }] subscribe:self.navigate];
 }
 
 #pragma mark - Property
@@ -61,6 +50,17 @@
         RACCommand *command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             return [RACSignal return:input];
         }];
+        [[command.executionSignals.switchToLatest flattenMap:^RACSignal *(RACTuple *tuple) {
+            if (![tuple.second isKindOfClass:OCFScrollItem.class]) {
+                return [RACSignal return:tuple];
+            }
+            OCFScrollItem *item = (OCFScrollItem *)tuple.second;
+            NSString *target = item.target;
+            if (target.length == 0) {
+                return [RACSignal return:tuple];
+            }
+            return [RACSignal return:target];
+        }] subscribe:self.navigate];
         _selectCommand = command;
     }
     return _selectCommand;

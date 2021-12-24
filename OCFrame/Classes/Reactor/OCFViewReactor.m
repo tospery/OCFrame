@@ -33,8 +33,9 @@
 @property (nonatomic, strong, readwrite) NSDictionary *parameters;
 @property (nonatomic, strong, readwrite) OCFBaseModel *model;
 @property (nonatomic, strong, readwrite) RACSubject *errors;
-@property (nonatomic, strong, readwrite) RACSubject *executing;
 @property (nonatomic, strong, readwrite) RACSubject *navigate;
+@property (nonatomic, strong, readwrite) RACSubject *loading;
+@property (nonatomic, strong, readwrite) RACSubject *executing;
 @property (nonatomic, strong, readwrite) RACCommand *loadCommand;
 @property (nonatomic, strong, readwrite) RACCommand *resultCommand;
 
@@ -124,6 +125,14 @@
     return _errors;
 }
 
+- (RACSubject *)loading {
+    if (!_loading) {
+        _loading = [RACSubject subject];
+    }
+    return _loading;
+}
+
+// YJX_TODO 改名为activing
 - (RACSubject *)executing {
     if (!_executing) {
         _executing = [RACSubject subject];

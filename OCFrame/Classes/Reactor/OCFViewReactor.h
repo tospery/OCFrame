@@ -38,6 +38,7 @@ typedef NS_ENUM(NSInteger, OCFRequestMode) {
 @property (nonatomic, assign, readonly) BOOL transparetNavBar;
 @property (nonatomic, assign) BOOL hidesNavigationBar;
 @property (nonatomic, assign) BOOL hidesNavBottomLine;
+@property (nonatomic, assign) BOOL isLoading;
 @property (nonatomic, strong) id result;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *animation;
@@ -47,8 +48,9 @@ typedef NS_ENUM(NSInteger, OCFRequestMode) {
 @property (nonatomic, assign) OCFRequestMode requestMode;
 @property (nonatomic, strong, readonly) OCFProvider *provider;
 @property (nonatomic, strong, readonly) RACSubject *errors;
-@property (nonatomic, strong, readonly) RACSubject *executing;
 @property (nonatomic, strong, readonly) RACSubject *navigate;
+@property (nonatomic, strong, readonly) RACSubject *loading;
+@property (nonatomic, strong, readonly) RACSubject *executing;
 @property (nonatomic, strong, readonly) RACCommand *resultCommand;
 @property (nonatomic, strong, readonly) RACCommand *loadCommand;
 

@@ -271,7 +271,10 @@
 #pragma mark DZNEmptyDataSetDelegate
 - (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView {
     // return (self.reactor.shouldRequestRemoteData && !self.reactor.dataSource);
-    return !self.reactor.dataSource;
+    // return !self.reactor.dataSource;
+    BOOL hasData = !self.reactor.dataSource;
+    NSLog(@"emptyDataSetShouldDisplay: %@, %@", @(self.reactor.isLoading), @(hasData));
+    return !self.reactor.dataSource && self.reactor.isLoading;
 }
 
 - (BOOL)emptyDataSetShouldAllowTouch:(UIScrollView *)scrollView {
@@ -283,7 +286,7 @@
 }
 
 - (BOOL)emptyDataSetShouldAnimateImageView:(UIScrollView *)scrollView {
-    return !self.reactor.error;
+    return !self.reactor.dataSource && self.reactor.isLoading;
 }
 
 - (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button {

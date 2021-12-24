@@ -23,6 +23,7 @@
 #import "UIImage+OCFrame.h"
 
 @interface OCFViewController ()
+@property (nonatomic, assign) BOOL onceTokenForReload;
 @property (nonatomic, assign, readwrite) CGFloat contentTop;
 @property (nonatomic, assign, readwrite) CGFloat contentBottom;
 @property (nonatomic, assign, readwrite) CGRect contentFrame;
@@ -81,20 +82,20 @@
     self.navigationBar.hidden = self.reactor.hidesNavigationBar;
     self.navigationBar.qmui_borderLayer.hidden = self.reactor.hidesNavBottomLine;
     
-    if (self.qmui_isPresented && self.navigationController.qmui_isPresented) {
-        UIButton *closeButton = [self.navigationBar addCloseButtonToLeft];
+    if (self.navigationController.childViewControllers.count > 1) {
+        UIButton *backButton = [self.navigationBar addBackButtonToLeft];
         @weakify(self)
-        [[closeButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIControl *button) {
+        [[backButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIControl *button) {
             @strongify(self)
-            [self handleNavigate:OCFURLWithBack(kOCFPathDismiss)];
+            [self handleNavigate:OCFURLWithBack(kOCFPathPop)];
         }];
     } else {
-        if (self.navigationController.childViewControllers.count > 1) {
-            UIButton *backButton = [self.navigationBar addBackButtonToLeft];
+        if (self.qmui_isPresented && self.navigationController.qmui_isPresented) {
+            UIButton *closeButton = [self.navigationBar addCloseButtonToLeft];
             @weakify(self)
-            [[backButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIControl *button) {
+            [[closeButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIControl *button) {
                 @strongify(self)
-                [self handleNavigate:OCFURLWithBack(kOCFPathPop)];
+                [self handleNavigate:OCFURLWithBack(kOCFPathDismiss)];
             }];
         }
     }
@@ -154,7 +155,14 @@
     RAC(self.navigationBar.titleLabel, text) = RACObserve(self.reactor, title);
     RAC(self.navigationItem, title) = RACObserve(self.reactor, title);
     @weakify(self)
-    [[self.reactor.executing skip:1] subscribeNext:^(NSNumber *executing) {
+    [self.reactor.loading.distinctUntilChanged subscribeNext:^(NSNumber *loading) {
+        @strongify(self)
+        self.reactor.isLoading = loading.boolValue;
+        if (self.reactor.isLoading) {
+            [self reloadData];
+        }
+    }];
+    [[self.reactor.executing.distinctUntilChanged skip:1] subscribeNext:^(NSNumber *executing) {
         @strongify(self)
         if (executing.boolValue) {
             [self.navigator showToastActivity:OCFToastPositionCenter];
@@ -177,7 +185,13 @@
         @strongify(self)
         [self handleNavigate:next];
     }];
-    [RACObserve(self.reactor, dataSource).distinctUntilChanged.deliverOnMainThread subscribeNext:^(id x) {
+//    [[RACSignal zip:@[
+//        self.reactor.loading,
+//        RACObserve(self.reactor, dataSource)
+//    ]].deliverOnMainThread subscribeNext:^(RACTuple * _Nullable x) {
+//
+//    }];
+    [[RACObserve(self.reactor, dataSource).distinctUntilChanged skip:1].deliverOnMainThread subscribeNext:^(id x) {
         @strongify(self)
         [self reloadData];
     }];
