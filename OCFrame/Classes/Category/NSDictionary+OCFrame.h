@@ -11,6 +11,7 @@
 #import "UIColor+OCFrame.h"
 
 @interface NSDictionary (OCFrame)
+@property (nonatomic, strong, readonly) NSString *ocf_queryString;
 
 - (NSString *)ocf_stringForKey:(id)key;
 - (NSString *)ocf_stringForKey:(id)key withDefault:(NSString *)dft;

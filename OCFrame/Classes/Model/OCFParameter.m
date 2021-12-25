@@ -68,6 +68,10 @@
     return @"userid";
 }
 
++ (NSString *)username {
+    return @"username";
+}
+
 + (NSString *)subscriber {
     return @"subscriber";
 }

@@ -6,10 +6,24 @@
 //
 
 #import "NSDictionary+OCFrame.h"
+#import "OCFFunction.h"
 #import "NSObject+OCFrame.h"
 #import "NSString+OCFrame.h"
 
 @implementation NSDictionary (OCFrame)
+
+- (NSString *)ocf_queryString {
+    if (self.count == 0) {
+        return nil;
+    }
+    NSString *string = @"";
+    for (NSString *key in self.allKeys) {
+        NSString *value = OCFStringFromObject([self objectForKey:key]);
+        value = OCFStrWithDft(value, @"");
+        string = OCFStrWithFmt(@"%@&%@=%@", string, key, value);
+    }
+    return [string substringFromIndex:1];
+}
 
 - (NSString *)ocf_stringForKey:(id)key {
     return [self ocf_stringForKey:key withDefault:nil];

@@ -10,6 +10,7 @@
 
 #import <QMUIKit/QMUIKit.h>
 #import "OCFType.h"
+#import "NSObject+OCFrame.h"
 
 #define IS_SMALL_SCREEN         (DEVICE_WIDTH <= 320)
 #define IS_MIDDLE_SCREEN        (DEVICE_WIDTH > 320 && DEVICE_WIDTH < 414)
@@ -184,6 +185,17 @@ OCFIntFromObject(id obj) {
         return [(NSString *)obj integerValue];
     }
     return 0;
+}
+
+CG_INLINE NSString *
+OCFStringFromObject(id obj) {
+    if ([obj isKindOfClass:NSString.class]) {
+        return (NSString *)obj;
+    }
+    if ([obj isKindOfClass:NSNumber.class]) {
+        return [(NSNumber *)obj stringValue];
+    }
+    return [obj ocf_JSONString];
 }
 
 #endif /* OCFFunction_h */
