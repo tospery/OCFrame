@@ -24,6 +24,20 @@
     return self.code == OCFErrorCodeServer;
 }
 
+- (NSString *)ocf_title {
+    NSString *title = nil;
+    if ([self.domain isEqualToString:NSURLErrorDomain]) {
+        if (self.code == -1009) {
+            title = kStringErrorNetworkTitle;
+        }
+    }
+    return title;
+}
+
+- (NSString *)ocf_message {
+    return nil;
+}
+
 - (UIImage *)ocf_displayImage {
     UIImage *image = nil;
     if (self.ocf_isNetwork) {

@@ -14,12 +14,12 @@
 @implementation OCFProvider
 - (instancetype)init {
     if (self = [super init]) {
-        [self didInitialize];
+        [self didInit];
     }
     return self;
 }
 
-- (void)didInitialize {
+- (void)didInit {
     
 }
 

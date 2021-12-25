@@ -116,12 +116,8 @@
     return @"progressColor";
 }
 
-+ (NSString *)ocHandlers {
-    return @"ocHandlers";
-}
-
-+ (NSString *)jsHandlers {
-    return @"jsHandlers";
++ (NSString *)appHandlers {
+    return @"appHandlers";
 }
 
 + (NSString *)canCache {

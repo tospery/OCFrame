@@ -15,27 +15,37 @@
 
 @interface OCFWebViewReactor ()
 @property (nonatomic, strong, readwrite) NSURL *url;
+@property (nonatomic, strong, readwrite) NSArray *appHandlers;
+@property (nonatomic, strong, readwrite) UIColor *progressColor;
+@property (nonatomic, strong, readwrite) OCFEmptyReactor *emptyReactor;
 
 @end
 
 @implementation OCFWebViewReactor
 - (instancetype)initWithParameters:(NSDictionary *)parameters {
     if (self = [super initWithParameters:parameters]) {
-//        self.shouldFetchLocalData = OCFBoolMember(parameters, OCFParameter.requestRemote, NO);
-//        self.shouldRequestRemoteData = OCFBoolMember(parameters, OCFParameter.requestRemote, YES);
-        self.ocHandlers = OCFArrMember(parameters, OCFParameter.ocHandlers, nil);
-        NSMutableArray *handers = [NSMutableArray arrayWithArray:self.ocHandlers];
-        [handers addObject:@"appHandler"];
-        self.ocHandlers = handers;
-        self.jsHandlers = OCFArrMember(parameters, OCFParameter.jsHandlers, nil);
         self.url = OCFObjWithDft(OCFURLMember(parameters, JLRouteURLKey, nil), OCFURLMember(parameters, OCFParameter.url, nil));
+        self.appHandlers = OCFArrMember(parameters, OCFParameter.appHandlers, nil);
+        NSMutableArray *appHandler = [NSMutableArray arrayWithArray:self.appHandlers];
+        [appHandler addObject:@"appHandler"];
+        self.appHandlers = appHandler;
         self.progressColor = OCFColorMember(parameters, OCFParameter.progressColor, UIColor.ocf_primary);
     }
     return self;
 }
 
-- (void)didInitialize {
-    [super didInitialize];
+- (void)didInit {
+    [super didInit];
+    self.emptyReactor = [[OCFEmptyReactor alloc] init];
+    RAC(self.emptyReactor, error) = RACObserve(self, error);
 }
+
+//- (RACSignal *)loadSignal {
+//    return [RACSignal return:self.url];
+//}
+//
+//- (id)data2Source:(id)data {
+//    return data;
+//}
 
 @end

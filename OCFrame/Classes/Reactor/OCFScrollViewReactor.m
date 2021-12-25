@@ -40,8 +40,8 @@
     return self;
 }
 
-- (void)didInitialize {
-    [super didInitialize];
+- (void)didInit {
+    [super didInit];
 }
 
 #pragma mark - Property

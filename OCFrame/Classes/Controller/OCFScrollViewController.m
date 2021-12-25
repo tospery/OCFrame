@@ -48,13 +48,23 @@
 #pragma mark - View
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+//    self.webView = [self createWebView];
+//    self.webView.backgroundColor = UIColor.ocf_background;
+//    self.webView.navigationDelegate = self;
+//    self.webView.UIDelegate = self;
+//
+//    [self.view addSubview:self.webView];
+//    [self.view addSubview:self.progressView];
+    
     if ([self isKindOfClass:OCFCollectionViewController.class]) {
         UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.contentFrame collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
         self.scrollView = collectionView;
     } else if ([self isKindOfClass:OCFTableViewController.class]) {
         UITableView *tableView = [[UITableView alloc] initWithFrame:self.contentFrame style:UITableViewStyleGrouped];
         self.scrollView = tableView;
-    }  else {
+    } else if ([self isKindOfClass:OCFWebViewController.class]) {
+    } else {
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.contentFrame];
         scrollView.ocf_contentView = [[UIView alloc] init];
         scrollView.ocf_contentView.backgroundColor = UIColor.clearColor;
@@ -77,6 +87,9 @@
 }
 
 #pragma mark - Property
+//- (void)setScrollView:(UIScrollView *)scrollView {
+//    _scrollView = scrollView;
+//}
 
 #pragma mark - Bind
 - (void)bind:(OCFBaseReactor *)reactor {
@@ -97,73 +110,74 @@
 }
 
 - (BOOL)filterError {
-    BOOL handled = NO;
-    if (!self.reactor.error) {
-        return handled;
-    }
-    
-    OCFRequestMode requestMode = self.reactor.requestMode;
-    self.reactor.requestMode = OCFRequestModeNone;
-    
-    handled = YES;
-    switch (requestMode) {
-        case OCFRequestModeNone: {
-            if (self.reactor.user.isLogined) {
-                [self triggerLoad];
-            } else {
-                if (OCFErrorCodeNotLoginedIn != self.reactor.error.code) {
-                    [self triggerLoad];
-                }
-            }
-            break;
-        }
-        case OCFRequestModeLoad: {
-            [self reloadData];
-            break;
-        }
-        case OCFRequestModeRefresh: {
-            [self.scrollView.mj_header endRefreshing];
-            @weakify(self)
-            [RACScheduler.currentScheduler afterDelay:1 schedule:^{
-                @strongify(self)
-                [self setupRefresh:NO];
-            }];
-            [self setupMore:NO];
-            self.reactor.dataSource = nil;
-            break;
-        }
-        case OCFRequestModeMore: {
-            handled = NO;
-            [self.scrollView.mj_footer endRefreshing];
-//            if (OCFErrorCodeUnauthorized == self.reactor.error.code) {
-//                @weakify(self)
-//                [RACScheduler.mainThreadScheduler afterDelay:1 schedule:^{
-//                    @strongify(self)
-//                    [self setupMore:NO];
-//                }];
-//                [self setupRefresh:NO];
-//                self.reactor.dataSource = nil;
+//    BOOL handled = NO;
+//    if (!self.reactor.error) {
+//        return handled;
+//    }
+//
+//    OCFRequestMode requestMode = self.reactor.requestMode;
+//    self.reactor.requestMode = OCFRequestModeNone;
+//
+//    handled = YES;
+//    switch (requestMode) {
+//        case OCFRequestModeNone: {
+//            if (self.reactor.user.isLogined) {
+//                [self triggerLoad];
 //            } else {
-//                handled = NO;
+//                if (OCFErrorCodeNotLoginedIn != self.reactor.error.code) {
+//                    [self triggerLoad];
+//                }
 //            }
-            break;
-        }
-        default: {
-            break;
-        }
-    }
-    
-    if (OCFErrorCodeNotLoginedIn == self.reactor.error.code) {
-        if (self.reactor.user.isLogined) {
-            [self.reactor.user logout];
-        }
-        if (OCFrameManager.sharedInstance.autoLogin &&
-            ![UIViewController.ocf_topMostViewController isKindOfClass:OCFLoginViewController.class]) {
-            [self.navigator routeURL:OCFURLWithHostpath(OCFrameManager.sharedInstance.loginPattern) withParameters:nil];
-        }
-    }
-    
-    return handled;
+//            break;
+//        }
+//        case OCFRequestModeLoad: {
+//            [self reloadData];
+//            break;
+//        }
+//        case OCFRequestModeRefresh: {
+//            [self.scrollView.mj_header endRefreshing];
+//            @weakify(self)
+//            [RACScheduler.currentScheduler afterDelay:1 schedule:^{
+//                @strongify(self)
+//                [self setupRefresh:NO];
+//            }];
+//            [self setupMore:NO];
+//            self.reactor.dataSource = nil;
+//            break;
+//        }
+//        case OCFRequestModeMore: {
+//            handled = NO;
+//            [self.scrollView.mj_footer endRefreshing];
+////            if (OCFErrorCodeUnauthorized == self.reactor.error.code) {
+////                @weakify(self)
+////                [RACScheduler.mainThreadScheduler afterDelay:1 schedule:^{
+////                    @strongify(self)
+////                    [self setupMore:NO];
+////                }];
+////                [self setupRefresh:NO];
+////                self.reactor.dataSource = nil;
+////            } else {
+////                handled = NO;
+////            }
+//            break;
+//        }
+//        default: {
+//            break;
+//        }
+//    }
+//
+//    if (OCFErrorCodeNotLoginedIn == self.reactor.error.code) {
+//        if (self.reactor.user.isLogined) {
+//            [self.reactor.user logout];
+//        }
+//        if (OCFrameManager.sharedInstance.autoLogin &&
+//            ![UIViewController.ocf_topMostViewController isKindOfClass:OCFLoginViewController.class]) {
+//            [self.navigator routeURL:OCFURLWithHostpath(OCFrameManager.sharedInstance.loginPattern) withParameters:nil];
+//        }
+//    }
+//
+//    return handled;
+    return [super filterError];
 }
 
 #pragma mark - Load
@@ -270,11 +284,7 @@
 #pragma mark - Delegate
 #pragma mark DZNEmptyDataSetDelegate
 - (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView {
-    // return (self.reactor.shouldRequestRemoteData && !self.reactor.dataSource);
-    // return !self.reactor.dataSource;
-    BOOL hasData = !self.reactor.dataSource;
-    NSLog(@"emptyDataSetShouldDisplay: %@, %@", @(self.reactor.isLoading), @(hasData));
-    return !self.reactor.dataSource && self.reactor.isLoading;
+    return ((!self.reactor.dataSource && self.reactor.isLoading) || (!self.reactor.dataSource && self.reactor.error));
 }
 
 - (BOOL)emptyDataSetShouldAllowTouch:(UIScrollView *)scrollView {

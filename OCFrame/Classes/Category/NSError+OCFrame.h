@@ -93,6 +93,8 @@ typedef NS_ENUM(NSInteger, OCFErrorCode){
 @interface NSError (OCFrame)
 @property (nonatomic, assign, readonly) BOOL ocf_isNetwork;
 @property (nonatomic, assign, readonly) BOOL ocf_isServer;
+@property (nonatomic, strong, readonly) NSString *ocf_title;
+@property (nonatomic, strong, readonly) NSString *ocf_message;
 @property (nonatomic, strong, readonly) UIImage *ocf_displayImage;
 
 + (NSError *)ocf_errorWithCode:(NSInteger)code;

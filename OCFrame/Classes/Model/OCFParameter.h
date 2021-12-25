@@ -35,8 +35,7 @@
 @property (class, strong, readonly) NSString *pullRefresh;
 @property (class, strong, readonly) NSString *scrollMore;
 @property (class, strong, readonly) NSString *progressColor;
-@property (class, strong, readonly) NSString *ocHandlers;
-@property (class, strong, readonly) NSString *jsHandlers;
+@property (class, strong, readonly) NSString *appHandlers;
 @property (class, strong, readonly) NSString *canCache;
 @property (class, strong, readonly) NSString *useUIWebView;
 @property (class, strong, readonly) NSString *animation;

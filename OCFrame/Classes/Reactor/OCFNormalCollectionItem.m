@@ -29,8 +29,8 @@
     return self;
 }
 
-- (void)didInitialize {
-    [super didInitialize];
+- (void)didInit {
+    [super didInit];
     self.target = self.model.target;
 }
 

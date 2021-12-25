@@ -14,7 +14,7 @@
 
 @implementation OCFBaseReactor
 
-- (void)didInitialize {
+- (void)didInit {
     
 }
 
@@ -35,7 +35,7 @@
     @weakify(reactor)
     [[reactor rac_signalForSelector:@selector(init)] subscribeNext:^(id x) {
         @strongify(reactor)
-        [reactor didInitialize];
+        [reactor didInit];
     }];
     return reactor;
 }

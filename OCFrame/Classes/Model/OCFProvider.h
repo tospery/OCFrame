@@ -9,7 +9,7 @@
 
 @interface OCFProvider : NSObject
 
-- (void)didInitialize;
+- (void)didInit;
 
 @end
 

@@ -24,8 +24,8 @@
     return self;
 }
 
-- (void)didInitialize {
-    [super didInitialize];
+- (void)didInit {
+    [super didInit];
 }
 
 - (RACSignal *)validateSignal {

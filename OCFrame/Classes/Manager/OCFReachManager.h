@@ -1,22 +1,22 @@
+////
+////  OCFReachManager.h
+////  OCFrame
+////
+////  Created by liaoya on 2021/12/6.
+////
 //
-//  OCFReachManager.h
-//  OCFrame
+//#import <Foundation/Foundation.h>
+//#import "OCFBehaviorRelay.h"
 //
-//  Created by liaoya on 2021/12/6.
+//@class OCFReachManager;
 //
-
-#import <Foundation/Foundation.h>
-#import "OCFBehaviorRelay.h"
-
-@class OCFReachManager;
-
-#define REACH_SUBJECT        (OCFReachManager.sharedInstance.behaviorRelay)
-
-@interface OCFReachManager : NSObject
-@property (nonatomic, strong, readonly) OCFBehaviorRelay *behaviorRelay;
-
-- (void)start;
-    
-+ (instancetype)sharedInstance;
-
-@end
+//#define REACH_SUBJECT        (OCFReachManager.sharedInstance.behaviorRelay)
+//
+//@interface OCFReachManager : NSObject
+//@property (nonatomic, strong, readonly) OCFBehaviorRelay *behaviorRelay;
+//
+//- (void)start;
+//    
+//+ (instancetype)sharedInstance;
+//
+//@end

@@ -97,8 +97,8 @@
     return self;
 }
 
-- (void)didInitialize {
-    [super didInitialize];
+- (void)didInit {
+    [super didInit];
     @weakify(self)
     RAC(self, dataSource) = [self.loadCommand.executionSignals.switchToLatest map:^id(id data) {
         @strongify(self)
@@ -190,7 +190,7 @@
     @weakify(reactor)
     [[reactor rac_signalForSelector:@selector(initWithParameters:)] subscribeNext:^(id x) {
         @strongify(reactor)
-        [reactor didInitialize];
+        [reactor didInit];
     }];
     return reactor;
 }

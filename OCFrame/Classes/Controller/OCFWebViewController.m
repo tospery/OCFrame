@@ -13,6 +13,7 @@
 #import "OCFParameter.h"
 #import "OCFWebViewReactor.h"
 #import "OCFWebProgressView.h"
+#import "OCFEmptyView.h"
 #import "NSString+OCFrame.h"
 #import "NSURL+OCFrame.h"
 #import "UIColor+OCFrame.h"
@@ -20,6 +21,7 @@
 #define kOCFWebEstimatedProgress         (@"estimatedProgress")
 
 @interface OCFWebViewController ()
+@property (nonatomic, strong) OCFEmptyView *emptyView;
 @property (nonatomic, strong) OCFWebProgressView *progressView;
 @property (nonatomic, strong, readwrite) WKWebView *webView;
 @property (nonatomic, strong, readwrite) WKWebViewJavascriptBridge *bridge;
@@ -51,12 +53,17 @@
     self.webView.backgroundColor = UIColor.ocf_background;
     self.webView.navigationDelegate = self;
     self.webView.UIDelegate = self;
+//    self.webView.scrollView.emptyDataSetSource = self.reactor;
+//    self.webView.scrollView.emptyDataSetDelegate = self;
+//    self.webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+//    self.scrollView = self.webView.scrollView;
     
     [self.view addSubview:self.webView];
+    [self.view addSubview:self.emptyView];
     [self.view addSubview:self.progressView];
 
     @weakify(self)
-    for (NSString *handler in self.reactor.ocHandlers) {
+    for (NSString *handler in self.reactor.appHandlers) {
         if (![handler isKindOfClass:NSString.class]) {
             continue;
         }
@@ -74,14 +81,24 @@
             }
         }];
     }
-    OCFLogDebug(@"webView frame = %@", NSStringFromCGRect(self.webView.frame));
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
+    self.webView.frame = self.contentFrame;
+    self.emptyView.frame = self.webView.frame;
 }
 
 #pragma mark - Property
+- (OCFEmptyView *)emptyView {
+    if (!_emptyView) {
+        OCFEmptyView *view = [[OCFEmptyView alloc] init];
+        view.hidden = YES;
+        _emptyView = view;
+    }
+    return _emptyView;
+}
+
 - (OCFWebProgressView *)progressView {
     if (!_progressView) {
         OCFWebProgressView *progressView = [[OCFWebProgressView alloc] initWithFrame:CGRectMake(0, self.contentTop, self.view.qmui_width, 1.5f)];
@@ -107,9 +124,9 @@
     return webView;
 }
 
-- (void)bind:(OCFBaseReactor *)reactor {
+- (void)bind:(OCFWebViewReactor *)reactor {
     [super bind:reactor];
-
+    [self.emptyView bind:reactor.emptyReactor];
     @weakify(self)
     [self.webView rac_observeKeyPath:kOCFWebEstimatedProgress options:NSKeyValueObservingOptionNew observer:nil block:^(id value, NSDictionary *change, BOOL causedByDealloc, BOOL affectedOnlyLastComponent) {
         @strongify(self)
@@ -117,13 +134,24 @@
             [self updateProgress:[(NSNumber *)value floatValue]];
         }
     }];
+    [self loadRequest];
 }
 
-//- (void)reloadData {
-//    [super reloadData];
-//}
+- (void)reloadData {
+    [super reloadData];
+}
+
+- (BOOL)filterError {
+    // [self reloadData];
+    return YES;
+}
 
 - (void)triggerLoad {
+    NSURLRequest *request = [NSURLRequest requestWithURL:self.reactor.url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    [self.webView loadRequest:request];
+}
+
+- (void)loadRequest {
     NSURLRequest *request = [NSURLRequest requestWithURL:self.reactor.url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     [self.webView loadRequest:request];
 }
@@ -162,6 +190,7 @@
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     // [self didFinish:error];
     OCFLogError(@"didFailProvisionalNavigation: %@", error);
+    [self.reactor.errors sendNext:error];
 }
 
 #pragma mark WKUIDelegate

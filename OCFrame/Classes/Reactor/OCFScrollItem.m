@@ -22,8 +22,8 @@
     return self;
 }
 
-- (void)didInitialize {
-    [super didInitialize];
+- (void)didInit {
+    [super didInit];
     self.clickCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         return [[RACSignal return:input] takeUntil:self.rac_willDeallocSignal];
     }];
@@ -34,7 +34,7 @@
     @weakify(item)
     [[item rac_signalForSelector:@selector(initWithModel:)] subscribeNext:^(id x) {
         @strongify(item)
-        [item didInitialize];
+        [item didInit];
     }];
     return item;
 }
