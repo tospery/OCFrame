@@ -7,12 +7,11 @@
 
 #import "OCFrameManager.h"
 #import <QMUIKit/QMUIKit.h>
-#import <AFNetworking/AFNetworking.h>
 #import "NSString+OCFrame.h"
 #import "UIApplication+OCFrame.h"
 
 @interface OCFrameManager ()
-@property (nonatomic, strong, readwrite) RACBehaviorSubject *reachSubject;
+//@property (nonatomic, strong, readwrite) RACBehaviorSubject *reachSubject;
 
 @end
 
@@ -29,13 +28,13 @@
     return self;
 }
 
-- (RACBehaviorSubject *)reachSubject {
-    if (!_reachSubject) {
-        RACBehaviorSubject *subject = [RACBehaviorSubject behaviorSubjectWithDefaultValue:@(AFNetworkReachabilityStatusUnknown)];
-        _reachSubject = subject;
-    }
-    return _reachSubject;
-}
+//- (RACBehaviorSubject *)reachSubject {
+//    if (!_reachSubject) {
+//        RACBehaviorSubject *subject = [RACBehaviorSubject behaviorSubjectWithDefaultValue:@(AFNetworkReachabilityStatusUnknown)];
+//        _reachSubject = subject;
+//    }
+//    return _reachSubject;
+//}
 
 + (instancetype)sharedInstance {
     static id instance;

@@ -33,6 +33,7 @@
 #import "OCFReachManager.h"
 #import "OCFNormalTableModel.h"
 #import "OCFPlainModel.h"
+#import "OCFBehaviorRelay.h"
 
 #pragma mark - View
 #import "OCFReactiveView.h"

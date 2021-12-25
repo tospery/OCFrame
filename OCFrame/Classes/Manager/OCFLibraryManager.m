@@ -9,7 +9,6 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 #import <JLRoutes/JLRoutes.h>
 #import <AFNetworking/AFNetworking.h>
-// #import <AFNetworking/AFNetworkReachabilityManager.h>
 #import <AFNetworkActivityLogger/AFNetworkActivityLogger.h>
 #import "OCFConstant.h"
 #import "OCFFunction.h"
@@ -28,11 +27,7 @@
 }
 
 - (void)setupAFNetworking {
-//    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-//        OCFLogDebug(@"网络状态: %@", @(status));
-//        [REACH_SUBJECT sendNext:@(status)];
-//    }];
-//    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    [OCFReachManager.sharedInstance start];
 }
 
 - (void)setupAFNetworkActivityLogger {
