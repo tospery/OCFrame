@@ -24,18 +24,36 @@
     return self.code == OCFErrorCodeServer;
 }
 
-- (NSString *)ocf_title {
+- (NSString *)ocf_titleWhenFailureReasonEmpty {
     NSString *title = nil;
     if ([self.domain isEqualToString:NSURLErrorDomain]) {
         if (self.code == -1009) {
             title = kStringErrorNetworkTitle;
         }
+    } else if ([self.domain isEqualToString:RACSignalErrorDomain]) {
+        if (self.code == RACSignalErrorTimedOut) {
+            title = kStringErrorTimeoutTitle;
+        } else if (self.code == RACSignalErrorNoMatchingCase) {
+            title = kStringErrorDataFormatTitle;
+        }
     }
     return title;
 }
 
-- (NSString *)ocf_message {
-    return nil;
+- (NSString *)ocf_messageWhenDescriptionEmpty {
+    NSString *message = nil;
+    if ([self.domain isEqualToString:NSURLErrorDomain]) {
+        if (self.code == -1009) {
+            message = kStringErrorNetworkMessage;
+        }
+    } else if ([self.domain isEqualToString:RACSignalErrorDomain]) {
+        if (self.code == RACSignalErrorTimedOut) {
+            message = kStringErrorTimeoutMessage;
+        } else if (self.code == RACSignalErrorNoMatchingCase) {
+            message = kStringErrorDataFormatMessage;
+        }
+    }
+    return message;
 }
 
 - (UIImage *)ocf_displayImage {
