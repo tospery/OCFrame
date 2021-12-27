@@ -148,7 +148,13 @@
 - (CGFloat)contentBottom {
     CGFloat value = 0;
     UITabBar *tabBar = self.tabBarController.tabBar;
-    if (tabBar && !tabBar.hidden && !tabBar.isTranslucent && !self.hidesBottomBarWhenPushed) {
+    BOOL translucent = NO;
+    if (@available(iOS 13.0, *)) {
+        translucent = tabBar.standardAppearance.backgroundEffect; // YJX_TODO 待优化
+    } else {
+        translucent = tabBar.isTranslucent;
+    }
+    if (tabBar && !tabBar.hidden && !translucent && !self.hidesBottomBarWhenPushed) {
         value = tabBar.qmui_height;
     }
     return value;
