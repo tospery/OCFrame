@@ -11,10 +11,12 @@
 
 @class OCFrameManager;
 
-#define REACH_SUBJECT        (OCFrameManager.sharedInstance.reachSubject)
+#define REACH_SUBJECT               (OCFrameManager.sharedInstance.reachSubject)
+#define STATUSBARSTYLE_SUBJECT      (OCFrameManager.sharedInstance.statusBarStyleSubject)
 
 @interface OCFrameManager : NSObject
 @property (nonatomic, strong, readonly) RACBehaviorSubject *reachSubject;
+@property (nonatomic, strong, readonly) RACBehaviorSubject *statusBarStyleSubject;
 @property (nonatomic, assign) CGFloat autoLogin;
 @property (nonatomic, assign) CGFloat fontScale;
 //@property (nonatomic, strong) NSString *loginPattern;

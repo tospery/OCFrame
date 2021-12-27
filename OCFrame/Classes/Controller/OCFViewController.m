@@ -23,6 +23,7 @@
 #import "UIColor+OCFrame.h"
 #import "OCFScrollItem.h"
 #import "UIImage+OCFrame.h"
+#import "RACBehaviorSubject+OCFrame.h"
 
 @interface OCFViewController ()
 @property (nonatomic, assign) BOOL onceTokenForReload;
@@ -114,6 +115,15 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return [STATUSBARSTYLE_SUBJECT.value integerValue];
+}
+
+- (UIStatusBarStyle)reversedStatusBarStyle {
+    UIStatusBarStyle style = [STATUSBARSTYLE_SUBJECT.value integerValue];
+    return (style == UIStatusBarStyleLightContent ? UIStatusBarStyleDefault : UIStatusBarStyleLightContent);
 }
 
 #pragma mark - Property

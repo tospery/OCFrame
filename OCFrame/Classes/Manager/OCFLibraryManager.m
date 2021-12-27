@@ -35,10 +35,10 @@
 }
 
 - (void)setupAFNetworkActivityLogger {
-#ifdef DEBUG
-    [AFNetworkActivityLogger.sharedLogger setLogLevel:AFLoggerLevelDebug];
-    [AFNetworkActivityLogger.sharedLogger startLogging];
-#endif
+//#ifdef DEBUG
+//    [AFNetworkActivityLogger.sharedLogger setLogLevel:AFLoggerLevelDebug];
+//    [AFNetworkActivityLogger.sharedLogger startLogging];
+//#endif
 }
 
 + (instancetype)sharedInstance {

@@ -50,5 +50,7 @@ typedef NS_ENUM(NSInteger, OCFViewControllerBackType){
 - (BOOL)filterError;
 - (void)handleError;
 
+- (UIStatusBarStyle)reversedStatusBarStyle;
+
 @end
 

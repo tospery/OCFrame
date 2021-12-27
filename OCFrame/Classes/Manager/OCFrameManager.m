@@ -13,6 +13,7 @@
 
 @interface OCFrameManager ()
 @property (nonatomic, strong, readwrite) RACBehaviorSubject *reachSubject;
+@property (nonatomic, strong, readwrite) RACBehaviorSubject *statusBarStyleSubject;
 
 @end
 
@@ -35,6 +36,14 @@
         _reachSubject = subject;
     }
     return _reachSubject;
+}
+
+- (RACBehaviorSubject *)statusBarStyleSubject {
+    if (!_statusBarStyleSubject) {
+        RACBehaviorSubject *subject = [RACBehaviorSubject behaviorSubjectWithDefaultValue:@(UIApplication.sharedApplication.statusBarStyle)];
+        _statusBarStyleSubject = subject;
+    }
+    return _statusBarStyleSubject;
 }
 
 + (instancetype)sharedInstance {
