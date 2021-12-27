@@ -12,7 +12,7 @@
 #import "UIApplication+OCFrame.h"
 
 @interface OCFrameManager ()
-@property (nonatomic, strong, readwrite) OCFBehaviorRelay *reachSubject;
+@property (nonatomic, strong, readwrite) RACBehaviorSubject *reachSubject;
 
 @end
 
@@ -20,7 +20,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         self.autoLogin = YES;
-        self.loginPattern = @"login";
+        //self.loginPattern = @"login";
         self.appScheme = UIApplication.sharedApplication.ocf_urlScheme;
         self.baseURLString = OCFStrWithFmt(@"https://m.%@.com", self.appScheme);
         self.fontScale = IS_320WIDTH_SCREEN ? -2 : 0;
@@ -29,9 +29,9 @@
     return self;
 }
 
-- (OCFBehaviorRelay *)reachSubject {
+- (RACBehaviorSubject *)reachSubject {
     if (!_reachSubject) {
-        OCFBehaviorRelay *subject = [OCFBehaviorRelay behaviorRelayWithDefaultValue:@(AFNetworkReachabilityStatusUnknown)];
+        RACBehaviorSubject *subject = [RACBehaviorSubject behaviorSubjectWithDefaultValue:@(AFNetworkReachabilityStatusUnknown)];
         _reachSubject = subject;
     }
     return _reachSubject;

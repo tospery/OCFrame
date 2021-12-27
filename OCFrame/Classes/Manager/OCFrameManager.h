@@ -6,18 +6,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ReactiveObjC/ReactiveObjC.h>
 #import "OCFPage.h"
-#import "OCFBehaviorRelay.h"
 
 @class OCFrameManager;
 
 #define REACH_SUBJECT        (OCFrameManager.sharedInstance.reachSubject)
 
 @interface OCFrameManager : NSObject
-@property (nonatomic, strong, readonly) OCFBehaviorRelay *reachSubject;
+@property (nonatomic, strong, readonly) RACBehaviorSubject *reachSubject;
 @property (nonatomic, assign) CGFloat autoLogin;
 @property (nonatomic, assign) CGFloat fontScale;
-@property (nonatomic, strong) NSString *loginPattern;
+//@property (nonatomic, strong) NSString *loginPattern;
 @property (nonatomic, strong) NSString *baseURLString;
 @property (nonatomic, strong) NSString *appScheme;
 @property (nonatomic, strong) OCFPage *page;

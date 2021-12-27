@@ -42,6 +42,10 @@ NSLocalizedString(@"Error.DataFormat.Message", @"数据异常")
 NSLocalizedString(@"Error.ListIsEmpty.Title", @"列表为空")
 #define kStringErrorListIsEmptyMessage                                     \
 NSLocalizedString(@"Error.ListIsEmpty.Message", @"列表为空")
+#define kStringErrorLoginExpiredTitle                                     \
+NSLocalizedString(@"Error.LoginExpired.Title", @"登录过期")
+#define kStringErrorLoginExpiredMessage                                     \
+NSLocalizedString(@"Error.LoginExpired.Message", @"登录过期")
 #define kStringErrorNotLoginedInTitle                                     \
 NSLocalizedString(@"Error.NotLoginedIn.Title", @"用户未登录")
 #define kStringErrorNotLoginedInMessage                                     \

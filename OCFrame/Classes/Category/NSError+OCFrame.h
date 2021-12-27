@@ -22,6 +22,7 @@ typedef NS_ENUM(NSInteger, OCFErrorCode){
     OCFErrorCodeNavigation,
     OCFErrorCodeDataFormat,
     OCFErrorCodeListIsEmpty,
+    OCFErrorCodeLoginExpired,
     OCFErrorCodeNotLoginedIn
     
 //    OCFErrorCodeSuccess = 200,

@@ -7,10 +7,8 @@
 
 #import <ReactiveObjC/ReactiveObjC.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface RACBehaviorSubject (OCFrame)
+@property (nonatomic, strong, readonly) id value;
 
 @end
 
-NS_ASSUME_NONNULL_END

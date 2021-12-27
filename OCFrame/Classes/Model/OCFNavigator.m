@@ -92,52 +92,52 @@
     [window makeKeyAndVisible];
 }
 
-- (UIViewController *)pushReactor:(OCFViewReactor *)reactor animated:(BOOL)animated {
-    UIViewController *viewController = (UIViewController *)[self viewController:reactor];
-    [UINavigationController.ocf_currentNavigationController pushViewController:viewController animated:animated];
-    return viewController;
-}
+//- (UIViewController *)pushReactor:(OCFViewReactor *)reactor animated:(BOOL)animated {
+//    UIViewController *viewController = (UIViewController *)[self viewController:reactor];
+//    [UINavigationController.ocf_currentNavigationController pushViewController:viewController animated:animated];
+//    return viewController;
+//}
 
-- (UIViewController *)presentReactor:(OCFViewReactor *)reactor animated:(BOOL)animated completion:(OCFVoidBlock)completion {
-    UIViewController *viewController = (UIViewController *)[self viewController:reactor];
-    UINavigationController *presentingViewController = UINavigationController.ocf_currentNavigationController;
-    if (![viewController isKindOfClass:UINavigationController.class]) {
-        viewController = [[OCFNavigationController alloc] initWithRootViewController:viewController];
-    }
-    //[self pushNavigationController:(OCFNavigationController *)viewController];
-    [presentingViewController presentViewController:viewController animated:animated completion:completion];
-    return viewController;
-}
+//- (UIViewController *)presentReactor:(OCFViewReactor *)reactor animated:(BOOL)animated completion:(OCFVoidBlock)completion {
+//    UIViewController *viewController = (UIViewController *)[self viewController:reactor];
+//    UINavigationController *presentingViewController = UINavigationController.ocf_currentNavigationController;
+//    if (![viewController isKindOfClass:UINavigationController.class]) {
+//        viewController = [[OCFNavigationController alloc] initWithRootViewController:viewController];
+//    }
+//    //[self pushNavigationController:(OCFNavigationController *)viewController];
+//    [presentingViewController presentViewController:viewController animated:animated completion:completion];
+//    return viewController;
+//}
 
-- (UIViewController *)popupReactor:(OCFViewReactor *)reactor animationType:(OCFViewControllerAnimationType)animationType completion:(OCFVoidBlock)completion {
-    UIViewController *viewController = (UIViewController *)[self viewController:reactor];
-    [UINavigationController.ocf_currentNavigationController ocf_popupViewController:viewController animationType:animationType layout:OCFPopupLayoutCenter bgTouch:NO dismissed:completion];
-    return viewController;
-}
+//- (UIViewController *)popupReactor:(OCFViewReactor *)reactor animationType:(OCFViewControllerAnimationType)animationType completion:(OCFVoidBlock)completion {
+//    UIViewController *viewController = (UIViewController *)[self viewController:reactor];
+//    [UINavigationController.ocf_currentNavigationController ocf_popupViewController:viewController animationType:animationType layout:OCFPopupLayoutCenter bgTouch:NO dismissed:completion];
+//    return viewController;
+//}
 
-- (void)popReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion {
-    [CATransaction begin];
-    [CATransaction setCompletionBlock:completion];
-    [UINavigationController.ocf_currentNavigationController popViewControllerAnimated:animated];
-    [CATransaction commit];
-}
-
-- (void)popToRootReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion {
-    [CATransaction begin];
-    [CATransaction setCompletionBlock:completion];
-    [UINavigationController.ocf_currentNavigationController popToRootViewControllerAnimated:animated];
-    [CATransaction commit];
-}
-
-- (void)dismissReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion {
-    UINavigationController *dismissingViewController = UINavigationController.ocf_currentNavigationController;
-    //[self popNavigationController];
-    [dismissingViewController dismissViewControllerAnimated:animated completion:completion];
-}
-
-- (void)fadeawayReactorWithAnimationType:(OCFViewControllerAnimationType)animationType completion:(OCFVoidBlock)completion {
-    [UINavigationController.ocf_currentNavigationController ocf_closeViewControllerWithAnimationType:animationType dismissed:completion];
-}
+//- (void)popReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion {
+//    [CATransaction begin];
+//    [CATransaction setCompletionBlock:completion];
+//    [UINavigationController.ocf_currentNavigationController popViewControllerAnimated:animated];
+//    [CATransaction commit];
+//}
+//
+//- (void)popToRootReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion {
+//    [CATransaction begin];
+//    [CATransaction setCompletionBlock:completion];
+//    [UINavigationController.ocf_currentNavigationController popToRootViewControllerAnimated:animated];
+//    [CATransaction commit];
+//}
+//
+//- (void)dismissReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion {
+//    UINavigationController *dismissingViewController = UINavigationController.ocf_currentNavigationController;
+//    //[self popNavigationController];
+//    [dismissingViewController dismissViewControllerAnimated:animated completion:completion];
+//}
+//
+//- (void)fadeawayReactorWithAnimationType:(OCFViewControllerAnimationType)animationType completion:(OCFVoidBlock)completion {
+//    [UINavigationController.ocf_currentNavigationController ocf_closeViewControllerWithAnimationType:animationType dismissed:completion];
+//}
 
 #pragma mark - URL
 - (BOOL)routeURL:(NSURL *)url withParameters:(NSDictionary *)parameters {

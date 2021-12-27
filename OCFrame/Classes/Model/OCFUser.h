@@ -11,6 +11,7 @@
 @property (nonatomic, assign) BOOL isLogined;
 
 - (void)logout;
++ (BOOL)canAutoOpenLoginPage;
 
 @end
 

@@ -39,15 +39,15 @@ typedef NS_ENUM(NSInteger, OCFToastPosition){
 @required
 - (void)resetRootReactor:(OCFViewReactor *)reactor;
 
-- (UIViewController *)pushReactor:(OCFViewReactor *)viewModel animated:(BOOL)animated;
-- (UIViewController *)presentReactor:(OCFViewReactor *)viewModel animated:(BOOL)animated completion:(OCFVoidBlock)completion;
-- (UIViewController *)popupReactor:(OCFViewReactor *)viewModel animationType:(OCFViewControllerAnimationType)animationType completion:(OCFVoidBlock)completion;
+//- (UIViewController *)pushReactor:(OCFViewReactor *)viewModel animated:(BOOL)animated;
+//- (UIViewController *)presentReactor:(OCFViewReactor *)viewModel animated:(BOOL)animated completion:(OCFVoidBlock)completion;
+//- (UIViewController *)popupReactor:(OCFViewReactor *)viewModel animationType:(OCFViewControllerAnimationType)animationType completion:(OCFVoidBlock)completion;
 // popup -> hide
 
-- (void)popReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion;
-- (void)popToRootReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion;
-- (void)dismissReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion;
-- (void)fadeawayReactorWithAnimationType:(OCFViewControllerAnimationType)animationType completion:(OCFVoidBlock)completion;
+//- (void)popReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion;
+//- (void)popToRootReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion;
+//- (void)dismissReactorAnimated:(BOOL)animated completion:(OCFVoidBlock)completion;
+//- (void)fadeawayReactorWithAnimationType:(OCFViewControllerAnimationType)animationType completion:(OCFVoidBlock)completion;
 
 - (id)forwardReactor:(OCFViewReactor *)reactor;
 

@@ -114,6 +114,9 @@
     } else if (code == OCFErrorCodeListIsEmpty) {
         title = kStringErrorListIsEmptyTitle;
         message = kStringErrorListIsEmptyMessage;
+    } else if (code == OCFErrorCodeLoginExpired) {
+        title = kStringErrorLoginExpiredTitle;
+        message = kStringErrorLoginExpiredMessage;
     } else if (code == OCFErrorCodeNotLoginedIn) {
         title = kStringErrorNotLoginedInTitle;
         message = kStringErrorNotLoginedInMessage;

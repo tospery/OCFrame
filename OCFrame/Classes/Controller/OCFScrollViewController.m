@@ -109,6 +109,8 @@
     [self.scrollView reloadEmptyDataSet];
 }
 
+
+
 - (BOOL)filterError {
 //    BOOL handled = NO;
 //    if (!self.reactor.error) {
@@ -178,6 +180,10 @@
 //
 //    return handled;
     return [super filterError];
+}
+
+- (void)handleError {
+    return [super handleError];
 }
 
 #pragma mark - Load

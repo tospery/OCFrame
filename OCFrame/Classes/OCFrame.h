@@ -121,6 +121,7 @@
 #import "UITableViewCell+OCFrame.h"
 #import "UITableViewHeaderFooterView+OCFrame.h"
 #import "UITableView+OCFrame.h"
+#import "RACBehaviorSubject+OCFrame.h"
 
 #pragma mark - Bridge
 #import "WKWebViewJavascriptBridge.h"

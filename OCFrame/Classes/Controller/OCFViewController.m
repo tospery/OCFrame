@@ -13,6 +13,8 @@
 #import "OCFString.h"
 #import "OCFAppDependency.h"
 #import "OCFParameter.h"
+#import "OCFrameManager.h"
+#import "OCFLoginViewController.h"
 #import "OCFViewController.h"
 #import "NSDictionary+OCFrame.h"
 #import "UIViewController+OCFrame.h"
@@ -195,9 +197,26 @@
         @strongify(self)
         [self reloadData];
     }];
-    [[[RACObserve(self.reactor.user, isLogined) skip:1] ignore:@(NO)].distinctUntilChanged.deliverOnMainThread subscribeNext:^(NSNumber *isLogined) {
+//    [[[RACObserve(self.reactor.user, isLogined) skip:1] ignore:@(NO)].distinctUntilChanged.deliverOnMainThread subscribeNext:^(NSNumber *isLogined) {
+//        @strongify(self)
+//        [self handleError];
+//    }];
+    [[RACObserve(self.reactor.user, isLogined).distinctUntilChanged skip:1].deliverOnMainThread subscribeNext:^(NSNumber *value) {
         @strongify(self)
-        [self handleError];
+        BOOL isLogined = value.boolValue;
+        if (isLogined) {
+            return;
+        }
+        if (!self.reactor.error) {
+            return;
+        }
+        if (self.reactor.error.code != OCFErrorCodeLoginExpired) {
+            return;
+        }
+        [self.reactor.user logout];
+        if ([OCFUser canAutoOpenLoginPage]) {
+            [self handleNavigate:kOCFHostLogin];
+        }
     }];
 }
 

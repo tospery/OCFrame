@@ -1,18 +1,18 @@
+////
+////  OCFBehaviorRelay.h
+////  OCFrame
+////
+////  Created by 杨建祥 on 2021/12/25.
+////
 //
-//  OCFBehaviorRelay.h
-//  OCFrame
+//#import <Foundation/Foundation.h>
+//#import <ReactiveObjC/ReactiveObjC.h>
 //
-//  Created by 杨建祥 on 2021/12/25.
+//@interface OCFBehaviorRelay<ValueType> : RACSubject<ValueType>
+//@property (nonatomic, strong, readonly) ValueType currentValue;
 //
-
-#import <Foundation/Foundation.h>
-#import <ReactiveObjC/ReactiveObjC.h>
-
-@interface OCFBehaviorRelay<ValueType> : RACSubject<ValueType>
-@property (nonatomic, strong, readonly) ValueType currentValue;
-
-+ (instancetype)behaviorRelayWithDefaultValue:(ValueType)value;
-
-@end
-
-
+//+ (instancetype)behaviorRelayWithDefaultValue:(ValueType)value;
+//
+//@end
+//
+//
