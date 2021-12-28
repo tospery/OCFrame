@@ -17,9 +17,11 @@
 #import "UIApplication+OCFrame.h"
 
 typedef RACSignal *(^MapBlock)(OCFBaseResponse *);
+typedef void (^ErrBlock)(NSError *);
 
 @interface OCFBaseSessionManager ()
 @property(nonatomic, copy) MapBlock mapBlock;
+@property(nonatomic, copy) ErrBlock errBlock;
 
 @end
 
@@ -46,25 +48,28 @@ typedef RACSignal *(^MapBlock)(OCFBaseResponse *);
             }
             return [RACSignal return:response.result];
         };
+        self.errBlock = ^(NSError *error) {
+            OCFLogError(@"restful error: %@", error);
+        };
     }
     return self;
 }
 
 - (RACSignal *)get:(NSString *)URLString parameters:(NSDictionary *)parameters {
-    return [[self rac_GET:URLString parameters:parameters progress:nil] flattenMap:self.mapBlock];
+    return [[[self rac_GET:URLString parameters:parameters progress:nil] flattenMap:self.mapBlock] doError:self.errBlock];
 }
 
 - (RACSignal *)post:(NSString *)URLString
              parameters:(NSDictionary *)parameters
                progress:(id<RACSubscriber>)progress {
-    return [[self rac_POST:URLString parameters:parameters progress:progress] flattenMap:self.mapBlock];
+    return [[[self rac_POST:URLString parameters:parameters progress:progress] flattenMap:self.mapBlock] doError:self.errBlock];
 }
 
 - (RACSignal *)post:(NSString *)URLString
              parameters:(NSDictionary *)parameters
 constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
                progress:(id<RACSubscriber>)progress {
-    return [[self rac_POST:URLString parameters:parameters constructingBodyWithBlock:block progress:progress] flattenMap:self.mapBlock];
+    return [[[self rac_POST:URLString parameters:parameters constructingBodyWithBlock:block progress:progress] flattenMap:self.mapBlock] doError:self.errBlock];
 }
 
 @end
