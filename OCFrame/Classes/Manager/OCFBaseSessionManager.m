@@ -33,6 +33,7 @@ typedef RACSignal *(^MapBlock)(OCFBaseResponse *);
         ]];
         self.responseSerializer.acceptableContentTypes = contentTypes;
         self.mapBlock = ^RACSignal *(OCFBaseResponse *response) {
+            OCFLogDebug(@"restful response: %@", response.rawResult);
             if (response.code != OCFErrorCodeNone) {
                 return [RACSignal error:[NSError errorWithDomain:UIApplication.sharedApplication.ocf_bundleID code:response.code userInfo:@{
                     NSLocalizedDescriptionKey: OCFStrWithDft(response.message, kStringErrorUnknown),
