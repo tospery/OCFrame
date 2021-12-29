@@ -113,6 +113,7 @@
     [super viewDidAppear:animated];
 }
 
+#pragma mark - Layout
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
 }
@@ -121,10 +122,24 @@
     return [STATUSBARSTYLE_SUBJECT.value integerValue];
 }
 
+#pragma mark - Property
+#pragma mark - Method
+#pragma mark bind
+#pragma mark data
+#pragma mark error
+#pragma mark navigate
+#pragma mark request
+#pragma mark configure
+#pragma mark convenient
 - (UIStatusBarStyle)reversedStatusBarStyle {
     UIStatusBarStyle style = [STATUSBARSTYLE_SUBJECT.value integerValue];
     return (style == UIStatusBarStyleLightContent ? UIStatusBarStyleDefault : UIStatusBarStyleLightContent);
 }
+
+#pragma mark - Delegate
+#pragma mark - Class
+
+#pragma mark - 备份
 
 #pragma mark - Property
 - (OCFNavigationBar *)navigationBar {
@@ -300,6 +315,15 @@
         if (!(tuple.count == 2 &&
             [tuple.first isKindOfClass:NSURL.class] &&
             (!tuple.second || [tuple.second isKindOfClass:NSDictionary.class]))) {
+            return nil;
+        }
+        if (tuple.count != 2) {
+            return nil;
+        }
+        if (!tuple.first) {
+            return nil;
+        }
+        if (tuple.second && ![tuple.second isKindOfClass:NSDictionary.class]) {
             return nil;
         }
         return tuple;
