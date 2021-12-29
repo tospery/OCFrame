@@ -15,6 +15,7 @@
 #import "OCFBaseList.h"
 #import "NSError+OCFrame.h"
 #import "UIApplication+OCFrame.h"
+#import "NSObject+OCFrame.h"
 
 typedef RACSignal *(^MapBlock)(OCFBaseResponse *);
 typedef void (^ErrBlock)(NSError *);
@@ -35,7 +36,7 @@ typedef void (^ErrBlock)(NSError *);
         ]];
         self.responseSerializer.acceptableContentTypes = contentTypes;
         self.mapBlock = ^RACSignal *(OCFBaseResponse *response) {
-            OCFLogDebug(@"restful response: %@", response.rawResult);
+            OCFLogDebug(@"restful response: %@", [response.rawResult ocf_JSONString:YES]);
             if (response.code != OCFErrorCodeNone) {
                 return [RACSignal error:[NSError errorWithDomain:UIApplication.sharedApplication.ocf_bundleID code:response.code userInfo:@{
                     NSLocalizedDescriptionKey: OCFStrWithDft(response.message, kStringErrorUnknown),

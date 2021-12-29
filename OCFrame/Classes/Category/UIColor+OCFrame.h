@@ -10,7 +10,7 @@
 #import <Giotto/SDThemeManager.h>
 
 #define OCFColorRGB(r, g, b)                (UIColorMake((r), (g), (b)))
-#define OCFColorVal(value)                  ([UIColor ocf_colorWithHex:(value)])
+//#define OCFColorVal(value)                  ([UIColor ocf_colorWithHex:(value)])
 #define OCFColorStr(string)                 ([UIColor qmui_colorWithHexString:(string)])
 #define OCFColorKey(key)                    (SDThemeManagerValueForConstant(key))
 

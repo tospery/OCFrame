@@ -37,14 +37,20 @@ QMUISynthesizeIdStrongProperty(ocf_tag, setOcf_tag)
     
     if ([self isKindOfClass:NSArray.class]) {
         NSArray *array = (NSArray *)self;
-        BOOL isRaw = YES;
+        BOOL isModelType = YES;
         for (id obj in array) {
-            if (![obj isKindOfClass:NSString.class] && ![obj isKindOfClass:NSNumber.class]) {
-                isRaw = NO;
+            if (![obj isKindOfClass:NSString.class] &&
+                ![obj isKindOfClass:NSNumber.class] &&
+                ![obj isKindOfClass:NSDictionary.class]) {
+                isModelType = NO;
+                break;
+            }
+            if (![obj conformsToProtocol:@protocol(MTLJSONSerializing)]) {
+                isModelType = NO;
                 break;
             }
         }
-        if (isRaw) {
+        if (!isModelType) {
             return array;
         }
         id json = [MTLJSONAdapter JSONArrayFromModels:(NSArray *)self error:nil];
