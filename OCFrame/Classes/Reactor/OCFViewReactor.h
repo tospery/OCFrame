@@ -51,6 +51,7 @@ typedef NS_ENUM(NSInteger, OCFRequestMode) {
 @property (nonatomic, strong, readonly) RACSubject *navigate;
 @property (nonatomic, strong, readonly) RACSubject *loading;
 @property (nonatomic, strong, readonly) RACSubject *executing;
+@property (nonatomic, strong, readonly) RACSubject *resultSubject;
 @property (nonatomic, strong, readonly) RACCommand *resultCommand;
 @property (nonatomic, strong, readonly) RACCommand *loadCommand;
 

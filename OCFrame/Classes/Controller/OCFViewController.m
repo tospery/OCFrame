@@ -286,7 +286,8 @@
         }
     } else {
         // forward
-        [self.navigator routeURL:url withParameters:parameters];
+        // [self.navigator routeURL:url withParameters:parameters];
+        [[self.navigator rac_routeURL:url withParameters:parameters] subscribe:self.reactor.resultSubject];
     }
 }
 

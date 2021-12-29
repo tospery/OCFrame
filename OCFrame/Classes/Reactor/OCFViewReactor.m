@@ -36,6 +36,7 @@
 @property (nonatomic, strong, readwrite) RACSubject *navigate;
 @property (nonatomic, strong, readwrite) RACSubject *loading;
 @property (nonatomic, strong, readwrite) RACSubject *executing;
+@property (nonatomic, strong, readwrite) RACSubject *resultSubject;
 @property (nonatomic, strong, readwrite) RACCommand *loadCommand;
 @property (nonatomic, strong, readwrite) RACCommand *resultCommand;
 
@@ -145,6 +146,13 @@
         _navigate = [RACSubject subject];
     }
     return _navigate;
+}
+
+- (RACSubject *)resultSubject {
+    if (!_resultSubject) {
+        _resultSubject = [RACSubject subject];
+    }
+    return _resultSubject;
 }
 
 - (RACCommand *)loadCommand {
