@@ -18,6 +18,8 @@
 //- (void)pushNavigationController:(UINavigationController *)navigationController;
 //- (UINavigationController *)popNavigationController;
 
+- (OCFViewController *)viewController:(OCFViewReactor *)reactor;
+
 - (void)goLogin;
 - (RACSignal *)rac_goLogin;
 
