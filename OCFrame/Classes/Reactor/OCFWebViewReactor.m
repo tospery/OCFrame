@@ -14,7 +14,6 @@
 #import "UIColor+OCFrame.h"
 
 @interface OCFWebViewReactor ()
-@property (nonatomic, strong, readwrite) NSURL *url;
 @property (nonatomic, strong, readwrite) NSArray *appHandlers;
 @property (nonatomic, strong, readwrite) UIColor *progressColor;
 @property (nonatomic, strong, readwrite) OCFEmptyReactor *emptyReactor;
@@ -24,7 +23,6 @@
 @implementation OCFWebViewReactor
 - (instancetype)initWithParameters:(NSDictionary *)parameters {
     if (self = [super initWithParameters:parameters]) {
-        self.url = OCFObjWithDft(OCFURLMember(parameters, JLRouteURLKey, nil), OCFURLMember(parameters, OCFParameter.url, nil));
         self.appHandlers = OCFArrMember(parameters, OCFParameter.appHandlers, nil);
         NSMutableArray *appHandler = [NSMutableArray arrayWithArray:self.appHandlers];
         [appHandler addObject:@"appHandler"];

@@ -25,6 +25,7 @@
 @interface OCFViewReactor ()
 @property (nonatomic, strong, readwrite) NSString *host;
 @property (nonatomic, strong, readwrite) NSString *path;
+@property (nonatomic, strong, readwrite) NSURL *url;
 @property (nonatomic, assign, readwrite) BOOL animated;
 @property (nonatomic, assign, readwrite) BOOL transparetNavBar;
 @property (nonatomic, assign, readwrite) OCFForwardType forwardType;
@@ -36,9 +37,8 @@
 @property (nonatomic, strong, readwrite) RACSubject *navigate;
 @property (nonatomic, strong, readwrite) RACSubject *loading;
 @property (nonatomic, strong, readwrite) RACSubject *executing;
-@property (nonatomic, strong, readwrite) RACSubject *resultSubject;
+@property (nonatomic, strong, readwrite) RACSubject *result;
 @property (nonatomic, strong, readwrite) RACCommand *loadCommand;
-@property (nonatomic, strong, readwrite) RACCommand *resultCommand;
 
 @end
 
@@ -56,9 +56,9 @@
         self.title = OCFStrMember(parameters, OCFParameter.title, nil);
         self.animation = OCFStrMember(parameters, OCFParameter.animation, nil);
         // Host/Path
-        NSURL *routeURL = OCFURLMember(parameters, JLRouteURLKey, nil);
-        self.host = routeURL.host;
-        self.path = routeURL.path;
+        self.url = OCFObjWithDft(OCFURLMember(parameters, JLRouteURLKey, nil), OCFURLMember(parameters, OCFParameter.url, nil));
+        self.host = self.url.host;
+        self.path = self.url.path;
         // Model
         id model = OCFObjMember(parameters, OCFParameter.model, nil);
         if (model && [model isKindOfClass:NSString.class]) {
@@ -148,11 +148,11 @@
     return _navigate;
 }
 
-- (RACSubject *)resultSubject {
-    if (!_resultSubject) {
-        _resultSubject = [RACSubject subject];
+- (RACSubject *)result {
+    if (!_result) {
+        _result = [RACSubject subject];
     }
-    return _resultSubject;
+    return _result;
 }
 
 - (RACCommand *)loadCommand {
@@ -165,16 +165,6 @@
         _loadCommand = command;
     }
     return _loadCommand;
-}
-
-- (RACCommand *)resultCommand {
-    if (!_resultCommand) {
-        RACCommand *command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-            return [RACSignal return:input];
-        }];
-        _resultCommand = command;
-    }
-    return _resultCommand;
 }
 
 #pragma mark - Bind

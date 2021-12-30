@@ -9,7 +9,6 @@
 #import "OCFEmptyReactor.h"
 
 @interface OCFWebViewReactor : OCFViewReactor
-@property (nonatomic, strong, readonly) NSURL *url;
 @property (nonatomic, strong, readonly) NSArray *appHandlers;
 @property (nonatomic, strong, readonly) UIColor *progressColor;
 @property (nonatomic, strong, readonly) OCFEmptyReactor *emptyReactor;

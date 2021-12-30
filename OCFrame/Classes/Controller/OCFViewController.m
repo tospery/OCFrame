@@ -90,7 +90,7 @@
         @weakify(self)
         [[backButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIControl *button) {
             @strongify(self)
-            [self handleNavigate:OCFURLWithBack(kOCFPathPop)];
+            [self handleNavigate:kOCFBackPopone];
         }];
     } else {
         if (self.qmui_isPresented && self.navigationController.qmui_isPresented) {
@@ -98,7 +98,7 @@
             @weakify(self)
             [[closeButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIControl *button) {
                 @strongify(self)
-                [self handleNavigate:OCFURLWithBack(kOCFPathDismiss)];
+                [self handleNavigate:kOCFBackDismiss];
             }];
         }
     }
@@ -128,6 +128,102 @@
 #pragma mark data
 #pragma mark error
 #pragma mark navigate
+- (BOOL)filterNavigate:(id)next {
+    return NO;
+}
+
+- (void)handleNavigate:(id)next {
+    RACTuple *tuple = [self convertNavigate:next];
+    if (!tuple) {
+        return;
+    }
+    NSURL *url = (NSURL *)tuple.first;
+    if ([url.host isEqualToString:kOCFBackAuto]) {
+        // back
+        @weakify(self)
+        OCFVoidBlock completion = ^(void) {
+            @strongify(self)
+            id result = tuple.second;
+            if (result) {
+                [self.subscriber sendNext:RACTuplePack(self.reactor.url, result)];
+            }
+            [self.subscriber sendCompleted];
+        };
+        NSString *poponePath = [kOCFBackPopone componentsSeparatedByString:@"/"].lastObject;
+        NSString *popallPath = [kOCFBackPopall componentsSeparatedByString:@"/"].lastObject;
+        NSString *dismissPath = [kOCFBackDismiss componentsSeparatedByString:@"/"].lastObject;
+        NSString *fadeawayPath = [kOCFBackFadeaway componentsSeparatedByString:@"/"].lastObject;
+        NSString *path = url.path;
+        if (path.length == 0) {
+            if (self.qmui_isPresented) {
+                path = dismissPath;
+            } else {
+                path = poponePath;
+            }
+        }
+        if ([path hasPrefix:@"/"]) {
+            path = [path qmui_stringByRemoveCharacterAtIndex:0];
+        }
+        if ([path isEqualToString:poponePath]) {
+            [self.navigationController qmui_popViewControllerAnimated:YES completion:completion];
+        } else if ([path isEqualToString:popallPath]) {
+            [self.navigationController qmui_popToRootViewControllerAnimated:YES completion:completion];
+        }  else if ([path isEqualToString:dismissPath]) {
+            [self dismissViewControllerAnimated:YES completion:completion];
+        } else if ([path isEqualToString:fadeawayPath]) {
+            OCFLogDebug(@"YJX_TODO kOCFPathFadeaway");
+        }
+    } else {
+        // forward
+        [[self.navigator rac_routeURL:url withParameters:tuple.second] subscribe:self.reactor.result];
+    }
+}
+
+- (RACTuple *)convertNavigate:(id)next {
+    if (!next) {
+        return nil;
+    }
+    if ([next isKindOfClass:RACTuple.class]) {
+        RACTuple *tuple = (RACTuple *)next;
+        if ([tuple.first isKindOfClass:NSURL.class]) {
+            NSURL *url = (NSURL *)tuple.first;
+            if ([url.host isEqualToString:kOCFBackAuto]) {
+                return RACTuplePack(url, tuple.second);
+            }
+            if (!(!tuple.second || [tuple.second isKindOfClass:NSDictionary.class])) {
+                return nil;
+            }
+            return RACTuplePack(url, tuple.second);
+        } else if ([tuple.first isKindOfClass:NSString.class]) {
+            NSString *string = (NSString *)tuple.first;
+            NSURL *url = OCFURLWithHostpath(string);
+            if (!url) {
+                return nil;
+            }
+            NSArray *components = [string componentsSeparatedByString:@"/"];
+            if ([components.firstObject isEqualToString:kOCFBackAuto]) {
+                return RACTuplePack(url, tuple.second);
+            }
+            if (!(!tuple.second || [tuple.second isKindOfClass:NSDictionary.class])) {
+                return nil;
+            }
+            return RACTuplePack(url, tuple.second);
+        }
+        return nil;
+    } else if ([next isKindOfClass:NSURL.class]) {
+        return RACTuplePack(next, nil);
+    } else if ([next isKindOfClass:NSString.class]) {
+        NSString *string = (NSString *)next;
+        NSURL *url = OCFURLWithHostpath(string);
+        if (!url) {
+            return nil;
+        }
+        return RACTuplePack(url, nil);
+    }
+    return nil;
+}
+
+
 #pragma mark request
 #pragma mark configure
 #pragma mark convenient
@@ -249,95 +345,6 @@
             [self handleNavigate:kOCFHostLogin];
         }
     }];
-}
-
-#pragma mark - Navigate
-- (BOOL)filterNavigate:(id)next {
-    return NO;
-}
-
-- (void)handleNavigate:(id)next {
-    RACTuple *tuple = [self convertNavigate:next];
-    if (!tuple) {
-        return;
-    }
-    NSURL *url = (NSURL *)tuple.first;
-    NSDictionary *parameters = (NSDictionary *)tuple.second;
-    if ([url.host isEqualToString:kOCFHostBack]) {
-        // back
-        @weakify(self)
-        OCFVoidBlock completion = ^(void) {
-            @strongify(self)
-            if (self.reactor.result) {
-                [self.subscriber sendNext:self.reactor.result];
-            }
-            [self.subscriber sendCompleted];
-        };
-        NSString *path = url.path;
-        if (path.length == 0) {
-            if (self.qmui_isPresented) {
-                path = kOCFPathDismiss;
-            } else {
-                path = kOCFPathPop;
-            }
-        }
-        if ([path hasPrefix:@"/"]) {
-            path = [path qmui_stringByRemoveCharacterAtIndex:0];
-        }
-        if ([path isEqualToString:kOCFPathPop]) {
-            NSNumber *all = OCFNumMember(url.qmui_queryItems, OCFParameter.all, nil);
-            if (!all) {
-                all = OCFNumMember(parameters, OCFParameter.all, nil);
-            }
-            if (all.boolValue) {
-                [self.navigationController qmui_popToRootViewControllerAnimated:YES completion:completion];
-            } else {
-                [self.navigationController qmui_popViewControllerAnimated:YES completion:completion];
-            }
-        } else if ([path isEqualToString:kOCFPathDismiss]) {
-            [self dismissViewControllerAnimated:YES completion:completion];
-        } else if ([path isEqualToString:kOCFPathFadeaway]) {
-            OCFLogDebug(@"YJX_TODO kOCFPathFadeaway");
-        }
-    } else {
-        // forward
-        // [self.navigator routeURL:url withParameters:parameters];
-        [[self.navigator rac_routeURL:url withParameters:parameters] subscribe:self.reactor.resultSubject];
-    }
-}
-
-- (RACTuple *)convertNavigate:(id)next {
-    if (!next) {
-        return nil;
-    }
-    if ([next isKindOfClass:RACTuple.class]) {
-        RACTuple *tuple = (RACTuple *)next;
-        if (!(tuple.count == 2 &&
-            [tuple.first isKindOfClass:NSURL.class] &&
-            (!tuple.second || [tuple.second isKindOfClass:NSDictionary.class]))) {
-            return nil;
-        }
-        if (tuple.count != 2) {
-            return nil;
-        }
-        if (!tuple.first) {
-            return nil;
-        }
-        if (tuple.second && ![tuple.second isKindOfClass:NSDictionary.class]) {
-            return nil;
-        }
-        return tuple;
-    } else if ([next isKindOfClass:NSURL.class]) {
-        return RACTuplePack(next, nil);
-    } else if ([next isKindOfClass:NSString.class]) {
-        NSString *string = (NSString *)next;
-        NSURL *url = OCFURLWithUniversal(string);
-        if (!url) {
-            return nil;
-        }
-        return RACTuplePack(url, nil);
-    }
-    return nil;
 }
 
 #pragma mark - Error

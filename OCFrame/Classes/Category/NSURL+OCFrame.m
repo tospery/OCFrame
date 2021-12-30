@@ -55,23 +55,9 @@
     if ([myHostpath hasPrefix:@"/"]) {
         myHostpath = [myHostpath substringFromIndex:1];
     }
+    
     NSString *urlString = OCFStrWithFmt(@"%@://%@", UIApplication.sharedApplication.ocf_urlScheme, myHostpath);
     return [NSURL URLWithString:urlString];
-}
-
-+ (NSURL *)ocf_urlWithUniversal:(NSString *)universal {
-    NSURL *url = [self ocf_urlWithString:universal];
-    if (!(!url || url.scheme.length == 0 || url.host.length == 0)) {
-        return url;
-    }
-    return [self ocf_urlWithHostpath:universal];
-}
-
-+ (NSURL *)ocf_urlWithBack:(NSString *)path {
-    if (path.length == 0) {
-        return OCFURLWithHostpath(kOCFHostBack);
-    }
-    return OCFURLWithHostpath(OCFStrWithFmt(@"%@/%@", kOCFHostBack, path));
 }
 
 - (NSURL *)ocf_appendingQueryParameters:(NSDictionary<NSString *, id> *)parameters {

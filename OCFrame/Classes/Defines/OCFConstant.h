@@ -45,12 +45,13 @@
 #define kOCFHostPopup                               (@"popup")
 #define kOCFHostLogin                               (@"login")
 #define kOCFHostThirdparty                          (@"thirdparty")
-#define kOCFHostBack                                (@"back")
 
-#pragma mark - Path
-#define kOCFPathPop                                 (@"pop")
-#define kOCFPathDismiss                             (@"dismiss")
-#define kOCFPathFadeaway                            (@"fadeaway")
+#pragma mark - Back
+#define kOCFBackAuto                                (@"back")
+#define kOCFBackPopone                              (@"back/popone")
+#define kOCFBackPopall                              (@"back/popall")
+#define kOCFBackDismiss                             (@"back/dismiss")
+#define kOCFBackFadeaway                            (@"back/fadeaway")
 
 #pragma mark - Animation
 #define kOCFAnimationFade                           (@"fade")

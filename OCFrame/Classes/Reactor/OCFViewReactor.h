@@ -33,13 +33,13 @@ typedef NS_ENUM(NSInteger, OCFRequestMode) {
 @property (nonatomic, strong, readonly) NSDictionary *parameters;
 @property (nonatomic, strong, readonly) NSString *host;
 @property (nonatomic, strong, readonly) NSString *path;
+@property (nonatomic, strong, readonly) NSURL *url;
 @property (nonatomic, assign, readonly) BOOL animated;
 @property (nonatomic, assign, readonly) OCFForwardType forwardType;
 @property (nonatomic, assign, readonly) BOOL transparetNavBar;
 @property (nonatomic, assign) BOOL hidesNavigationBar;
 @property (nonatomic, assign) BOOL hidesNavBottomLine;
 @property (nonatomic, assign) BOOL isLoading;
-@property (nonatomic, strong) id result;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *animation;
 @property (nonatomic, strong, readonly) OCFUser *user;
@@ -51,8 +51,7 @@ typedef NS_ENUM(NSInteger, OCFRequestMode) {
 @property (nonatomic, strong, readonly) RACSubject *navigate;
 @property (nonatomic, strong, readonly) RACSubject *loading;
 @property (nonatomic, strong, readonly) RACSubject *executing;
-@property (nonatomic, strong, readonly) RACSubject *resultSubject;
-@property (nonatomic, strong, readonly) RACCommand *resultCommand;
+@property (nonatomic, strong, readonly) RACSubject *result;
 @property (nonatomic, strong, readonly) RACCommand *loadCommand;
 
 - (RACSignal *)loadSignal;
