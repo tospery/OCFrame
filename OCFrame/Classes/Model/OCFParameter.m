@@ -40,6 +40,10 @@
     return @"path";
 }
 
++ (NSString *)index {
+    return @"index";
+}
+
 + (NSString *)token {
     return @"token";
 }
@@ -150,6 +154,10 @@
 
 + (NSString *)block {
     return @"block";
+}
+
++ (NSString *)selectIndex {
+    return @"selectIndex";
 }
 
 @end

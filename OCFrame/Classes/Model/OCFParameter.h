@@ -16,6 +16,7 @@
 @property (class, strong, readonly) NSString *urls;
 @property (class, strong, readonly) NSString *host;
 @property (class, strong, readonly) NSString *path;
+@property (class, strong, readonly) NSString *index;
 @property (class, strong, readonly) NSString *token;
 @property (class, strong, readonly) NSString *type;
 @property (class, strong, readonly) NSString *actions;
@@ -44,6 +45,7 @@
 @property (class, strong, readonly) NSString *duration;
 @property (class, strong, readonly) NSString *position;
 @property (class, strong, readonly) NSString *block;
+@property (class, strong, readonly) NSString *selectIndex;
 
 @end
 

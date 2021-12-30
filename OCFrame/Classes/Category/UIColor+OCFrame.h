@@ -15,6 +15,11 @@
 #define OCFColorKey(key)                    (SDThemeManagerValueForConstant(key))
 
 @interface UIColor (OCFrame)
+@property (nonatomic, assign, readonly) CGFloat ocf_red;
+@property (nonatomic, assign, readonly) CGFloat ocf_green;
+@property (nonatomic, assign, readonly) CGFloat ocf_blue;
+@property (nonatomic, assign, readonly) CGFloat ocf_alpha;
+
 @property(class, nonatomic, readonly) UIColor *ocf_clear;
 @property(class, nonatomic, readonly) UIColor *ocf_white;
 @property(class, nonatomic, readonly) UIColor *ocf_black;
@@ -34,6 +39,9 @@
 @property(class, nonatomic, readonly) UIColor *ocf_footer;
 @property(class, nonatomic, readonly) UIColor *ocf_barTint;
 @property(class, nonatomic, readonly) UIColor *ocf_barText;
+
++ (UIColor *)ocf_colorWithHex:(NSInteger)hexValue;
++ (UIColor *)ocf_colorWithHex:(NSInteger)hexValue alpha:(CGFloat)alpha;
 
 @end
 
