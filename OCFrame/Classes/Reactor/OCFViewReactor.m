@@ -32,7 +32,6 @@
 @property (nonatomic, strong, readwrite) OCFUser *user;
 @property (nonatomic, strong, readwrite) OCFProvider *provider;
 @property (nonatomic, strong, readwrite) NSDictionary *parameters;
-@property (nonatomic, strong, readwrite) OCFBaseModel *model;
 @property (nonatomic, strong, readwrite) RACSubject *errors;
 @property (nonatomic, strong, readwrite) RACSubject *navigate;
 @property (nonatomic, strong, readwrite) RACSubject *loading;
@@ -59,18 +58,18 @@
         self.url = OCFObjWithDft(OCFURLMember(parameters, JLRouteURLKey, nil), OCFURLMember(parameters, OCFParameter.url, nil));
         self.host = self.url.host;
         self.path = self.url.path;
-        // Model
-        id model = OCFObjMember(parameters, OCFParameter.model, nil);
-        if (model && [model isKindOfClass:NSString.class]) {
-            NSDictionary *json = [model ocf_JSONObject];
-            if (json && [json isKindOfClass:NSDictionary.class]) {
-                Class class = NSClassFromString([NSStringFromClass(self.class) stringByReplacingOccurrencesOfString:@"ViewReactor" withString:@""]);
-                if (class && [class conformsToProtocol:@protocol(MTLJSONSerializing)]) {
-                    model = [MTLJSONAdapter modelOfClass:class fromJSONDictionary:json error:nil];
-                }
-            }
-        }
-        self.model = model;
+//        // Model
+//        id model = OCFObjMember(parameters, OCFParameter.model, nil);
+//        if (model && [model isKindOfClass:NSString.class]) {
+//            NSDictionary *json = [model ocf_JSONObject];
+//            if (json && [json isKindOfClass:NSDictionary.class]) {
+//                Class class = NSClassFromString([NSStringFromClass(self.class) stringByReplacingOccurrencesOfString:@"ViewReactor" withString:@""]);
+//                if (class && [class conformsToProtocol:@protocol(MTLJSONSerializing)]) {
+//                    model = [MTLJSONAdapter modelOfClass:class fromJSONDictionary:json error:nil];
+//                }
+//            }
+//        }
+//        self.model = model;
         // User
         NSDictionary *json = OCFStrMember(parameters, OCFParameter.user, nil).ocf_JSONObject;
         if (json && [json isKindOfClass:NSDictionary.class]) {

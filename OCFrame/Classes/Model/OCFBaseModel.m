@@ -33,6 +33,10 @@ NSMutableDictionary *currents = nil;
     return self;
 }
 
+- (BOOL)isValid {
+    return self.id.length != 0;
+}
+
 #pragma mark - Save
 - (void)save {
     [self saveWithKey:self.id];

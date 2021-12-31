@@ -34,6 +34,10 @@ typedef NS_ENUM(NSInteger, OCFRequestMode) {
 @property (nonatomic, strong, readonly) NSString *host;
 @property (nonatomic, strong, readonly) NSString *path;
 @property (nonatomic, strong, readonly) NSURL *url;
+
+/// 输入参数，用于打开该页面时传递过来的关联model。
+@property (nonatomic, strong) OCFBaseModel *model;
+
 @property (nonatomic, assign, readonly) BOOL animated;
 @property (nonatomic, assign, readonly) OCFForwardType forwardType;
 @property (nonatomic, assign, readonly) BOOL transparetNavBar;
