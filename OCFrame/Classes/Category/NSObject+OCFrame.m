@@ -6,7 +6,7 @@
 //
 
 #import "NSObject+OCFrame.h"
-#import <Mantle/Mantle.h>
+#import <Mantle_JX/Mantle.h>
 #import <QMUIKit/QMUIKit.h>
 
 @implementation NSObject (OCFrame)

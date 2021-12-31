@@ -6,7 +6,7 @@
 //
 
 #import "OCFUser.h"
-#import <Mantle/Mantle.h>
+#import <Mantle_JX/Mantle.h>
 #import "OCFConstant.h"
 #import "OCFFunction.h"
 #import "OCFLoginViewController.h"

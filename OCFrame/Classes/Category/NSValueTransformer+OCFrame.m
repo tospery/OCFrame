@@ -6,7 +6,7 @@
 //
 
 #import "NSValueTransformer+OCFrame.h"
-#import <Mantle/Mantle.h>
+#import <Mantle_JX/Mantle.h>
 #import "OCFFunction.h"
 #import "NSString+OCFrame.h"
 #import "UIColor+OCFrame.h"

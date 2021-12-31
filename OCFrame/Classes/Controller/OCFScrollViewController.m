@@ -6,7 +6,7 @@
 //
 
 #import "OCFScrollViewController.h"
-#import <Mantle/Mantle.h>
+#import <Mantle_JX/Mantle.h>
 #import <MJRefresh/MJRefresh.h>
 #import "OCFConstant.h"
 #import "OCFFunction.h"

@@ -151,7 +151,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import <ReactiveObjC/ReactiveObjC.h>
 #import <ReactiveObjC/NSObject+RACKVOWrapper.h>
-#import <Mantle/Mantle.h>
+#import <Mantle_JX/Mantle.h>
 #import <Overcoat_JX/Overcoat.h>
 #import <PINCache/PINCache.h>
 #import <JLRoutes/JLRoutes.h>
