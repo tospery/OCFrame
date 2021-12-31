@@ -5,9 +5,9 @@
 //  Created by 杨建祥 on 2020/2/23.
 //
 
-#import <RESTful/RESTful.h>
+#import <Overcoat_JX/Overcoat.h>
 
-@interface OCFBaseResponse : RESTResponse
+@interface OCFBaseResponse : OVCResponse
 @property (nonatomic, assign) NSInteger code;
 @property (nonatomic, strong, readonly) NSString *message;
 

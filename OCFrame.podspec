@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'OCFrame'
-  s.version          = '1.1.0'
+  s.version          = '1.1.1'
   s.summary          = 'iOS App Framework.'
 
 # This description is used to generate tags and improve search results.
@@ -41,7 +41,7 @@ Pod::Spec.new do |s|
   s.dependency 'QMUIKit/QMUICore', '4.4.0'
   s.dependency 'CocoaLumberjack', '3.7.2'
   s.dependency 'AFNetworkActivityLogger', '3.0.0'
-  s.dependency 'RESTful', '4.0.0-beta.2-v2'
+  s.dependency 'Overcoat-JX', '4.0.2'
   s.dependency 'JLRoutes', '2.1'
   s.dependency 'Giotto', '0.3.7'
   s.dependency 'FCUUID', '1.3.1'

@@ -1,0 +1,6 @@
+framework module Overcoat_JX {
+  umbrella header "Overcoat-JX-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -5,13 +5,13 @@
 //  Created by 杨建祥 on 2020/2/23.
 //
 
-#import <RESTful/RESTful.h>
+#import <Overcoat_JX/Overcoat.h>
 
-@interface OCFBaseSessionManager : RESTHTTPSessionManager
+@interface OCFBaseSessionManager : OVCHTTPSessionManager
 
 - (RACSignal *)get:(NSString *)URLString parameters:(NSDictionary *)parameters;
-- (RACSignal *)post:(NSString *)URLString parameters:(NSDictionary *)parameters progress:(id<RACSubscriber>)progress;
-- (RACSignal *)post:(NSString *)URLString parameters:(NSDictionary *)parameters constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block progress:(id<RACSubscriber>)progress;
+- (RACSignal *)post:(NSString *)URLString parameters:(NSDictionary *)parameters;
+- (RACSignal *)post:(NSString *)URLString parameters:(NSDictionary *)parameters constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block;
 
 @end
 

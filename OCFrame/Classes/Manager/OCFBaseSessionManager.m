@@ -57,20 +57,18 @@ typedef void (^ErrBlock)(NSError *);
 }
 
 - (RACSignal *)get:(NSString *)URLString parameters:(NSDictionary *)parameters {
-    return [[[self rac_GET:URLString parameters:parameters progress:nil] flattenMap:self.mapBlock] doError:self.errBlock];
+    return [[[self rac_GET:URLString parameters:parameters] flattenMap:self.mapBlock] doError:self.errBlock];
+}
+
+- (RACSignal *)post:(NSString *)URLString
+             parameters:(NSDictionary *)parameters {
+    return [[[self rac_POST:URLString parameters:parameters] flattenMap:self.mapBlock] doError:self.errBlock];
 }
 
 - (RACSignal *)post:(NSString *)URLString
              parameters:(NSDictionary *)parameters
-               progress:(id<RACSubscriber>)progress {
-    return [[[self rac_POST:URLString parameters:parameters progress:progress] flattenMap:self.mapBlock] doError:self.errBlock];
-}
-
-- (RACSignal *)post:(NSString *)URLString
-             parameters:(NSDictionary *)parameters
-constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
-               progress:(id<RACSubscriber>)progress {
-    return [[[self rac_POST:URLString parameters:parameters constructingBodyWithBlock:block progress:progress] flattenMap:self.mapBlock] doError:self.errBlock];
+constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block {
+    return [[[self rac_POST:URLString parameters:parameters constructingBodyWithBlock:block] flattenMap:self.mapBlock] doError:self.errBlock];
 }
 
 @end

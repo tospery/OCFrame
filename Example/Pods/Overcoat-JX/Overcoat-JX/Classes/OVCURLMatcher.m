@@ -1,40 +1,55 @@
+// OVCURLMatcher.m
 //
-//  RESTURLMatcher.m
-//  RESTful
+// Copyright (c) 2013-2016 Overcoat Team
 //
-//  Created by 杨建祥 on 2020/2/7.
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 //
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 
-#import "RESTURLMatcher.h"
+#import "OVCURLMatcher.h"
 #import <Mantle/Mantle.h>
 #import <objc/runtime.h>
 
-typedef NS_ENUM(NSInteger, RESTURLMatcherType) {  // The integer value is related to search order
-    RESTURLMatcherTypeNone   = -1,
-    RESTURLMatcherTypeExact  = 0,
-    RESTURLMatcherTypeNumber = 1,
-    RESTURLMatcherTypeText   = 2,
-    RESTURLMatcherTypeAny    = 3,
+typedef NS_ENUM(NSInteger, OVCURLMatcherType) {  // The integer value is related to search order
+    OVCURLMatcherTypeNone   = -1,
+    OVCURLMatcherTypeExact  = 0,
+    OVCURLMatcherTypeNumber = 1,
+    OVCURLMatcherTypeText   = 2,
+    OVCURLMatcherTypeAny    = 3,
 };
 
-static NSString *_Nullable NSStringFromRESTURLMatcherType(RESTURLMatcherType type) {
+static NSString *_Nullable NSStringFromOVCURLMatcherType(OVCURLMatcherType type) {
     switch (type) {
-        case RESTURLMatcherTypeNone:
+        case OVCURLMatcherTypeNone:
             return @"None";
-        case RESTURLMatcherTypeExact:
+        case OVCURLMatcherTypeExact:
             return @"Exact";
-        case RESTURLMatcherTypeNumber:
+        case OVCURLMatcherTypeNumber:
             return @"Number";
-        case RESTURLMatcherTypeText:
+        case OVCURLMatcherTypeText:
             return @"Text";
-        case RESTURLMatcherTypeAny:
+        case OVCURLMatcherTypeAny:
             return @"Any";
         default:
             return nil;
     }
 }
 
-static BOOL RESTTextOnlyContainsDigits(NSString *text) {
+static BOOL OVCTextOnlyContainsDigits(NSString *text) {
     static dispatch_once_t onceToken;
     static NSCharacterSet *notDigits;
 
@@ -45,45 +60,45 @@ static BOOL RESTTextOnlyContainsDigits(NSString *text) {
 	return [text rangeOfCharacterFromSet:notDigits].location == NSNotFound;
 }
 
-@interface RESTURLMatcher ()
+@interface OVCURLMatcher ()
 
 @property (nonatomic, copy) NSString *basePath;
-@property (nonatomic, assign) RESTURLMatcherType type;
+@property (nonatomic, assign) OVCURLMatcherType type;
 @property (nonatomic, copy) NSString *text;
-@property (nonatomic, strong) RESTURLMatcherNode *matcherNode;
-@property (nonatomic, strong) NSMutableArray RESTGenerics(RESTURLMatcher *) *children;
+@property (nonatomic, strong) OVCURLMatcherNode *matcherNode;
+@property (nonatomic, strong) NSMutableArray OVCGenerics(OVCURLMatcher *) *children;
 
 @end
 
-@interface RESTURLMatcherNode ()
+@interface OVCURLMatcherNode ()
 
-@property (nonatomic, strong, readonly) RESTURLMatcherNodeBlock modelClassBlock;
+@property (nonatomic, strong, readonly) OVCURLMatcherNodeBlock modelClassBlock;
 
 @end
 
-@implementation RESTURLMatcher
+@implementation OVCURLMatcher
 
-+ (instancetype)matcherWithBasePath:(REST_NULLABLE NSString *)basePath
-                 modelClassesByPath:(REST_NULLABLE NSDictionary RESTGenerics(NSString *,id) *)modelClassesByPath {
++ (instancetype)matcherWithBasePath:(OVC_NULLABLE NSString *)basePath
+                 modelClassesByPath:(OVC_NULLABLE NSDictionary OVCGenerics(NSString *,id) *)modelClassesByPath {
     return [[self alloc] initWithBasePath:basePath modelClassesByPath:modelClassesByPath];
 }
 
-- (instancetype)initWithBasePath:(REST_NULLABLE NSString *)basePath
-              modelClassesByPath:(REST_NULLABLE NSDictionary RESTGenerics(NSString *, id) *)modelClassesByPath {
-    NSMutableDictionary<NSString *, RESTURLMatcherNode *> *matcherNodes = [[NSMutableDictionary alloc]
+- (instancetype)initWithBasePath:(OVC_NULLABLE NSString *)basePath
+              modelClassesByPath:(OVC_NULLABLE NSDictionary OVCGenerics(NSString *, id) *)modelClassesByPath {
+    NSMutableDictionary<NSString *, OVCURLMatcherNode *> *matcherNodes = [[NSMutableDictionary alloc]
                                                                           initWithCapacity:modelClassesByPath.count];
     [modelClassesByPath enumerateKeysAndObjectsUsingBlock:^(NSString *path, id _ModelClass, BOOL *stop) {
-        RESTURLMatcherNode *matcherNode;
-        if ([_ModelClass isKindOfClass:[RESTURLMatcherNode class]]) {
+        OVCURLMatcherNode *matcherNode;
+        if ([_ModelClass isKindOfClass:[OVCURLMatcherNode class]]) {
             matcherNode = _ModelClass;
-        } else if (REST_IS_CLASS(_ModelClass)) {
-            matcherNode = [RESTURLMatcherNode matcherNodeWithModelClass:_ModelClass];
+        } else if (OVC_IS_CLASS(_ModelClass)) {
+            matcherNode = [OVCURLMatcherNode matcherNodeWithModelClass:_ModelClass];
         } else if ([_ModelClass isKindOfClass:[NSDictionary class]]) {
-            matcherNode = [RESTURLMatcherNode matcherNodeWithModelClasses:_ModelClass];
+            matcherNode = [OVCURLMatcherNode matcherNodeWithModelClasses:_ModelClass];
         } else if ([_ModelClass isKindOfClass:[NSString class]]) {
             Class __ModelClass = NSClassFromString(_ModelClass);
             if (__ModelClass) {
-                matcherNode = [RESTURLMatcherNode matcherNodeWithModelClass:__ModelClass];
+                matcherNode = [OVCURLMatcherNode matcherNodeWithModelClass:__ModelClass];
             }
         }
         if (matcherNode) {
@@ -101,21 +116,21 @@ static BOOL RESTTextOnlyContainsDigits(NSString *text) {
 }
 
 + (instancetype)matcherWithBasePath:(NSString *)basePath
-                 matcherNodesByPath:(NSDictionary RESTGenerics(NSString *,RESTURLMatcherNode *) *)matcherNodes {
+                 matcherNodesByPath:(NSDictionary OVCGenerics(NSString *,OVCURLMatcherNode *) *)matcherNodes {
     return [[self alloc] initWithBasePath:basePath matcherNodesByPath:matcherNodes];
 }
 
 - (instancetype)initWithBasePath:(NSString *)basePath
-              matcherNodesByPath:(NSDictionary RESTGenerics(NSString *, RESTURLMatcherNode *) *)matcherNodes {
+              matcherNodesByPath:(NSDictionary OVCGenerics(NSString *, OVCURLMatcherNode *) *)matcherNodes {
     if (self = [super init]) {
-        _type = RESTURLMatcherTypeNone;
+        _type = OVCURLMatcherTypeNone;
         _children = [NSMutableArray array];
 
         _basePath = [basePath copy];
 
-        [matcherNodes enumerateKeysAndObjectsUsingBlock:^(NSString *path, RESTURLMatcherNode *matcherNode, BOOL *stop) {
-            NSAssert([matcherNode isKindOfClass:[RESTURLMatcherNode class]],
-                     @"Expect %@, got %@", [RESTURLMatcherNode class], [matcherNode class]);
+        [matcherNodes enumerateKeysAndObjectsUsingBlock:^(NSString *path, OVCURLMatcherNode *matcherNode, BOOL *stop) {
+            NSAssert([matcherNode isKindOfClass:[OVCURLMatcherNode class]],
+                     @"Expect %@, got %@", [OVCURLMatcherNode class], [matcherNode class]);
             [self addMatcherNode:matcherNode forPath:path sortChildren:NO];
         }];
         [self sortChildren];
@@ -134,7 +149,7 @@ static BOOL RESTTextOnlyContainsDigits(NSString *text) {
     return [[self matcherNodeForPath:url.path] modelClassForURLRequest:nil andURLResponse:nil];
 }
 
-- (RESTURLMatcherNode *)matcherNodeForPath:(NSString *)path {
+- (OVCURLMatcherNode *)matcherNodeForPath:(NSString *)path {
     if (self.basePath && [path hasPrefix:self.basePath]) {
         path = [path substringFromIndex:self.basePath.length];
     }
@@ -142,42 +157,42 @@ static BOOL RESTTextOnlyContainsDigits(NSString *text) {
     return [self _matcherNodeForPath:path];
 }
 
-- (RESTURLMatcherNode *)_matcherNodeForPath:(NSString *)path {
+- (OVCURLMatcherNode *)_matcherNodeForPath:(NSString *)path {
     // Split path in to tokens
-    NSArray RESTGenerics(NSString *) *tokens = [path componentsSeparatedByString:@"/"];
-    NSArray RESTGenerics(NSString *) *subTokens = [tokens subarrayWithRange:NSMakeRange(1, tokens.count-1)];
+    NSArray OVCGenerics(NSString *) *tokens = [path componentsSeparatedByString:@"/"];
+    NSArray OVCGenerics(NSString *) *subTokens = [tokens subarrayWithRange:NSMakeRange(1, tokens.count-1)];
     NSString *firstToken = tokens.firstObject;
     NSString *subPath = [subTokens componentsJoinedByString:@"/"];
 
-    RESTURLMatcherNode *__block resultMatcherNode = nil;
-    [self.children enumerateObjectsUsingBlock:^(RESTURLMatcher *childMatcher, NSUInteger idx, BOOL *REST__NONNULL stop) {
+    OVCURLMatcherNode *__block resultMatcherNode = nil;
+    [self.children enumerateObjectsUsingBlock:^(OVCURLMatcher *childMatcher, NSUInteger idx, BOOL *OVC__NONNULL stop) {
         // Find matched node in this level
-        RESTURLMatcher *matchedMatcher = nil;
+        OVCURLMatcher *matchedMatcher = nil;
         switch (childMatcher.type) {
-            case RESTURLMatcherTypeExact: {
+            case OVCURLMatcherTypeExact: {
                 if ([childMatcher.text isEqualToString:firstToken]) {
                     matchedMatcher = childMatcher;
                 }
                 break;
             }
-            case RESTURLMatcherTypeNumber: {
-                if (RESTTextOnlyContainsDigits(firstToken)) {
+            case OVCURLMatcherTypeNumber: {
+                if (OVCTextOnlyContainsDigits(firstToken)) {
                     matchedMatcher = childMatcher;
                 }
                 break;
             }
-            case RESTURLMatcherTypeText: {
+            case OVCURLMatcherTypeText: {
                 matchedMatcher = childMatcher;
                 break;
             }
-            case RESTURLMatcherTypeAny: {
+            case OVCURLMatcherTypeAny: {
                 // `**` means that we shouldn't check further nodes (path components), so return directly.
                 // and it should be evaluated at the last.
                 NSAssert(idx == self.children.count - 1,
-                         @"Internal consistency error. `RESTURLMatcherTypeAny` should be tested at last.");
+                         @"Internal consistency error. `OVCURLMatcherTypeAny` should be tested at last.");
                 resultMatcherNode = childMatcher.matcherNode;
             }
-            case RESTURLMatcherTypeNone: {
+            case OVCURLMatcherTypeNone: {
                 // Do nothing
                 break;
             }
@@ -202,7 +217,7 @@ static BOOL RESTTextOnlyContainsDigits(NSString *text) {
 - (NSString *)debugDescription {
     @autoreleasepool {
         NSMutableString *result = [NSMutableString string];
-        [result appendFormat:@"<%@>", NSStringFromRESTURLMatcherType(self.type)];
+        [result appendFormat:@"<%@>", NSStringFromOVCURLMatcherType(self.type)];
         if (self.basePath) {
             [result appendFormat:@" basePath: %@", self.basePath];
         }
@@ -212,8 +227,8 @@ static BOOL RESTTextOnlyContainsDigits(NSString *text) {
 
         if (self.children.count) {
             [result appendString:@"\n"];
-            for (RESTURLMatcher *matcher in self.children) {
-                NSArray RESTGenerics(NSString *) *lines = [matcher.debugDescription componentsSeparatedByString:@"\n"];
+            for (OVCURLMatcher *matcher in self.children) {
+                NSArray OVCGenerics(NSString *) *lines = [matcher.debugDescription componentsSeparatedByString:@"\n"];
                 [lines enumerateObjectsUsingBlock:^(NSString *line, NSUInteger idx, BOOL *stop) {
                     [result appendFormat:@"    %@\n", line];
                 }];
@@ -229,14 +244,14 @@ static BOOL RESTTextOnlyContainsDigits(NSString *text) {
 #pragma mark - Setup
 
 - (void)addModelClass:(Class)ModelClass forPath:(NSString *)path {
-    [self addMatcherNode:[RESTURLMatcherNode matcherNodeWithModelClass:ModelClass] forPath:path sortChildren:YES];
+    [self addMatcherNode:[OVCURLMatcherNode matcherNodeWithModelClass:ModelClass] forPath:path sortChildren:YES];
 }
 
-- (void)addMatcherNode:(RESTURLMatcherNode *)matcherNode forPath:(NSString *)path {
+- (void)addMatcherNode:(OVCURLMatcherNode *)matcherNode forPath:(NSString *)path {
     return [self addMatcherNode:matcherNode forPath:path sortChildren:YES];
 }
 
-- (void)addMatcherNode:(RESTURLMatcherNode *)matcherNode forPath:(NSString *)path sortChildren:(BOOL)sortChildren {
+- (void)addMatcherNode:(OVCURLMatcherNode *)matcherNode forPath:(NSString *)path sortChildren:(BOOL)sortChildren {
     NSParameterAssert(path);
 
     NSArray *tokens = nil;
@@ -250,12 +265,12 @@ static BOOL RESTTextOnlyContainsDigits(NSString *text) {
 		tokens = [newPath componentsSeparatedByString:@"/"];
 	}
 
-    RESTURLMatcher *node = self;
+    OVCURLMatcher *node = self;
     for (NSString *token in tokens) {
         NSMutableArray *children = node.children;
-		RESTURLMatcher *existingChild = nil;
+		OVCURLMatcher *existingChild = nil;
 
-		for (RESTURLMatcher *child in children) {
+		for (OVCURLMatcher *child in children) {
 			if ([token isEqualToString:child.text]) {
 				node = child;
 				existingChild = node;
@@ -264,16 +279,16 @@ static BOOL RESTTextOnlyContainsDigits(NSString *text) {
 		}
 
         if (!existingChild) {
-			existingChild = [[RESTURLMatcher alloc] init];
+			existingChild = [[OVCURLMatcher alloc] init];
 
 			if ([token isEqualToString:@"#"]) {
-				existingChild.type = RESTURLMatcherTypeNumber;
+				existingChild.type = OVCURLMatcherTypeNumber;
 			} else if ([token isEqualToString:@"*"]) {
-				existingChild.type = RESTURLMatcherTypeText;
+				existingChild.type = OVCURLMatcherTypeText;
             } else if ([token isEqualToString:@"**"]) {
-                existingChild.type = RESTURLMatcherTypeAny;
+                existingChild.type = OVCURLMatcherTypeAny;
 			} else {
-				existingChild.type = RESTURLMatcherTypeExact;
+				existingChild.type = OVCURLMatcherTypeExact;
 			}
 
 			existingChild.text = token;
@@ -293,14 +308,14 @@ static BOOL RESTTextOnlyContainsDigits(NSString *text) {
     NSSortDescriptor *sd = [NSSortDescriptor sortDescriptorWithKey:@"type" ascending:YES];
     [self.children sortUsingDescriptors:@[sd]];
 
-    for (RESTURLMatcher *child in self.children) {
+    for (OVCURLMatcher *child in self.children) {
         [child sortChildren];
     }
 }
 
 @end
 
-@implementation RESTURLMatcherNode
+@implementation OVCURLMatcherNode
 
 + (instancetype)matcherNodeWithModelClass:(Class)ModelClass {
     NSParameterAssert([ModelClass conformsToProtocol:@protocol(MTLModel)]);
@@ -309,7 +324,7 @@ static BOOL RESTTextOnlyContainsDigits(NSString *text) {
     }];
 }
 
-+ (instancetype)matcherNodeWithResponseCode:(NSDictionary RESTGenerics(id, Class) *)modelClasses {
++ (instancetype)matcherNodeWithResponseCode:(NSDictionary OVCGenerics(id, Class) *)modelClasses {
 #if DEBUG
     [modelClasses enumerateKeysAndObjectsUsingBlock:^(id key, Class ModelClass, BOOL * _Nonnull stop) {
         NSParameterAssert([ModelClass conformsToProtocol:@protocol(MTLModel)]);
@@ -320,7 +335,7 @@ static BOOL RESTTextOnlyContainsDigits(NSString *text) {
     }];
 }
 
-+ (instancetype)matcherNodeWithRequestMethod:(NSDictionary RESTGenerics(NSString *, Class) *)modelClasses {
++ (instancetype)matcherNodeWithRequestMethod:(NSDictionary OVCGenerics(NSString *, Class) *)modelClasses {
 #if DEBUG
     [modelClasses enumerateKeysAndObjectsUsingBlock:^(NSString *key, Class ModelClass, BOOL * _Nonnull stop) {
         NSParameterAssert([ModelClass conformsToProtocol:@protocol(MTLModel)]);
@@ -331,7 +346,7 @@ static BOOL RESTTextOnlyContainsDigits(NSString *text) {
     }];
 }
 
-+ (instancetype)matcherNodeWithModelClasses:(NSDictionary RESTGenerics(id, Class) *)modelClasses {
++ (instancetype)matcherNodeWithModelClasses:(NSDictionary OVCGenerics(id, Class) *)modelClasses {
 #if DEBUG
     [modelClasses enumerateKeysAndObjectsUsingBlock:^(id key, Class ModelClass, BOOL * _Nonnull stop) {
         NSParameterAssert([ModelClass conformsToProtocol:@protocol(MTLModel)]);
@@ -344,19 +359,19 @@ static BOOL RESTTextOnlyContainsDigits(NSString *text) {
     }];
 }
 
-+ (instancetype)matcherNodeWithBlock:(RESTURLMatcherNodeBlock)block {
-    return [[RESTURLMatcherNode alloc] initWithBlock:block];
++ (instancetype)matcherNodeWithBlock:(OVCURLMatcherNodeBlock)block {
+    return [[OVCURLMatcherNode alloc] initWithBlock:block];
 }
 
-- (instancetype)initWithBlock:(RESTURLMatcherNodeBlock)block {
+- (instancetype)initWithBlock:(OVCURLMatcherNodeBlock)block {
     if (self = [super init]) {
         _modelClassBlock = block;
     }
     return self;
 }
 
-- (REST_NULLABLE Class)modelClassForURLRequest:(NSURLRequest *)request andURLResponse:(NSHTTPURLResponse *)urlResponse {
-    Class REST__NULLABLE ModelClass = self.modelClassBlock(request, urlResponse);
+- (OVC_NULLABLE Class)modelClassForURLRequest:(NSURLRequest *)request andURLResponse:(NSHTTPURLResponse *)urlResponse {
+    Class OVC__NULLABLE ModelClass = self.modelClassBlock(request, urlResponse);
     NSAssert(!ModelClass || [ModelClass conformsToProtocol:@protocol(MTLModel)],
              @"%@ doesn't conform to protocol %@", ModelClass, @protocol(MTLModel));
     return ModelClass;

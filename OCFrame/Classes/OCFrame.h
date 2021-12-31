@@ -152,7 +152,7 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 #import <ReactiveObjC/NSObject+RACKVOWrapper.h>
 #import <Mantle/Mantle.h>
-#import <RESTful/RESTful.h>
+#import <Overcoat_JX/Overcoat.h>
 #import <PINCache/PINCache.h>
 #import <JLRoutes/JLRoutes.h>
 #import <JLRoutes/JLRRouteHandler.h>

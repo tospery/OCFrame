@@ -40,10 +40,14 @@ PODS:
     - GVUserDefaults (= 1.0.2)
     - JLRoutes (= 2.1)
     - MJRefresh (= 3.7.2)
+    - Overcoat-JX (= 4.0.2)
     - PINCache (= 3.0.3)
     - QMUIKit/QMUICore (= 4.4.0)
-    - RESTful (= 4.0.0-beta.2-v2)
     - SDWebImage (= 5.12.1)
+  - Overcoat-JX (4.0.2):
+    - AFNetworking (= 3.2.1)
+    - Mantle (= 2.1.1)
+    - ReactiveObjC (= 3.1.1)
   - PINCache (3.0.3):
     - PINCache/Arc-exception-safe (= 3.0.3)
     - PINCache/Core (= 3.0.3)
@@ -58,10 +62,6 @@ PODS:
   - QMUIKit/QMUILog (4.4.0)
   - QMUIKit/QMUIWeakObjectContainer (4.4.0)
   - ReactiveObjC (3.1.1)
-  - RESTful (4.0.0-beta.2-v2):
-    - AFNetworking (= 3.2.1)
-    - Mantle (= 2.1.1)
-    - ReactiveObjC (= 3.1.1)
   - SDWebImage (5.12.1):
     - SDWebImage/Core (= 5.12.1)
   - SDWebImage/Core (5.12.1)
@@ -71,7 +71,7 @@ DEPENDENCIES:
   - OCFrame (from `../`)
 
 SPEC REPOS:
-  trunk:
+  https://github.com/CocoaPods/Specs.git:
     - AFNetworkActivityLogger
     - AFNetworking
     - CocoaLumberjack
@@ -82,11 +82,11 @@ SPEC REPOS:
     - JLRoutes
     - Mantle
     - MJRefresh
+    - Overcoat-JX
     - PINCache
     - PINOperation
     - QMUIKit
     - ReactiveObjC
-    - RESTful
     - SDWebImage
     - UICKeyChainStore
 
@@ -105,15 +105,15 @@ SPEC CHECKSUMS:
   JLRoutes: d755245322b94227662ea3e43492fdca94e05c5b
   Mantle: 35238ae6f2e2b2d474fa7b67fee82a59fea71915
   MJRefresh: 30997d30b347c8e9508a4db11e3a690da0c9b85a
-  OCFrame: 779c9fb37adcbda57e32d1ef602a3b52299b2e31
+  OCFrame: 08054d10edd23a4a66ff97fe091aa00b8071b989
+  Overcoat-JX: 9b7e32dd68ae6621134e28f5bcfdda6d4ea04359
   PINCache: 7a8fc1a691173d21dbddbf86cd515de6efa55086
   PINOperation: 00c935935f1e8cf0d1e2d6b542e75b88fc3e5e20
   QMUIKit: 8b48a063b6df0540af74d33ab6ac89f88bf9c728
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
-  RESTful: da72dccfa0aef07c264567ae7b291e93128ac17d
   SDWebImage: 4dc3e42d9ec0c1028b960a33ac6b637bb432207b
   UICKeyChainStore: 85db518bb1d294366d15ec9b92a416c4e670518f
 
-PODFILE CHECKSUM: bc492d8d89aba40f58d3bfadf1d19145d0024458
+PODFILE CHECKSUM: 8f1f9ada0bd7e342a122f97cd6b4814613e78af1
 
 COCOAPODS: 1.11.2
