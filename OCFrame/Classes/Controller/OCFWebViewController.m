@@ -22,7 +22,7 @@
 #define kOCFWebEstimatedProgress         (@"estimatedProgress")
 
 @interface OCFWebViewController ()
-@property (nonatomic, strong) OCFEmptyView *emptyView;
+//@property (nonatomic, strong) OCFEmptyView *emptyView;
 @property (nonatomic, strong) OCFWebProgressView *progressView;
 @property (nonatomic, strong, readwrite) WKWebView *webView;
 @property (nonatomic, strong, readwrite) WKWebViewJavascriptBridge *bridge;
@@ -54,13 +54,9 @@
     self.webView.backgroundColor = UIColor.ocf_background;
     self.webView.navigationDelegate = self;
     self.webView.UIDelegate = self;
-//    self.webView.scrollView.emptyDataSetSource = self.reactor;
-//    self.webView.scrollView.emptyDataSetDelegate = self;
-//    self.webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-//    self.scrollView = self.webView.scrollView;
     
     [self.view addSubview:self.webView];
-    [self.view addSubview:self.emptyView];
+    //[self.view addSubview:self.emptyView];
     [self.view addSubview:self.progressView];
 
     @weakify(self)
@@ -87,18 +83,18 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     self.webView.frame = self.contentFrame;
-    self.emptyView.frame = self.webView.frame;
+    //self.emptyView.frame = self.webView.frame;
 }
 
 #pragma mark - Property
-- (OCFEmptyView *)emptyView {
-    if (!_emptyView) {
-        OCFEmptyView *view = [[OCFEmptyView alloc] init];
-        view.hidden = YES;
-        _emptyView = view;
-    }
-    return _emptyView;
-}
+//- (OCFEmptyView *)emptyView {
+//    if (!_emptyView) {
+//        OCFEmptyView *view = [[OCFEmptyView alloc] init];
+//        view.hidden = YES;
+//        _emptyView = view;
+//    }
+//    return _emptyView;
+//}
 
 - (OCFWebProgressView *)progressView {
     if (!_progressView) {
@@ -127,7 +123,7 @@
 
 - (void)bind:(OCFWebViewReactor *)reactor {
     [super bind:reactor];
-    [self.emptyView bind:reactor.emptyReactor];
+    //[self.emptyView bind:reactor.emptyReactor];
     @weakify(self)
     [self.webView rac_observeKeyPath:kOCFWebEstimatedProgress options:NSKeyValueObservingOptionNew observer:nil block:^(id value, NSDictionary *change, BOOL causedByDealloc, BOOL affectedOnlyLastComponent) {
         @strongify(self)
@@ -142,10 +138,13 @@
     [super reloadData];
 }
 
-- (BOOL)filterError {
-    // [self reloadData];
-    return YES;
-}
+//- (BOOL)filterError:(NSError *)error {
+//    return [super filterError:error];
+//}
+
+//- (void)handleError:(NSError *)error {
+//    //self.reactor.error = error;
+//}
 
 - (void)triggerLoad {
     

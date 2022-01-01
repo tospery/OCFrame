@@ -127,6 +127,15 @@
 #pragma mark bind
 #pragma mark data
 #pragma mark error
+- (BOOL)filterError:(NSError *)error {
+    return error.ocf_isCancelled;
+}
+
+- (void)handleError:(NSError *)error {
+    self.reactor.error = error;
+    [self.navigator toastMessage:OCFStrWithDft(error.localizedDescription, kStringErrorUnknown)];
+}
+
 #pragma mark navigate
 - (BOOL)filterNavigate:(id)next {
     return NO;
@@ -301,11 +310,10 @@
     }];
     [[self.reactor.errors filter:^BOOL(NSError *error) {
         @strongify(self)
-        self.reactor.error = error;
-        return ![self filterError];
+        return ![self filterError:error];
     }] subscribeNext:^(NSError *error) {
         @strongify(self)
-        [self handleError];
+        [self handleError:error];
     }];
     [[self.reactor.navigate filter:^BOOL(id next) {
         @strongify(self)
@@ -345,15 +353,6 @@
             [self handleNavigate:kOCFHostLogin];
         }
     }];
-}
-
-#pragma mark - Error
-- (BOOL)filterError {
-    return NO;
-}
-
-- (void)handleError {
-    [self.navigator toastMessage:OCFStrWithDft(self.reactor.error.localizedDescription, kStringErrorUnknown)];
 }
 
 #pragma mark - Load

@@ -111,7 +111,7 @@
 
 
 
-- (BOOL)filterError {
+- (BOOL)filterError:(NSError *)error {
 //    BOOL handled = NO;
 //    if (!self.reactor.error) {
 //        return handled;
@@ -179,11 +179,7 @@
 //    }
 //
 //    return handled;
-    return [super filterError];
-}
-
-- (void)handleError {
-    return [super handleError];
+    return [super filterError:error];
 }
 
 #pragma mark - Load
@@ -306,11 +302,11 @@
 }
 
 - (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button {
-    [self handleError];
+    [self handleError:self.reactor.error];
 }
 
 - (void)emptyDataSet:(UIScrollView *)scrollView didTapView:(UIView *)view {
-    [self handleError];
+    [self handleError:self.reactor.error];
 }
 
 #pragma mark UIScrollViewDelegate

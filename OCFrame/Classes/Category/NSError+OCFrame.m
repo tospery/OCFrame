@@ -6,6 +6,7 @@
 //
 
 #import "NSError+OCFrame.h"
+#import <StoreKit/StoreKit.h>
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "OCFConstant.h"
 #import "OCFFunction.h"
@@ -13,6 +14,7 @@
 #import "OCFrameManager.h"
 #import "UIImage+OCFrame.h"
 #import "UIApplication+OCFrame.h"
+#import "NSDictionary+OCFrame.h"
 
 @implementation NSError (OCFrame)
 - (BOOL)ocf_isNetwork {
@@ -23,6 +25,17 @@
     // return (self.code > OCFErrorCodeSuccess && self.code <= OCFErrorCodeHTTPVersionNotSupported);
     return self.code == OCFErrorCodeServer;
 }
+
+- (BOOL)ocf_isCancelled {
+    if ([self.domain isEqualToString:SKErrorDomain]) {
+        if (self.code == SKErrorPaymentCancelled) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+// @property (nonatomic, assign, readonly) BOOL ocf_isCancelled;
 
 - (NSString *)ocf_titleWhenFailureReasonEmpty {
     NSString *title = nil;

@@ -12,6 +12,7 @@
 #import "OCFEmptyReactor.h"
 #import "UIFont+OCFrame.h"
 #import "UIColor+OCFrame.h"
+#import "NSError+OCFrame.h"
 
 @interface OCFEmptyView ()
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -73,7 +74,7 @@
 - (void)bind:(OCFEmptyReactor *)reactor {
     self.reactor = reactor;
     RAC(self, hidden) = [RACObserve(reactor, error).distinctUntilChanged map:^NSNumber *(NSError *error) {
-        return @(error == nil);
+        return @(error == nil || error.ocf_isCancelled);
     }].distinctUntilChanged;
     RAC(self.titleLabel, text) = RACObserve(reactor, error.localizedFailureReason).distinctUntilChanged;
     RAC(self.messageLabel, text) = RACObserve(reactor, error.localizedDescription).distinctUntilChanged;
