@@ -159,20 +159,20 @@
 #pragma mark Toast
 - (void)toastMessage:(NSString *)message {
     OCFCheck(message);
-    [self routeURL:OCFURLWithHostpath(kOCFHostToast) withParameters:@{
+    [self routeURL:OCFURLWithUniversal(kOCFHostToast) withParameters:@{
         OCFParameter.message: message
     }];
 }
 
 - (void)showToastActivity:(OCFToastPosition)position {
-    [self routeURL:OCFURLWithHostpath(kOCFHostToast) withParameters:@{
+    [self routeURL:OCFURLWithUniversal(kOCFHostToast) withParameters:@{
         OCFParameter.active: @YES,
         OCFParameter.position: @(position)
     }];
 }
 
 - (void)hideToastActivity {
-    [self routeURL:OCFURLWithHostpath(kOCFHostToast) withParameters:@{
+    [self routeURL:OCFURLWithUniversal(kOCFHostToast) withParameters:@{
         OCFParameter.active: @NO
     }];
 }
@@ -192,7 +192,7 @@
     if (actions.count != 0) {
         [parameters setObject:actions forKey:OCFParameter.actions];
     }
-    [self routeURL:OCFURLWithHostpath(kOCFHostAlert) withParameters:parameters];
+    [self routeURL:OCFURLWithUniversal(kOCFHostAlert) withParameters:parameters];
 }
 
 - (RACSignal *)rac_alertTitle:(NSString *)title message:(NSString *)message actions:(NSArray<NSNumber *> *)actions {
@@ -213,7 +213,7 @@
             [parameters setObject:actions forKey:OCFParameter.actions];
         }
         [parameters setObject:subscriber forKey:OCFParameter.subscriber];
-        [self routeURL:OCFURLWithHostpath(kOCFHostAlert) withParameters:parameters];
+        [self routeURL:OCFURLWithUniversal(kOCFHostAlert) withParameters:parameters];
         return [RACDisposable disposableWithBlock:^{
         }];
     }];
@@ -244,11 +244,11 @@
 
 #pragma mark Login
 - (void)goLogin {
-    [self routeURL:OCFURLWithHostpath(kOCFHostLogin) withParameters:nil];
+    [self routeURL:OCFURLWithUniversal(kOCFHostLogin) withParameters:nil];
 }
 
 - (RACSignal *)rac_goLogin {
-    return [self rac_routeURL:OCFURLWithHostpath(kOCFHostLogin) withParameters:nil];
+    return [self rac_routeURL:OCFURLWithUniversal(kOCFHostLogin) withParameters:nil];
 }
 
 @end

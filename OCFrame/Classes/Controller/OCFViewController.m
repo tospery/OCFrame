@@ -196,7 +196,7 @@
             return RACTuplePack(url, tuple.second);
         } else if ([tuple.first isKindOfClass:NSString.class]) {
             NSString *string = (NSString *)tuple.first;
-            NSURL *url = OCFURLWithHostpath(string);
+            NSURL *url = OCFURLWithUniversal(string);
             if (!url) {
                 return nil;
             }
@@ -214,7 +214,7 @@
         return RACTuplePack(next, nil);
     } else if ([next isKindOfClass:NSString.class]) {
         NSString *string = (NSString *)next;
-        NSURL *url = OCFURLWithHostpath(string);
+        NSURL *url = OCFURLWithUniversal(string);
         if (!url) {
             return nil;
         }

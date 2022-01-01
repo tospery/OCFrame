@@ -17,6 +17,7 @@
 #import "NSString+OCFrame.h"
 #import "NSURL+OCFrame.h"
 #import "UIColor+OCFrame.h"
+#import "UIApplication+OCFrame.h"
 
 #define kOCFWebEstimatedProgress         (@"estimatedProgress")
 
@@ -75,7 +76,7 @@
                 ((id(*)(id, SEL, id, WVJBResponseCallback))[self.reactor methodForSelector:selector])(self.reactor, selector, data, responseCallback);
             }else {
                 OCFLogWarn(@"Web找不到oc handler: %@", method);
-                [self.navigator routeURL:OCFURLWithHostpath(kOCFHostToast) withParameters:@{
+                [self.navigator routeURL:OCFURLWithUniversal(kOCFHostToast) withParameters:@{
                     OCFParameter.message: OCFStrWithFmt(@"缺少%@方法", method)
                 }];
             }
@@ -147,12 +148,25 @@
 }
 
 - (void)triggerLoad {
-    NSURLRequest *request = [NSURLRequest requestWithURL:self.reactor.url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-    [self.webView loadRequest:request];
+    
 }
 
 - (void)loadRequest {
-    NSURLRequest *request = [NSURLRequest requestWithURL:self.reactor.url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.reactor.url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    NSString *extra = OCFStrWithFmt(@"%@/%@", UIApplication.sharedApplication.ocf_urlScheme, UIApplication.sharedApplication.ocf_version);
+    NSString *agent = self.webView.customUserAgent;
+    if (agent.length == 0 || [agent rangeOfString:extra].location == NSNotFound) {
+        @weakify(self)
+        [self.webView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id result, NSError *error) {
+            @strongify(self)
+            if (!error && [result isKindOfClass:NSString.class]) {
+                NSString *userAgent = OCFStrWithFmt(@"%@ %@", result, extra);
+                self.webView.customUserAgent = userAgent;
+            }
+            [self.webView loadRequest:request];
+        }];
+        return;
+    }
     [self.webView loadRequest:request];
 }
 

@@ -160,4 +160,8 @@
     return @"selectIndex";
 }
 
++ (NSString *)msg {
+    return @"msg";
+}
+
 @end

@@ -46,6 +46,7 @@
 @property (class, strong, readonly) NSString *position;
 @property (class, strong, readonly) NSString *block;
 @property (class, strong, readonly) NSString *selectIndex;
+@property (class, strong, readonly) NSString *msg;
 
 @end
 
