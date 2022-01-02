@@ -68,7 +68,11 @@ NSMutableDictionary *currents = nil;
 }
 
 + (void)storeArray:(NSArray *)array {
-    [PINCache.sharedCache setObject:array forKey:[self arrayArchiverKey]];
+    [self storeArray:array withKey:nil];
+}
+
++ (void)storeArray:(NSArray *)array withKey:(NSString *)key {
+    [PINCache.sharedCache setObject:array forKey:[self arrayArchiverKey:key]];
 }
 
 #pragma mark erase
@@ -82,7 +86,11 @@ NSMutableDictionary *currents = nil;
 }
 
 + (void)eraseArray {
-    NSString *archiverKey = [self arrayArchiverKey];
+    [self eraseArrayForKey:nil];
+}
+
++ (void)eraseArrayForKey:(NSString *)key {
+    NSString *archiverKey = [self arrayArchiverKey:key];
     [PINCache.sharedCache removeObjectForKey:archiverKey];
 }
 
@@ -110,7 +118,11 @@ NSMutableDictionary *currents = nil;
 }
 
 + (NSArray *)cachedArray {
-    NSString *archiverKey = [self arrayArchiverKey];
+    return [self cachedArrayWithKey:nil];
+}
+
++ (NSArray *)cachedArrayWithKey:(NSString *)key {
+    NSString *archiverKey = [self arrayArchiverKey:key];
     NSArray *array = [PINCache.sharedCache objectForKey:archiverKey];
     if (!array) {
         NSString *path = [NSBundle.mainBundle pathForResource:archiverKey ofType:@"json"];
@@ -137,8 +149,12 @@ NSMutableDictionary *currents = nil;
     return OCFStrWithFmt(@"%@#%@", name, key);
 }
 
-+ (NSString *)arrayArchiverKey {
-    return OCFStrWithFmt(@"%@s", NSStringFromClass(self.class));
++ (NSString *)arrayArchiverKey:(NSString *)key {
+    NSString *name = NSStringFromClass(self.class);
+    if (key.length == 0) {
+        return OCFStrWithFmt(@"%@s", name);
+    }
+    return OCFStrWithFmt(@"%@s#%@", name, key);
 }
 
 #pragma mark current

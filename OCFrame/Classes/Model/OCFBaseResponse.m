@@ -13,13 +13,13 @@
 @end
 
 @implementation OCFBaseResponse
-//- (instancetype)init {
-//    if (self = [super init]) {
-//        // 用于没有code/message/data层的数据
-//        self.code = OCFErrorCodeNone;
-//    }
-//    return self;
-//}
+- (instancetype)init {
+    if (self = [super init]) {
+        // 用于没有code/message/data层的数据
+        self.code = OCFErrorCodeNone;
+    }
+    return self;
+}
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{

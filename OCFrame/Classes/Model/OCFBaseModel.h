@@ -19,14 +19,17 @@
 + (void)storeObject:(OCFBaseModel *)object;
 + (void)storeObject:(OCFBaseModel *)object withKey:(NSString *)key;
 + (void)storeArray:(NSArray *)array;
++ (void)storeArray:(NSArray *)array withKey:(NSString *)key;
 
 + (void)eraseObject:(OCFBaseModel *)object;
 + (void)eraseObjectForKey:(NSString *)key;
 + (void)eraseArray;
++ (void)eraseArrayForKey:(NSString *)key;
 
 + (instancetype)cachedObject;
 + (instancetype)cachedObjectWithKey:(NSString *)key;
 + (NSArray *)cachedArray;
++ (NSArray *)cachedArrayWithKey:(NSString *)key;
 
 + (instancetype)current;
 
