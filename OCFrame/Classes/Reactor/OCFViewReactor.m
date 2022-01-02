@@ -38,6 +38,7 @@
 @property (nonatomic, strong, readwrite) RACSubject *executing;
 @property (nonatomic, strong, readwrite) RACSubject *result;
 @property (nonatomic, strong, readwrite) RACCommand *loadCommand;
+@property (nonatomic, strong, readwrite) id<RACSubscriber> subscriber;
 
 @end
 
@@ -58,6 +59,11 @@
         self.url = OCFObjWithDft(OCFURLMember(parameters, JLRouteURLKey, nil), OCFURLMember(parameters, OCFParameter.url, nil));
         self.host = self.url.host;
         self.path = self.url.path;
+        // subscriber
+        id subscriber = OCFObjMember(parameters, OCFParameter.subscriber, nil);
+        if (subscriber && [subscriber conformsToProtocol:@protocol(RACSubscriber)]) {
+            self.subscriber = (id<RACSubscriber>)subscriber;
+        }
 //        // Model
 //        id model = OCFObjMember(parameters, OCFParameter.model, nil);
 //        if (model && [model isKindOfClass:NSString.class]) {

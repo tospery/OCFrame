@@ -24,7 +24,6 @@ typedef NS_ENUM(NSInteger, OCFViewControllerBackType){
 @property (nonatomic, assign, readonly) CGFloat contentTop;
 @property (nonatomic, assign, readonly) CGFloat contentBottom;
 @property (nonatomic, assign, readonly) CGRect contentFrame;
-@property (nonatomic, strong, readonly) id<RACSubscriber> subscriber;
 @property (nonatomic, strong, readonly) OCFNavigationBar *navigationBar;
 @property (nonatomic, strong, readonly) OCFNavigator *navigator;
 @property (nonatomic, strong, readonly) OCFViewReactor *reactor;

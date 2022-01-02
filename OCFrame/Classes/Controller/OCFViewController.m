@@ -30,7 +30,6 @@
 @property (nonatomic, assign, readwrite) CGFloat contentTop;
 @property (nonatomic, assign, readwrite) CGFloat contentBottom;
 @property (nonatomic, assign, readwrite) CGRect contentFrame;
-@property (nonatomic, strong, readwrite) id<RACSubscriber> subscriber;
 @property (nonatomic, strong, readwrite) OCFNavigationBar *navigationBar;
 @property (nonatomic, strong, readwrite) OCFNavigator *navigator;
 @property (nonatomic, strong, readwrite) OCFViewReactor *reactor;
@@ -45,10 +44,6 @@
         self.reactor = reactor;
         self.navigator = navigator;
         self.hidesBottomBarWhenPushed = YES;
-        id subscriber = OCFObjMember(reactor.parameters, OCFParameter.subscriber, nil);
-        if (subscriber && [subscriber conformsToProtocol:@protocol(RACSubscriber)]) {
-            self.subscriber = (id<RACSubscriber>)subscriber;
-        }
     }
     return self;
 }
@@ -154,9 +149,9 @@
             @strongify(self)
             id result = tuple.second;
             if (result) {
-                [self.subscriber sendNext:RACTuplePack(self.reactor.url, result)];
+                [self.reactor.subscriber sendNext:result];
             }
-            [self.subscriber sendCompleted];
+            [self.reactor.subscriber sendCompleted];
         };
         NSString *poponePath = [kOCFBackPopone componentsSeparatedByString:@"/"].lastObject;
         NSString *popallPath = [kOCFBackPopall componentsSeparatedByString:@"/"].lastObject;

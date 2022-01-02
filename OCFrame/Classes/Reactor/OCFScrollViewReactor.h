@@ -19,6 +19,7 @@
 @property (nonatomic, assign) BOOL shouldPullToRefresh;
 @property (nonatomic, assign) BOOL shouldScrollToMore;
 @property (nonatomic, assign) BOOL hasMoreData;
+@property (nonatomic, strong) NSArray *rawSections;
 @property (nonatomic, strong, readonly) OCFPage *page;
 @property (nonatomic, strong, readonly) RACCommand *selectCommand;
 
