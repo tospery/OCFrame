@@ -50,11 +50,11 @@
     
 }
 
-- (void)configureHeader:(UICollectionReusableView *)header atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureHeader:(UICollectionReusableView *)header atSection:(NSInteger)section {
     
 }
 
-- (void)configureFooter:(UICollectionReusableView *)footer atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureFooter:(UICollectionReusableView *)footer atSection:(NSInteger)section {
     
 }
 
@@ -133,9 +133,9 @@
     
     if (view) {
         if (isHeader) {
-            [self configureHeader:view atIndexPath:indexPath];
+            [self configureHeader:view atSection:indexPath.section];
         }else {
-            [self configureFooter:view atIndexPath:indexPath];
+            [self configureFooter:view atSection:indexPath.section];
         }
     }
     

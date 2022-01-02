@@ -22,8 +22,8 @@
 @property (nonatomic, strong) NSArray *footerNames;
 
 - (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withItem:(OCFCollectionItem *)item;
-- (void)configureHeader:(UICollectionReusableView *)header atIndexPath:(NSIndexPath *)indexPath;
-- (void)configureFooter:(UICollectionReusableView *)footer atIndexPath:(NSIndexPath *)indexPath;
+- (void)configureHeader:(UICollectionReusableView *)header atSection:(NSInteger)section;
+- (void)configureFooter:(UICollectionReusableView *)footer atSection:(NSInteger)section;
 
 @end
 
