@@ -37,6 +37,7 @@
 @property (nonatomic, strong, readwrite) RACSubject *loading;
 @property (nonatomic, strong, readwrite) RACSubject *executing;
 @property (nonatomic, strong, readwrite) RACSubject *result;
+@property (nonatomic, strong, readwrite) RACSubject *back;
 @property (nonatomic, strong, readwrite) RACCommand *loadCommand;
 @property (nonatomic, strong, readwrite) id<RACSubscriber> subscriber;
 
@@ -158,6 +159,13 @@
         _result = [RACSubject subject];
     }
     return _result;
+}
+
+- (RACSubject *)back {
+    if (!_back) {
+        _back = [RACSubject subject];
+    }
+    return _back;
 }
 
 - (RACCommand *)loadCommand {

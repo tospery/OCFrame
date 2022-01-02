@@ -179,9 +179,16 @@
         }
     } else {
         // forward
+        @weakify(self)
         [[[self.navigator rac_routeURL:url withParameters:tuple.second] map:^id(id value) {
             return RACTuplePack(url, value);
-        }] subscribe:self.reactor.result];
+        }] subscribeNext:^(id result) {
+            @strongify(self)
+            [self.reactor.result sendNext:result];
+        } completed:^{
+            @strongify(self)
+            [self.reactor.back sendNext:url];
+        }];
     }
 }
 
