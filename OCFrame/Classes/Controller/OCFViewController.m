@@ -184,7 +184,9 @@
         }
     } else {
         // forward
-        [[self.navigator rac_routeURL:url withParameters:tuple.second] subscribe:self.reactor.result];
+        [[[self.navigator rac_routeURL:url withParameters:tuple.second] map:^id(id value) {
+            return RACTuplePack(url, value);
+        }] subscribe:self.reactor.result];
     }
 }
 
