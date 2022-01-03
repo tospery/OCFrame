@@ -82,8 +82,10 @@
 #import "OCFIdentifiable.h"
 #import "OCFCollectionSupplementary.h"
 #import "OCFTableHeaderFooter.h"
+#import "OCFStorable.h"
+#import "OCFModel.h"
 
-#pragma mark - Protocol
+#pragma mark - Manager
 #import "OCFAppearanceManager.h"
 #import "OCFBaseSessionManager.h"
 #import "OCFLibraryManager.h"
@@ -148,6 +150,7 @@
 #import "UIViewController+Page.h"
 
 #pragma mark - Vendor
+#import <libextobjc/extobjc.h>
 #import <AFNetworking/AFNetworking.h>
 #import <ReactiveObjC/ReactiveObjC.h>
 #import <ReactiveObjC/NSObject+RACKVOWrapper.h>

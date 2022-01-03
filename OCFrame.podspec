@@ -38,6 +38,7 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
+  s.dependency 'libextobjc', '0.6'
   s.dependency 'QMUIKit/QMUICore', '4.4.0'
   s.dependency 'CocoaLumberjack', '3.7.2'
   s.dependency 'AFNetworkActivityLogger', '3.0.0'

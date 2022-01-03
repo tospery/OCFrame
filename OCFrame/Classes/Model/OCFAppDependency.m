@@ -117,19 +117,19 @@
     if ([cls isSubclassOfClass:OCFConfiguration.class]) {
         SEL sel = NSSelectorFromString(@"current");
         OCFConfiguration *configuration = ((id (*)(id, SEL))[cls methodForSelector:sel])(cls, sel);
-        [configuration saveWithKey:nil];
+        [cls storeObject:configuration withKey:nil];
     }
     cls = NSClassFromString(@"Preference");
     if ([cls isSubclassOfClass:OCFPreference.class]) {
         SEL sel = NSSelectorFromString(@"current");
         OCFPreference *preference = ((id (*)(id, SEL))[cls methodForSelector:sel])(cls, sel);
-        [preference saveWithKey:nil];
+        [cls storeObject:preference withKey:nil];
     }
     cls = NSClassFromString(@"User");
     if ([cls isSubclassOfClass:OCFUser.class]) {
         SEL sel = NSSelectorFromString(@"current");
         OCFUser *user = ((id (*)(id, SEL))[cls methodForSelector:sel])(cls, sel);
-        [user saveWithKey:nil];
+        [cls storeObject:user withKey:nil];
     }
 }
 
