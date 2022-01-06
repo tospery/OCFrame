@@ -22,33 +22,38 @@ Pod::Spec.new do |s|
                        DESC
 
   s.homepage         = 'https://github.com/tospery/OCFrame'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'tospery' => 'tospery@gmail.com' }
+  s.author           = { 'YangJianxiang' => 'tospery@gmail.com' }
   s.source           = { :git => 'https://github.com/tospery/OCFrame.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '11.0'
-
-  s.source_files = 'OCFrame/Classes/**/*'
+  s.platform         = :ios, '11.0'
+  s.frameworks       = 'Foundation', 'UIKit'
+  s.source_files     = 'OCFrame/OCFrame.h'
   
-  s.resource_bundles = {
-    'OCFrame' => ['OCFrame/Assets/*.png']
-  }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  s.frameworks = 'UIKit'
-  s.dependency 'libextobjc', '0.6'
-  s.dependency 'QMUIKit/QMUICore', '4.4.0'
-  s.dependency 'CocoaLumberjack', '3.7.2'
-  s.dependency 'AFNetworkActivityLogger', '3.0.0'
-  s.dependency 'Overcoat-JX', '4.0.4'
-  s.dependency 'JLRoutes', '2.1'
-  s.dependency 'Giotto', '0.3.7'
-  s.dependency 'FCUUID', '1.3.1'
-  s.dependency 'PINCache', '3.0.3'
-  s.dependency 'GVUserDefaults', '1.0.2'
-  s.dependency 'SDWebImage', '5.12.1'
-  s.dependency 'MJRefresh', '3.7.2'
-  s.dependency 'DZNEmptyDataSet', '1.8.1'
+  s.subspec 'Model' do |ss|
+    ss.source_files = 'OCFrame/OCFrame.h', 'OCFrame/Model''
+    ss.frameworks = 'Foundation'
+    ss.dependency 'QMUIKit/QMUIWeakObjectContainer'
+    ss.dependency 'QMUIKit/QMUILog'
+  end
+  
+  # s.ios.deployment_target = '11.0'
+  # s.source_files = 'OCFrame/Classes/**/*'
+  #s.resource_bundles = {
+   # 'OCFrame' => ['OCFrame/Assets/*.png']
+  #}
+  # s.frameworks = 'UIKit'
+  # s.dependency 'libextobjc', '0.6'
+  # s.dependency 'QMUIKit/QMUICore', '4.4.0'
+  # s.dependency 'CocoaLumberjack', '3.7.2'
+  # s.dependency 'AFNetworkActivityLogger', '3.0.0'
+  # s.dependency 'Overcoat-JX', '4.0.4'
+  # s.dependency 'JLRoutes', '2.1'
+  # s.dependency 'Giotto', '0.3.7'
+  # s.dependency 'FCUUID', '1.3.1'
+  # s.dependency 'PINCache', '3.0.3'
+  # s.dependency 'GVUserDefaults', '1.0.2'
+  # s.dependency 'SDWebImage', '5.12.1'
+  # s.dependency 'MJRefresh', '3.7.2'
+  # s.dependency 'DZNEmptyDataSet', '1.8.1'
 end
