@@ -1,0 +1,6 @@
+framework module Mantle_JX {
+  umbrella header "Mantle-JX-umbrella.h"
+
+  export *
+  module * { export * }
+}

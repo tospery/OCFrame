@@ -17,6 +17,8 @@
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		8CAC3B8527869644006B5A9A /* Game.json in Resources */ = {isa = PBXBuildFile; fileRef = 8CAC3B8427869644006B5A9A /* Game.json */; };
+		8CAC3B8827869657006B5A9A /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAC3B8727869657006B5A9A /* Game.m */; };
 		D8630CA14B896B987CCD498E /* Pods_OCFrame_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06DA51C1D49BAE9E14D75A11 /* Pods_OCFrame_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +42,9 @@
 		6B35DE615F7A4FAAC76D5347 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8CAC3B8427869644006B5A9A /* Game.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Game.json; sourceTree = "<group>"; };
+		8CAC3B8627869657006B5A9A /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		8CAC3B8727869657006B5A9A /* Game.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		C3678E54BB3E4E02418EF5B5 /* Pods-OCFrame_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OCFrame_Example.debug.xcconfig"; path = "Target Support Files/Pods-OCFrame_Example/Pods-OCFrame_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		C94A3DF02994E7E421AF0A4E /* Pods-OCFrame_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OCFrame_Example.release.xcconfig"; path = "Target Support Files/Pods-OCFrame_Example/Pods-OCFrame_Example.release.xcconfig"; sourceTree = "<group>"; };
 		EFE948BC21A046E81D88FF69 /* OCFrame.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = OCFrame.podspec; path = ../OCFrame.podspec; sourceTree = "<group>"; };
@@ -111,6 +116,9 @@
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				8CAC3B8427869644006B5A9A /* Game.json */,
+				8CAC3B8627869657006B5A9A /* Game.h */,
+				8CAC3B8727869657006B5A9A /* Game.m */,
 			);
 			name = "Example for OCFrame";
 			path = OCFrame;
@@ -199,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
+				8CAC3B8527869644006B5A9A /* Game.json in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
@@ -224,7 +233,7 @@
 				"${BUILT_PRODUCTS_DIR}/Giotto/Giotto.framework",
 				"${BUILT_PRODUCTS_DIR}/JLRoutes/JLRoutes.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
+				"${BUILT_PRODUCTS_DIR}/Mantle-JX/Mantle_JX.framework",
 				"${BUILT_PRODUCTS_DIR}/OCFrame/OCFrame.framework",
 				"${BUILT_PRODUCTS_DIR}/Overcoat-JX/Overcoat_JX.framework",
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
@@ -233,6 +242,7 @@
 				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework",
+				"${BUILT_PRODUCTS_DIR}/libextobjc/libextobjc.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -245,7 +255,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Giotto.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JLRoutes.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle_JX.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OCFrame.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Overcoat_JX.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
@@ -254,6 +264,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICKeyChainStore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libextobjc.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -292,6 +303,7 @@
 				6003F59E195388D20070C39A /* OCFAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* OCFViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				8CAC3B8827869657006B5A9A /* Game.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

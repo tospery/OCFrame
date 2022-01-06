@@ -27,33 +27,35 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/tospery/OCFrame.git', :tag => s.version.to_s }
 
   s.platform         = :ios, '11.0'
-  s.frameworks       = 'Foundation', 'UIKit'
+  s.frameworks       = 'Foundation'
   s.source_files     = 'OCFrame/OCFrame.h'
   
   s.subspec 'Model' do |ss|
-    ss.source_files = 'OCFrame/OCFrame.h', 'OCFrame/Model''
-    ss.frameworks = 'Foundation'
-    ss.dependency 'QMUIKit/QMUIWeakObjectContainer'
-    ss.dependency 'QMUIKit/QMUILog'
+    ss.source_files = 'OCFrame/OCFrame.h', 'OCFrame/Model'
+	ss.dependency 'libextobjc/EXTConcreteProtocol', '0.6'
+    ss.dependency 'Mantle-JX', '2.2.0-v3'
+	ss.dependency 'PINCache', '3.0.3'
   end
   
-  # s.ios.deployment_target = '11.0'
-  # s.source_files = 'OCFrame/Classes/**/*'
-  #s.resource_bundles = {
-   # 'OCFrame' => ['OCFrame/Assets/*.png']
-  #}
-  # s.frameworks = 'UIKit'
-  # s.dependency 'libextobjc', '0.6'
-  # s.dependency 'QMUIKit/QMUICore', '4.4.0'
-  # s.dependency 'CocoaLumberjack', '3.7.2'
-  # s.dependency 'AFNetworkActivityLogger', '3.0.0'
-  # s.dependency 'Overcoat-JX', '4.0.4'
-  # s.dependency 'JLRoutes', '2.1'
-  # s.dependency 'Giotto', '0.3.7'
-  # s.dependency 'FCUUID', '1.3.1'
-  # s.dependency 'PINCache', '3.0.3'
-  # s.dependency 'GVUserDefaults', '1.0.2'
-  # s.dependency 'SDWebImage', '5.12.1'
-  # s.dependency 'MJRefresh', '3.7.2'
-  # s.dependency 'DZNEmptyDataSet', '1.8.1'
+  s.subspec 'Reactor' do |ss|
+	ss.source_files = 'OCFrame/Reactor/**/*'
+	ss.frameworks = 'UIKit'
+    ss.dependency 'OCFrame/Model'
+	s.dependency 'QMUIKit/QMUICore', '4.4.0'
+	s.dependency 'CocoaLumberjack', '3.7.2'
+	s.dependency 'AFNetworkActivityLogger', '3.0.0'
+	s.dependency 'Overcoat-JX', '4.0.5'
+	s.dependency 'JLRoutes', '2.1'
+	s.dependency 'Giotto', '0.3.7'
+	s.dependency 'FCUUID', '1.3.1'
+	s.dependency 'GVUserDefaults', '1.0.2'
+	s.dependency 'SDWebImage', '5.12.1'
+	s.dependency 'MJRefresh', '3.7.2'
+	s.dependency 'DZNEmptyDataSet', '1.8.1'
+  end
+  
+  s.subspec 'Resources' do |ss|
+    ss.resource_bundles = {'Resources' => ['OCFrame/Resources/*.*']}
+  end
+
 end

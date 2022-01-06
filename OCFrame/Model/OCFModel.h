@@ -2,15 +2,14 @@
 //  OCFModel.h
 //  OCFrame
 //
-//  Created by 杨建祥 on 2022/1/3.
+//  Created by liaoya on 2022/1/6.
 //
 
+#import "OCFIdentifiable.h"
 #import "OCFStorable.h"
-#import <libextobjc/extobjc.h>
+#import <Mantle_JX/Mantle.h>
 
-@protocol OCFModel <OCFStorable>
-@concrete
+@interface OCFModel : MTLModel <OCFIdentifiable, OCFStorable, MTLJSONSerializing>
 @property (nonatomic, assign, readonly) BOOL isValid;
-+ (instancetype)current;
 
 @end

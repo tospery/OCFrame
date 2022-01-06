@@ -5,12 +5,12 @@
 //  Created by 杨建祥 on 2022/1/3.
 //
 
-#import "OCFIdentifiable.h"
-#import <Mantle_JX/Mantle.h>
+#import <Foundation/Foundation.h>
+#import <libextobjc/EXTConcreteProtocol.h>
 
-@protocol OCFStorable <OCFIdentifiable, MTLJSONSerializing>
+@protocol OCFStorable // <OCFIdentifiable> // /*, MTLJSONSerializing*/>
 
-@required
+@concrete
 #pragma mark - Key
 + (NSString *)objectArchiverKey:(NSString *)key;
 + (NSString *)arrayArchiverKey:(NSString *)key;
@@ -24,8 +24,10 @@
 + (void)storeArray:(NSArray<id<OCFStorable>> *)array;
 + (void)storeArray:(NSArray<id<OCFStorable>> *)array withKey:(NSString *)key;
 + (void)eraseArrayForKey:(NSString *)key;
-+ (NSArray<id<OCFStorable>> *)cachedArray;
-+ (NSArray<id<OCFStorable>> *)cachedArrayWithKey:(NSString *)key;
++ (NSArray *)cachedArray;
++ (NSArray *)cachedArrayWithKey:(NSString *)key;
+#pragma mark - Array
++ (instancetype)current;
 
 @end
 

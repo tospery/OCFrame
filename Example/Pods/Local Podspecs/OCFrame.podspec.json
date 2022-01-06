@@ -1,6 +1,6 @@
 {
   "name": "OCFrame",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "summary": "iOS App Framework.",
   "description": "iOS App Framework using ObjC.",
   "homepage": "https://github.com/tospery/OCFrame",
@@ -9,22 +9,17 @@
     "file": "LICENSE"
   },
   "authors": {
-    "tospery": "tospery@gmail.com"
+    "YangJianxiang": "tospery@gmail.com"
   },
   "source": {
     "git": "https://github.com/tospery/OCFrame.git",
-    "tag": "1.1.0"
+    "tag": "1.1.2"
   },
   "platforms": {
     "ios": "11.0"
   },
-  "source_files": "OCFrame/Classes/**/*",
-  "resource_bundles": {
-    "OCFrame": [
-      "OCFrame/Assets/*.png"
-    ]
-  },
-  "frameworks": "UIKit",
+  "frameworks": "Foundation",
+  "source_files": "OCFrame/OCFrame.h",
   "dependencies": {
     "QMUIKit/QMUICore": [
       "4.4.0"
@@ -36,7 +31,7 @@
       "3.0.0"
     ],
     "Overcoat-JX": [
-      "4.0.2"
+      "4.0.5"
     ],
     "JLRoutes": [
       "2.1"
@@ -46,9 +41,6 @@
     ],
     "FCUUID": [
       "1.3.1"
-    ],
-    "PINCache": [
-      "3.0.3"
     ],
     "GVUserDefaults": [
       "1.0.2"
@@ -62,5 +54,43 @@
     "DZNEmptyDataSet": [
       "1.8.1"
     ]
-  }
+  },
+  "subspecs": [
+    {
+      "name": "Model",
+      "source_files": [
+        "OCFrame/OCFrame.h",
+        "OCFrame/Model"
+      ],
+      "dependencies": {
+        "libextobjc/EXTConcreteProtocol": [
+          "0.6"
+        ],
+        "Mantle-JX": [
+          "2.2.0-v3"
+        ],
+        "PINCache": [
+          "3.0.3"
+        ]
+      }
+    },
+    {
+      "name": "Reactor",
+      "source_files": "OCFrame/Reactor/**/*",
+      "frameworks": "UIKit",
+      "dependencies": {
+        "OCFrame/Model": [
+
+        ]
+      }
+    },
+    {
+      "name": "Resources",
+      "resource_bundles": {
+        "Resources": [
+          "OCFrame/Resources/*.*"
+        ]
+      }
+    }
+  ]
 }

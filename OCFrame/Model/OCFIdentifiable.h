@@ -5,7 +5,7 @@
 //  Created by 杨建祥 on 2022/1/3.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 @protocol OCFIdentifiable <NSObject>
 @required

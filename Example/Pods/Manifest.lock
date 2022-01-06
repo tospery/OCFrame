@@ -27,11 +27,14 @@ PODS:
   - Giotto/Core (0.3.7)
   - GVUserDefaults (1.0.2)
   - JLRoutes (2.1)
-  - Mantle (2.1.1):
-    - Mantle/extobjc (= 2.1.1)
-  - Mantle/extobjc (2.1.1)
+  - libextobjc/EXTConcreteProtocol (0.6):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/RuntimeExtensions (0.6)
+  - Mantle-JX (2.2.0-v3):
+    - Mantle-JX/extobjc (= 2.2.0-v3)
+  - Mantle-JX/extobjc (2.2.0-v3)
   - MJRefresh (3.7.2)
-  - OCFrame (1.1.0):
+  - OCFrame/Model (1.1.2):
     - AFNetworkActivityLogger (= 3.0.0)
     - CocoaLumberjack (= 3.7.2)
     - DZNEmptyDataSet (= 1.8.1)
@@ -39,14 +42,16 @@ PODS:
     - Giotto (= 0.3.7)
     - GVUserDefaults (= 1.0.2)
     - JLRoutes (= 2.1)
+    - libextobjc/EXTConcreteProtocol (= 0.6)
+    - Mantle-JX (= 2.2.0-v3)
     - MJRefresh (= 3.7.2)
-    - Overcoat-JX (= 4.0.2)
+    - Overcoat-JX (= 4.0.5)
     - PINCache (= 3.0.3)
     - QMUIKit/QMUICore (= 4.4.0)
     - SDWebImage (= 5.12.1)
-  - Overcoat-JX (4.0.2):
+  - Overcoat-JX (4.0.5):
     - AFNetworking (= 3.2.1)
-    - Mantle (= 2.1.1)
+    - Mantle-JX (= 2.2.0-v3)
     - ReactiveObjC (= 3.1.1)
   - PINCache (3.0.3):
     - PINCache/Arc-exception-safe (= 3.0.3)
@@ -68,7 +73,7 @@ PODS:
   - UICKeyChainStore (2.1.2)
 
 DEPENDENCIES:
-  - OCFrame (from `../`)
+  - OCFrame/Model (from `../`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -80,7 +85,8 @@ SPEC REPOS:
     - Giotto
     - GVUserDefaults
     - JLRoutes
-    - Mantle
+    - libextobjc
+    - Mantle-JX
     - MJRefresh
     - Overcoat-JX
     - PINCache
@@ -103,10 +109,11 @@ SPEC CHECKSUMS:
   Giotto: c387de1f31a4a9c69a65ed8e9e333212d48a6564
   GVUserDefaults: 52d48cf8ba578b40a1a76312b196dfc9134ba36a
   JLRoutes: d755245322b94227662ea3e43492fdca94e05c5b
-  Mantle: 35238ae6f2e2b2d474fa7b67fee82a59fea71915
+  libextobjc: aed8b7d2b07f511c1a7ecaacb33ea03e327c69b7
+  Mantle-JX: be31cb81b3d4ccd4bc41b570218228457596e889
   MJRefresh: 30997d30b347c8e9508a4db11e3a690da0c9b85a
-  OCFrame: 08054d10edd23a4a66ff97fe091aa00b8071b989
-  Overcoat-JX: 9b7e32dd68ae6621134e28f5bcfdda6d4ea04359
+  OCFrame: 5dde9f54d56c42aa549e64e0ccdf7be438daa057
+  Overcoat-JX: 639903c0cfbd345d05cca3d034455bd963ed0357
   PINCache: 7a8fc1a691173d21dbddbf86cd515de6efa55086
   PINOperation: 00c935935f1e8cf0d1e2d6b542e75b88fc3e5e20
   QMUIKit: 8b48a063b6df0540af74d33ab6ac89f88bf9c728
@@ -114,6 +121,6 @@ SPEC CHECKSUMS:
   SDWebImage: 4dc3e42d9ec0c1028b960a33ac6b637bb432207b
   UICKeyChainStore: 85db518bb1d294366d15ec9b92a416c4e670518f
 
-PODFILE CHECKSUM: 8f1f9ada0bd7e342a122f97cd6b4814613e78af1
+PODFILE CHECKSUM: f48364bfcc5f665b89be3b2923cff5daca000c00
 
 COCOAPODS: 1.11.2
