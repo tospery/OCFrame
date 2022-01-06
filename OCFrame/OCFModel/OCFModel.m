@@ -6,7 +6,7 @@
 //
 
 #import "OCFModel.h"
-#import "MTLJSONAdapter+Model.h"
+#import <OCFrame/OCFCore.h>
 
 @interface OCFModel () {
     NSString *_id;

@@ -7,6 +7,7 @@
 
 #import "NSValueTransformer+OCFCore.h"
 #import <Mantle_JX/Mantle.h>
+#import "OCFDefines.h"
 
 NSString * const OCFBOOLValueTransformerName = @"OCFBOOLValueTransformerName";
 NSString * const OCFIntValueTransformerName = @"OCFIntValueTransformerName";
@@ -17,34 +18,17 @@ NSString * const OCFStringValueTransformerName = @"OCFStringValueTransformerName
 + (void)load {
     @autoreleasepool {
         MTLValueTransformer *boolValueTransformer = [MTLValueTransformer transformerUsingForwardBlock:^id(id obj, BOOL *success, NSError *__autoreleasing *error) {
-            if ([obj isKindOfClass:NSNumber.class]) {
-                return @([(NSNumber *)obj boolValue]);
-            }
-            if ([obj isKindOfClass:NSString.class]) {
-                return @([(NSString *)obj integerValue] != 0 ? YES : NO);
-            }
-            return @(NO);
+            return @(OCFBoolWithObj(obj));
         }];
         [NSValueTransformer setValueTransformer:boolValueTransformer forName:OCFBOOLValueTransformerName];
         
         MTLValueTransformer *intValueTransformer = [MTLValueTransformer transformerUsingForwardBlock:^id(id obj, BOOL *success, NSError *__autoreleasing *error) {
-            if ([obj isKindOfClass:NSNumber.class]) {
-                return obj;
-            }
-            if ([obj isKindOfClass:NSString.class]) {
-                return @([(NSString *)obj integerValue]);
-            }
-            return @(0);
+            return @(OCFIntWithObj(obj));
         }];
         [NSValueTransformer setValueTransformer:intValueTransformer forName:OCFIntValueTransformerName];
         
         MTLValueTransformer *stringValueTransformer = [MTLValueTransformer transformerUsingForwardBlock:^id(id obj, BOOL *success, NSError *__autoreleasing *error) {
-            if ([obj isKindOfClass:NSString.class]) {
-                return obj;
-            } else if ([obj isKindOfClass:NSNumber.class]) {
-                return [(NSNumber *)obj stringValue];
-            }
-            return nil;
+            return OCFStrWithObj(obj);
         }];
         [NSValueTransformer setValueTransformer:stringValueTransformer forName:OCFStringValueTransformerName];
     }

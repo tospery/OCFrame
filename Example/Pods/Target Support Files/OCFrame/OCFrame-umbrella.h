@@ -22,6 +22,9 @@
 #import "OCFCore.h"
 #import "OCFDefines.h"
 #import "OCFStrings.h"
+#import "OCFIdentifiable.h"
+#import "OCFModel.h"
+#import "OCFStorable.h"
 
 FOUNDATION_EXPORT double OCFrameVersionNumber;
 FOUNDATION_EXPORT const unsigned char OCFrameVersionString[];
