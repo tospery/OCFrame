@@ -6,7 +6,6 @@
 //
 
 #import "OCFModel.h"
-#import <OCFrame/OCFCore.h>
 
 @interface OCFModel () {
     NSString *_id;

@@ -20,65 +20,16 @@
   },
   "frameworks": "Foundation",
   "source_files": "OCFrame/OCFrame.h",
-  "dependencies": {
-    "QMUIKit/QMUICore": [
-      "4.4.0"
-    ],
-    "AFNetworkActivityLogger": [
-      "3.0.0"
-    ],
-    "Overcoat-JX": [
-      "4.0.5"
-    ],
-    "JLRoutes": [
-      "2.1"
-    ],
-    "Giotto": [
-      "0.3.7"
-    ],
-    "FCUUID": [
-      "1.3.1"
-    ],
-    "GVUserDefaults": [
-      "1.0.2"
-    ],
-    "SDWebImage": [
-      "5.12.1"
-    ],
-    "MJRefresh": [
-      "3.7.2"
-    ],
-    "DZNEmptyDataSet": [
-      "1.8.1"
-    ]
-  },
   "subspecs": [
-    {
-      "name": "OCFCore",
-      "source_files": "OCFrame/OCFCore/**/*",
-      "frameworks": "CoreGraphics",
-      "dependencies": {
-        "CocoaLumberjack": [
-          "3.7.2"
-        ],
-        "Mantle-JX": [
-          "2.2.0-v3"
-        ]
-      }
-    },
-    {
-      "name": "OCFUIKit",
-      "source_files": "OCFrame/OCFUIKit/**/*"
-    },
     {
       "name": "OCFModel",
       "source_files": "OCFrame/OCFModel/**/*",
       "dependencies": {
-        "OCFrame/OCFCore": [
-
-        ],
         "libextobjc/EXTConcreteProtocol": [
           "0.6"
+        ],
+        "Mantle-JX": [
+          "2.2.0-v3"
         ],
         "PINCache": [
           "3.0.3"
@@ -92,6 +43,39 @@
       "dependencies": {
         "OCFrame/OCFModel": [
 
+        ],
+        "CocoaLumberjack": [
+          "3.7.2"
+        ],
+        "QMUIKit/QMUICore": [
+          "4.4.0"
+        ],
+        "Giotto": [
+          "0.3.7"
+        ],
+        "FCUUID": [
+          "1.3.1"
+        ],
+        "AFNetworkActivityLogger": [
+          "3.0.0"
+        ],
+        "Overcoat-JX": [
+          "4.0.5"
+        ],
+        "JLRoutes": [
+          "2.1"
+        ],
+        "GVUserDefaults": [
+          "1.0.2"
+        ],
+        "SDWebImage": [
+          "5.12.1"
+        ],
+        "MJRefresh": [
+          "3.7.2"
+        ],
+        "DZNEmptyDataSet": [
+          "1.8.1"
         ]
       }
     },

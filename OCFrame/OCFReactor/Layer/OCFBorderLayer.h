@@ -6,7 +6,6 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
-//#import <SwiftTheme/SwiftTheme-Swift.h>
 
 typedef NS_OPTIONS(NSUInteger, OCFBorderPosition) {
     OCFBorderPositionNone       = 0,
@@ -25,7 +24,3 @@ typedef NS_OPTIONS(NSUInteger, OCFBorderPosition) {
 
 @end
 
-//@interface OCFBorderLayer (OCFrame)
-//@property(nonatomic, strong) ThemeColorPicker *theme_defaultColor;
-//
-//@end

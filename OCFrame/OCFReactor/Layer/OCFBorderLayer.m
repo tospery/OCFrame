@@ -7,9 +7,8 @@
 
 #import "OCFBorderLayer.h"
 #import <QMUIKit/QMUIKit.h>
-#import "OCFFunction.h"
-#import "NSDictionary+OCFrame.h"
-#import "UIColor+OCFrame.h"
+#import "NSDictionary+OCFReactor.h"
+#import "UIColor+OCFReactor.h"
 
 @interface OCFBorderLayer ()
 @property (nonatomic, strong) CALayer *topBorder;

@@ -30,21 +30,10 @@ Pod::Spec.new do |s|
   s.frameworks       = 'Foundation'
   s.source_files     = 'OCFrame/OCFrame.h'
   
-  s.subspec 'OCFCore' do |ss|
-    ss.source_files = 'OCFrame/OCFCore/**/*'
-	ss.frameworks = 'CoreGraphics'
-	ss.dependency 'CocoaLumberjack', '3.7.2'
-	ss.dependency 'Mantle-JX', '2.2.0-v3'
-  end
-  
-  s.subspec 'OCFUIKit' do |ss|
-    ss.source_files = 'OCFrame/OCFUIKit/**/*'
-  end
-  
   s.subspec 'OCFModel' do |ss|
     ss.source_files = 'OCFrame/OCFModel/**/*'
-	ss.dependency 'OCFrame/OCFCore'
 	ss.dependency 'libextobjc/EXTConcreteProtocol', '0.6'
+	ss.dependency 'Mantle-JX', '2.2.0-v3'
 	ss.dependency 'PINCache', '3.0.3'
   end
   
@@ -52,16 +41,17 @@ Pod::Spec.new do |s|
 	ss.source_files = 'OCFrame/OCFReactor/**/*'
 	ss.frameworks = 'UIKit'
     ss.dependency 'OCFrame/OCFModel'
-	s.dependency 'QMUIKit/QMUICore', '4.4.0'
-	s.dependency 'AFNetworkActivityLogger', '3.0.0'
-	s.dependency 'Overcoat-JX', '4.0.5'
-	s.dependency 'JLRoutes', '2.1'
-	s.dependency 'Giotto', '0.3.7'
-	s.dependency 'FCUUID', '1.3.1'
-	s.dependency 'GVUserDefaults', '1.0.2'
-	s.dependency 'SDWebImage', '5.12.1'
-	s.dependency 'MJRefresh', '3.7.2'
-	s.dependency 'DZNEmptyDataSet', '1.8.1'
+	ss.dependency 'CocoaLumberjack', '3.7.2'
+	ss.dependency 'QMUIKit/QMUICore', '4.4.0'
+	ss.dependency 'Giotto', '0.3.7'
+	ss.dependency 'FCUUID', '1.3.1'
+	ss.dependency 'AFNetworkActivityLogger', '3.0.0'
+	ss.dependency 'Overcoat-JX', '4.0.5'
+	ss.dependency 'JLRoutes', '2.1'
+	ss.dependency 'GVUserDefaults', '1.0.2'
+	ss.dependency 'SDWebImage', '5.12.1'
+	ss.dependency 'MJRefresh', '3.7.2'
+	ss.dependency 'DZNEmptyDataSet', '1.8.1'
   end
   
   s.subspec 'OCFResource' do |ss|
