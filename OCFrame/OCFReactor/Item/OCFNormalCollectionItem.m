@@ -6,7 +6,7 @@
 //
 
 #import "OCFNormalCollectionItem.h"
-#import "OCFFunction.h"
+#import "OCFDefines.h"
 
 @interface OCFNormalCollectionItem ()
 @property (nonatomic, strong, readwrite) OCFNormalCollectionModel *model;
@@ -23,7 +23,7 @@
 //    return self;
 //}
 
-- (instancetype)initWithModel:(OCFBaseModel *)model {
+- (instancetype)initWithModel:(OCFModel *)model {
     if (self = [super initWithModel:model]) {
     }
     return self;

@@ -9,13 +9,13 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 
 @interface OCFScrollItem ()
-@property (nonatomic, strong, readwrite) OCFBaseModel *model;
+@property (nonatomic, strong, readwrite) OCFModel *model;
 @property (nonatomic, strong, readwrite) RACCommand *clickCommand;
 
 @end
 
 @implementation OCFScrollItem
-- (instancetype)initWithModel:(OCFBaseModel *)model {
+- (instancetype)initWithModel:(OCFModel *)model {
     if (self = [super init]) {
         self.model = model;
     }

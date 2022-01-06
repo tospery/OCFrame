@@ -23,7 +23,7 @@
 @property (nonatomic, strong, readonly) NSString *ocf_urlComponentDecoded;
 @property (nonatomic, strong, readonly) NSString *ocf_image;
 @property (nonatomic, strong, readonly) NSURL *ocf_url;
-@property (nonatomic, strong, readonly) NSURL *ocf_routerURL;
+@property (nonatomic, strong, readonly) NSURL *ocf_routeURL;
 @property (nonatomic, strong, readonly) NSAttributedString *ocf_attributedString;
 
 - (CGSize)ocf_sizeFits:(CGSize)size font:(UIFont *)font lines:(NSInteger)lines;

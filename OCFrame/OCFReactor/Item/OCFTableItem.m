@@ -13,7 +13,7 @@
 
 @implementation OCFTableItem
 
-- (instancetype)initWithModel:(OCFBaseModel *)model {
+- (instancetype)initWithModel:(OCFModel *)model {
     if (self = [super initWithModel:model]) {
     }
     return self;

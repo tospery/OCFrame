@@ -8,18 +8,18 @@
 #import "OCFScrollViewController.h"
 #import <Mantle_JX/Mantle.h>
 #import <MJRefresh/MJRefresh.h>
-#import "OCFConstant.h"
-#import "OCFFunction.h"
+#import "OCFDefines.h"
+#import "OCFDefines.h"
 #import "OCFrameManager.h"
 #import "OCFAppDependency.h"
 #import "OCFWebViewController.h"
 #import "OCFLoginViewController.h"
 #import "OCFCollectionViewController.h"
 #import "OCFTableViewController.h"
-#import "NSError+OCFrame.h"
-#import "NSURL+OCFrame.h"
-#import "UIScrollView+OCFrame.h"
-#import "UIColor+OCFrame.h"
+#import "NSError+OCFReactor.h"
+#import "NSURL+OCFReactor.h"
+#import "UIScrollView+OCFReactor.h"
+#import "UIColor+OCFReactor.h"
 
 @interface OCFScrollViewController ()
 @property (nonatomic, assign, readwrite) CGFloat lastPosition;

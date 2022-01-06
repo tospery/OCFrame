@@ -6,13 +6,13 @@
 //
 
 #import "OCFCollectionViewController.h"
-#import "OCFConstant.h"
-#import "OCFFunction.h"
+#import "OCFDefines.h"
+#import "OCFDefines.h"
 #import "OCFCollectionCell.h"
 #import "OCFCollectionSupplementaryView.h"
 #import "OCFCollectionViewReactor.h"
-#import "UICollectionReusableView+OCFrame.h"
-#import "UICollectionView+OCFrame.h"
+#import "UICollectionReusableView+OCFReactor.h"
+#import "UICollectionView+OCFReactor.h"
 
 @interface OCFCollectionViewController ()
 @property (nonatomic, strong, readwrite) UICollectionView *collectionView;

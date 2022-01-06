@@ -6,14 +6,14 @@
 //
 
 #import "OCFTableViewController.h"
-#import "OCFConstant.h"
-#import "OCFFunction.h"
+#import "OCFDefines.h"
+#import "OCFDefines.h"
 #import "OCFTableCell.h"
 #import "OCFTableHeaderFooterView.h"
 #import "OCFTableViewReactor.h"
-#import "UITableViewCell+OCFrame.h"
-#import "UITableView+OCFrame.h"
-#import "UITableViewHeaderFooterView+OCFrame.h"
+#import "UITableView+OCFReactor.h"
+#import "UITableViewCell+OCFReactor.h"
+#import "UITableViewHeaderFooterView+OCFReactor.h"
 
 @interface OCFTableViewController ()
 @property (nonatomic, strong, readwrite) UITableView *tableView;

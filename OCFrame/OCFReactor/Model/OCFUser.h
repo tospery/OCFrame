@@ -5,9 +5,9 @@
 //  Created by 杨建祥 on 2020/2/23.
 //
 
-#import "OCFBaseModel.h"
+#import "OCFModel.h"
 
-@interface OCFUser : OCFBaseModel
+@interface OCFUser : OCFModel
 @property (nonatomic, assign) BOOL isLogined;
 
 - (void)logout;

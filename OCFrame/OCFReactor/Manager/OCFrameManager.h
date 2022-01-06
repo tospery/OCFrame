@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CocoaLumberjack/CocoaLumberjack.h>
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "OCFPage.h"
 

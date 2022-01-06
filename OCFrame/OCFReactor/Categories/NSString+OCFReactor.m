@@ -111,7 +111,7 @@
     return url;
 }
 
-- (NSURL *)ocf_routerURL {
+- (NSURL *)ocf_routeURL {
 //    NSURL *url = [self ocf_urlWithString:universal];
     
 

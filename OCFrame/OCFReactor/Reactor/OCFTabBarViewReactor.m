@@ -7,7 +7,7 @@
 
 #import "OCFTabBarViewReactor.h"
 #import "OCFParameter.h"
-#import "NSDictionary+OCFrame.h"
+#import "NSDictionary+OCFReactor.h"
 
 @interface OCFTabBarViewReactor ()
 //@property (nonatomic, strong, readwrite) RACSubject *selectSubject;

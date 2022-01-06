@@ -558,6 +558,8 @@
 		8BD232580D361F3AE1204A5438C46E46 /* SDAsyncBlockOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E998BA520D96420B415B1466D833D72 /* SDAsyncBlockOperation.m */; };
 		8BF572CDF06C7B530CBC34D8BA4B76FD /* OVCHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25726FC085A491F40564CAD0B9375AD1 /* OVCHTTPSessionManager.m */; };
 		8C76DBB5E3C35E18C758D7DD8A03C5FB /* UITextInputTraits+QMUI.h in Headers */ = {isa = PBXBuildFile; fileRef = ACFFB097609A9992FAAA02CC5263FB92 /* UITextInputTraits+QMUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8C89E96F2786F23900E51C28 /* UITableViewCell+OCFReactor.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C89E96D2786F23900E51C28 /* UITableViewCell+OCFReactor.h */; };
+		8C89E9702786F23900E51C28 /* UITableViewCell+OCFReactor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C89E96E2786F23900E51C28 /* UITableViewCell+OCFReactor.m */; };
 		8C9558998812B2C418F5963C6949EB62 /* SDAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 02452EA14CBF13002721CF2EC1D351E1 /* SDAnimatedImage.m */; };
 		8CAE3C9BE204363C1A4E5980BD7F6BD9 /* PINOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = ADB46D7646BD6984005365C6278DFD92 /* PINOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8CB3B120CB6C1F2010D019CED6F68A8E /* UITableView+OCFReactor.h in Headers */ = {isa = PBXBuildFile; fileRef = F2E6B9FA740249B7B27049A9D5EB8D36 /* UITableView+OCFReactor.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1305,7 +1307,7 @@
 		024CFF425B08920DBD3A6C104F268EF4 /* SDWebImageDownloaderRequestModifier.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageDownloaderRequestModifier.m; path = SDWebImage/Core/SDWebImageDownloaderRequestModifier.m; sourceTree = "<group>"; };
 		02D0104B605A291507097DB0CFBC9EE4 /* UINavigationController+OCFReactor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+OCFReactor.m"; sourceTree = "<group>"; };
 		02D07CD93817E4E58F8B8A0EC353E1AC /* DDContextFilterLogFormatter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDContextFilterLogFormatter.m; path = Sources/CocoaLumberjack/Extensions/DDContextFilterLogFormatter.m; sourceTree = "<group>"; };
-		02F04D44AC716FE5DF84AB658409337E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		02F04D44AC716FE5DF84AB658409337E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		031C4F2E5BE79A55676CDB879AD7D082 /* MKAnnotationView+ThemeManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MKAnnotationView+ThemeManager.h"; path = "Giotto/Classes/MKAnnotationView+ThemeManager.h"; sourceTree = "<group>"; };
 		03825558CDA4B51644FA3A1DB8F1E75F /* EXTRuntimeExtensions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EXTRuntimeExtensions.h; path = extobjc/EXTRuntimeExtensions.h; sourceTree = "<group>"; };
 		038A8C8F12489CBBBCD9C9A9FEF28967 /* RACTestScheduler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACTestScheduler.m; path = ReactiveObjC/RACTestScheduler.m; sourceTree = "<group>"; };
@@ -1546,7 +1548,7 @@
 		378AA75DAFEFE7E21C6C0D8EA72AAFE3 /* OCFBaseModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = OCFBaseModel.m; sourceTree = "<group>"; };
 		378DB1BA2233765897A94CA24C6B2F98 /* PINOperation-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "PINOperation-Info.plist"; sourceTree = "<group>"; };
 		37B1452BCECE1244FCEE274DF59F0989 /* SDWebImageCompat.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageCompat.m; path = SDWebImage/Core/SDWebImageCompat.m; sourceTree = "<group>"; };
-		37BDD273635467C05378F440ECA161D1 /* RACCompoundDisposableProvider.d */ = {isa = PBXFileReference; includeInIndex = 1; name = RACCompoundDisposableProvider.d; path = ReactiveObjC/RACCompoundDisposableProvider.d; sourceTree = "<group>"; };
+		37BDD273635467C05378F440ECA161D1 /* RACCompoundDisposableProvider.d */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.dtrace; name = RACCompoundDisposableProvider.d; path = ReactiveObjC/RACCompoundDisposableProvider.d; sourceTree = "<group>"; };
 		3852FD4BFF895C68ABA7EAB004C27B82 /* ReactiveObjC-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ReactiveObjC-umbrella.h"; sourceTree = "<group>"; };
 		389C25D2F36BEFBC37990B35E8C6DF21 /* AFNetworkActivityLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFNetworkActivityLogger.h; path = AFNetworkActivityLogger/AFNetworkActivityLogger.h; sourceTree = "<group>"; };
 		38C69566B1BD4479F87336CA0E47A027 /* SDWebImageDownloaderConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageDownloaderConfig.m; path = SDWebImage/Core/SDWebImageDownloaderConfig.m; sourceTree = "<group>"; };
@@ -1704,7 +1706,7 @@
 		59BEE6CD58548AAD79E6195E27E230B3 /* SDImageTransformer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageTransformer.m; path = SDWebImage/Core/SDImageTransformer.m; sourceTree = "<group>"; };
 		59D343266543A6BC2DA674A8B8742CFD /* GVUserDefaults-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GVUserDefaults-Info.plist"; sourceTree = "<group>"; };
 		59FFAF4BC3B2E8C80DDD2AC172F7A66F /* EXTConcreteProtocol.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EXTConcreteProtocol.m; path = extobjc/EXTConcreteProtocol.m; sourceTree = "<group>"; };
-		5A2FB506A8F43CA727834CCBC3ADE4C2 /* RACSignalProvider.d */ = {isa = PBXFileReference; includeInIndex = 1; name = RACSignalProvider.d; path = ReactiveObjC/RACSignalProvider.d; sourceTree = "<group>"; };
+		5A2FB506A8F43CA727834CCBC3ADE4C2 /* RACSignalProvider.d */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.dtrace; name = RACSignalProvider.d; path = ReactiveObjC/RACSignalProvider.d; sourceTree = "<group>"; };
 		5A8C7861BD998B54BD63F416A2CA270D /* Overcoat-JX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Overcoat-JX.debug.xcconfig"; sourceTree = "<group>"; };
 		5AB8F91B151271F4C09FE361141AA146 /* NSObject+RACDescription.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+RACDescription.h"; path = "ReactiveObjC/NSObject+RACDescription.h"; sourceTree = "<group>"; };
 		5B2D88908A578982F9A7C7FA29FDC045 /* OCFPageBaseMenuCellModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = OCFPageBaseMenuCellModel.h; sourceTree = "<group>"; };
@@ -1904,6 +1906,8 @@
 		8B26B123F8638A454C9A635D4C6823A4 /* AFNetworking-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AFNetworking-umbrella.h"; sourceTree = "<group>"; };
 		8BDD780F6666B90EF1EBCF3F3055F098 /* JLRRouteRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JLRRouteRequest.h; path = JLRoutes/Classes/JLRRouteRequest.h; sourceTree = "<group>"; };
 		8C2EA34901B4B549C12425106D008A1A /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLRequestSerialization.h; path = AFNetworking/AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		8C89E96D2786F23900E51C28 /* UITableViewCell+OCFReactor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+OCFReactor.h"; sourceTree = "<group>"; };
+		8C89E96E2786F23900E51C28 /* UITableViewCell+OCFReactor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+OCFReactor.m"; sourceTree = "<group>"; };
 		8C9DE6FA92500D8C7905DECB36FCA4FD /* UISlider+RACSignalSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UISlider+RACSignalSupport.h"; path = "ReactiveObjC/UISlider+RACSignalSupport.h"; sourceTree = "<group>"; };
 		8CD4D6F92588D3E24B0141140B835663 /* SDImageCoderHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageCoderHelper.m; path = SDWebImage/Core/SDImageCoderHelper.m; sourceTree = "<group>"; };
 		8D28454136C76706E841614C19200D9A /* AFCompatibilityMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFCompatibilityMacros.h; path = AFNetworking/AFCompatibilityMacros.h; sourceTree = "<group>"; };
@@ -1979,7 +1983,7 @@
 		9D3BABA6A4BE8BFE2369C300EBF7AD3A /* JLRParsingUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JLRParsingUtilities.h; path = JLRoutes/Classes/JLRParsingUtilities.h; sourceTree = "<group>"; };
 		9D47D205BA98D3FAD14BE5FBE3D96D71 /* OCFIdentifiable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCFIdentifiable.m; path = OCFrame/OCFModel/OCFIdentifiable.m; sourceTree = "<group>"; };
 		9D5EA7F573587ECB371547BFA2196993 /* UICKeyChainStore.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = UICKeyChainStore.modulemap; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9DE124DB8C954CC5D1395A9A6EB5573B /* NSObject+RACKVOWrapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+RACKVOWrapper.h"; path = "ReactiveObjC/NSObject+RACKVOWrapper.h"; sourceTree = "<group>"; };
 		9DF7CDA3078CD635D3903CCBB136C00F /* Overcoat-JX */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Overcoat-JX"; path = Overcoat_JX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E07803194B5324C10051B1804137316 /* PINCache-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PINCache-dummy.m"; sourceTree = "<group>"; };
@@ -2282,7 +2286,7 @@
 		DFDD3BE8BCAFD53D6600874E7D95027E /* SDInternalMacros.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDInternalMacros.m; path = SDWebImage/Private/SDInternalMacros.m; sourceTree = "<group>"; };
 		E0764110CD8CC29CB0CEC2B30CAA7CD3 /* SDThemeManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDThemeManager.h; path = Giotto/Classes/SDThemeManager.h; sourceTree = "<group>"; };
 		E0900A8BC280FFA4BB939280F6493E2D /* AFNetworkActivityLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFNetworkActivityLogger.m; path = AFNetworkActivityLogger/AFNetworkActivityLogger.m; sourceTree = "<group>"; };
-		E0C50713EE0444DE897E19B538518BD4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		E0C50713EE0444DE897E19B538518BD4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		E0F7482A36399F1D210CE98ED8F7FE71 /* OCFNormalTableCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = OCFNormalTableCell.h; sourceTree = "<group>"; };
 		E14AEDCDB4435D2C681D0CAB2A1A4C84 /* NSImage+Compatibility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSImage+Compatibility.m"; path = "SDWebImage/Core/NSImage+Compatibility.m"; sourceTree = "<group>"; };
 		E1652DC4CFEF0FBF1D6515C8362B968A /* MJRefreshAutoFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshAutoFooter.m; path = MJRefresh/Base/MJRefreshAutoFooter.m; sourceTree = "<group>"; };
@@ -2381,7 +2385,7 @@
 		FA653FAD07D3C9CF30AED7DCD06CAC8B /* NSURL+QMUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSURL+QMUI.h"; path = "QMUIKit/UIKitExtensions/NSURL+QMUI.h"; sourceTree = "<group>"; };
 		FAC37A0D25B67E9184BEAEAF71FFD276 /* RACEmptySequence.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACEmptySequence.m; path = ReactiveObjC/RACEmptySequence.m; sourceTree = "<group>"; };
 		FAE3125204734A0681679A1BF3672B38 /* WebViewJavascriptBridgeBase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridgeBase.m; sourceTree = "<group>"; };
-		FB7B4681FABBF046F187BF7CD92642C6 /* OCFrame.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = OCFrame.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		FB7B4681FABBF046F187BF7CD92642C6 /* OCFrame.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = OCFrame.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		FC08F4F2A345183C58968EFCDE56EC5B /* UIColor+SDHexString.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+SDHexString.m"; path = "SDWebImage/Private/UIColor+SDHexString.m"; sourceTree = "<group>"; };
 		FC88A3E3EFFA1C1A7E714211703B7007 /* OCFPageIndicatorComponentView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = OCFPageIndicatorComponentView.m; sourceTree = "<group>"; };
 		FCBE537154E092B7A49406AC02C6DD7A /* UIBlurEffect+QMUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIBlurEffect+QMUI.m"; path = "QMUIKit/UIKitExtensions/UIBlurEffect+QMUI.m"; sourceTree = "<group>"; };
@@ -2632,7 +2636,6 @@
 				0F3ABAA82763660E60B3492D114A548D /* UIScrollView+EmptyDataSet.m */,
 				5DE65B5499B42460AAEF7CB5877E31C8 /* Support Files */,
 			);
-			name = DZNEmptyDataSet;
 			path = DZNEmptyDataSet;
 			sourceTree = "<group>";
 		};
@@ -2646,7 +2649,6 @@
 				2A946EA436EDAA2387BC1A826D733B64 /* AFNetworkActivityLoggerProtocol.h */,
 				460292F022E496074456A5BF909D3705 /* Support Files */,
 			);
-			name = AFNetworkActivityLogger;
 			path = AFNetworkActivityLogger;
 			sourceTree = "<group>";
 		};
@@ -2695,7 +2697,6 @@
 				187E2E9DDC194EB4C0CBD122D1F7C471 /* PINOperationTypes.h */,
 				8A4112EF46F3D72CAA49BE9AEC7DC263 /* Support Files */,
 			);
-			name = PINOperation;
 			path = PINOperation;
 			sourceTree = "<group>";
 		};
@@ -2710,7 +2711,6 @@
 				F5242DE9EFF6837DF6CB697702685135 /* Support Files */,
 				510FA29FECB70EA5EFB0D30DBEEF94C9 /* UIKit */,
 			);
-			name = AFNetworking;
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
@@ -2815,7 +2815,6 @@
 				EB90382871B46CB808C40D1AF2792478 /* Overcoat.h */,
 				6D10AF6A9869BF51DC514C1800B60F3D /* Support Files */,
 			);
-			name = "Overcoat-JX";
 			path = "Overcoat-JX";
 			sourceTree = "<group>";
 		};
@@ -2973,7 +2972,6 @@
 				701188BD6C8C432D44EE64629BE00BBC /* UICKeyChainStore.m */,
 				660D2FD0E4B93B7E92EA3499A9D676F3 /* Support Files */,
 			);
-			name = UICKeyChainStore;
 			path = UICKeyChainStore;
 			sourceTree = "<group>";
 		};
@@ -2986,7 +2984,6 @@
 				EE401C72FB9C18AB2FD7366FC5770E5B /* UIDevice+FCUUID.m */,
 				04F053C06DC5DE69D650CD8712D2B8CA /* Support Files */,
 			);
-			name = FCUUID;
 			path = FCUUID;
 			sourceTree = "<group>";
 		};
@@ -3012,7 +3009,6 @@
 				E69090E0B5784D1B25DD115451121F76 /* GVUserDefaults.m */,
 				E313428F27D57EB807324C54A0A8F8AF /* Support Files */,
 			);
-			name = GVUserDefaults;
 			path = GVUserDefaults;
 			sourceTree = "<group>";
 		};
@@ -3137,7 +3133,6 @@
 				444B94D098299816594FA3BFB9B37FDE /* Core */,
 				6E43C0FC99C539AAC44136BD48B7F7AA /* Support Files */,
 			);
-			name = CocoaLumberjack;
 			path = CocoaLumberjack;
 			sourceTree = "<group>";
 		};
@@ -3147,7 +3142,6 @@
 				A6A87EEA9CCF70C92D296BD4821E2D77 /* Core */,
 				860B9531A04049B21EE691B56302ED0B /* Support Files */,
 			);
-			name = SDWebImage;
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
@@ -3244,7 +3238,6 @@
 				1C114B48C8654665626736B0CF48D608 /* extobjc */,
 				D6BB47A81185C5DA64561513AA20945F /* Support Files */,
 			);
-			name = "Mantle-JX";
 			path = "Mantle-JX";
 			sourceTree = "<group>";
 		};
@@ -3592,7 +3585,6 @@
 				4AFF60C1BE2273963DEE09C4A384898D /* UITextView+RACSignalSupport.m */,
 				2B3FA19E51BD6C8B8501BE3C109EF6E9 /* Support Files */,
 			);
-			name = ReactiveObjC;
 			path = ReactiveObjC;
 			sourceTree = "<group>";
 		};
@@ -3675,7 +3667,6 @@
 				3ED7F743944034B1FC2A2B4AEBF7FEEA /* Resources */,
 				4304185BDF8CDB6AFD97ECC8462ECD76 /* Support Files */,
 			);
-			name = MJRefresh;
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
@@ -3753,7 +3744,6 @@
 				A658A5515BEBA3C415A2F7E66CCCC0B8 /* JLRRouteResponse.m */,
 				B230D13E203B875FEB2AB32F72ED17E1 /* Support Files */,
 			);
-			name = JLRoutes;
 			path = JLRoutes;
 			sourceTree = "<group>";
 		};
@@ -3835,7 +3825,6 @@
 				B4600DB84815631FDBF8EFCAE4907ADB /* Core */,
 				8EBFBA4E6A817DE0B4DEEB437CF301B6 /* Support Files */,
 			);
-			name = Giotto;
 			path = Giotto;
 			sourceTree = "<group>";
 		};
@@ -3896,6 +3885,8 @@
 				C222AF166B86F2EE060362F06CA75256 /* UIView+OCFReactor.m */,
 				29F756EBB416B977B3FD40971298C9A3 /* UIViewController+OCFReactor.h */,
 				5C0FFA9377A1E3563E1A6C549F9B9716 /* UIViewController+OCFReactor.m */,
+				8C89E96D2786F23900E51C28 /* UITableViewCell+OCFReactor.h */,
+				8C89E96E2786F23900E51C28 /* UITableViewCell+OCFReactor.m */,
 			);
 			name = Categories;
 			path = OCFrame/OCFReactor/Categories;
@@ -4140,7 +4131,6 @@
 				00DEF90870082A3CCDC5FECFD6E4AE91 /* RuntimeExtensions */,
 				504F928E7BB444847B1E3461364D69DB /* Support Files */,
 			);
-			name = libextobjc;
 			path = libextobjc;
 			sourceTree = "<group>";
 		};
@@ -4180,7 +4170,6 @@
 				7FFB8CADD35E17C295D27D696667F362 /* Core */,
 				C8717BED82B12429D013C5C7A09C8ED8 /* Support Files */,
 			);
-			name = PINCache;
 			path = PINCache;
 			sourceTree = "<group>";
 		};
@@ -4368,7 +4357,6 @@
 				FBD42560B3EFEF37C3A61F0F2CCFE9C8 /* QMUIWeakObjectContainer */,
 				21995704B1279C132BD8EA7CE4B4FEE1 /* Support Files */,
 			);
-			name = QMUIKit;
 			path = QMUIKit;
 			sourceTree = "<group>";
 		};
@@ -4794,6 +4782,7 @@
 				36A0670F7A668DDFB3348DBAEEC71A83 /* OCFTabBarViewController.h in Headers */,
 				32F7070418314BF04BBDD56D0451EBC3 /* OCFTabBarViewReactor.h in Headers */,
 				1669BB22D541A58C21EF3479111F71E1 /* OCFTableCell.h in Headers */,
+				8C89E96F2786F23900E51C28 /* UITableViewCell+OCFReactor.h in Headers */,
 				DD8C22B78FE87EB8EA53C67F5815A48C /* OCFTableHeaderFooter.h in Headers */,
 				253DC041ACC1890F88A6B001A60E086D /* OCFTableHeaderFooterView.h in Headers */,
 				3FFFB4407B47ED277FFC671ADCB65902 /* OCFTableItem.h in Headers */,
@@ -6134,6 +6123,7 @@
 				7FD227679A96DBAB90783A658C7A35B5 /* OCFLoginViewReactor.m in Sources */,
 				A03A71613076460F995784FECC01D74E /* OCFMetric.m in Sources */,
 				3976F9655949D56FEF4F07260A6CF430 /* OCFMisc.m in Sources */,
+				8C89E9702786F23900E51C28 /* UITableViewCell+OCFReactor.m in Sources */,
 				B92F7E94F83C771ABCA759187E07262D /* OCFModel.m in Sources */,
 				66C85E74F32F092DFCA4113F435C7875 /* OCFNavigationBar.m in Sources */,
 				7FB6CFB186C050946A8E864E2161254C /* OCFNavigationController.m in Sources */,
@@ -7449,8 +7439,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};

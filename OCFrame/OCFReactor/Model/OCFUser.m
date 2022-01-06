@@ -7,10 +7,10 @@
 
 #import "OCFUser.h"
 #import <Mantle_JX/Mantle.h>
-#import "OCFConstant.h"
-#import "OCFFunction.h"
+#import "OCFDefines.h"
+#import "OCFDefines.h"
 #import "OCFLoginViewController.h"
-#import "UIViewController+OCFrame.h"
+#import "UIViewController+OCFReactor.h"
 
 @interface OCFUser ()
 
@@ -23,7 +23,7 @@
 }
 
 + (BOOL)canAutoOpenLoginPage {
-    UIViewController *topMost = UIViewController.ocf_topMostViewController;
+    UIViewController *topMost = UIViewController.ocf_topMost;
     if ([topMost isKindOfClass:OCFLoginViewController.class]) {
         return NO;
     }

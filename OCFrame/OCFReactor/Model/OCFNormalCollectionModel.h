@@ -5,9 +5,9 @@
 //  Created by 杨建祥 on 2020/2/25.
 //
 
-#import "OCFBaseModel.h"
+#import "OCFModel.h"
 
-@interface OCFNormalCollectionModel : OCFBaseModel
+@interface OCFNormalCollectionModel : OCFModel
 @property (nonatomic, assign) BOOL indicated;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *detail;

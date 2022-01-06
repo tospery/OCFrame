@@ -9,18 +9,16 @@
 #import <JLRoutes/JLRoutes.h>
 #import <JLRoutes/JLRRouteHandler.h>
 #import <JLRoutes/JLRRouteDefinition.h>
-#import "OCFType.h"
-#import "OCFConstant.h"
-#import "OCFFunction.h"
-#import "OCFString.h"
+#import "OCFDefines.h"
+#import "OCFStrings.h"
 #import "OCFAppDependency.h"
 #import "OCFParameter.h"
 #import "OCFViewController.h"
-#import "NSObject+OCFrame.h"
-#import "NSDictionary+OCFrame.h"
-#import "UIViewController+OCFrame.h"
-#import "NSError+OCFrame.h"
-#import "NSObject+OCFrame.h"
+#import "NSObject+OCFReactor.h"
+#import "NSDictionary+OCFReactor.h"
+#import "UIViewController+OCFReactor.h"
+#import "NSError+OCFReactor.h"
+#import "NSObject+OCFReactor.h"
 
 @interface OCFViewReactor ()
 @property (nonatomic, strong, readwrite) NSString *host;
@@ -88,7 +86,7 @@
             }
         } else {
             Class class = NSClassFromString(@"User");
-            if (class && [class isSubclassOfClass:OCFBaseModel.class]) {
+            if (class && [class isSubclassOfClass:OCFModel.class]) {
                 self.user = [class current];
             } else {
                 self.user = [OCFUser current];

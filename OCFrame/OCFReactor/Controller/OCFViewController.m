@@ -7,23 +7,23 @@
 
 #import "OCFViewController.h"
 #import <QMUIKit/QMUIKit.h>
-#import "OCFType.h"
-#import "OCFConstant.h"
-#import "OCFFunction.h"
-#import "OCFString.h"
+#import "OCFDefines.h"
+#import "OCFDefines.h"
+#import "OCFDefines.h"
+#import "OCFStrings.h"
 #import "OCFAppDependency.h"
 #import "OCFParameter.h"
 #import "OCFrameManager.h"
 #import "OCFLoginViewController.h"
 #import "OCFViewController.h"
-#import "NSDictionary+OCFrame.h"
-#import "UIViewController+OCFrame.h"
-#import "NSError+OCFrame.h"
-#import "NSObject+OCFrame.h"
-#import "UIColor+OCFrame.h"
+#import "NSDictionary+OCFReactor.h"
+#import "UIViewController+OCFReactor.h"
+#import "NSError+OCFReactor.h"
+#import "NSObject+OCFReactor.h"
+#import "UIColor+OCFReactor.h"
 #import "OCFScrollItem.h"
-#import "UIImage+OCFrame.h"
-#import "RACBehaviorSubject+OCFrame.h"
+#import "UIImage+OCFReactor.h"
+#import "RACBehaviorSubject+OCFReactor.h"
 
 @interface OCFViewController ()
 @property (nonatomic, assign) BOOL onceTokenForReload;
@@ -209,7 +209,7 @@
             return RACTuplePack(url, tuple.second);
         } else if ([tuple.first isKindOfClass:NSString.class]) {
             NSString *string = (NSString *)tuple.first;
-            NSURL *url = OCFURLWithUniversal(string);
+            NSURL *url = string.ocf_routeURL;
             if (!url) {
                 return nil;
             }
@@ -227,7 +227,7 @@
         return RACTuplePack(next, nil);
     } else if ([next isKindOfClass:NSString.class]) {
         NSString *string = (NSString *)next;
-        NSURL *url = OCFURLWithUniversal(string);
+        NSURL *url = string.ocf_routeURL;
         if (!url) {
             return nil;
         }

@@ -5,9 +5,9 @@
 //  Created by liaoya on 2021/12/16.
 //
 
-#import "OCFBaseModel.h"
+#import "OCFModel.h"
 
-@interface OCFPlainModel : OCFBaseModel
+@interface OCFPlainModel : OCFModel
 @property (nonatomic, strong, readonly) id value;
 
 - (instancetype)initWithID:(NSString *)id NS_UNAVAILABLE;

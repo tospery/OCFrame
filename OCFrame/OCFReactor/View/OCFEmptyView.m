@@ -8,11 +8,11 @@
 #import "OCFEmptyView.h"
 #import <QMUIKit/QMUIKit.h>
 #import <ReactiveObjC/ReactiveObjC.h>
-#import "OCFFunction.h"
+#import "OCFDefines.h"
 #import "OCFEmptyReactor.h"
-#import "UIFont+OCFrame.h"
-#import "UIColor+OCFrame.h"
-#import "NSError+OCFrame.h"
+#import "OCFDefines.h"
+#import "UIColor+OCFReactor.h"
+#import "NSError+OCFReactor.h"
 
 @interface OCFEmptyView ()
 @property (nonatomic, strong) UILabel *titleLabel;

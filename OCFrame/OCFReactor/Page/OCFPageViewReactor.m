@@ -7,7 +7,7 @@
 
 #import "OCFPageViewReactor.h"
 #import "OCFParameter.h"
-#import "NSDictionary+OCFrame.h"
+#import "NSDictionary+OCFReactor.h"
 
 @interface OCFPageViewReactor ()
 

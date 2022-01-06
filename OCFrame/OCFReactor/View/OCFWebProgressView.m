@@ -6,7 +6,7 @@
 //
 
 #import "OCFWebProgressView.h"
-#import "OCFFunction.h"
+#import "OCFDefines.h"
 
 @interface OCFWebProgressView ()
 

@@ -6,14 +6,13 @@
 //
 
 #import "OCFTableViewReactor.h"
-#import "OCFConstant.h"
+#import "OCFDefines.h"
 #import "OCFReactive.h"
 #import "OCFTableHeaderFooter.h"
-#import "NSError+OCFrame.h"
-#import "UITableViewCell+OCFrame.h"
-#import "UITableViewHeaderFooterView+OCFrame.h"
-#import "UITableView+OCFrame.h"
-#import "NSArray+OCFrame.h"
+#import "NSError+OCFReactor.h"
+#import "UITableViewHeaderFooterView+OCFReactor.h"
+#import "UITableView+OCFReactor.h"
+#import "NSArray+OCFReactor.h"
 
 @interface OCFTableViewReactor ()
 

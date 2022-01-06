@@ -6,7 +6,7 @@
 //
 
 #import "OCFCollectionItem.h"
-#import "OCFFunction.h"
+#import "OCFDefines.h"
 
 @interface OCFCollectionItem ()
 
@@ -14,7 +14,7 @@
 
 @implementation OCFCollectionItem
 
-- (instancetype)initWithModel:(OCFBaseModel *)model {
+- (instancetype)initWithModel:(OCFModel *)model {
     if (self = [super initWithModel:model]) {
         //self.cellSize = CGSizeMake(DEVICE_WIDTH, OCFMetric(44));
     }

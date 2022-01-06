@@ -77,7 +77,7 @@
 #import "OCFRuntimeManager.h"
 #import "OCFAppDependency.h"
 #import "OCFBaseList.h"
-#import "OCFBaseModel.h"
+#import "OCFModel.h"
 #import "OCFBaseResponse.h"
 #import "OCFBehaviorRelay.h"
 #import "OCFConfiguration.h"

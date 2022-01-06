@@ -10,8 +10,8 @@
 #import <JLRoutes/JLRoutes.h>
 #import <AFNetworking/AFNetworking.h>
 #import <AFNetworkActivityLogger/AFNetworkActivityLogger.h>
-#import "OCFConstant.h"
-#import "OCFFunction.h"
+#import "OCFDefines.h"
+#import "OCFDefines.h"
 #import "OCFReachManager.h"
 #import "OCFrameManager.h"
 

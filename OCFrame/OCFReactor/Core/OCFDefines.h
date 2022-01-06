@@ -20,6 +20,8 @@
 #import "NSDictionary+OCFReactor.h"
 #import "UIColor+OCFReactor.h"
 
+extern DDLogLevel ddLogLevel;
+
 #pragma mark - 类型
 typedef void        (^OCFVoidBlock)(void);
 typedef BOOL        (^OCFBoolBlock)(void);

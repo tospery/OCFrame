@@ -7,11 +7,10 @@
 
 #import "OCFWebViewReactor.h"
 #import <JLRoutes/JLRoutes.h>
-#import "OCFConstant.h"
-#import "OCFFunction.h"
+#import "OCFDefines.h"
 #import "OCFParameter.h"
-#import "NSDictionary+OCFrame.h"
-#import "UIColor+OCFrame.h"
+#import "NSDictionary+OCFReactor.h"
+#import "UIColor+OCFReactor.h"
 
 @interface OCFWebViewReactor ()
 @property (nonatomic, strong, readwrite) NSArray *appHandlers;

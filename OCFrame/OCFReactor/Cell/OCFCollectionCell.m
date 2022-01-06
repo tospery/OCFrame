@@ -6,8 +6,8 @@
 //
 
 #import "OCFCollectionCell.h"
-#import "OCFFunction.h"
-#import "UIColor+OCFrame.h"
+#import "OCFDefines.h"
+#import "UIColor+OCFReactor.h"
 
 @interface OCFCollectionCell ()
 @property (nonatomic, strong, readwrite) OCFCollectionItem *reactor;

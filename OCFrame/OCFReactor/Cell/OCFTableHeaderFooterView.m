@@ -6,7 +6,7 @@
 //
 
 #import "OCFTableHeaderFooterView.h"
-#import "UIColor+OCFrame.h"
+#import "UIColor+OCFReactor.h"
 
 @interface OCFTableHeaderFooterView ()
 @property (nonatomic, strong, readwrite) OCFBaseReactor *reactor;

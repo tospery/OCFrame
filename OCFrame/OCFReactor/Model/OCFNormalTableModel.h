@@ -5,12 +5,9 @@
 //  Created by liaoya on 2021/12/14.
 //
 
-#import <OCFrame/OCFrame.h>
+#import <OCFrame/OCFModel.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface OCFNormalTableModel : OCFBaseModel
+@interface OCFNormalTableModel : OCFModel
 
 @end
 
-NS_ASSUME_NONNULL_END

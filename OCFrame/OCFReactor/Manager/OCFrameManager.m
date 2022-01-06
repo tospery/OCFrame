@@ -8,8 +8,10 @@
 #import "OCFrameManager.h"
 #import <QMUIKit/QMUIKit.h>
 #import <AFNetworking/AFNetworking.h>
-#import "NSString+OCFrame.h"
-#import "UIApplication+OCFrame.h"
+#import "NSString+OCFReactor.h"
+#import "UIApplication+OCFReactor.h"
+
+DDLogLevel ddLogLevel = DDLogLevelAll;
 
 @interface OCFrameManager ()
 @property (nonatomic, strong, readwrite) RACBehaviorSubject *reachSubject;

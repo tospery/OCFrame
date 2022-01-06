@@ -6,13 +6,13 @@
 //
 
 #import "OCFRouterManager.h"
-#import "OCFConstant.h"
+#import "OCFDefines.h"
 #import "OCFLoginViewReactor.h"
 #import "OCFWebViewReactor.h"
-#import "NSDictionary+OCFrame.h"
+#import "NSDictionary+OCFReactor.h"
 #import "OCFParameter.h"
-#import "NSString+OCFrame.h"
-#import "NSObject+OCFrame.h"
+#import "NSString+OCFReactor.h"
+#import "NSObject+OCFReactor.h"
 #import <JLRoutes/JLRoutes.h>
 #import <JLRoutes/JLRRouteHandler.h>
 #import <JLRoutes/JLRRouteDefinition.h>

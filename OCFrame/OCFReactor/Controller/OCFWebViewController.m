@@ -8,16 +8,16 @@
 #import "OCFWebViewController.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 #import <ReactiveObjC/NSObject+RACKVOWrapper.h>
-#import "OCFConstant.h"
-#import "OCFFunction.h"
+#import "OCFDefines.h"
+#import "OCFDefines.h"
 #import "OCFParameter.h"
 #import "OCFWebViewReactor.h"
 #import "OCFWebProgressView.h"
 #import "OCFEmptyView.h"
-#import "NSString+OCFrame.h"
-#import "NSURL+OCFrame.h"
-#import "UIColor+OCFrame.h"
-#import "UIApplication+OCFrame.h"
+#import "NSString+OCFReactor.h"
+#import "NSURL+OCFReactor.h"
+#import "UIColor+OCFReactor.h"
+#import "UIApplication+OCFReactor.h"
 
 #define kOCFWebEstimatedProgress         (@"estimatedProgress")
 
@@ -72,7 +72,7 @@
                 ((id(*)(id, SEL, id, WVJBResponseCallback))[self.reactor methodForSelector:selector])(self.reactor, selector, data, responseCallback);
             }else {
                 OCFLogWarn(@"Web找不到oc handler: %@", method);
-                [self.navigator routeURL:OCFURLWithUniversal(kOCFHostToast) withParameters:@{
+                [self.navigator routeURL:kOCFHostToast.ocf_routeURL withParameters:@{
                     OCFParameter.message: OCFStrWithFmt(@"缺少%@方法", method)
                 }];
             }

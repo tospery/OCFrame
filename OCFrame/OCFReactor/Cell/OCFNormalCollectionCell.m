@@ -7,15 +7,15 @@
 
 #import "OCFNormalCollectionCell.h"
 #import <SDWebImage/SDWebImage.h>
-#import "OCFFunction.h"
+#import "OCFDefines.h"
 #import "OCFBorderLayer.h"
-#import "UIFont+OCFrame.h"
-#import "UIImage+OCFrame.h"
-#import "NSURL+OCFrame.h"
-#import "UIView+OCFrame.h"
+#import "OCFDefines.h"
+#import "UIImage+OCFReactor.h"
+#import "NSURL+OCFReactor.h"
+#import "UIView+OCFReactor.h"
 #import "OCFNormalCollectionItem.h"
-#import "UIImageView+OCFrame.h"
-#import "UIColor+OCFrame.h"
+#import "UIImageView+OCFReactor.h"
+#import "UIColor+OCFReactor.h"
 
 @interface OCFNormalCollectionCell ()
 @property (nonatomic, strong, readwrite) UILabel *titleLabel;

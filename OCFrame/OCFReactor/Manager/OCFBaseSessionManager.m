@@ -7,15 +7,15 @@
 
 #import "OCFBaseSessionManager.h"
 #import <ReactiveObjC/ReactiveObjC.h>
-#import "OCFType.h"
-#import "OCFConstant.h"
-#import "OCFFunction.h"
-#import "OCFString.h"
+#import "OCFDefines.h"
+#import "OCFDefines.h"
+#import "OCFDefines.h"
+#import "OCFStrings.h"
 #import "OCFBaseResponse.h"
 #import "OCFBaseList.h"
-#import "NSError+OCFrame.h"
-#import "UIApplication+OCFrame.h"
-#import "NSObject+OCFrame.h"
+#import "NSError+OCFReactor.h"
+#import "UIApplication+OCFReactor.h"
+#import "NSObject+OCFReactor.h"
 
 typedef RACSignal *(^MapBlock)(OCFBaseResponse *);
 typedef void (^ErrBlock)(NSError *);

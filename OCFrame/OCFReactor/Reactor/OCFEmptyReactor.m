@@ -6,7 +6,7 @@
 //
 
 #import "OCFEmptyReactor.h"
-#import "OCFFunction.h"
+#import "OCFDefines.h"
 
 @interface OCFEmptyReactor ()
 

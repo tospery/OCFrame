@@ -8,16 +8,16 @@
 #import "OCFNavigator.h"
 #import <QMUIKit/QMUIKit.h>
 #import <JLRoutes/JLRoutes.h>
-#import "OCFConstant.h"
-#import "OCFFunction.h"
+#import "OCFDefines.h"
+#import "OCFDefines.h"
 #import "OCFParameter.h"
 #import "OCFViewReactor.h"
 #import "OCFViewController.h"
 #import "OCFTabBarController.h"
 #import "OCFTabBarViewController.h"
 #import "OCFNavigationController.h"
-#import "NSURL+OCFrame.h"
-#import "UINavigationController+OCFrame.h"
+#import "NSURL+OCFReactor.h"
+#import "UINavigationController+OCFReactor.h"
 
 #define kControllerName                             (@"Controller")
 #define kReactorName                                (@"Reactor")
@@ -159,20 +159,20 @@
 #pragma mark Toast
 - (void)toastMessage:(NSString *)message {
     OCFCheck(message);
-    [self routeURL:OCFURLWithUniversal(kOCFHostToast) withParameters:@{
+    [self routeURL:kOCFHostToast.ocf_routeURL withParameters:@{
         OCFParameter.message: message
     }];
 }
 
 - (void)showToastActivity:(OCFToastPosition)position {
-    [self routeURL:OCFURLWithUniversal(kOCFHostToast) withParameters:@{
+    [self routeURL:kOCFHostToast.ocf_routeURL withParameters:@{
         OCFParameter.active: @YES,
         OCFParameter.position: @(position)
     }];
 }
 
 - (void)hideToastActivity {
-    [self routeURL:OCFURLWithUniversal(kOCFHostToast) withParameters:@{
+    [self routeURL:kOCFHostToast.ocf_routeURL withParameters:@{
         OCFParameter.active: @NO
     }];
 }
@@ -192,7 +192,7 @@
     if (actions.count != 0) {
         [parameters setObject:actions forKey:OCFParameter.actions];
     }
-    [self routeURL:OCFURLWithUniversal(kOCFHostAlert) withParameters:parameters];
+    [self routeURL:kOCFHostAlert.ocf_routeURL withParameters:parameters];
 }
 
 - (RACSignal *)rac_alertTitle:(NSString *)title message:(NSString *)message actions:(NSArray<NSNumber *> *)actions {
@@ -213,7 +213,7 @@
             [parameters setObject:actions forKey:OCFParameter.actions];
         }
         [parameters setObject:subscriber forKey:OCFParameter.subscriber];
-        [self routeURL:OCFURLWithUniversal(kOCFHostAlert) withParameters:parameters];
+        [self routeURL:kOCFHostAlert.ocf_routeURL withParameters:parameters];
         return [RACDisposable disposableWithBlock:^{
         }];
     }];
@@ -222,7 +222,7 @@
 #pragma mark Forward (push/present/popup)
 - (id)forwardReactor:(OCFViewReactor *)reactor {
     UIViewController *viewController = (UIViewController *)[self viewController:reactor];
-    UINavigationController *navigationController = UINavigationController.ocf_currentNavigationController;
+    UINavigationController *navigationController = UINavigationController.ocf_current;
     OCFForwardType forwardType = reactor.forwardType;
     if (!navigationController && forwardType == OCFForwardTypePush) {
         forwardType = OCFForwardTypePresent;
@@ -232,7 +232,7 @@
     } else if (forwardType == OCFForwardTypePresent) {
         UIViewController *presentingViewController = navigationController;
         if (!presentingViewController) {
-            presentingViewController = UIViewController.ocf_topMostViewController;
+            presentingViewController = UIViewController.ocf_topMost;
         }
         if (![viewController isKindOfClass:UINavigationController.class]) {
             viewController = [[OCFNavigationController alloc] initWithRootViewController:viewController];
@@ -244,11 +244,11 @@
 
 #pragma mark Login
 - (void)goLogin {
-    [self routeURL:OCFURLWithUniversal(kOCFHostLogin) withParameters:nil];
+    [self routeURL:kOCFHostLogin.ocf_routeURL withParameters:nil];
 }
 
 - (RACSignal *)rac_goLogin {
-    return [self rac_routeURL:OCFURLWithUniversal(kOCFHostLogin) withParameters:nil];
+    return [self rac_routeURL:kOCFHostLogin.ocf_routeURL withParameters:nil];
 }
 
 @end
