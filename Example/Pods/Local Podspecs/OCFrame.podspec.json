@@ -24,9 +24,6 @@
     "QMUIKit/QMUICore": [
       "4.4.0"
     ],
-    "CocoaLumberjack": [
-      "3.7.2"
-    ],
     "AFNetworkActivityLogger": [
       "3.0.0"
     ],
@@ -57,17 +54,31 @@
   },
   "subspecs": [
     {
-      "name": "Model",
-      "source_files": [
-        "OCFrame/OCFrame.h",
-        "OCFrame/Model"
-      ],
+      "name": "OCFCore",
+      "source_files": "OCFrame/OCFCore/**/*",
+      "frameworks": "CoreGraphics",
       "dependencies": {
-        "libextobjc/EXTConcreteProtocol": [
-          "0.6"
+        "CocoaLumberjack": [
+          "3.7.2"
         ],
         "Mantle-JX": [
           "2.2.0-v3"
+        ]
+      }
+    },
+    {
+      "name": "OCFUIKit",
+      "source_files": "OCFrame/OCFUIKit/**/*"
+    },
+    {
+      "name": "OCFModel",
+      "source_files": "OCFrame/OCFModel/**/*",
+      "dependencies": {
+        "OCFrame/OCFCore": [
+
+        ],
+        "libextobjc/EXTConcreteProtocol": [
+          "0.6"
         ],
         "PINCache": [
           "3.0.3"
@@ -75,20 +86,20 @@
       }
     },
     {
-      "name": "Reactor",
-      "source_files": "OCFrame/Reactor/**/*",
+      "name": "OCFReactor",
+      "source_files": "OCFrame/OCFReactor/**/*",
       "frameworks": "UIKit",
       "dependencies": {
-        "OCFrame/Model": [
+        "OCFrame/OCFModel": [
 
         ]
       }
     },
     {
-      "name": "Resources",
+      "name": "OCFResource",
       "resource_bundles": {
-        "Resources": [
-          "OCFrame/Resources/*.*"
+        "OCFResource": [
+          "OCFrame/OCFResource/*.*"
         ]
       }
     }

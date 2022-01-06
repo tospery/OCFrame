@@ -11,8 +11,8 @@
 #import <libextobjc/EXTConcreteProtocol.h>
 #import <Mantle_JX/Mantle.h>
 #import <PINCache/PINCache.h>
-#import "MTLJSONAdapter+Model.h"
-#import "NSValueTransformer+Model.h"
+#import "MTLJSONAdapter+OCFModel.h"
+#import "NSValueTransformer+OCFModel.h"
 #import "OCFIdentifiable.h"
 #import "OCFStorable.h"
 #import "OCFModel.h"

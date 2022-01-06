@@ -30,19 +30,29 @@ Pod::Spec.new do |s|
   s.frameworks       = 'Foundation'
   s.source_files     = 'OCFrame/OCFrame.h'
   
-  s.subspec 'Model' do |ss|
-    ss.source_files = 'OCFrame/OCFrame.h', 'OCFrame/Model'
+  s.subspec 'OCFCore' do |ss|
+    ss.source_files = 'OCFrame/OCFCore/**/*'
+	ss.frameworks = 'CoreGraphics'
+	ss.dependency 'CocoaLumberjack', '3.7.2'
+	ss.dependency 'Mantle-JX', '2.2.0-v3'
+  end
+  
+  s.subspec 'OCFUIKit' do |ss|
+    ss.source_files = 'OCFrame/OCFUIKit/**/*'
+  end
+  
+  s.subspec 'OCFModel' do |ss|
+    ss.source_files = 'OCFrame/OCFModel/**/*'
+	ss.dependency 'OCFrame/OCFCore'
 	ss.dependency 'libextobjc/EXTConcreteProtocol', '0.6'
-    ss.dependency 'Mantle-JX', '2.2.0-v3'
 	ss.dependency 'PINCache', '3.0.3'
   end
   
-  s.subspec 'Reactor' do |ss|
-	ss.source_files = 'OCFrame/Reactor/**/*'
+  s.subspec 'OCFReactor' do |ss|
+	ss.source_files = 'OCFrame/OCFReactor/**/*'
 	ss.frameworks = 'UIKit'
-    ss.dependency 'OCFrame/Model'
+    ss.dependency 'OCFrame/OCFModel'
 	s.dependency 'QMUIKit/QMUICore', '4.4.0'
-	s.dependency 'CocoaLumberjack', '3.7.2'
 	s.dependency 'AFNetworkActivityLogger', '3.0.0'
 	s.dependency 'Overcoat-JX', '4.0.5'
 	s.dependency 'JLRoutes', '2.1'
@@ -54,8 +64,8 @@ Pod::Spec.new do |s|
 	s.dependency 'DZNEmptyDataSet', '1.8.1'
   end
   
-  s.subspec 'Resources' do |ss|
-    ss.resource_bundles = {'Resources' => ['OCFrame/Resources/*.*']}
+  s.subspec 'OCFResource' do |ss|
+    ss.resource_bundles = {'OCFResource' => ['OCFrame/OCFResource/*.*']}
   end
 
 end

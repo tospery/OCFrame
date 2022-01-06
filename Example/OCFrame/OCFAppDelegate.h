@@ -9,7 +9,6 @@
 @import UIKit;
 
 @interface OCFAppDelegate : UIResponder <UIApplicationDelegate>
-
 @property (strong, nonatomic) UIWindow *window;
 
 @end
