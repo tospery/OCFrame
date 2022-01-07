@@ -34,33 +34,33 @@ PODS:
     - Mantle-JX/extobjc (= 2.2.0-v3)
   - Mantle-JX/extobjc (2.2.0-v3)
   - MJRefresh (3.7.2)
-  - OCFrame (1.1.3):
-    - OCFrame/OCFComponents (= 1.1.3)
-    - OCFrame/OCFCore (= 1.1.3)
-    - OCFrame/OCFExtensions (= 1.1.3)
-    - OCFrame/OCFNetwork (= 1.1.3)
-    - OCFrame/OCFReactor (= 1.1.3)
-    - OCFrame/OCFResources (= 1.1.3)
-  - OCFrame/OCFComponents (1.1.3):
-    - OCFrame/OCFComponents/JSBridge (= 1.1.3)
-  - OCFrame/OCFComponents/JSBridge (1.1.3)
-  - OCFrame/OCFCore (1.1.3):
+  - OCFrame (1.1.4):
+    - OCFrame/OCFComponents (= 1.1.4)
+    - OCFrame/OCFCore (= 1.1.4)
+    - OCFrame/OCFExtensions (= 1.1.4)
+    - OCFrame/OCFNetwork (= 1.1.4)
+    - OCFrame/OCFReactor (= 1.1.4)
+    - OCFrame/OCFResources (= 1.1.4)
+  - OCFrame/OCFComponents (1.1.4):
+    - OCFrame/OCFComponents/JSBridge (= 1.1.4)
+  - OCFrame/OCFComponents/JSBridge (1.1.4)
+  - OCFrame/OCFCore (1.1.4):
     - CocoaLumberjack (= 3.7.2)
     - libextobjc/EXTConcreteProtocol (= 0.6)
     - Mantle-JX (= 2.2.0-v3)
     - PINCache (= 3.0.3)
-  - OCFrame/OCFExtensions (1.1.3):
+  - OCFrame/OCFExtensions (1.1.4):
     - FCUUID (= 1.3.1)
     - Giotto (= 0.3.7)
     - OCFrame/OCFCore
     - OCFrame/OCFResources
     - QMUIKit/QMUICore (= 4.4.0)
     - SDWebImage (= 5.12.1)
-  - OCFrame/OCFNetwork (1.1.3):
+  - OCFrame/OCFNetwork (1.1.4):
     - AFNetworkActivityLogger (= 3.0.0)
     - OCFrame/OCFCore
     - Overcoat-JX (= 4.0.5)
-  - OCFrame/OCFReactor (1.1.3):
+  - OCFrame/OCFReactor (1.1.4):
     - DZNEmptyDataSet (= 1.8.1)
     - GVUserDefaults (= 1.0.2)
     - JLRoutes (= 2.1)
@@ -68,7 +68,7 @@ PODS:
     - OCFrame/OCFComponents/JSBridge
     - OCFrame/OCFExtensions
     - OCFrame/OCFNetwork
-  - OCFrame/OCFResources (1.1.3)
+  - OCFrame/OCFResources (1.1.4)
   - Overcoat-JX (4.0.5):
     - AFNetworking (= 3.2.1)
     - Mantle-JX (= 2.2.0-v3)
@@ -132,7 +132,7 @@ SPEC CHECKSUMS:
   libextobjc: aed8b7d2b07f511c1a7ecaacb33ea03e327c69b7
   Mantle-JX: be31cb81b3d4ccd4bc41b570218228457596e889
   MJRefresh: 30997d30b347c8e9508a4db11e3a690da0c9b85a
-  OCFrame: 7345148656634ec18e2f3f7baebb4cebda94652d
+  OCFrame: 42205fd4a2b5454a9cf1fc942740ee488c121b82
   Overcoat-JX: 639903c0cfbd345d05cca3d034455bd963ed0357
   PINCache: 7a8fc1a691173d21dbddbf86cd515de6efa55086
   PINOperation: 00c935935f1e8cf0d1e2d6b542e75b88fc3e5e20

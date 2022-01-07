@@ -170,7 +170,7 @@
 				ORGANIZATIONNAME = tospery;
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = WDE622528T;
+						DevelopmentTeam = Y5LG6VC6HL;
 					};
 				};
 			};
@@ -397,7 +397,7 @@
 			baseConfigurationReference = C3678E54BB3E4E02418EF5B5 /* Pods-OCFrame_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = WDE622528T;
+				DEVELOPMENT_TEAM = Y5LG6VC6HL;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OCFrame/OCFrame-Prefix.pch";
 				INFOPLIST_FILE = "OCFrame/OCFrame-Info.plist";
@@ -416,7 +416,7 @@
 			baseConfigurationReference = C94A3DF02994E7E421AF0A4E /* Pods-OCFrame_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = WDE622528T;
+				DEVELOPMENT_TEAM = Y5LG6VC6HL;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OCFrame/OCFrame-Prefix.pch";
 				INFOPLIST_FILE = "OCFrame/OCFrame-Info.plist";
