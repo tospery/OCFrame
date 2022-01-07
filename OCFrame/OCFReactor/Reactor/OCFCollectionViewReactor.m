@@ -6,11 +6,9 @@
 //
 
 #import "OCFCollectionViewReactor.h"
-#import "OCFDefines.h"
+#import <OCFrame/OCFExtensions.h>
 #import "OCFReactive.h"
 #import "OCFCollectionSupplementary.h"
-#import "NSError+OCFReactor.h"
-#import "UICollectionReusableView+OCFReactor.h"
 
 @interface OCFCollectionViewReactor ()
 

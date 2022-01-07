@@ -8,16 +8,11 @@
 #import "OCFWebViewController.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 #import <ReactiveObjC/NSObject+RACKVOWrapper.h>
-#import "OCFDefines.h"
-#import "OCFDefines.h"
+#import <OCFrame/OCFExtensions.h>
 #import "OCFParameter.h"
 #import "OCFWebViewReactor.h"
 #import "OCFWebProgressView.h"
 #import "OCFEmptyView.h"
-#import "NSString+OCFReactor.h"
-#import "NSURL+OCFReactor.h"
-#import "UIColor+OCFReactor.h"
-#import "UIApplication+OCFReactor.h"
 
 #define kOCFWebEstimatedProgress         (@"estimatedProgress")
 

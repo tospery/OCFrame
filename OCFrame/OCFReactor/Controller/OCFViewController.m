@@ -7,23 +7,13 @@
 
 #import "OCFViewController.h"
 #import <QMUIKit/QMUIKit.h>
-#import "OCFDefines.h"
-#import "OCFDefines.h"
-#import "OCFDefines.h"
-#import "OCFStrings.h"
+#import <OCFrame/OCFExtensions.h>
 #import "OCFAppDependency.h"
 #import "OCFParameter.h"
 #import "OCFrameManager.h"
 #import "OCFLoginViewController.h"
 #import "OCFViewController.h"
-#import "NSDictionary+OCFReactor.h"
-#import "UIViewController+OCFReactor.h"
-#import "NSError+OCFReactor.h"
-#import "NSObject+OCFReactor.h"
-#import "UIColor+OCFReactor.h"
 #import "OCFScrollItem.h"
-#import "UIImage+OCFReactor.h"
-#import "RACBehaviorSubject+OCFReactor.h"
 
 @interface OCFViewController ()
 @property (nonatomic, assign) BOOL onceTokenForReload;

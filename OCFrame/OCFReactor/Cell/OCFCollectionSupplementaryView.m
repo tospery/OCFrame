@@ -6,7 +6,7 @@
 //
 
 #import "OCFCollectionSupplementaryView.h"
-#import "UIColor+OCFReactor.h"
+#import <OCFrame/OCFExtensions.h>
 
 @interface OCFCollectionSupplementaryView ()
 @property (nonatomic, strong, readwrite) OCFBaseReactor *reactor;

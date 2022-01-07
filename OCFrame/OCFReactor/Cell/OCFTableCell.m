@@ -6,8 +6,7 @@
 //
 
 #import "OCFTableCell.h"
-#import "OCFDefines.h"
-#import "UIColor+OCFReactor.h"
+#import <OCFrame/OCFExtensions.h>
 
 @interface OCFTableCell ()
 @property (nonatomic, strong, readwrite) OCFTableItem *reactor;

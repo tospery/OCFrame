@@ -6,7 +6,7 @@
 //
 
 #import "OCFScrollViewReactor.h"
-#import "OCFDefines.h"
+#import <OCFrame/OCFCore.h>
 
 @interface OCFLoginViewReactor : OCFScrollViewReactor
 @property (nonatomic, strong) NSString *username;

@@ -8,16 +8,13 @@
 #import "OCFNavigator.h"
 #import <QMUIKit/QMUIKit.h>
 #import <JLRoutes/JLRoutes.h>
-#import "OCFDefines.h"
-#import "OCFDefines.h"
+#import <OCFrame/OCFExtensions.h>
 #import "OCFParameter.h"
 #import "OCFViewReactor.h"
 #import "OCFViewController.h"
 #import "OCFTabBarController.h"
 #import "OCFTabBarViewController.h"
 #import "OCFNavigationController.h"
-#import "NSURL+OCFReactor.h"
-#import "UINavigationController+OCFReactor.h"
 
 #define kControllerName                             (@"Controller")
 #define kReactorName                                (@"Reactor")

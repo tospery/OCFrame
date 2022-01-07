@@ -6,16 +6,13 @@
 //
 
 #import "OCFRouterManager.h"
-#import "OCFDefines.h"
-#import "OCFLoginViewReactor.h"
-#import "OCFWebViewReactor.h"
-#import "NSDictionary+OCFReactor.h"
-#import "OCFParameter.h"
-#import "NSString+OCFReactor.h"
-#import "NSObject+OCFReactor.h"
+#import <OCFrame/OCFExtensions.h>
 #import <JLRoutes/JLRoutes.h>
 #import <JLRoutes/JLRRouteHandler.h>
 #import <JLRoutes/JLRRouteDefinition.h>
+#import "OCFLoginViewReactor.h"
+#import "OCFWebViewReactor.h"
+#import "OCFParameter.h"
 
 @interface OCFRouterManager ()
 @property (nonatomic, strong) OCFProvider *provider;

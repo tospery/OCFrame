@@ -6,7 +6,7 @@
 //
 
 #import "OCFBaseResponse.h"
-#import "NSError+OCFReactor.h"
+#import <OCFrame/OCFExtensions.h>
 
 @interface OCFBaseResponse ()
 

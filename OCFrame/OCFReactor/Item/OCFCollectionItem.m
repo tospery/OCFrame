@@ -6,7 +6,7 @@
 //
 
 #import "OCFCollectionItem.h"
-#import "OCFDefines.h"
+#import <OCFrame/OCFCore.h>
 
 @interface OCFCollectionItem ()
 

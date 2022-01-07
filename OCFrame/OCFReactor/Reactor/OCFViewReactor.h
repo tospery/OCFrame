@@ -8,7 +8,7 @@
 #import "OCFBaseReactor.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 #import <JLRoutes/JLRRouteHandler.h>
-#import "OCFDefines.h"
+#import <OCFrame/OCFCore.h>
 #import "OCFUser.h"
 #import "OCFProvider.h"
 #import "OCFNavigable.h"

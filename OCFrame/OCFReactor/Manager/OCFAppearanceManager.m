@@ -6,8 +6,7 @@
 //
 
 #import "OCFAppearanceManager.h"
-#import "OCFDefines.h"
-#import "UIColor+OCFReactor.h"
+#import <OCFrame/OCFExtensions.h>
 
 @interface OCFAppearanceManager ()
 

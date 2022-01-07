@@ -6,8 +6,7 @@
 //
 
 #import "OCFLoginViewReactor.h"
-#import "OCFStrings.h"
-#import "NSDictionary+OCFReactor.h"
+#import <OCFrame/OCFExtensions.h>
 #import "OCFParameter.h"
 
 @interface OCFLoginViewReactor ()

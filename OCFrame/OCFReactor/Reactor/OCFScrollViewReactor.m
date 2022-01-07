@@ -6,18 +6,11 @@
 //
 
 #import "OCFScrollViewReactor.h"
-#import "OCFDefines.h"
-#import "OCFDefines.h"
+#import <OCFrame/OCFExtensions.h>
 #import "OCFParameter.h"
 #import "OCFrameManager.h"
 #import "OCFAppDependency.h"
 #import "OCFLoginViewController.h"
-#import "NSDictionary+OCFReactor.h"
-#import "NSError+OCFReactor.h"
-#import "NSAttributedString+OCFReactor.h"
-#import "OCFDefines.h"
-#import "UIImage+OCFReactor.h"
-#import "UIColor+OCFReactor.h"
 #import "OCFScrollItem.h"
 
 @interface OCFScrollViewReactor ()

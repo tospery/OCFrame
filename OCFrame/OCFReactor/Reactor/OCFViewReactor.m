@@ -9,16 +9,10 @@
 #import <JLRoutes/JLRoutes.h>
 #import <JLRoutes/JLRRouteHandler.h>
 #import <JLRoutes/JLRRouteDefinition.h>
-#import "OCFDefines.h"
-#import "OCFStrings.h"
+#import <OCFrame/OCFExtensions.h>
 #import "OCFAppDependency.h"
 #import "OCFParameter.h"
 #import "OCFViewController.h"
-#import "NSObject+OCFReactor.h"
-#import "NSDictionary+OCFReactor.h"
-#import "UIViewController+OCFReactor.h"
-#import "NSError+OCFReactor.h"
-#import "NSObject+OCFReactor.h"
 
 @interface OCFViewReactor ()
 @property (nonatomic, strong, readwrite) NSString *host;

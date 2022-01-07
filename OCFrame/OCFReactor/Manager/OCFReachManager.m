@@ -8,6 +8,7 @@
 //#import "OCFReachManager.h"
 //#import <AFNetworking/AFNetworking.h>
 //#import "OCFDefines.h"
+#import "OCFFunctions.h"
 //
 //@interface OCFReachManager ()
 //@property (nonatomic, strong, readwrite) OCFBehaviorRelay *behaviorRelay;

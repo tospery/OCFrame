@@ -8,8 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <ReactiveObjC/ReactiveObjC.h>
 #import <ReactiveObjC/NSObject+RACKVOWrapper.h>
-#import "OCFDefines.h"
-#import "UIViewController+OCFReactor.h"
+#import <OCFrame/OCFExtensions.h>
 
 @class OCFViewReactor;
 

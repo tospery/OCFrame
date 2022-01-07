@@ -7,10 +7,8 @@
 
 #import "OCFUser.h"
 #import <Mantle_JX/Mantle.h>
-#import "OCFDefines.h"
-#import "OCFDefines.h"
+#import <OCFrame/OCFExtensions.h>
 #import "OCFLoginViewController.h"
-#import "UIViewController+OCFReactor.h"
 
 @interface OCFUser ()
 

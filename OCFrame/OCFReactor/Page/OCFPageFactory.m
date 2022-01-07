@@ -6,7 +6,7 @@
 //
 
 #import "OCFPageFactory.h"
-#import "UIColor+OCFReactor.h"
+#import <OCFrame/OCFExtensions.h>
 
 @interface OCFPageFactory ()
 

@@ -9,9 +9,7 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 #import <JLRoutes/JLRoutes.h>
 #import <QMUIKit/QMUIKit.h>
-#import "OCFDefines.h"
-#import "OCFDefines.h"
-#import "OCFDefines.h"
+#import <OCFrame/OCFExtensions.h>
 #import "OCFUser.h"
 #import "OCFConfiguration.h"
 #import "OCFPreference.h"
@@ -19,8 +17,6 @@
 #import "OCFAppearanceManager.h"
 #import "OCFLibraryManager.h"
 #import "OCFRouterManager.h"
-#import "NSDictionary+OCFReactor.h"
-#import "UIView+OCFReactor.h"
 
 @interface OCFAppDependency ()
 @property (nonatomic, strong, readwrite) OCFProvider *provider;

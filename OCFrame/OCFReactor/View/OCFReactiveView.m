@@ -6,7 +6,7 @@
 //
 
 #import "OCFReactiveView.h"
-#import "UIColor+OCFReactor.h"
+#import <OCFrame/OCFExtensions.h>
 
 @interface OCFReactiveView ()
 @property (nonatomic, strong, readwrite) OCFBaseReactor *reactor;

@@ -6,7 +6,7 @@
 //
 
 #import "OCFNormalCollectionItem.h"
-#import "OCFDefines.h"
+#import <OCFrame/OCFCore.h>
 
 @interface OCFNormalCollectionItem ()
 @property (nonatomic, strong, readwrite) OCFNormalCollectionModel *model;

@@ -6,11 +6,7 @@
 //
 
 #import "OCFNavigationBar.h"
-#import "OCFDefines.h"
-#import "OCFDefines.h"
-#import "UIImage+OCFReactor.h"
-#import "UIView+OCFReactor.h"
-#import "UIColor+OCFReactor.h"
+#import <OCFrame/OCFExtensions.h>
 
 @interface OCFNavigationBar ()
 @property (nonatomic, strong, readwrite) UILabel *titleLabel;
