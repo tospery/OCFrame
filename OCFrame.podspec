@@ -45,37 +45,27 @@ Pod::Spec.new do |s|
   s.subspec 'OCFCore' do |ss|
     ss.source_files = 'OCFrame/OCFCore/**/*'
 	ss.dependency 'libextobjc/EXTConcreteProtocol', '0.6'
+	ss.dependency 'CocoaLumberjack', '3.7.2'
 	ss.dependency 'Mantle-JX', '2.2.0-v3'
 	ss.dependency 'PINCache', '3.0.3'
   end
   
-  # s.subspec 'OCFModel' do |ss|
-    # ss.source_files = 'OCFrame/OCFModel/**/*'
-	# ss.dependency 'OCFrame/OCFCore'
-	# ss.dependency 'libextobjc/EXTConcreteProtocol', '0.6'
-	# ss.dependency 'Mantle-JX', '2.2.0-v3'
-	# ss.dependency 'PINCache', '3.0.3'
-  # end
-  
-  # s.subspec 'OCFModel' do |ss|
-    # ss.source_files = 'OCFrame/OCFModel/**/*'
-  	# ss.dependency 'OCFrame/OCFCore'
-  	# ss.dependency 'libextobjc/EXTConcreteProtocol', '0.6'
-  	# ss.dependency 'Mantle-JX', '2.2.0-v3'
-  	# ss.dependency 'PINCache', '3.0.3'
-  # end
+  s.subspec 'OCFNetwork' do |ss|
+    ss.source_files = 'OCFrame/OCFNetwork/**/*'
+	ss.dependency 'OCFrame/OCFCore'
+	ss.dependency 'Overcoat-JX', '4.0.5'
+  	ss.dependency 'AFNetworkActivityLogger', '3.0.0'
+  end
   
   # s.subspec 'OCFExtensions' do |ss|
     # ss.source_files = 'OCFrame/OCFExtensions/**/*'
 	# ss.frameworks = 'UIKit', 'QuartzCore'
   	# ss.dependency 'OCFrame/OCFModel'
 	# ss.dependency 'OCFrame/OCFResources'
-	# ss.dependency 'CocoaLumberjack', '3.7.2'
 	# ss.dependency 'QMUIKit/QMUICore', '4.4.0'
 	# ss.dependency 'Giotto', '0.3.7'
 	# ss.dependency 'FCUUID', '1.3.1'
 	# ss.dependency 'SDWebImage', '5.12.1'
-	# ss.dependency 'Overcoat-JX', '4.0.5'
   # end
   
   # s.subspec 'OCFReactor' do |ss|

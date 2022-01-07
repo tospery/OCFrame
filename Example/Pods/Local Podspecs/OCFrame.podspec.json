@@ -28,11 +28,29 @@
         "libextobjc/EXTConcreteProtocol": [
           "0.6"
         ],
+        "CocoaLumberjack": [
+          "3.7.2"
+        ],
         "Mantle-JX": [
           "2.2.0-v3"
         ],
         "PINCache": [
           "3.0.3"
+        ]
+      }
+    },
+    {
+      "name": "OCFNetwork",
+      "source_files": "OCFrame/OCFNetwork/**/*",
+      "dependencies": {
+        "OCFrame/OCFCore": [
+
+        ],
+        "Overcoat-JX": [
+          "4.0.5"
+        ],
+        "AFNetworkActivityLogger": [
+          "3.0.0"
         ]
       }
     },
