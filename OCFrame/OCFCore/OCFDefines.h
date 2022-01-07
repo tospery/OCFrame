@@ -9,15 +9,6 @@
 #define OCFDefines_h
 
 #import <Foundation/Foundation.h>
-//#import <CoreGraphics/CoreGraphics.h>
-//#import <OCFrame/OCFModel.h>
-//#import "NSString+OCFExtensions.h"
-//#import "NSObject+OCFExtensions.h"
-//#import "NSURL+OCFExtensions.h"
-//#import "NSDictionary+OCFExtensions.h"
-//#import "UIColor+OCFExtensions.h"
-
-// extern DDLogLevel ddLogLevel;
 
 #pragma mark - 类型
 typedef void        (^OCFVoidBlock)(void);
