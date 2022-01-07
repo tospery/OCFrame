@@ -13,6 +13,8 @@ typedef NS_ENUM(NSInteger, OCFAppEnvironment){
     OCFAppEnvironmentAppStore
 };
 
+// YJX_TODO 提取到NSBundle中
+
 /// 对于不可在应用扩展中使用的，采用NS_EXTENSION_UNAVAILABLE_IOS进行标注。
 @interface UIApplication (OCFExtensions)
 @property (nonatomic, assign, readonly) OCFAppEnvironment ocf_environment;
@@ -21,7 +23,6 @@ typedef NS_ENUM(NSInteger, OCFAppEnvironment){
 @property (nonatomic, strong, readonly) NSString *ocf_urlScheme;
 @property (nonatomic, strong, readonly) NSString *ocf_displayName;
 @property (nonatomic, strong, readonly) NSString *ocf_teamID;
-@property (nonatomic, strong, readonly) NSString *ocf_bundleID;
 @property (nonatomic, strong, readonly) NSString *ocf_baseApiUrlString;
 @property (nonatomic, strong, readonly) NSString *ocf_baseWebUrlString;
 

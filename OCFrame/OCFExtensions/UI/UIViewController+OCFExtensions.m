@@ -7,7 +7,7 @@
 
 #import "UIViewController+OCFExtensions.h"
 #import <QMUIKit/QMUIKit.h>
-#import "NSObject+OCFExtensions.h"
+#import <OCFrame/OCFCore.h>
 
 //#define kOCFPopupAnimationDuration               (0.25)
 //#define kOCFPopupDurationTime                    (@"kOCFPopupDurationTime")

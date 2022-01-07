@@ -1,14 +1,14 @@
+////
+////  RACBehaviorSubject+OCFExtensions.h
+////  OCFrame
+////
+////  Created by liaoya on 2022/1/6.
+////
 //
-//  RACBehaviorSubject+OCFExtensions.h
-//  OCFrame
+//#import <ReactiveObjC/ReactiveObjC.h>
 //
-//  Created by liaoya on 2022/1/6.
+//@interface RACBehaviorSubject (OCFExtensions)
+//@property (nonatomic, strong, readonly) id value;
 //
-
-#import <ReactiveObjC/ReactiveObjC.h>
-
-@interface RACBehaviorSubject (OCFExtensions)
-@property (nonatomic, strong, readonly) id value;
-
-@end
-
+//@end
+//

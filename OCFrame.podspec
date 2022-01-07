@@ -57,16 +57,16 @@ Pod::Spec.new do |s|
   	ss.dependency 'AFNetworkActivityLogger', '3.0.0'
   end
   
-  # s.subspec 'OCFExtensions' do |ss|
-    # ss.source_files = 'OCFrame/OCFExtensions/**/*'
-	# ss.frameworks = 'UIKit', 'QuartzCore'
-  	# ss.dependency 'OCFrame/OCFModel'
-	# ss.dependency 'OCFrame/OCFResources'
-	# ss.dependency 'QMUIKit/QMUICore', '4.4.0'
-	# ss.dependency 'Giotto', '0.3.7'
-	# ss.dependency 'FCUUID', '1.3.1'
-	# ss.dependency 'SDWebImage', '5.12.1'
-  # end
+  s.subspec 'OCFExtensions' do |ss|
+    ss.source_files = 'OCFrame/OCFExtensions/**/*'
+	ss.frameworks = 'UIKit'
+  	ss.dependency 'OCFrame/OCFCore'
+	ss.dependency 'OCFrame/OCFResources'
+	ss.dependency 'QMUIKit/QMUICore', '4.4.0'
+	ss.dependency 'Giotto', '0.3.7'
+	ss.dependency 'FCUUID', '1.3.1'
+	ss.dependency 'SDWebImage', '5.12.1'
+  end
   
   # s.subspec 'OCFReactor' do |ss|
 	# ss.source_files = 'OCFrame/OCFReactor/**/*'
@@ -83,11 +83,11 @@ Pod::Spec.new do |s|
     ss.resource_bundles = {'OCFResources' => ['OCFrame/OCFResources/*.*']}
   end
   
-  # s.subspec 'OCFComponents' do |ss|
-    # ss.subspec 'JSBridge' do |sss|
-      # sss.source_files = 'OCFrame/OCFComponents/JSBridge/**/*'
-	  # sss.frameworks = 'UIKit', 'WebKit'
-    # end
-  # end
+  s.subspec 'OCFComponents' do |ss|
+    ss.subspec 'JSBridge' do |sss|
+      sss.source_files = 'OCFrame/OCFComponents/JSBridge/**/*'
+	  sss.frameworks = 'UIKit', 'WebKit'
+    end
+  end
 
 end

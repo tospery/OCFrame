@@ -87,10 +87,6 @@ static NSString *ocfURLScheme = nil;
     return bundleSeedID;
 }
 
-- (NSString *)ocf_bundleID {
-    return [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleIdentifier"];
-}
-
 - (NSString *)ocf_urlSchemeWithName:(NSString *)name {
     NSArray *urlTypes = [[NSBundle mainBundle].infoDictionary objectForKey:@"CFBundleURLTypes"];
     NSString *scheme = nil;

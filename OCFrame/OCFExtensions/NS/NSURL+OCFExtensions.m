@@ -9,7 +9,6 @@
 #import <QMUIKit/QMUIKit.h>
 #import <OCFrame/OCFCore.h>
 #import "NSString+OCFExtensions.h"
-#import "NSObject+OCFExtensions.h"
 
 @implementation NSURL (OCFExtensions)
 
