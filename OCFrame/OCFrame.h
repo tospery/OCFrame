@@ -9,4 +9,4 @@
 #import <OCFrame/OCFNetwork.h>
 #import <OCFrame/OCFExtensions.h>
 #import <OCFrame/OCFReactor.h>
-#import <OCFrame/OCFComponents/JSBridge.h>
+#import "WKWebViewJavascriptBridge.h"
