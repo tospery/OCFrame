@@ -6,7 +6,7 @@
 //
 
 #import <OCFrame/OCFCore.h>
-#import <OCFrame/OCFModel.h>
+#import <OCFrame/OCFNetwork.h>
 #import <OCFrame/OCFExtensions.h>
 #import <OCFrame/OCFReactor.h>
-#import "WKWebViewJavascriptBridge.h"
+#import <OCFrame/OCFComponents/JSBridge.h>

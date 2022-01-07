@@ -30,18 +30,6 @@ Pod::Spec.new do |s|
   s.frameworks       = 'Foundation'
   s.source_files     = 'OCFrame/OCFrame.h'
   
-  # OCFCore
-  # OCFNetwork
-  # OCFReactor
-  # OCFResources
-  # OCFExtensions
-  # OCFComponents
-  
-  # OCFModel/OCFNetwork/OCFUIKit/OCFReactor/OCFResources/OCFComponents
-  # 独立库
-  
-  # 依赖库
-  
   s.subspec 'OCFCore' do |ss|
     ss.source_files = 'OCFrame/OCFCore/**/*'
 	ss.dependency 'libextobjc/EXTConcreteProtocol', '0.6'
