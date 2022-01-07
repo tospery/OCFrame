@@ -12,6 +12,7 @@
 #import "OCFAppDependency.h"
 #import "OCFLoginViewController.h"
 #import "OCFScrollItem.h"
+#import "NSError+OCFReactor.h"
 
 @interface OCFScrollViewReactor ()
 @property (nonatomic, strong, readwrite) OCFPage *page;

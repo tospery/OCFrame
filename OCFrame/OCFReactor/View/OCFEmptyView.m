@@ -10,6 +10,7 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 #import <OCFrame/OCFExtensions.h>
 #import "OCFEmptyReactor.h"
+#import "NSError+OCFReactor.h"
 
 @interface OCFEmptyView ()
 @property (nonatomic, strong) UILabel *titleLabel;

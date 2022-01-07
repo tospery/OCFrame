@@ -80,6 +80,33 @@
       }
     },
     {
+      "name": "OCFReactor",
+      "source_files": "OCFrame/OCFReactor/**/*",
+      "dependencies": {
+        "OCFrame/OCFNetwork": [
+
+        ],
+        "OCFrame/OCFExtensions": [
+
+        ],
+        "OCFrame/OCFComponents/JSBridge": [
+
+        ],
+        "JLRoutes": [
+          "2.1"
+        ],
+        "GVUserDefaults": [
+          "1.0.2"
+        ],
+        "MJRefresh": [
+          "3.7.2"
+        ],
+        "DZNEmptyDataSet": [
+          "1.8.1"
+        ]
+      }
+    },
+    {
       "name": "OCFResources",
       "resource_bundles": {
         "OCFResources": [

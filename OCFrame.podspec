@@ -68,16 +68,16 @@ Pod::Spec.new do |s|
 	ss.dependency 'SDWebImage', '5.12.1'
   end
   
-  # s.subspec 'OCFReactor' do |ss|
-	# ss.source_files = 'OCFrame/OCFReactor/**/*'
-    # ss.dependency 'OCFrame/OCFExtensions'
-	# ss.dependency 'OCFrame/OCFComponents/JSBridge'
-	# ss.dependency 'AFNetworkActivityLogger', '3.0.0'
-	# ss.dependency 'JLRoutes', '2.1'
-	# ss.dependency 'GVUserDefaults', '1.0.2'
-	# ss.dependency 'MJRefresh', '3.7.2'
-	# ss.dependency 'DZNEmptyDataSet', '1.8.1'
-  # end
+  s.subspec 'OCFReactor' do |ss|
+	ss.source_files = 'OCFrame/OCFReactor/**/*'
+	ss.dependency 'OCFrame/OCFNetwork'
+    ss.dependency 'OCFrame/OCFExtensions'
+	ss.dependency 'OCFrame/OCFComponents/JSBridge'
+	ss.dependency 'JLRoutes', '2.1'
+	ss.dependency 'GVUserDefaults', '1.0.2'
+	ss.dependency 'MJRefresh', '3.7.2'
+	ss.dependency 'DZNEmptyDataSet', '1.8.1'
+  end
   
   s.subspec 'OCFResources' do |ss|
     ss.resource_bundles = {'OCFResources' => ['OCFrame/OCFResources/*.*']}

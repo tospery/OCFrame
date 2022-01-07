@@ -14,7 +14,6 @@
 #import "NSAttributedString+OCFExtensions.h"
 #import "NSBundle+OCFExtensions.h"
 #import "NSDictionary+OCFExtensions.h"
-#import "NSError+OCFExtensions.h"
 #import "NSMutableAttributedString+OCFExtensions.h"
 #import "NSString+OCFExtensions.h"
 #import "NSURL+OCFExtensions.h"
@@ -38,7 +37,6 @@
 #import "UIViewController+OCFExtensions.h"
 #import "MTLJSONAdapter+OCFExtensions.h"
 #import "MTLModel+OCFExtensions.h"
-#import "RACBehaviorSubject+OCFExtensions.h"
 
 @interface OCFExtensions : NSObject
 

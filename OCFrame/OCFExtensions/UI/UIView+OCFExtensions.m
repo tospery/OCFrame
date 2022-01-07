@@ -27,11 +27,4 @@
     self.layer.cornerRadius = flat(cornerRadius);
 }
 
-- (OCFBorderLayer *)ocf_borderLayer {
-    if ([self.layer isKindOfClass:OCFBorderLayer.class]) {
-        return (OCFBorderLayer *)self.layer;
-    }
-    return nil;
-}
-
 @end

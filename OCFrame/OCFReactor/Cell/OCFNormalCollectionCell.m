@@ -9,6 +9,7 @@
 #import <SDWebImage/SDWebImage.h>
 #import <OCFrame/OCFExtensions.h>
 #import "OCFNormalCollectionItem.h"
+#import "UIView+OCFReactor.h"
 
 @interface OCFNormalCollectionCell ()
 @property (nonatomic, strong, readwrite) UILabel *titleLabel;

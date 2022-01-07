@@ -14,6 +14,8 @@
 #import "OCFLoginViewController.h"
 #import "OCFViewController.h"
 #import "OCFScrollItem.h"
+#import "RACBehaviorSubject+OCFReactor.h"
+#import "NSError+OCFReactor.h"
 
 @interface OCFViewController ()
 @property (nonatomic, assign) BOOL onceTokenForReload;
