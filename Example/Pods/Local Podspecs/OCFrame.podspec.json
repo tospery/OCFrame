@@ -86,6 +86,19 @@
           "OCFrame/OCFResources/*.*"
         ]
       }
+    },
+    {
+      "name": "OCFComponents",
+      "subspecs": [
+        {
+          "name": "JSBridge",
+          "source_files": "OCFrame/OCFComponents/JSBridge/**/*",
+          "frameworks": [
+            "UIKit",
+            "WebKit"
+          ]
+        }
+      ]
     }
   ]
 }
