@@ -12,6 +12,7 @@
 #import <SDWebImage/SDWebImage.h>
 #import <Overcoat_JX/Overcoat.h>
 #import "OCFBorderLayer.h"
+#import "OCFHelper.h"
 #import "NSArray+OCFExtensions.h"
 #import "NSAttributedString+OCFExtensions.h"
 #import "NSBundle+OCFExtensions.h"

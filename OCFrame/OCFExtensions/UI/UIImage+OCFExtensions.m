@@ -6,6 +6,7 @@
 //
 
 #import "UIImage+OCFExtensions.h"
+#import "OCFHelper.h"
 #import "NSBundle+OCFExtensions.h"
 #import "NSString+OCFExtensions.h"
 
@@ -91,7 +92,7 @@
     NSString *module = arr[0];
     NSString *name = arr[1];
     
-    NSBundle *bundle = [NSBundle ocf_bundleWithModule:module];
+    NSBundle *bundle = OCFHelper.ocfResourcesBundle;
     UIImage *image = [UIImage imageNamed:name inBundle:bundle compatibleWithTraitCollection:nil];
     if (image) {
         return image;

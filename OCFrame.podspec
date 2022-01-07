@@ -54,6 +54,7 @@ Pod::Spec.new do |s|
     ss.source_files = 'OCFrame/OCFExtensions/**/*'
 	ss.frameworks = 'UIKit', 'QuartzCore'
   	ss.dependency 'OCFrame/OCFModel'
+	ss.dependency 'OCFrame/OCFResources'
 	ss.dependency 'CocoaLumberjack', '3.7.2'
 	ss.dependency 'QMUIKit/QMUICore', '4.4.0'
 	ss.dependency 'Giotto', '0.3.7'
