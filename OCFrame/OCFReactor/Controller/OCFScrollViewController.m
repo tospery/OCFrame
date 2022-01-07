@@ -168,7 +168,7 @@
 //            [self.reactor.user logout];
 //        }
 //        if (OCFrameManager.sharedInstance.autoLogin &&
-//            ![UIViewController.ocf_topMostViewController isKindOfClass:OCFLoginViewController.class]) {
+//            ![UIViewController.ocf_topMost isKindOfClass:OCFLoginViewController.class]) {
 //            [self.navigator routeURL:OCFURLWithUniversal(OCFrameManager.sharedInstance.loginPattern) withParameters:nil];
 //        }
 //    }

@@ -6,6 +6,7 @@
 //
 
 #import "NSDictionary+OCFExtensions.h"
+#import "NSObject+OCFExtensions.h"
 
 @implementation NSDictionary (OCFExtensions)
 
@@ -15,7 +16,11 @@
     }
     NSString *string = @"";
     for (NSString *key in self.allKeys) {
-        NSString *value = OCFStrWithObj([self objectForKey:key]);
+        id object = [self objectForKey:key];
+        NSString *value = OCFStrWithObj(object);
+        if (!value) {
+            value = [(NSObject *)object ocf_JSONString];
+        }
         value = OCFStrWithDft(value, @"");
         string = OCFStrWithFmt(@"%@&%@=%@", string, key, value);
     }

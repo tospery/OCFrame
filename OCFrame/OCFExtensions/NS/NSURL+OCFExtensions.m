@@ -9,6 +9,7 @@
 #import <QMUIKit/QMUIKit.h>
 #import <OCFrame/OCFCore.h>
 #import "NSString+OCFExtensions.h"
+#import "NSObject+OCFExtensions.h"
 
 @implementation NSURL (OCFExtensions)
 
@@ -34,7 +35,11 @@
     NSURLComponents *urlComponents = [[NSURLComponents alloc] initWithURL:self resolvingAgainstBaseURL:YES];
     NSMutableArray<NSURLQueryItem *> *items = [NSMutableArray<NSURLQueryItem *> arrayWithArray:urlComponents.queryItems];
     for (NSString *key in parameters.allKeys) {
-        NSString *value = OCFStrWithObj(parameters[key]);
+        id object = parameters[key];
+        NSString *value = OCFStrWithObj(object);
+        if (!value) {
+            value = [(NSObject *)value ocf_JSONString];
+        }
         if (!value) {
             continue;
         }

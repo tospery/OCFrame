@@ -104,7 +104,7 @@ OCFStrWithObj(id obj) {
     if ([obj isKindOfClass:NSNumber.class]) {
         return [(NSNumber *)obj stringValue];
     }
-    return nil; // [obj ocf_JSONString];
+    return nil;
 }
 
 #pragma mark - Member
