@@ -49,20 +49,14 @@ static char kOCFObjectTag;
     
     if ([self isKindOfClass:NSArray.class]) {
         NSArray *array = (NSArray *)self;
-        BOOL isModelType = YES;
+        BOOL canJSONSerializing = YES;
         for (id obj in array) {
-            if (![obj isKindOfClass:NSString.class] &&
-                ![obj isKindOfClass:NSNumber.class] &&
-                ![obj isKindOfClass:NSDictionary.class]) {
-                isModelType = NO;
-                break;
-            }
             if (![obj conformsToProtocol:@protocol(MTLJSONSerializing)]) {
-                isModelType = NO;
+                canJSONSerializing = NO;
                 break;
             }
         }
-        if (!isModelType) {
+        if (!canJSONSerializing) {
             return array;
         }
         id json = [MTLJSONAdapter JSONArrayFromModels:(NSArray *)self error:nil];
