@@ -22,3 +22,7 @@
 #import "OCFStrings.h"
 
 extern DDLogLevel ddLogLevel;
+
+@interface OCFCore : NSObject
+
+@end
