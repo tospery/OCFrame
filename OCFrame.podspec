@@ -34,14 +34,14 @@ Pod::Spec.new do |s|
     ss.source_files = 'OCFrame/OCFCore/**/*'
 	ss.dependency 'libextobjc/EXTConcreteProtocol', '0.6'
 	ss.dependency 'CocoaLumberjack', '3.7.2'
-	ss.dependency 'Mantle-JX', '2.2.0-v3'
+	ss.dependency 'Mantle-JX', '2.2.0-v4'
 	ss.dependency 'PINCache', '3.0.3'
   end
   
   s.subspec 'OCFNetwork' do |ss|
     ss.source_files = 'OCFrame/OCFNetwork/**/*'
 	ss.dependency 'OCFrame/OCFCore'
-	ss.dependency 'Overcoat-JX', '4.0.5'
+	ss.dependency 'Overcoat-JX', '4.0.6'
   	ss.dependency 'AFNetworkActivityLogger', '3.0.0'
   end
   

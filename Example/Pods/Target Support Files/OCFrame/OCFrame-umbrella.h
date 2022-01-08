@@ -11,7 +11,6 @@
 #endif
 
 #import "OCFrame.h"
-#import "JSBridge.h"
 #import "WebViewJavascriptBridgeBase.h"
 #import "WebViewJavascriptBridge_JS.h"
 #import "WKWebViewJavascriptBridge.h"
