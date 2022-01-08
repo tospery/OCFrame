@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#if __has_include(<Mantle/MTLTransformerErrorHandling.h>)
-#import <Mantle/MTLTransformerErrorHandling.h>
+#if __has_include(<Mantle_JX/MTLTransformerErrorHandling.h>)
+#import <Mantle_JX/MTLTransformerErrorHandling.h>
 #else
 #import "MTLTransformerErrorHandling.h"
 #endif

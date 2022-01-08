@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 GitHub. All rights reserved.
 //
 
-#if __has_include(<Mantle/MTLModel.h>)
-#import <Mantle/MTLModel.h>
+#if __has_include(<Mantle_JX/MTLModel.h>)
+#import <Mantle_JX/MTLModel.h>
 #else
 #import "MTLModel.h"
 #endif

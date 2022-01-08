@@ -30,9 +30,9 @@ PODS:
   - libextobjc/EXTConcreteProtocol (0.6):
     - libextobjc/RuntimeExtensions
   - libextobjc/RuntimeExtensions (0.6)
-  - Mantle-JX (2.2.0-v3):
-    - Mantle-JX/extobjc (= 2.2.0-v3)
-  - Mantle-JX/extobjc (2.2.0-v3)
+  - Mantle-JX (2.2.0-v4):
+    - Mantle-JX/extobjc (= 2.2.0-v4)
+  - Mantle-JX/extobjc (2.2.0-v4)
   - MJRefresh (3.7.2)
   - OCFrame (1.1.4):
     - OCFrame/OCFComponents (= 1.1.4)
@@ -47,7 +47,7 @@ PODS:
   - OCFrame/OCFCore (1.1.4):
     - CocoaLumberjack (= 3.7.2)
     - libextobjc/EXTConcreteProtocol (= 0.6)
-    - Mantle-JX (= 2.2.0-v3)
+    - Mantle-JX (= 2.2.0-v4)
     - PINCache (= 3.0.3)
   - OCFrame/OCFExtensions (1.1.4):
     - FCUUID (= 1.3.1)
@@ -59,7 +59,7 @@ PODS:
   - OCFrame/OCFNetwork (1.1.4):
     - AFNetworkActivityLogger (= 3.0.0)
     - OCFrame/OCFCore
-    - Overcoat-JX (= 4.0.5)
+    - Overcoat-JX (= 4.0.6)
   - OCFrame/OCFReactor (1.1.4):
     - DZNEmptyDataSet (= 1.8.1)
     - GVUserDefaults (= 1.0.2)
@@ -69,9 +69,9 @@ PODS:
     - OCFrame/OCFExtensions
     - OCFrame/OCFNetwork
   - OCFrame/OCFResources (1.1.4)
-  - Overcoat-JX (4.0.5):
+  - Overcoat-JX (4.0.6):
     - AFNetworking (= 3.2.1)
-    - Mantle-JX (= 2.2.0-v3)
+    - Mantle-JX (= 2.2.0-v4)
     - ReactiveObjC (= 3.1.1)
   - PINCache (3.0.3):
     - PINCache/Arc-exception-safe (= 3.0.3)
@@ -130,10 +130,10 @@ SPEC CHECKSUMS:
   GVUserDefaults: 52d48cf8ba578b40a1a76312b196dfc9134ba36a
   JLRoutes: d755245322b94227662ea3e43492fdca94e05c5b
   libextobjc: aed8b7d2b07f511c1a7ecaacb33ea03e327c69b7
-  Mantle-JX: be31cb81b3d4ccd4bc41b570218228457596e889
+  Mantle-JX: 4c3074ba4b052bdfe662c9b26ac08d82feae02d5
   MJRefresh: 30997d30b347c8e9508a4db11e3a690da0c9b85a
-  OCFrame: 42205fd4a2b5454a9cf1fc942740ee488c121b82
-  Overcoat-JX: 639903c0cfbd345d05cca3d034455bd963ed0357
+  OCFrame: b3d9725e39a5205a8e324158e0d8526c83e221d9
+  Overcoat-JX: 4c58c4e66b130c20fb4fdeeb2c15c260c2b51f5b
   PINCache: 7a8fc1a691173d21dbddbf86cd515de6efa55086
   PINOperation: 00c935935f1e8cf0d1e2d6b542e75b88fc3e5e20
   QMUIKit: 8b48a063b6df0540af74d33ab6ac89f88bf9c728

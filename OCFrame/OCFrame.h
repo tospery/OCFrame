@@ -5,8 +5,8 @@
 //  Created by 杨建祥 on 2020/2/28.
 //
 
-#import <OCFrame/OCFCore.h>
-#import <OCFrame/OCFNetwork.h>
-#import <OCFrame/OCFExtensions.h>
-#import <OCFrame/OCFReactor.h>
-#import "WKWebViewJavascriptBridge.h"
+#import "OCFCore.h"
+#import "OCFNetwork.h"
+#import "OCFExtensions.h"
+#import "OCFReactor.h"
+#import "JSBridge.h"

@@ -14,18 +14,18 @@ FOUNDATION_EXPORT double MantleVersionNumber;
 //! Project version string for Mantle.
 FOUNDATION_EXPORT const unsigned char MantleVersionString[];
 
-#if __has_include(<Mantle/Mantle.h>)
-#import <Mantle/MTLJSONAdapter.h>
-#import <Mantle/MTLModel.h>
-#import <Mantle/MTLModel+NSCoding.h>
-#import <Mantle/MTLValueTransformer.h>
-#import <Mantle/MTLTransformerErrorHandling.h>
-#import <Mantle/NSArray+MTLManipulationAdditions.h>
-#import <Mantle/NSDictionary+MTLManipulationAdditions.h>
-#import <Mantle/NSDictionary+MTLMappingAdditions.h>
-#import <Mantle/NSObject+MTLComparisonAdditions.h>
-#import <Mantle/NSValueTransformer+MTLInversionAdditions.h>
-#import <Mantle/NSValueTransformer+MTLPredefinedTransformerAdditions.h>
+#if __has_include(<Mantle_JX/Mantle.h>)
+#import <Mantle_JX/MTLJSONAdapter.h>
+#import <Mantle_JX/MTLModel.h>
+#import <Mantle_JX/MTLModel+NSCoding.h>
+#import <Mantle_JX/MTLValueTransformer.h>
+#import <Mantle_JX/MTLTransformerErrorHandling.h>
+#import <Mantle_JX/NSArray+MTLManipulationAdditions.h>
+#import <Mantle_JX/NSDictionary+MTLManipulationAdditions.h>
+#import <Mantle_JX/NSDictionary+MTLMappingAdditions.h>
+#import <Mantle_JX/NSObject+MTLComparisonAdditions.h>
+#import <Mantle_JX/NSValueTransformer+MTLInversionAdditions.h>
+#import <Mantle_JX/NSValueTransformer+MTLPredefinedTransformerAdditions.h>
 #else
 #import "MTLJSONAdapter.h"
 #import "MTLModel.h"

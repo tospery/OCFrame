@@ -7,7 +7,7 @@
 
 #import "OCFViewController.h"
 #import <WebKit/WebKit.h>
-#import "WKWebViewJavascriptBridge.h"
+#import "JSBridge.h"
 #import "OCFWebViewReactor.h"
 
 @interface OCFWebViewController : OCFViewController <WKNavigationDelegate, WKUIDelegate>
